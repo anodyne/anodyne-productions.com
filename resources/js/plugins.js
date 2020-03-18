@@ -6,3 +6,9 @@ Vue.use(SvgIcon, {
     classPrefix: 'svg',
     isStroke: true
 });
+
+Vue.mixin({
+    methods: {
+        route
+    }
+});

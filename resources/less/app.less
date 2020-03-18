@@ -1,11 +1,19 @@
 @tailwind preflight;
 
 body {
-    @apply .bg-grey-50 .text-grey-900 .font-sans .leading-normal;
+    @apply .bg-grey-50 .text-grey-800 .font-sans .text-lg .leading-normal;
+
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "pnum";
+    font-feature-settings: "pnum";
+    font-variant-numeric: proportional-nums;
 }
 
 .page-title {
-    @apply .font-extrabold .text-blue-700;
+    @apply .font-bold .text-blue-500 .mb-6;
 }
 
 .svg-icon {
@@ -22,6 +30,8 @@ body {
     stroke: none;
 }
 
+@import 'components/buttons.less';
+@import 'components/forms.less';
 @import 'components/grid.less';
 
 @tailwind components;
@@ -32,6 +42,10 @@ body {
 
 .box-sizing-content {
     box-sizing: content-box;
+}
+
+.transition {
+    transition: all .2s ease-in-out;
 }
 
 @tailwind utilities;

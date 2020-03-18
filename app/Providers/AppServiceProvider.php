@@ -5,6 +5,7 @@ namespace App\Providers;
 use SplFileInfo;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Factory as ViewFactory;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +16,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        ViewFactory::macro('component', function ($name, $data = []) {
+            $name = str_replace(' ', '', ucwords(str_replace('.', ' ', $name)));
+
+            return view('app', ['name' => $name, 'data' => $data]);
+        });
     }
 
     /**

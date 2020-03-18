@@ -2,28 +2,40 @@
 	"license": "MIT",
 	"private": true,
 	"scripts": {
-		"dev": "npm run svg && npm run development",
+		"dev": "npm run development --scripts-prepend-node-path",
 		"development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-		"watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+		"watch": "npm run development -- --watch --scripts-prepend-node-path",
 		"watch-poll": "npm run watch -- --watch-poll",
 		"hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-		"prod": "npm run svg && npm run production",
-		"production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-		"svg": "vsvg -s ./resources/svg -t ./resources/js/components/core/icons"
+		"prod": "npm run production --scripts-prepend-node-path",
+		"production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+		"svg": "vsvg -s ./resources/svg -t ./resources/js/components/icons"
 	},
 	"dependencies": {
+		"@babel/plugin-syntax-dynamic-import": "^7.2.0",
+		"animate.css": "^3.7",
 		"axios": "^0.18",
+		"laravel-mix": "^4.0.7",
+		"laravel-mix-tailwind": "^0.1.0",
 		"lodash": "^4.17",
-		"tailwindcss": "^0.7",
+		"popper.js": "^1.12",
+		"resolve-url-loader": "^2.3.1",
+		"tailwindcss": "^0.7.3",
 		"tailwindcss-gradients": "^1.1.0",
-		"vue": "^2.5",
-		"vue-svgicon": "^3.2.1"
+		"turbolinks": "^5.2.0",
+		"vue": "^2.6.0",
+		"vue-on-click-outside": "^1.0.3",
+		"vue-svgicon": "^3.2.2"
 	},
 	"devDependencies": {
-		"cross-env": "^3.2",
-		"laravel-mix": "^2.1",
-		"laravel-mix-tailwind": "^0.1",
-		"less": "^3.0",
-		"less-loader": "^4.1"
+		"cross-env": "^5.1",
+		"eslint": "^5.5.0",
+		"eslint-config-airbnb-base": "^13.1.0",
+		"eslint-import-resolver-webpack": "^0.10.1",
+		"eslint-plugin-import": "^2.14.0",
+		"eslint-plugin-vue": "^5.0.0-beta.3",
+		"less": "^3.9.0",
+		"less-loader": "^4.1.0",
+		"vue-template-compiler": "^2.6.0"
 	}
 }
