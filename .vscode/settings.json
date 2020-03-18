@@ -1,0 +1,21 @@
+{
+    "saveAndRun": {
+        "commands": [
+            {
+                "match": "\\.js$",
+                "cmd": "./node_modules/.bin/eslint ${file} --fix",
+                "silent": true
+            },
+            {
+                "match": "\\.vue$",
+                "cmd": "./node_modules/.bin/eslint ${file} --fix",
+                "silent": true
+            },
+            {
+                "match": "\\.php$",
+                "cmd": "/Users/DVS/.composer/vendor/bin/php-cs-fixer fix ${file} --config='/Users/DVS/Code/php-cs/.php_cs'",
+                "silent": true
+            }
+        ]
+    }
+}
