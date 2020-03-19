@@ -17,13 +17,6 @@ class Role extends LaratrustRole
 
     protected $fillable = ['name', 'display_name', 'description'];
 
-    /**
-     * Set the description for logging.
-     *
-     * @param  string  $eventName
-     *
-     * @return string
-     */
     public function getDescriptionForEvent(string $eventName): string
     {
         return ":subject.display_name role was {$eventName}";

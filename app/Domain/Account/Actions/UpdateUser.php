@@ -9,6 +9,8 @@ class UpdateUser
 {
     public function execute(User $user, UserData $data): User
     {
-        return tap($user)->update($data->toArray());
+        $user->update($data->toArray());
+
+        return $user->fresh();
     }
 }
