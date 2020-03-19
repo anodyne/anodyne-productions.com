@@ -39,14 +39,14 @@
 
                 <div class="mt-6 flex items-center justify-between">
                     <div class="flex items-center">
-                        <input id="remember_me" type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out">
-                        <label for="remember_me" class="ml-2 block text-sm leading-5 text-gray-900">
+                        <input id="remember" name="remember" type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out">
+                        <label for="remember" class="ml-2 block text-sm leading-5 text-gray-900">
                             Remember me
                         </label>
                     </div>
 
                     <div class="text-sm leading-5">
-                        <a href="{{ route('password.email') }}" class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                        <a href="{{ route('password.request') }}" class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
                             Forgot your password?
                         </a>
                     </div>
