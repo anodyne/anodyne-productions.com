@@ -3,7 +3,10 @@
 namespace Support\Providers;
 
 use Inertia\Inertia;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
+use Support\View\Components\Dropdown;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +29,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Paginator::useTailwind();
+
+        $this->registerBladeComponents();
+    }
+
+    protected function registerBladeComponents()
+    {
+        Blade::component('dropdown', Dropdown::class);
     }
 
     protected function registerInertia()

@@ -45,11 +45,7 @@
                         </button> -->
 
                         <dropdown placement="bottom-end" class="ml-3">
-                            <img
-                                class="h-8 w-8 rounded-full"
-                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt=""
-                            >
+                            <avatar image-url="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" size="xs"></avatar>
 
                             <template #dropdown="{ toggle, styles }">
                                 <a :href="$route('account.info')" :class="styles.link">Your Account</a>
@@ -90,27 +86,23 @@
             <!-- Mobile nav -->
             <div :class="{ 'block': open, 'hidden': !open }" class="sm:hidden">
                 <div class="pt-2 pb-3">
-                    <inertia-link :href="$route('account.info')" class="block pl-3 pr-4 py-2 border-l-4 border-blue-500 text-base font-medium text-blue-700 bg-blue-50 focus:outline-none focus:text-blue-800 focus:bg-blue-100 focus:border-blue-700 transition duration-150 ease-in-out">Account</inertia-link>
+                    <inertia-link :href="$route('account.info')" class="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Account</inertia-link>
                     <a href="https://xtras.anodyne-productions.com" class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Xtras</a>
                     <a href="https://help.anodyne-productions.com" class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Docs</a>
-                    <inertia-link :href="$route('admin.dashboard')" class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 transition duration-150 ease-in-out">Admin</inertia-link>
+                    <inertia-link :href="$route('admin.dashboard')" class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-blue-500 text-base font-medium text-blue-700 bg-blue-50 focus:outline-none focus:text-blue-800 focus:bg-blue-100 focus:border-blue-700 transition duration-150 ease-in-out">Admin</inertia-link>
                 </div>
                 <div class="pt-4 pb-3 border-t border-gray-200">
                     <div class="flex items-center px-4">
                         <div class="flex-shrink-0">
-                            <img
-                                class="h-10 w-10 rounded-full"
-                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt=""
-                            >
+                            <avatar image-url="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" size="sm"></avatar>
                         </div>
                         <div class="ml-3">
-                            <div class="text-base font-medium leading-6 text-gray-800">{{ $page.auth.user.name }}</div>
+                            <div class="text-base font-medium leading-6 text-gray-800">{{ $page.auth.user.username }}</div>
                             <div class="text-sm font-medium leading-5 text-gray-500">{{ $page.auth.user.email }}</div>
                         </div>
                     </div>
                     <div class="mt-3">
-                        <a :href="$route('account.info')" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">Your Account</a>
+                        <inertia-link :href="$route('account.info')" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">Your Account</inertia-link>
                         <a href="#" class="mt-1 block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:text-gray-800 focus:bg-gray-100 transition duration-150 ease-in-out">Sign Out</a>
                     </div>
                 </div>
@@ -118,7 +110,18 @@
         </nav>
 
         <div class="max-w-5xl mx-auto | sm:px-6 lg:px-8">
-            <div class="bg-white shadow overflow-hidden | sm:rounded-lg">
+            <div class="px-6 | md:flex md:items-center md:justify-between">
+                <div class="flex-1 min-w-0">
+                    <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
+                        {{ pageTitle }}
+                    </h2>
+                </div>
+                <div class="mt-4 flex md:mt-0 md:ml-4">
+                    <slot name="controls"></slot>
+                </div>
+            </div>
+
+            <div class="bg-white shadow overflow-hidden mt-8 | sm:rounded-lg">
                 <slot></slot>
             </div>
 
@@ -130,13 +133,21 @@
 </template>
 
 <script>
+import Avatar from '@/Shared/Avatar.vue';
 import AnodyneLogo from '@/Shared/LogoAnodyne.vue';
 import AnodyneMark from '@/Shared/MarkAnodyne.vue';
 
 export default {
     name: 'AdminLayout',
 
-    components: { AnodyneLogo, AnodyneMark },
+    components: { Avatar, AnodyneLogo, AnodyneMark },
+
+    props: {
+        pageTitle: {
+            type: String,
+            required: true
+        }
+    },
 
     data () {
         return {

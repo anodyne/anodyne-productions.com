@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use App\Console\Commands\DeleteUsersCommand;
+use App\Console\Commands\CleanForumPostsCommand;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -15,6 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         DeleteUsersCommand::class,
+        CleanForumPostsCommand::class,
     ];
 
     /**

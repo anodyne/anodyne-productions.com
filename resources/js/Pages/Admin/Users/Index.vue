@@ -1,5 +1,13 @@
 <template>
-    <admin-layout>
+    <admin-layout page-title="Users">
+        <template #controls>
+            <span class="shadow-sm rounded-md">
+                <inertia-link :href="$route('admin.users.create')" class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-semibold rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-700 active:bg-blue-700 transition duration-150 ease-in-out">
+                    Create
+                </inertia-link>
+            </span>
+        </template>
+
         <div class="bg-white shadow overflow-hidden sm:rounded-md">
             <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
                 <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
@@ -28,11 +36,7 @@
                         <div class="flex items-center px-4 py-4 sm:px-6">
                             <div class="min-w-0 flex-1 flex items-center">
                                 <div class="flex-shrink-0">
-                                    <img
-                                        class="h-16 w-16 rounded-full"
-                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                        alt=""
-                                    >
+                                    <avatar image-url="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" size="lg"></avatar>
                                 </div>
                                 <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                                     <div>
@@ -110,10 +114,11 @@
 </template>
 
 <script>
+import Avatar from '@/Shared/Avatar.vue';
 import AdminLayout from '@/Shared/Layouts/AdminLayout.vue';
 
 export default {
-    components: { AdminLayout },
+    components: { Avatar, AdminLayout },
 
     props: {
         filters: {

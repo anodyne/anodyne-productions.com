@@ -45,11 +45,7 @@
                         </button> -->
 
                         <dropdown placement="bottom-end" class="ml-3">
-                            <img
-                                class="h-8 w-8 rounded-full"
-                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt=""
-                            >
+                            <avatar image-url="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" size="xs"></avatar>
 
                             <template #dropdown="{ toggle, styles }">
                                 <a :href="$route('account.info')" :class="styles.link">Your Account</a>
@@ -98,11 +94,7 @@
                 <div class="pt-4 pb-3 border-t border-gray-200">
                     <div class="flex items-center px-4">
                         <div class="flex-shrink-0">
-                            <img
-                                class="h-10 w-10 rounded-full"
-                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt=""
-                            >
+                            <avatar image-url="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" size="sm"></avatar>
                         </div>
                         <div class="ml-3">
                             <div class="text-base font-medium leading-6 text-gray-800">{{ $page.auth.user.name }}</div>
@@ -183,13 +175,14 @@
 </template>
 
 <script>
+import Avatar from '@/Shared/Avatar.vue';
 import AnodyneLogo from '@/Shared/LogoAnodyne.vue';
 import AnodyneMark from '@/Shared/MarkAnodyne.vue';
 
 export default {
     name: 'AccountLayout',
 
-    components: { AnodyneLogo, AnodyneMark },
+    components: { Avatar, AnodyneLogo, AnodyneMark },
 
     data () {
         return {

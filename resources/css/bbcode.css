@@ -1,0 +1,10 @@
+.bbcode ul {}
+.bbcode ol {}
+.bbcode li {}
+
+.bbcode b, .bbcode strong {
+    font-weight: 600;
+}
+.bbcode i, .bbcode em {
+    font-style: italic;
+}

@@ -227,5 +227,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'BBCode' => \Genert\BBCode\Facades\BBCode::class,
+        'TextFormatter' => Domain\Support\TextFormatter::class,
     ],
 ];

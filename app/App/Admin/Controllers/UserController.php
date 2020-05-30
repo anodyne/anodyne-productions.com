@@ -13,7 +13,6 @@ use App\Admin\Requests\StoreUserRequest;
 use Domain\Account\Presenters\UserPresenter;
 use Domain\Account\DataTransferObjects\UserData;
 use App\Account\Requests\UpdateAccountInfoRequest;
-use Domain\Account\DataTransferObjects\UserCollection;
 
 class UserController extends Controller
 {
@@ -27,9 +26,6 @@ class UserController extends Controller
         $users = User::orderBy('username')
             ->filter($request->only('search'))
             ->paginate(15);
-
-        // dd(UserData::fromModel(User::first())->all());
-        dd(UserCollection::create(User::withTrashed()->get()->toArray()));
 
         return Inertia::render('Admin/Users/Index', [
             'filters' => $request->all('search'),

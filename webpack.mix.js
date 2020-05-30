@@ -2,7 +2,9 @@ const mix = require('laravel-mix');
 const path = require('path');
 
 mix.js('resources/js/app-inertia.js', 'public/js')
+    .js('resources/js/docs.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css')
+    .postCss('resources/css/docs.css', 'public/css')
     .options({
         postCss: [
             /* eslint-disable */

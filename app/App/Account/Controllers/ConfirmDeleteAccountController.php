@@ -2,7 +2,6 @@
 
 namespace App\Account\Controllers;
 
-use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Domain\Account\Models\Profile;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -17,6 +16,8 @@ class ConfirmDeleteAccountController
 
         $this->authorize('update', $profile);
 
-        return Inertia::render('Account/DeleteAccount');
+        return view('account.delete', [
+            'profile' => $profile,
+        ]);
     }
 }
