@@ -99,7 +99,9 @@
                 <h2 class="text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:text-5xl sm:leading-none md:text-6xl">
                     Data to enrich your
                     <br class="xl:hidden" />
-                    <span class="text-blue-600">online business</span>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
+                        online business
+                    </span>
                 </h2>
                 <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
                     Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.
@@ -291,6 +293,26 @@
     </div>
 </div>
 
+<div class="bg-gray-100">
+    <div class="max-w-screen-xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-r from-yellow-300 via-orange-400 to-red-600 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
+            <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
+                <div class="lg:self-center">
+                    <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                        <span class="block">The next generation.</span>
+                        <span class="block text-yellow-700">Explore Nova 3.</span>
+                    </h2>
+                    <p class="mt-4 text-lg font-medium text-yellow-800">Re-written from the ground up, Nova 3 is RPG management re-imagined for the modern web.</p>
+                    <a href="#" class="mt-8 bg-white border border-transparent rounded-md shadow px-6 py-3 inline-flex items-center text-base font-medium text-yellow-600 hover:text-yellow-500 hover:bg-yellow-50 transition duration-150 ease-in-out">Learn more</a>
+                </div>
+            </div>
+            <div class="relative pb-3/5 -mt-6 md:pb-1/2">
+                <img class="absolute inset-0 w-full h-full transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20" src="https://tailwindui.com/img/component-images/full-width-with-sidebar.jpg" alt="App screenshot">
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="relative bg-gray-800">
     <div class="h-56 bg-blue-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
         <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&blend=0288D1&sat=-100&blend-mode=multiply" alt="Support team" />
@@ -340,7 +362,7 @@
     </div>
 </div>
 
-<div x-data="{ show: false }" x-show="show" x-init="localStorage.getItem('hideBanner') === null ? (setTimeout(() => show = true, 500)) : (show = false)" x-transition:enter="ease-out duration-500" x-transition:enter-start="opacity-0 scale-95 translate-y-2" x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-transition:leave="ease-in duration-300" x-transition:leave-start="opacity-100 scale-100 translate-y-0" x-transition:leave-end="opacity-0 scale-95 translate-y-2" class="transition transform fixed z-100 bottom-0 inset-x-0 pb-2 sm:pb-5">
+{{-- <div x-data="{ show: false }" x-show="show" x-init="localStorage.getItem('hideBanner') === null ? (setTimeout(() => show = true, 500)) : (show = false)" x-transition:enter="ease-out duration-500" x-transition:enter-start="opacity-0 scale-95 translate-y-2" x-transition:enter-end="opacity-100 scale-100 translate-y-0" x-transition:leave="ease-in duration-300" x-transition:leave-start="opacity-100 scale-100 translate-y-0" x-transition:leave-end="opacity-0 scale-95 translate-y-2" class="transition transform fixed z-100 bottom-0 inset-x-0 pb-2 sm:pb-5">
     <div class="max-w-screen-xl mx-auto px-2 sm:px-4">
         <div class="p-2 rounded-lg bg-gray-900 shadow-lg sm:p-3">
             <div class="flex items-center justify-between flex-wrap">
@@ -371,7 +393,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <div class="bg-gray-800">
     <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">

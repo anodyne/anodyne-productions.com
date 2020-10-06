@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('web')->group(function () {
     Route::view('/', 'home')->name('home');
+    Route::view('nova-3', 'nova3');
 
     Route::files([
         base_path('app/App/Account/routes/web.php'),

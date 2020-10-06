@@ -35,5 +35,18 @@ module.exports = {
     },
     plugins: [
         require('@tailwindcss/ui')
-    ]
+    ],
+
+    experimental: {
+        darkModeVariant: false,
+        defaultLineHeights: true,
+        extendedFontSizeScale: true,
+        extendedSpacingScale: true,
+        uniformColorPalette: true
+    },
+
+    future: {
+        purgeLayersByDefault: true,
+        removeDeprecatedGapUtilities: true
+    }
 };
