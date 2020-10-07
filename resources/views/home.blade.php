@@ -125,19 +125,17 @@
         </div>
     </div>
 
-
-
     <div class="bg-gray-50">
         <div class="max-w-screen-lg mx-auto py-16 px-4 sm:px-6 lg:px-8">
             <div class="bg-gradient-to-r from-yellow-300 to-orange-500 rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
                 <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
                     <div class="lg:self-center">
                         <h2 class="text-3xl font-extrabold text-white sm:text-4xl sm:leading-10">
-                            <span class="block">The Next Generation is Coming</span>
+                            <span class="block">The Next Generation</span>
                             <span class="block text-yellow-900">Explore Nova 3 now.</span>
                         </h2>
-                        <p class="mt-4 text-lg text-white">Re-written from the ground up, Nova 3 is role-playing management for the modern web.</p>
-                        <a href="#" class="mt-8 bg-white border border-transparent rounded-md shadow px-6 py-3 inline-flex items-center text-base font-semibold text-yellow-600 hover:text-yellow-500 hover:bg-gray-50 transition duration-150 ease-in-out">Learn more</a>
+                        <p class="mt-4 text-lg text-white">Re-written from the ground up, Nova 3 is RPG management for the modern web.</p>
+                        <a href="{{ route('nova-3') }}" class="mt-8 bg-white border border-transparent rounded-md shadow px-6 py-3 inline-flex items-center text-base font-semibold text-yellow-600 hover:text-yellow-500 hover:bg-gray-50 transition duration-150 ease-in-out">Learn more</a>
                     </div>
                 </div>
                 <div class="relative pb-3/5 -mt-6 md:pb-1/2">

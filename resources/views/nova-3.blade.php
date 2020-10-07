@@ -1,4 +1,15 @@
 <x-guest-layout>
+    <header class="overflow-hidden relative pt-16 pb-36 bg-gray-800">
+        <svg class="hidden lg:block absolute right-0 bottom-0 w-full h-24 text-gray-100 transform rotate-180 z-10" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <polygon points="0,100 0,0 100,0 100,0" />
+        </svg>
+
+        <h1 class="text-center font-extrabold text-6xl leading-tight">
+            <div class="block text-white">RPG Management.</div>
+            <div class="block bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-orange-500">Reimagined.</div>
+        </h1>
+    </header>
+
     <section class="py-16 bg-gray-100 space-y-24">
         {{-- Mobile --}}
         <div class="overflow-hidden">
