@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::view('nova-3', 'nova-3');
+Route::view('nova-3', 'nova-3')->name('nova-3');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
