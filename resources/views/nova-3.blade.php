@@ -1,20 +1,20 @@
 <x-guest-layout>
-    <header class="overflow-hidden relative pt-16 pb-36 bg-gray-800">
-        <svg class="hidden lg:block absolute right-0 bottom-0 w-full h-24 text-gray-100 transform rotate-180 z-10" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <header class="px-4 overflow-hidden relative pt-16 pb-24 bg-gray-800 | lg:pb-36">
+        <svg class="block absolute right-0 bottom-0 w-full h-10 text-gray-100 transform rotate-180 z-10 | lg:h-24" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">
             <polygon points="0,100 0,0 100,0 100,0" />
         </svg>
 
-        <h1 class="text-center font-extrabold text-6xl leading-tight">
-            <div class="block text-white">RPG Management.</div>
-            <div class="block bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-orange-500">Reimagined.</div>
+        <h1 class="text-center font-extrabold text-4xl | lg:text-6xl">
+            <div class="block leading-tight text-white">RPG Management.</div>
+            <div class="block leading-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-orange-500">Re-imagined.</div>
         </h1>
     </header>
 
     <section class="py-16 bg-gray-100 space-y-24">
         {{-- Mobile --}}
         <div class="overflow-hidden">
-            <div class="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-screen-xl">
-                <svg class="hidden lg:block absolute left-full transform -translate-x-1/2 -translate-y-1/4" width="404" height="784" fill="none" viewBox="0 0 404 784">
+            <div class="relative max-w-xl mx-auto px-4 | sm:px-6 lg:px-8 lg:max-w-screen-lg">
+                <svg class="hidden absolute left-full transform -translate-x-1/2 -translate-y-1/4 | lg:block" width="404" height="784" fill="none" viewBox="0 0 404 784">
                     <defs>
                         <pattern id="b1e6e422-73f8-40a6-b5d9-c8586e37e0e7" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
                             <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
@@ -23,71 +23,31 @@
                     <rect width="404" height="784" fill="url(#b1e6e422-73f8-40a6-b5d9-c8586e37e0e7)" />
                 </svg>
 
-                <div class="relative">
-                    <h3 class="text-center text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                        First-class mobile experience
+                <div class="relative lg:text-center">
+                    <p class="text-base text-blue-500 font-semibold tracking-wide uppercase">Mobile</p>
+                    <h3 class="text-3xl font-extrabold tracking-tight text-gray-900 | sm:text-4xl">
+                        Freedom to play wherever you are
                     </h3>
-                    <p class="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in, accusamus quisquam.
+                    <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-500">
+                        No matter where you are or what device you're on, Nova 3 just works. From day 1, we've designed it to work on phones and tablets as well as a computer.
                     </p>
                 </div>
 
-                <div class="relative mt-12 sm:mt-16 lg:mt-24">
-                    <div class="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
-                        <div class="lg:col-start-2">
-                            <ul>
-                                <li>
-                                    <div class="flex">
-                                        <div class="flex-shrink-0">
-                                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
-                                                @svg('globe-location', 'h-7 w-7')
-                                            </div>
-                                        </div>
-                                        <div class="ml-4">
-                                            <h5 class="text-lg font-medium text-gray-900">Play your game from anywhere</h5>
-                                            <p class="mt-2 text-base text-gray-500">
-                                                No matter where you are or what device you're on, Nova 3 just works. From day 1, we've designed it to work on phones and tablets as well as a computer. Experience the freedom to play your game from wherever you are.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="mt-10">
-                                    <div class="flex">
-                                        <div class="flex-shrink-0">
-                                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
-                                                @svg('phone-mobile', 'h-7 w-7')
-                                            </div>
-                                        </div>
-                                        <div class="ml-4">
-                                            <h5 class="text-lg font-medium text-gray-900">Bring any device</h5>
-                                            <p class="mt-2 text-base text-gray-500">
-                                                We worked to ensure that anything you can do in Nova 3 from your computer you can do from your devices as well. Mobile support isn't an afterthought, it's a priority.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                <div class="relative mt-12 w-3/4 mx-auto">
+                    <img src="{{ asset('images/devices.svg') }}" class="block w-full" alt="">
+                    {{-- <img src="{{ asset('images/Macbook.svg') }}" class="block inset-y-0 w-128" alt=""> --}}
 
-                        <div class="mt-10 -mx-4 relative lg:mt-0 lg:col-start-1">
-                            <svg class="absolute left-1/2 transform -translate-x-1/2 translate-y-16 lg:hidden" width="784" height="404" fill="none" viewBox="0 0 784 404">
-                                <defs>
-                                    <pattern id="e80155a9-dfde-425a-b5ea-1f6fadd20131" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                                        <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-                                    </pattern>
-                                </defs>
-                                <rect width="784" height="404" fill="url(#e80155a9-dfde-425a-b5ea-1f6fadd20131)" />
-                            </svg>
-                            <img class="relative mx-auto" width="490" src="{{ asset('images/feature-example-2.png') }}" alt="">
-                        </div>
-                    </div>
+                    {{-- <div class="absolute bottom-0 right-0">
+                        <img src="{{ asset('images/iPad.svg') }}" class="w-96" alt="">
+                    </div> --}}
                 </div>
             </div>
+
         </div>
 
         {{-- Storytelling --}}
         <div class="bg-gradient-to-l from-cool-gray-600 to-cool-gray-800 py-16">
-            <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="lg:text-center">
                     <p class="text-base text-blue-500 font-semibold tracking-wide uppercase">Storytelling</p>
                     <h3 class="mt-2 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
@@ -167,7 +127,7 @@
 
         {{-- Ranks --}}
         <div class="overflow-hidden">
-            <div class="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-screen-xl">
+            <div class="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-screen-lg">
                 <svg class="hidden lg:block absolute left-full transform -translate-x-1/2 -translate-y-1/4" width="404" height="784" fill="none" viewBox="0 0 404 784">
                     <defs>
                         <pattern id="b1e6e422-73f8-40a6-b5d9-c8586e37e0e7" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -178,11 +138,11 @@
                 </svg>
 
                 <div class="relative lg:text-center">
-                    <p class="text-base text-blue-600 font-semibold tracking-wide uppercase">Ranks</p>
-                    <h3 class="mt-2 text-center text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    <p class="text-base text-blue-500 font-semibold tracking-wide uppercase">Ranks</p>
+                    <h3 class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
                         Ranks done right
                     </h3>
-                    <p class="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">
+                    <p class="mt-4 max-w-3xl mx-auto text-xl text-gray-500">
                         A re-imagined system for handling ranks makes it infinitely easier to manage your ranks and build them exactly how you want them.
                     </p>
                 </div>
@@ -275,19 +235,19 @@
         </div>
 
         {{-- Everything else --}}
-        <div class="bg-gradient-to-br from-blue-600 to-blue-800 py-16">
-            <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 lg:grid lg:grid-cols-3 lg:gap-8">
+        <div class="bg-gradient-to-br from-blue-500 to-blue-700 py-16">
+            <div class="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 lg:grid lg:grid-cols-3 lg:gap-8">
                 <div>
                     <p class="text-3xl font-extrabold text-white">Better at... everything</p>
                     <p class="mt-4 text-lg text-blue-200">From the ground-up, Nova 3 takes everything that Nova has done for years and aims to make it better. The end result is a product that's faster, smarter, and easier to use than its ever been.</p>
                 </div>
                 <div class="mt-12 lg:mt-0 lg:col-span-2">
-                    <dl class="space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:grid-rows-4 sm:grid-flow-col sm:gap-6 sm:row-gap-10 lg:gap-8">
+                    <dl class="space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:grid-rows-4 sm:grid-flow-col sm:gap-x-6 sm:gap-y-4 lg:gap-x-8">
                         <div class="flex space-x-3">
                             @svg('checkmark', 'flex-shrink-0 h-6 w-6 text-blue-400')
                             <div class="space-y-2">
                                 <dt class="text-lg font-medium text-blue-100">Creating new users</dt>
-                                <dd class="flex space-x-3 lg:py-0 lg:pb-4">
+                                <dd class="flex space-x-3">
                                     <span class="text-base text-blue-300">No need to use the join form anymore, simply click and add a new user.</span>
                                 </dd>
                             </div>
@@ -359,10 +319,27 @@
                 </div>
             </div>
         </div>
+
+        <div class="bg-gray-100">
+            <div class="max-w-2xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    <span class="block">Ready to dive in?</span>
+                    <span class="block text-blue-500">Check out the demo today.</span>
+                </h2>
+                <p class="mt-4 text-lg leading-6 text-gray-500">
+                    Username &ndash; <span class="font-mono">admin@admin.com</span><br>
+                    Password &ndash; <span class="font-mono">secret</span></p>
+                <div class="mt-8 inline-flex rounded-md shadow">
+                    <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                        Get started
+                    </a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer class="bg-gray-800">
-        <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+        <div class="max-w-screen-lg mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
             <div class="xl:grid xl:grid-cols-3 xl:gap-8">
                 <div class="xl:col-span-1">
                     <x-jet-application-logo class="text-gray-300 h-10 w-auto" />
