@@ -1,6 +1,0 @@
-.toc li a {
-    @apply block transform transition-colors duration-200 py-2 hover:text-gray-900 focus:outline-none;
-}
-.toc li > ul > li {
-    @apply ml-4;
-}
