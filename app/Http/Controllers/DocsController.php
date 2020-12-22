@@ -18,7 +18,7 @@ class DocsController
     {
         if ($page === null) {
             if ($version !== null) {
-                return redirect()->route('docs', [self::DEFAULT_VERSION, $version]);
+                return redirect()->route('docs', [$version, self::DEFAULT_PAGE]);
             }
 
             return redirect()->route('docs', [self::DEFAULT_VERSION, self::DEFAULT_PAGE]);

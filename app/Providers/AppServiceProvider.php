@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\View\Components\Button;
 use App\View\Components\LandingPanel;
 use Illuminate\Support\Facades\Blade;
 use App\View\Components\LandingSection;
@@ -29,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Blade::component('button', Button::class);
+
         Blade::component('landing-panel', LandingPanel::class);
         Blade::component('landing-section', LandingSection::class);
         Blade::component('landing-feature-list', LandingFeatureList::class);
