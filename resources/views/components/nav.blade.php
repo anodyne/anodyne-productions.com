@@ -37,7 +37,8 @@
                     </li>
                     <li>
                         <a
-                            href="#"
+                            href="https://discord.gg/7WmKUks"
+                            target="_blank"
                             class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-orange-500 text-gray-500"
                             aria-current="page"
                         >

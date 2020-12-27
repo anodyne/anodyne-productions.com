@@ -15,19 +15,6 @@
             </button>
 
             <div class="flex items-center space-x-6">
-                <form class="relative hidden lg:block">
-                    <label>
-                        <span class="sr-only">Nova Version</span>
-                        <select class="appearance-none block bg-transparent pr-7 py-1 text-gray-500 font-medium text-sm focus:outline-none focus:text-gray-900 transition-colors duration-200">
-                            <option value="v2">v2.0.1</option>
-                            <option value="v1">v1.9.6</option>
-                            <option value="v0">v0.7.4</option>
-                        </select>
-                    </label>
-
-                    <svg class="w-5 h-5 text-gray-400 absolute top-1/2 right-0 -mt-2.5 pointer-events-none" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
-                </form>
-
                 <a href="https://github.com/anodyne/nova3" class="text-gray-400 hover:text-gray-500 transition-colors duration-200">
                     <span class="sr-only">Nova on GitHub</span>
                     <x-logos.github />
@@ -37,8 +24,6 @@
     </div>
 
     <div class="w-full max-w-8xl mx-auto">
-        <div class="lg:flex">
-            {{ $slot }}
-        </div>
+        {{ $slot }}
     </div>
 </x-layouts.base>
