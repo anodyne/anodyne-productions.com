@@ -14,13 +14,13 @@ for v in "${DOCS_VERSIONS[@]}"; do
         git clone --single-branch --branch "$v" git@github.com:anodyne/docs.git "resources/docs/$v"
     fi;
 
-    if [ -d "public/docs/$v" ]; then
+    if [ -d "public/images/docs/$v" ]; then
         echo "Removing images for $v..."
-        (rm -r public/docs/$v)
+        (rm -r public/images/docs/$v)
     fi;
 
     if [ -d "public/docs/$v/images" ]; then
         echo "Moving images for $v..."
-        (cp -r resources/docs/$v/images public/docs/$v)
+        (cp -r resources/docs/$v/images public/images/docs/$v)
     fi;
 done
