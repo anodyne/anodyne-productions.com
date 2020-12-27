@@ -19,8 +19,8 @@ for v in "${DOCS_VERSIONS[@]}"; do
         (rm -r public/images/docs/$v)
     fi;
 
-    if [ -d "public/docs/$v/images" ]; then
+    if [ -d "resources/docs/$v/images/docs/$v" ]; then
         echo "Moving images for $v..."
-        (cp -r resources/docs/$v/images public/images/docs/$v)
+        (cp -r resources/docs/$v/images/docs/$v public/images/docs/$v)
     fi;
 done
