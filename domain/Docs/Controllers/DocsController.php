@@ -8,7 +8,7 @@ use Domain\Docs\Documentation;
 
 class DocsController
 {
-    private const DEFAULT_VERSION = '3.0';
+    private const DEFAULT_VERSION = '2.6';
 
     private const DEFAULT_PAGE = 'introduction';
 
@@ -16,6 +16,8 @@ class DocsController
 
     public function __invoke(Documentation $docs, string $version = null, string $page = null)
     {
+        $cleanVersion = str_replace('.', '_', $version);
+
         if ($page === null) {
             if ($version !== null) {
                 return redirect()->route('docs', [$version, self::DEFAULT_PAGE]);
@@ -28,11 +30,12 @@ class DocsController
             abort(404);
         }
 
+        $path = "docs.{$cleanVersion}.{$page}";
+
         $sections = $docs->toc($version);
         $markdown = $docs->get($version, $page);
-        $markdown = str_replace('{{version}}', $version, $markdown);
         $title = $docs->title($markdown);
 
-        return view('docs', compact('version', 'page', 'sections', 'title', 'markdown'));
+        return view('docs', compact('version', 'page', 'sections', 'title', 'markdown', 'path'));
     }
 }
