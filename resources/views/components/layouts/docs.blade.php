@@ -15,22 +15,7 @@
             </button>
 
             <div class="flex items-center space-x-6 flex-shrink-0">
-                {{-- <form class="relative hidden lg:block" x-data="{}">
-                    <label>
-                        <span class="sr-only">Nova Version</span>
-                        <select x-on:change="window.location.replace($event.target.value)" class="appearance-none block bg-transparent pr-7 py-1 text-gray-500 font-medium text-sm focus:outline-none focus:text-gray-900 transition-colors duration-200">
-                            @foreach (['3.0', '2.6'] as $version)
-                                <option value="{{ route('docs', $version) }}"{{ request()->route()->version === $version ? ' selected' : false }}>
-                                    v{{ $version }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </label>
-
-                    <svg class="w-5 h-5 text-gray-400 absolute top-1/2 right-0 -mt-2.5 pointer-events-none" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
-                </form> --}}
-
-                <x-dropdown placement="bottom-end" width="36">
+                <x-dropdown placement="bottom-end" width="40">
                     <x-slot name="trigger">
                         <span>v{{ request()->route()->version }}</span>
                         <svg class="-mr-1 ml-2 h-5 w-5" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
