@@ -7,6 +7,8 @@
 
 @import "tailwindcss/utilities";
 
+@import "highlight.js/styles/night-owl.css";
+
 body {
     font-feature-settings: 'kern' 1, 'ss01' 1, 'ss02' 1, 'ss03' 1;
     -webkit-font-feature-settings: 'kern' 1, 'ss01' 1, 'ss02' 1, 'ss03' 1;
@@ -14,4 +16,22 @@ body {
 
 [x-cloak] {
     @apply hidden;
+}
+
+.badge,
+.badge-danger,
+.badge-warning {
+    @apply inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium;
+}
+
+.badge {
+    @apply bg-purple-100 text-purple-800;
+}
+
+.badge-danger {
+    @apply bg-red-100 text-red-800;
+}
+
+.badge-warning {
+    @apply bg-amber-100 text-amber-800;
 }

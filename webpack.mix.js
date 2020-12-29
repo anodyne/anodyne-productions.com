@@ -5,3 +5,5 @@ mix.postCss('resources/css/app.css', 'public/css', [
     require('tailwindcss'),
     require('postcss-nested'),
 ]);
+
+mix.js('resources/js/app.js', 'public/js');
