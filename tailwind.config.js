@@ -80,20 +80,13 @@ module.exports = {
                         },
                         code: {
                             fontWeight: '400',
-                            color: theme('colors.violet.600'),
+                            color: theme('colors.purple.600'),
                         },
                         'code::before': {
                             // content: 'none',
                         },
                         'code::after': {
                             // content: 'none',
-                        },
-                        pre: {
-                            backgroundColor: '-',
-                            color: theme('colors.white'),
-                            borderRadius: 0,
-                            marginTop: 0,
-                            marginBottom: 0,
                         },
                         table: {
                             fontSize: theme('fontSize.sm')[0],
