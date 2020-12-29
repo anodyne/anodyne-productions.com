@@ -18,12 +18,12 @@ class Documentation
 
     public function exists(string $version, string $page): bool
     {
-        return $this->filesystem->exists(resource_path("docs/{$version}/{$page}.md"));
+        return $this->filesystem->exists($this->path($version, "{$page}.md"));
     }
 
     public function get(string $version, string $page): string
     {
-        return $this->filesystem->get(resource_path("docs/{$version}/{$page}.md"));
+        return $this->filesystem->get($this->path($version, "{$page}.md"));
     }
 
     public function title(string $markdown): string
@@ -38,6 +38,8 @@ class Documentation
 
     private function path(string $version, string $file): string
     {
-        return resource_path("docs/{$version}/{$file}");
+        $version = str_replace('.', '_', $version);
+
+        return resource_path("views/docs/{$version}/{$file}");
     }
 }
