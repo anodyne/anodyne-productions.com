@@ -1,0 +1,90 @@
+.docs {
+    h1 {
+        @apply mb-0;
+    }
+
+    .alert {
+        @apply rounded-md bg-white shadow overflow-hidden;
+
+        .accent {
+            @apply w-full h-2 bg-gradient-to-r from-purple-500 to-indigo-500;
+        }
+
+        .content {
+            @apply p-4;
+        }
+
+        .identifier {
+            @apply flex items-center space-x-2 px-4 pt-2 font-medium uppercase tracking-wide text-sm text-violet-600;
+
+            > svg {
+                @apply h-6 w-6 flex-shrink-0 text-violet-400;
+            }
+        }
+    }
+
+    .is-danger {
+        .accent {
+            @apply from-orange-400 to-pink-600;
+        }
+
+        .identifier {
+            @apply text-orange-600;
+
+            > svg {
+                @apply text-orange-400;
+            }
+        }
+    }
+
+    .is-info {
+        .accent {
+            @apply from-cyan-400 to-light-blue-500;
+        }
+
+        .identifier {
+            @apply text-light-blue-500;
+
+            > svg {
+                @apply text-light-blue-400;
+            }
+        }
+    }
+
+    .is-tip,
+    .is-hint,
+    .is-success,
+    .is-done,
+    .is-check {
+        .accent {
+            @apply from-green-400 to-cyan-500;
+        }
+
+        .identifier {
+            @apply text-teal-500;
+
+            > svg {
+                @apply text-teal-400;
+            }
+        }
+    }
+
+    .is-warning,
+    .is-danger,
+    .is-failure,
+    .is-caution,
+    .is-attention,
+    .is-error {
+        .accent {
+            @apply from-amber-400 to-orange-600;
+        }
+
+        .identifier {
+            @apply text-orange-600;
+
+            > svg {
+                @apply text-orange-400;
+            }
+        }
+    }
+}

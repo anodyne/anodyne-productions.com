@@ -2,6 +2,7 @@
 
 declare(strict_types = 1);
 
+use Domain\Docs\CommonMark\Extension\Alert\AlertExtension;
 use Domain\Docs\CommonMark\Extension\Badge\BadgeExtension;
 use Domain\Docs\CommonMark\Extension\CodeBlockHighlighter\CodeBlockHighlighterExtension;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
@@ -46,6 +47,7 @@ return [
 
     'extensions' => [
         AttributesExtension::class,
+        AlertExtension::class,
         BadgeExtension::class,
         // CodeBlockHighlighterExtension::class,
     ],
@@ -134,7 +136,7 @@ return [
     |
     */
 
-    'html_input' => 'allow',
+    'html_input' => 'strip',
 
     /*
     |--------------------------------------------------------------------------
