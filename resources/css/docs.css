@@ -2,4 +2,53 @@
     h1 {
         @apply mb-0;
     }
+
+    .alert {
+        @apply rounded-md bg-white shadow overflow-hidden;
+
+        .accent {
+            @apply w-full h-2 bg-gradient-to-r from-purple-500 to-indigo-500;
+        }
+
+        .content {
+            @apply p-4;
+        }
+
+        .identifier {
+            @apply flex items-center space-x-2 px-4 pt-2 font-medium uppercase tracking-wide text-sm text-violet-600;
+
+            > svg {
+                @apply h-6 w-6 flex-shrink-0 text-violet-400;
+            }
+        }
+    }
+
+    .is-tip,
+    .is-success {
+        .accent {
+            @apply from-green-400 to-cyan-500;
+        }
+
+        .identifier {
+            @apply text-teal-500;
+
+            > svg {
+                @apply text-teal-400;
+            }
+        }
+    }
+
+    .is-warning {
+        .accent {
+            @apply from-amber-400 to-orange-600;
+        }
+
+        .identifier {
+            @apply text-orange-600;
+
+            > svg {
+                @apply text-orange-400;
+            }
+        }
+    }
 }
