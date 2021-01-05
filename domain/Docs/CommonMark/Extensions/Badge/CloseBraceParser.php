@@ -14,10 +14,7 @@ use League\CommonMark\Util\LinkParserHelper;
 
 final class CloseBraceParser implements InlineParserInterface, EnvironmentAwareInterface
 {
-    /**
-     * @var EnvironmentInterface
-     */
-    private $environment;
+    private EnvironmentInterface $environment;
 
     public function getCharacters(): array
     {
@@ -73,14 +70,6 @@ final class CloseBraceParser implements InlineParserInterface, EnvironmentAwareI
         $this->environment = $environment;
     }
 
-    /**
-     * @param Cursor                $cursor
-     * @param ReferenceMapInterface $referenceMap
-     * @param DelimiterInterface    $opener
-     * @param int                   $startPos
-     *
-     * @return array<string, string>|false
-     */
     private function tryParse(Cursor $cursor, ReferenceMapInterface $referenceMap, DelimiterInterface $opener, int $startPos)
     {
         // Check to see if we have a type
@@ -91,11 +80,6 @@ final class CloseBraceParser implements InlineParserInterface, EnvironmentAwareI
         return false;
     }
 
-    /**
-     * @param Cursor $cursor
-     *
-     * @return array<string, string>|false
-     */
     private function tryParseInlineType(Cursor $cursor)
     {
         if ($cursor->getCharacter() !== '(') {
