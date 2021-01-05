@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Docs\CommonMark\Extension\Badge;
+namespace Domain\Docs\CommonMark\Extensions\Badge;
 
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
@@ -15,9 +15,16 @@ final class BadgeRenderer implements InlineRendererInterface
             throw new \InvalidArgumentException('Incompatible inline type: '.get_class($inline));
         }
 
+        $attributes = $inline->getData('attributes', ['class' => 'badge']);
+
+        if ($inline->type) {
+            $attributes['class'] = isset($attributes['class']) ? $attributes['class'].' ' : '';
+            $attributes['class'] .= "is-{$inline->type}";
+        }
+
         return new HtmlElement(
             'span',
-            $inline->getData('attributes', ['class' => 'badge']),
+            $attributes,
             $htmlRenderer->renderInlines($inline->children())
         );
     }

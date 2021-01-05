@@ -2,10 +2,8 @@
 
 declare(strict_types = 1);
 
-use Domain\Docs\CommonMark\Extension\Alert\AlertExtension;
-use Domain\Docs\CommonMark\Extension\Badge\BadgeExtension;
-use Domain\Docs\CommonMark\Extension\CodeBlockHighlighter\CodeBlockHighlighterExtension;
-use League\CommonMark\Extension\Attributes\AttributesExtension;
+use Domain\Docs\CommonMark\Extensions\Badge\BadgeExtension;
+use Domain\Docs\CommonMark\Extensions\Note\NoteExtension;
 
 /*
  * This file is part of Laravel Markdown.
@@ -46,10 +44,8 @@ return [
     */
 
     'extensions' => [
-        // AttributesExtension::class,
-        AlertExtension::class,
-        // BadgeExtension::class,
-        // CodeBlockHighlighterExtension::class,
+        BadgeExtension::class,
+        NoteExtension::class,
     ],
 
     /*

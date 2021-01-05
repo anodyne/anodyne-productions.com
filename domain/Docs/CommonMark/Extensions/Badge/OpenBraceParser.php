@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Docs\CommonMark\Extension\Badge;
+namespace Domain\Docs\CommonMark\Extensions\Badge;
 
 use League\CommonMark\Delimiter\Delimiter;
 use League\CommonMark\Inline\Element\Text;

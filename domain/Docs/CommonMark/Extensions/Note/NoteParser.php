@@ -1,12 +1,12 @@
 <?php
 
-namespace Domain\Docs\CommonMark\Extension\Alert;
+namespace Domain\Docs\CommonMark\Extensions\Note;
 
 use League\CommonMark\Block\Parser\BlockParserInterface;
 use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
 
-class AlertParser implements BlockParserInterface
+class NoteParser implements BlockParserInterface
 {
     public function parse(ContextInterface $context, Cursor $cursor): bool
     {
@@ -30,7 +30,7 @@ class AlertParser implements BlockParserInterface
         // fenced alert block
         $fence = \ltrim($fence, " \t");
         $fenceLength = \strlen($fence);
-        $context->addBlock(new Alert($fenceLength, $fence[0], $indent));
+        $context->addBlock(new Note($fenceLength, $fence[0], $indent));
 
         return true;
     }
