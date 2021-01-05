@@ -27,7 +27,7 @@ class NoteParser implements BlockParserInterface
             return false;
         }
 
-        // fenced alert block
+        // fenced note block
         $fence = \ltrim($fence, " \t");
         $fenceLength = \strlen($fence);
         $context->addBlock(new Note($fenceLength, $fence[0], $indent));
