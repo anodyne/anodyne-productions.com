@@ -46,9 +46,9 @@ return [
     */
 
     'extensions' => [
-        AttributesExtension::class,
+        // AttributesExtension::class,
         AlertExtension::class,
-        BadgeExtension::class,
+        // BadgeExtension::class,
         // CodeBlockHighlighterExtension::class,
     ],
 

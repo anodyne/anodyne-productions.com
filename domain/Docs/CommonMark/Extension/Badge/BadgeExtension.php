@@ -9,7 +9,8 @@ class BadgeExtension implements ExtensionInterface
 {
     public function register(ConfigurableEnvironmentInterface $environment)
     {
-        $environment->addDelimiterProcessor(new BadgeDelimiterProcessor());
+        $environment->addInlineParser(new OpenBraceParser(), 21);
+        $environment->addInlineParser(new CloseBraceParser(), 31);
         $environment->addInlineRenderer(Badge::class, new BadgeRenderer());
     }
 }
