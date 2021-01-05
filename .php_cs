@@ -2,8 +2,8 @@
 
 $finder = PhpCsFixer\Finder::create()
     ->exclude('node_modules')
-    ->exclude('nova/bootstrap/cache')
-    ->exclude('nova/vendor')
+    ->exclude('bootstrap/cache')
+    ->exclude('vendor')
     ->exclude('storage')
     ->exclude('vendor')
     ->in(__DIR__)

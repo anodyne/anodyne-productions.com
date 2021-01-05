@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Docs\CommonMark\Extension\Alert;
+namespace Domain\Docs\CommonMark\Extensions\Note;
 
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\FencedCode;
@@ -8,7 +8,7 @@ use League\CommonMark\Block\Renderer\BlockRendererInterface;
 use League\CommonMark\ElementRendererInterface;
 use League\CommonMark\HtmlElement;
 
-class AlertRenderer implements BlockRendererInterface
+class NoteRenderer implements BlockRendererInterface
 {
     /**
      * @param FencedCode               $block
@@ -19,11 +19,11 @@ class AlertRenderer implements BlockRendererInterface
      */
     public function render(AbstractBlock $block, ElementRendererInterface $htmlRenderer, bool $inTightList = false)
     {
-        if (! ($block instanceof Alert)) {
+        if (! ($block instanceof Note)) {
             throw new \InvalidArgumentException('Incompatible block type: '.\get_class($block));
         }
 
-        $attrs = $block->getData('attributes', ['class' => 'alert']);
+        $attrs = $block->getData('attributes', ['class' => 'note']);
 
         $infoWords = $block->getInfoWords();
         $type = $infoWords[0];

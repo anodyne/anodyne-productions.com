@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Docs\CommonMark\Extension\Alert;
+namespace Domain\Docs\CommonMark\Extensions\Note;
 
 use League\CommonMark\Block\Element\AbstractBlock;
 use League\CommonMark\Block\Element\AbstractStringContainerBlock;
@@ -8,7 +8,7 @@ use League\CommonMark\ContextInterface;
 use League\CommonMark\Cursor;
 use League\CommonMark\Util\RegexHelper;
 
-class Alert extends AbstractStringContainerBlock
+class Note extends AbstractStringContainerBlock
 {
     /**
      * @var string
