@@ -1,9 +1,10 @@
 @props([
-    'bgColor' => 'bg-gray-100',
+    'bgColor' => 'gray-100',
+    'textColor' => 'gray-500',
 ])
 
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="font-sans text-gray-500 antialiased {{ $bgColor }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="font-sans text-{{ $textColor }} antialiased bg-{{ $bgColor }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">

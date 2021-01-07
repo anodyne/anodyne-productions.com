@@ -11,9 +11,9 @@
         {{ $slot }}
     </div>
 
-    @if (! $footer->isEmpty())
+    @isset ($footer)
         <div class="bg-gray-50 w-full px-4 py-4 sm:px-6">
             {{ $footer }}
         </div>
-    @endif
+    @endisset
 </div>

@@ -137,12 +137,20 @@
                         <x-slot name="trigger">
                             <div class="flex items-center space-x-2">
                                 @svg('fluent-arrow-sort', 'h-6 w-6')
-                                <span>Sort</span>
+                                @if ($sortField === 'created_at')
+                                    <span>Sorted by newest</span>
+                                @elseif ($sortField === 'updated_at')
+                                    <span>Sorted by recently updated</span>
+                                @elseif ($sortField === 'rating')
+                                    <span>Sorted by highest rated</span>
+                                @elseif ($sortField === 'downloads')
+                                    <span>Sorted by most popular</span>
+                                @endif
                             </div>
                         </x-slot>
 
                         <x-dropdown.group>
-                            <x-dropdown.item type="button" icon="fluent-asterisk" wire:click="$set('sortField', 'created_at')">
+                            <x-dropdown.item type="button" icon="fluent-asterisk" wire:click="setSortField('created_at')">
                                 <div class="flex items-center justify-between w-full">
                                     <span>Newest</span>
                                     @if ($sortField === 'created_at')
@@ -150,7 +158,7 @@
                                     @endif
                                 </div>
                             </x-dropdown.item>
-                            <x-dropdown.item type="button" icon="fluent-clock" wire:click="$set('sortField', 'updated_at')">
+                            <x-dropdown.item type="button" icon="fluent-clock" wire:click="setSortField('updated_at')">
                                 <div class="flex items-center justify-between w-full">
                                     <span>Recently updated</span>
                                     @if ($sortField === 'updated_at')
@@ -158,7 +166,7 @@
                                     @endif
                                 </div>
                             </x-dropdown.item>
-                            <x-dropdown.item type="button" icon="fluent-star" wire:click="$set('sortField', 'rating')">
+                            <x-dropdown.item type="button" icon="fluent-star" wire:click="setSortField('rating')">
                                 <div class="flex items-center justify-between w-full">
                                     <span>Highest rated</span>
                                     @if ($sortField === 'rating')
@@ -166,7 +174,7 @@
                                     @endif
                                 </div>
                             </x-dropdown.item>
-                            <x-dropdown.item type="button" icon="fluent-flash" wire:click="$set('sortField', 'rating')">
+                            <x-dropdown.item type="button" icon="fluent-flash" wire:click="setSortField('downloads')">
                                 <div class="flex items-center justify-between w-full">
                                     <span>Most popular</span>
                                     @if ($sortField === 'downloads')

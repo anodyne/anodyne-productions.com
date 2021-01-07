@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
@@ -30,4 +29,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'anodyne' => [
+        'v2' => [
+            'login' => env('V2_LOGIN'),
+            'marketplace' => env('V2_MARKETPLACE'),
+        ],
+    ],
 ];
