@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+	<channel>
+		<item>
+			<version>2.6.9</version>
+			<notes>This ninth update to SMS 2.6 fixes bugs with the docking request form, docked ship activation and database entry management. In addition, changes have been made to properly notify admins of Nova's release next year. More details about this update can be found in the Version History after updating.  This update is recommended for all SMS systems!</notes>
+			<severity>minor</severity>
+			<link>https://anodyne-productions.com</link>
+			<date>August 20, 2009 - 09:00</date>
+			<description></description>
+		</item>
+	</channel>
+</rss>
