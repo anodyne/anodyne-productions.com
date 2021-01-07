@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+	<channel>
+		<item>
+			<version>4.4</version>
+			<notes>Nova 2.4 is the next generation of RPG management software from Anodyne Productions. In development for over 2 years, this is the culmination of everything we stand for: power and ease-of-use like never before. With a comprehensive upgrade guide, you will not lose any of your SMS data, so check it out today!</notes>
+			<severity>major</severity>
+			<link>https://anodyne-productions.com</link>
+			<date>September 14, 2013 - 17:00</date>
+			<description></description>
+		</item>
+	</channel>
+</rss>
