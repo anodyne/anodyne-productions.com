@@ -1,0 +1,4 @@
+# Anodyne Permissions
+
+- Permissions
+- Roles

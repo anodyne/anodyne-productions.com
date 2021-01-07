@@ -22,6 +22,13 @@ class ShowProducts extends Component
 
     public $sortField = 'created_at';
 
+    public function setSortField($value)
+    {
+        $this->sortField = $value;
+
+        $this->dispatchBrowserEvent('dropdown-close');
+    }
+
     public function resetFilters()
     {
         $this->reset('filters');
