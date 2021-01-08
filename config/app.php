@@ -173,7 +173,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Domain\Marketplace\Providers\MarketplaceServiceProvider::class,
+        Domain\Exchange\Providers\ExchangeServiceProvider::class,
     ],
 
     /*

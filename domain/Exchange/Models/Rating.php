@@ -2,13 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace Domain\Marketplace\Models;
+namespace Domain\Exchange\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Question extends Model
+class Rating extends Model
 {
-    public $table = 'products_questions';
+    public $table = 'products_ratings';
 
     public function product()
     {

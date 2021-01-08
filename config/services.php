@@ -30,9 +30,8 @@ return [
     ],
 
     'anodyne' => [
-        'v2' => [
-            'login' => env('V2_LOGIN'),
-            'marketplace' => env('V2_MARKETPLACE'),
-        ],
+        'exchange' => env('V2_EXCHANGE'),
+        'galaxy' => env('V2_GALAXY'),
+        'login' => env('V2_LOGIN'),
     ],
 ];

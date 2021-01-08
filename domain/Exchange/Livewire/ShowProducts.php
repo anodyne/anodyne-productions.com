@@ -1,8 +1,8 @@
 <?php
 
-namespace Domain\Marketplace\Livewire;
+namespace Domain\Exchange\Livewire;
 
-use Domain\Marketplace\Models\Product;
+use Domain\Exchange\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -41,7 +41,7 @@ class ShowProducts extends Component
 
     public function render()
     {
-        return view('livewire.marketplace.show-products', [
+        return view('livewire.exchange.show-products', [
             'products' => Product::query()
                 ->with('user')
                 ->when($this->filters['search'], fn ($query, $search) => $query->where('name', 'like', "%{$search}%"))
@@ -51,6 +51,6 @@ class ShowProducts extends Component
                 ->when($this->filters['max-version'], fn ($query, $version) => $query->where('version', '<=', $version))
                 ->orderBy($this->sortField, $this->sortDirection)
                 ->paginate(9),
-        ])->layout('components.layouts.marketplace');
+        ])->layout('components.layouts.exchange');
     }
 }

@@ -131,7 +131,7 @@
         <div class="pt-10 pb-24 lg:pb-16 w-full flex">
             <div class="min-w-0 flex-auto px-4 sm:px-6 xl:px-8">
                 <div class="flex items-center justify-between mb-8 sm:mb-10">
-                    <h1 class="text-3xl sm:text-4xl lg:text-5xl leading-none font-extrabold tracking-tight text-gray-900">Nova Marketplace</h1>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl leading-none font-extrabold tracking-tight text-gray-900">Nova Exchange</h1>
 
                     <x-dropdown trigger-color="dark-gray-text" trigger-size="sm" placement="bottom-end">
                         <x-slot name="trigger">

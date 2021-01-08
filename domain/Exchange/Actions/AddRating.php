@@ -1,8 +1,8 @@
 <?php
 
-namespace Domain\Marketplace\Actions;
+namespace Domain\Exchange\Actions;
 
-use Domain\Marketplace\Models\Product;
+use Domain\Exchange\Models\Product;
 
 class AddRating
 {

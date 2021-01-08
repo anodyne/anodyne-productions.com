@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use Domain\Marketplace\Models\Product;
+use Domain\Exchange\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductFactory extends Factory

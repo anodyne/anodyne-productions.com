@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Domain\Marketplace\Models;
+namespace Domain\Exchange\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

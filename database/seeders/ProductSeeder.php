@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use Domain\Exchange\Models\Product;
 use Illuminate\Database\Seeder;
-use Domain\Marketplace\Models\Product;
 
 class ProductSeeder extends Seeder
 {

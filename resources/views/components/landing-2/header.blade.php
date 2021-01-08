@@ -1,9 +1,9 @@
 <div class="relative bg-gray-800 overflow-hidden" x-data="{ open: false }">
-    <div class="relative pt-6 pb-16 sm:pb-24">
+    <div class="relative pt-6 pb-16 sm:pb-0">
         <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6" aria-label="Global">
             <div class="flex items-center flex-1">
                 <div class="flex items-center justify-between w-full md:w-auto">
-                    <a href="#">
+                    <a href="/">
                         <span class="sr-only">Anodyne</span>
                         <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="">
                     </a>
@@ -26,15 +26,15 @@
 
                     <a href="#resources" class="font-medium text-white hover:text-gray-300">Resources</a>
 
-                    @if (config('services.anodyne.v2.marketplace'))
-                        <a href="{{ route('marketplace.index') }}" class="font-medium text-white hover:text-gray-300">Marketplace</a>
+                    @if (config('services.anodyne.exchange'))
+                        <a href="{{ route('exchange.index') }}" class="font-medium text-white hover:text-gray-300">Exchange</a>
                     @endif
 
                     <a href="https://discord.gg/7WmKUks" target="_blank" class="font-medium text-white hover:text-gray-300">Support</a>
                 </div>
             </div>
 
-            @if (config('services.anodyne.v2.login'))
+            @if (config('services.anodyne.login'))
                 <div class="hidden md:flex">
                     <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700">
                         Log in
@@ -79,14 +79,14 @@
 
                         <a href="#resources" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Resources</a>
 
-                        @if (config('services.anodyne.v2.marketplace'))
-                            <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Marketplace</a>
+                        @if (config('services.anodyne.exchange'))
+                            <a href="{{ route('exchange.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Exchange</a>
                         @endif
 
                         <a href="https://discord.gg/7WmKUks" target="_blank" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Support</a>
                     </div>
 
-                    @if (config('services.anodyne.v2.login'))
+                    @if (config('services.anodyne.login'))
                         <div role="none">
                             <a href="#" class="block w-full px-5 py-3 text-center font-medium text-light-blue-600 bg-gray-50 hover:bg-gray-100" role="menuitem">
                                 Log in
@@ -102,7 +102,7 @@
                 <div class="lg:grid lg:grid-cols-12 lg:gap-8">
                     <div class="px-4 sm:px-6 sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left lg:flex lg:items-center">
                         <div>
-                            <a href="#" class="inline-flex items-center text-white bg-gray-900 rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base hover:text-gray-200">
+                            <a href="{{ route('nova-3') }}" class="inline-flex items-center text-white bg-gray-900 rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base hover:text-gray-200">
                                 <span class="px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-gradient-to-r from-fuchsia-500 to-purple-600 rounded-full">Nova 3 is coming</span>
                                 <span class="ml-4 text-sm">Visit the preview page</span>
                                 <!-- Heroicon name: chevron-right -->
@@ -111,8 +111,8 @@
                                 </svg>
                             </a>
                             <h1 class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:leading-none lg:mt-6 lg:text-5xl xl:text-6xl">
-                                <span class="md:block">Painless</span>
-                                <span class="text-light-blue-400 md:block">RPG management</span>
+                                <span class="block">Painless</span>
+                                <span class="text-light-blue-400 block">RPG management</span>
                             </h1>
                             <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
                                 With an easy-to-use interface, powerful posting system, a wide array of developer tools and much more, Nova is all you need to help you stop just managing your game and get back to actually playing it.
@@ -120,8 +120,8 @@
                         </div>
                     </div>
                     <div class="mt-16 sm:mt-24 lg:mt-0 lg:col-span-6">
-                        <div class="-mt-6 lg:-mt-32 aspect-w-4 aspect-h-3 md:aspect-w-4 md:aspect-h-3">
-                            <img class="transform translate-x-0 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-40 lg:translate-y-20" src="{{ asset('images/nova2-manifest.png') }}" alt="App screenshot">
+                        <div class="-mt-6 aspect-w-4 aspect-h-3">
+                            <img class="transform translate-x-0 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-40 lg:translate-y-0" src="{{ asset('images/nova2-manifest.png') }}" alt="App screenshot">
                         </div>
                     </div>
                 </div>
@@ -129,3 +129,5 @@
         </main>
     </div>
 </div>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="text-gray-800 "><path fill="currentColor" fill-opacity="1" d="M0,32L60,48C120,64,240,96,360,101.3C480,107,600,85,720,80C840,75,960,85,1080,106.7C1200,128,1320,160,1380,176L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>

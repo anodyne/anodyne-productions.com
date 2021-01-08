@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Domain\Marketplace\Models\Builders;
+namespace Domain\Exchange\Models\Builders;
 
 use Illuminate\Database\Eloquent\Builder;
 
