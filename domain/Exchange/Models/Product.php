@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace Domain\Marketplace\Models;
+namespace Domain\Exchange\Models;
 
 use App\Models\User;
-use Domain\Marketplace\Models\Builders\ProductBuilder;
+use Domain\Exchange\Models\Builders\ProductBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

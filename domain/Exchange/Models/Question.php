@@ -2,13 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace Domain\Marketplace\Models;
+namespace Domain\Exchange\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class File extends Model
+class Question extends Model
 {
-    public $table = 'products_files';
+    public $table = 'products_questions';
 
     public function product()
     {

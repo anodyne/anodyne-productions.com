@@ -13,8 +13,10 @@ Route::get('/', function (GitHubManager $github) {
     return view('landing-2', compact('latestVersion'));
 })->name('home');
 
+Route::view('/nova-3', 'nova-3')->name('nova-3');
+
 Route::files([
     base_path('domain/Docs/routes/web.php'),
+    base_path('domain/Exchange/routes/web.php'),
     base_path('domain/Galaxy/routes/web.php'),
-    base_path('domain/Marketplace/routes/web.php'),
 ]);
