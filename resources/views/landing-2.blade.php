@@ -3,7 +3,7 @@
 
     <x-landing-2.features />
 
-    @if (version_compare($latestVersion, '2.7.0', '<='))
+    @if (version_compare($latestVersion, '2.7.0', '>='))
         <x-landing-2.nova-27 />
     @endif
 
