@@ -1,4 +1,4 @@
-<div class="bg-white">
+<div>
     <div class="max-w-7xl mx-auto pb-16 px-4 sm:px-6 lg:pb-24 lg:px-8 lg:-mt-32">
         <div class="lg:text-center">
             <a name="features"></a>

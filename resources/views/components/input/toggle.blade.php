@@ -1,7 +1,7 @@
 @props([
     'field',
     'value',
-    'activeColor' => 'bg-blue-600',
+    'activeColor' => 'bg-anodyne-orange-4',
     'disabled' => false,
 ])
 

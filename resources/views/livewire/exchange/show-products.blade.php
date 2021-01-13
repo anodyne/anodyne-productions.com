@@ -154,7 +154,7 @@
                                 <div class="flex items-center justify-between w-full">
                                     <span>Newest</span>
                                     @if ($sortField === 'created_at')
-                                        @svg('fluent-checkmark-circle', 'h-6 w-6 text-purple-500')
+                                        @svg('fluent-checkmark-circle', 'h-6 w-6 text-anodyne-orange-4')
                                     @endif
                                 </div>
                             </x-dropdown.item>
@@ -162,7 +162,7 @@
                                 <div class="flex items-center justify-between w-full">
                                     <span>Recently updated</span>
                                     @if ($sortField === 'updated_at')
-                                        @svg('fluent-checkmark-circle', 'h-6 w-6 text-purple-500')
+                                        @svg('fluent-checkmark-circle', 'h-6 w-6 text-anodyne-orange-4')
                                     @endif
                                 </div>
                             </x-dropdown.item>
@@ -170,7 +170,7 @@
                                 <div class="flex items-center justify-between w-full">
                                     <span>Highest rated</span>
                                     @if ($sortField === 'rating')
-                                        @svg('fluent-checkmark-circle', 'h-6 w-6 text-purple-500')
+                                        @svg('fluent-checkmark-circle', 'h-6 w-6 text-anodyne-orange-4')
                                     @endif
                                 </div>
                             </x-dropdown.item>
@@ -178,7 +178,7 @@
                                 <div class="flex items-center justify-between w-full">
                                     <span>Most popular</span>
                                     @if ($sortField === 'downloads')
-                                        @svg('fluent-checkmark-circle', 'h-6 w-6 text-purple-500')
+                                        @svg('fluent-checkmark-circle', 'h-6 w-6 text-anodyne-orange-4')
                                     @endif
                                 </div>
                             </x-dropdown.item>
@@ -212,10 +212,10 @@
                                         </div>
 
                                         <div class="flex items-center space-x-4">
-                                            <a href="#" class="text-gray-400 hover:text-purple-500 transition ease-in-out duration-150">
+                                            <a href="#" class="text-gray-400 hover:text-anodyne-orange-4 transition ease-in-out duration-150">
                                                 @svg('fluent-cloud-download', 'h-6 w-6')
                                             </a>
-                                            <a href="#" class="text-gray-400 hover:text-purple-500 transition ease-in-out duration-150">
+                                            <a href="#" class="text-gray-400 hover:text-anodyne-orange-4 transition ease-in-out duration-150">
                                                 @svg('fluent-arrow-right-circle', 'h-6 w-6')
                                             </a>
                                         </div>

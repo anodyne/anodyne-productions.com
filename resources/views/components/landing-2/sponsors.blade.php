@@ -1,4 +1,4 @@
-{{-- <div class="bg-white">
+{{-- <div>
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div>
@@ -40,7 +40,7 @@
     </div>
 </div> --}}
 
-<div class="bg-white">
+<div>
     <div class="max-w-3xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
         <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
             <span class="block">Thanks to our incredible sponsors</span>
@@ -48,7 +48,7 @@
         <p class="mt-4 text-lg text-gray-500">
             We've launched a Patreon as a way for people to support Anodyne and help us continue to provide Nova and all of its resources to the community for free. As a patron, you'll have access to a private Discord community, early access to Nova 3, regular updates on Anodyne's products and services, and more. Join today!
         </p>
-        <a href="https://patreon.com/anodyneproductions" target="_blank" class="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-anodyne-orange-4 sm:w-auto">
+        <a href="https://patreon.com/anodyneproductions" target="_blank" class="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-anodyne-orange-4 sm:w-auto">
             Become a patron
         </a>
     </div>

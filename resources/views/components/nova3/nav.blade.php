@@ -1,4 +1,4 @@
-<nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6" aria-label="Global">
+<nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Global">
     <div class="flex items-center flex-1">
         <div class="flex items-center justify-between w-full md:w-auto">
             <a href="/">
@@ -24,7 +24,7 @@
 
             {{-- <a href="{{ route('docs') }}" class="font-medium text-white hover:text-gray-300">Documentation</a> --}}
 
-            <a href="https://discord.gg/7WmKUks" target="_blank" class="font-medium text-white hover:text-gray-300">Support</a>
+            <a href="https://discord.gg/7WmKUks" target="_blank" class="font-medium text-white hover:text-gray-300">Join Discord</a>
         </div>
     </div>
 
@@ -73,7 +73,7 @@
 
                 {{-- <a href="{{ route('docs') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Documentation</a> --}}
 
-                <a href="https://discord.gg/7WmKUks" target="_blank" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Support</a>
+                <a href="https://discord.gg/7WmKUks" target="_blank" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Join Discord</a>
             </div>
 
             @if (config('services.anodyne.login'))
