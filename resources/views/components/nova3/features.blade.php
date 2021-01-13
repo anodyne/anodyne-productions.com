@@ -9,7 +9,7 @@
         </div>
 
         <div class="pt-20">
-            <div class="max-w-xl mx-auto lg:max-w-7xl">
+            <div class="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <dl class="space-y-10 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
                     <x-landing-2.components.feature title="All-In-One Website" text="Nova gives your game its own website that uses all of the data you and your players create to show off your game to the world.">
                         <x-slot name="path">

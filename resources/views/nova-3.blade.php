@@ -1,8 +1,9 @@
 <x-layouts.base bg-color="white">
-    <div>
-        <x-landing-2.header />
+    <x-nova3.header />
 
-        <x-landing-2.features />
+    <x-nova3.features />
 
-        <x-landing-2.footer />
-    </x-layouts.base>
+    <x-nova3.faq />
+
+    <x-nova3.footer />
+</x-layouts.base>
