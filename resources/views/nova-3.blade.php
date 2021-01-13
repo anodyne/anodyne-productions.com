@@ -1,4 +1,4 @@
-<x-layouts.base bg-color="white">
+<x-layouts.base bg-color="gray-800" text-color="gray-500">
     <x-nova3.header />
 
     <x-nova3.features />

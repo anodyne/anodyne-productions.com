@@ -13,14 +13,14 @@
                     <li>
                         <a
                             href="{{ route('docs') }}"
-                            class="group px-3 py-2 transition ease-in-out duration-200 relative flex items-center hover:text-teal-500 text-{{ $textColor }}"
+                            class="group px-3 py-2 transition ease-in-out duration-200 relative flex items-center hover:text-anodyne-orange-4 text-{{ $textColor }}"
                             aria-current="page"
                         >
                             <div class="group relative flex items-center space-x-3">
-                                @svg('fluent-class', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-teal-400 transition ease-in-out duration-150')
+                                @svg('fluent-class', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-anodyne-orange-4 transition ease-in-out duration-150')
 
                                 <span class="truncate">
-                                    Documentation
+                                    Docs
                                 </span>
                             </div>
                         </a>
@@ -30,11 +30,11 @@
                         <li>
                             <a
                                 href="{{ route('exchange.index') }}"
-                                class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-purple-600 text-{{ $textColor }}"
+                                class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-anodyne-orange-4 text-{{ $textColor }}"
                                 aria-current="page"
                             >
                                 <div class="group relative flex items-center space-x-3">
-                                    @svg('fluent-apps-add-in', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-purple-500 transition ease-in-out duration-150')
+                                    @svg('fluent-apps-add-in', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-anodyne-orange-4 transition ease-in-out duration-150')
 
                                     <span class="truncate">
                                         Exchange
@@ -48,11 +48,11 @@
                         <li>
                             <a
                                 href="{{ route('galaxy.index') }}"
-                                class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-pink-500 text-{{ $textColor }}"
+                                class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-anodyne-orange-4 text-{{ $textColor }}"
                                 aria-current="page"
                             >
                                 <div class="group relative flex items-center space-x-3">
-                                    @svg('fluent-rocket', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-pink-400 transition ease-in-out duration-150')
+                                    @svg('fluent-rocket', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-anodyne-orange-4 transition ease-in-out duration-150')
 
                                     <span class="truncate">
                                         Galaxy
@@ -66,11 +66,11 @@
                         <a
                             href="https://discord.gg/7WmKUks"
                             target="_blank"
-                            class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-orange-500 text-{{ $textColor }}"
+                            class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-anodyne-orange-4 text-{{ $textColor }}"
                             aria-current="page"
                         >
                             <div class="group relative flex items-center space-x-3">
-                                @svg('fluent-chat-bubbles-help', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-orange-400 transition ease-in-out duration-150')
+                                @svg('fluent-chat-bubbles-help', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-anodyne-orange-4 transition ease-in-out duration-150')
 
                                 <span class="truncate">
                                     Get Help

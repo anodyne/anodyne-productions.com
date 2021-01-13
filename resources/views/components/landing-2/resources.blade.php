@@ -1,4 +1,4 @@
-<div class="relative max-w-7xl mx-auto bg-white pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
+<div class="relative max-w-7xl mx-auto pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
     <div class="text-center">
         <a name="resources"></a>
         <h2 class="text-base text-anodyne-orange-4 font-semibold tracking-wide uppercase">Learn</h2>

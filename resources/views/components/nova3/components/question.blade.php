@@ -1,12 +1,12 @@
 @props([
-'question',
-'index',
+    'question',
+    'index',
 ])
 
 <div class="pt-6">
     <dt class="text-lg">
-        <button x-description="Expand/collapse question button" @click="openPanel = (openPanel === {{ $index }} ? null : {{ $index }})" class="text-left w-full flex justify-between items-start text-gray-400 focus:outline-none" x-bind:aria-expanded="openPanel === {{ $index }}">
-            <span class="font-medium text-gray-900">
+        <button x-description="Expand/collapse question button" @click="openPanel = (openPanel === {{ $index }} ? null : {{ $index }})" class="text-left w-full flex justify-between items-start text-gray-500 focus:outline-none" x-bind:aria-expanded="openPanel === {{ $index }}">
+            <span class="font-medium text-gray-100">
                 {{ $question }}
             </span>
             <span class="ml-6 h-7 flex items-center">
@@ -17,7 +17,7 @@
         </button>
     </dt>
     <dd class="mt-2 pr-12" x-show="openPanel === {{ $index }}" style="display: none;">
-        <p class="text-base text-gray-500 leading-7">
+        <p class="text-base text-gray-400 leading-7">
             {{ $slot }}
         </p>
     </dd>

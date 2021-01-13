@@ -1,4 +1,4 @@
-<x-layouts.base bg-color="white">
+<x-layouts.base>
     <x-landing-2.header />
 
     <x-landing-2.features />

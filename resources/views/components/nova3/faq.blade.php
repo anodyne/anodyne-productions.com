@@ -1,11 +1,11 @@
-<div class="bg-white">
+<div>
     <a name="faq"></a>
     <div class="max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8" x-data="{ openPanel: 0 }">
-        <div class="max-w-3xl mx-auto divide-y-2 divide-gray-200">
-            <h2 class="text-center text-3xl font-extrabold text-gray-900 sm:text-4xl">
+        <div class="max-w-3xl mx-auto divide-y-2 divide-gray-700">
+            <h2 class="text-center text-3xl font-extrabold text-white sm:text-4xl">
                 Frequently asked questions
             </h2>
-            <dl class="mt-6 space-y-6 divide-y divide-gray-200">
+            <dl class="mt-6 space-y-6 divide-y divide-gray-700">
                 <x-nova3.components.question question="When is Nova 3 going to be released?" :index="0">
                     There is no timeframe right now. Our goal is to continue building it until we feel that it's rock solid and ready for primetime.
                 </x-nova3.components.question>

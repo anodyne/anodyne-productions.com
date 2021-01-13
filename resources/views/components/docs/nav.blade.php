@@ -20,10 +20,10 @@
                         <a
                             href="{{ $page['link'] ?? route('docs', [$version, $slug]) }}"
                             @isset($page['link']) target="_blank" @endisset
-                            class="group px-3 py-2 transition-colors duration-200 relative flex items-center {{ $current === $slug ? 'text-teal-600' : 'hover:text-gray-900 text-gray-500' }}"
+                            class="group px-3 py-2 transition-colors duration-200 relative flex items-center {{ $current === $slug ? 'text-anodyne-orange-4' : 'hover:text-gray-900 text-gray-500' }}"
                             aria-current="page"
                         >
-                            <span class="rounded-md absolute inset-0 bg-teal-50 {{ $current === $slug ? 'opacity-50' : 'opacity-0' }}"></span>
+                            <span class="rounded-lg absolute inset-0 bg-orange-100 {{ $current === $slug ? 'opacity-50' : 'opacity-0' }}"></span>
 
                             <div class="group relative flex items-center">
                                 @isset($page['icon'])
