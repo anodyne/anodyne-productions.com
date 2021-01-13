@@ -29,7 +29,22 @@ module.exports = {
             rose: colors.rose,
             teal: colors.teal,
             violet: colors.violet,
-            yellow: colors.yellow
+            yellow: colors.yellow,
+            anodyne: {
+                'blue-1': 'rgb(59, 101, 170)',
+                'blue-2': 'rgb(89, 193, 229)',
+                'blue-3': '#0288d1',
+                'green-1': 'rgb(65, 169, 72)',
+                'green-2': 'rgb(164, 188, 188)',
+                'orange-1': 'rgb(235, 80, 70)',
+                'orange-2': 'rgb(241, 113, 60)',
+                'orange-3': 'rgb(245, 145, 54)',
+                'orange-4': 'rgb(243, 127, 43)',
+                'orange-5': 'rgb(242, 102, 34)',
+                'purple-1': 'rgb(172, 52, 138)',
+                'purple-2': 'rgb(199, 36, 127)',
+                'purple-3': 'rgb(228, 19, 119)'
+            }
         },
         extend: {
             typography: (theme) => ({
@@ -138,11 +153,11 @@ module.exports = {
             cursor: ['active'],
             opacity: ['disabled'],
             textColor: ['group-focus', 'group-hover'],
-            ringWidth: ['focus-visible'],
-            ringOffsetWidth: ['focus-visible'],
-            ringOffsetColor: ['focus-visible'],
-            ringColor: ['focus-visible'],
-            ringOpacity: ['focus-visible'],
+            ringWidth: ['hover'],
+            ringOffsetWidth: ['hover'],
+            ringOffsetColor: ['hover'],
+            ringColor: ['hover'],
+            ringOpacity: ['hover'],
             rotate: ['first', 'last', 'odd', 'even'],
         },
     },
