@@ -3,6 +3,8 @@
 
     <x-nova3.features />
 
+    <x-nova3.demo />
+
     <x-nova3.faq />
 
     <x-nova3.footer />

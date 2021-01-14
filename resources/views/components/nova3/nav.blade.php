@@ -18,6 +18,8 @@
         <div class="hidden space-x-10 md:flex md:ml-10">
             <a href="#features" class="font-medium text-white hover:text-gray-300">Features</a>
 
+            <a href="#demo" class="font-medium text-white hover:text-gray-300">Demo</a>
+
             <a href="#faq" class="font-medium text-white hover:text-gray-300">FAQs</a>
 
             {{-- <a href="#download" class="font-medium text-white hover:text-gray-300">Download</a> --}}
@@ -56,6 +58,8 @@
         <div role="menu" aria-orientation="vertical" aria-labelledby="main-menu">
             <div class="px-2 pt-2 pb-3 space-y-1" role="none">
                 <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Features</a>
+
+                <a href="#demo" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Demo</a>
 
                 <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">FAQs</a>
 
