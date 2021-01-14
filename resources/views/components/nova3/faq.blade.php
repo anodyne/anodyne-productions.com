@@ -7,7 +7,7 @@
             </h2>
             <dl class="mt-6 space-y-6 divide-y divide-gray-700">
                 <x-nova3.components.question question="When is Nova 3 going to be released?" :index="0">
-                    There is no timeframe right now. Our goal is to continue building it until we feel that it's rock solid and ready for primetime.
+                    There is no timeframe right now. Our goal is to continue building Nova 3 until we feel that it's rock solid and ready for use with a wide range of games.
                 </x-nova3.components.question>
 
                 <x-nova3.components.question question="Where can I download Nova 3?" :index="1">
@@ -15,7 +15,7 @@
                 </x-nova3.components.question>
 
                 <x-nova3.components.question question="Will I be able to migrate my Nova 2 site to Nova 3?" :index="2">
-                    Like the transition from Nova 1 to Nova 2, we'll build scripts to migrate Nova 2 sites to Nova 3. Given the huge changes coming in Nova 3 though, there will be certain things that we won't be able to migrate over. More information about those items will be available as we get closer to release.
+                    Like the transition from Nova 1 to Nova 2, we'll build scripts to migrate Nova 2 sites to Nova 3. Given the huge changes coming in Nova 3 though, there will be certain things we won't be able to migrate from Nova 2. More information about those items and the migration process will be available at a later date.
                 </x-nova3.components.question>
 
                 <x-nova3.components.question question="Can I use my existing skins and MODs in Nova 3?" :index="3">
@@ -23,7 +23,7 @@
                 </x-nova3.components.question>
 
                 <x-nova3.components.question question="I've heard the term Nova NextGen used a lot. Is Nova 3 the same thing or something different?" :index="4">
-                    Yes. Several years ago there were a lot of discussions about Nova 3, but over time, those ideas started to change. To avoid confusion between what had been discussed and what was being worked on, we decided to use the term "Nova NextGen" to differentiate the ideas.
+                    Yes. Several years ago there were a lot of discussions around Nova 3 and what it would be, but over time, those ideas evolved significantly. To avoid confusion between what had been discussed previously and what was actually being worked on, we chose to use the term "Nova NextGen" to differentiate the ideas. For all intents and purposes, Nova 3 and Nova NextGen can now be used interchangeably.
                 </x-nova3.components.question>
             </dl>
         </div>
