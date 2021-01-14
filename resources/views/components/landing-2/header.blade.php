@@ -27,7 +27,7 @@
                     </div>
                     <div class="mt-16 sm:mt-24 lg:mt-0 lg:col-span-6">
                         <div class="-mt-6 aspect-w-4 aspect-h-3">
-                            <img class="transform translate-x-0 translate-y-6 rounded-lg object-cover object-left-top sm:translate-x-40 lg:translate-y-0" src="{{ asset('images/nova2-manifest.png') }}" alt="App screenshot">
+                            <img class="transform translate-x-0 translate-y-6 md:rounded-lg object-cover object-left-top sm:translate-x-40 lg:translate-y-0" src="{{ asset('images/nova2-manifest.png') }}" alt="App screenshot">
                         </div>
                     </div>
                 </div>
