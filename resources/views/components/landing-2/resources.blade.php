@@ -11,7 +11,7 @@
     </div>
 
     <div class="mt-12 max-w-lg mx-auto grid gap-x-6 gap-y-12 lg:grid-cols-{{ config('services.anodyne.exchange') ? '3' : '2' }} lg:max-w-none">
-        <x-landing-2.components.resource :href="route('docs')" category="Docs" title="Learn all about Nova 2">
+        <x-landing-2.components.resource :href="route('docs')" category="Documentation" title="Learn all about Nova 2">
             Nova's documentation has been re-written to be clearer and more helpful than before. We've added all-new sections about getting started, added pages to explain complex features, and dug deeper into the core of Nova to help users understand how to get the most out Nova 2.
         </x-landing-2.components.resource>
 
