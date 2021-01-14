@@ -10,7 +10,7 @@
 
         <div class="pt-20">
             <div class="max-w-xl mx-auto lg:max-w-7xl">
-                <dl class="space-y-10 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
+                <dl class="space-y-16 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:gap-y-16">
                     <x-nova3.components.feature title="Mobile Friendly" text="Bring whatever device you want, Nova doesn't care! We've designed Nova from the ground up to work on devices of all sizes.">
                         <x-slot name="icon">
                             @svg('fluent-phone-desktop', 'h-8 w-8')

@@ -18,7 +18,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="mt-16 sm:mt-24 lg:mt-0 lg:col-span-6">
+                    <div class="hidden md:block mt-16 sm:mt-24 lg:mt-0 lg:col-span-6">
                         <div class="-mt-6 flex justify-end">
                             <img class="transform translate-y-6 object-cover object-left-top h-auto w-96" src="{{ asset('images/nova3-illustration.svg') }}" alt="App illustration">
                         </div>

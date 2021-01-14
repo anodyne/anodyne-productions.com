@@ -41,16 +41,6 @@
     @endif
 </nav>
 
-<!--
-    Mobile menu, show/hide based on menu open state.
-
-    Entering: "duration-150 ease-out"
-    From: "opacity-0 scale-95"
-    To: "opacity-100 scale-100"
-    Leaving: "duration-100 ease-in"
-    From: "opacity-100 scale-100"
-    To: "opacity-0 scale-95"
--->
 <div class="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden" x-show="open" x-description="Mobile menu, show/hide based on menu open state" x-transition:enter="duration-150 ease-out" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-100 ease-in" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
     <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
         <div class="px-5 pt-4 flex items-center justify-between">
@@ -86,7 +76,7 @@
 
             @if (config('services.anodyne.login'))
                 <div role="none">
-                    <a href="#" class="block w-full px-5 py-3 text-center font-medium text-light-blue-600 bg-gray-50 hover:bg-gray-100" role="menuitem">
+                    <a href="#" class="block w-full px-5 py-3 text-center font-medium text-anodyne-orange-4 bg-gray-50 hover:bg-gray-100" role="menuitem">
                         Log in
                     </a>
                 </div>
