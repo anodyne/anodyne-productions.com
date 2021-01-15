@@ -1,14 +1,14 @@
 <div class="bg-gray-800">
     <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-24 lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
         <div>
-            <h2 class="text-base font-semibold text-anodyne-orange-4 uppercase tracking-wide">Nova 2.7</h2>
+            <h2 class="text-base font-semibold text-amber-500 uppercase tracking-wide">Nova 2.7</h2>
             <p class="mt-2 text-3xl font-extrabold text-gray-50">What's new in Nova</p>
         </div>
         <div class="mt-12 lg:mt-0 lg:col-span-2">
             <dl class="space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:grid-rows-3 sm:grid-flow-col sm:gap-x-6 sm:gap-y-10 lg:gap-x-8">
                 <div class="flex">
                     <!-- Heroicon name: check -->
-                    <svg class="flex-shrink-0 h-6 w-6 text-anodyne-orange-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <svg class="flex-shrink-0 h-6 w-6 text-amber-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                     </svg>
                     <div class="ml-3">
@@ -23,7 +23,7 @@
 
                 <div class="flex">
                     <!-- Heroicon name: check -->
-                    <svg class="flex-shrink-0 h-6 w-6 text-anodyne-orange-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <svg class="flex-shrink-0 h-6 w-6 text-amber-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                     </svg>
                     <div class="ml-3">
@@ -38,7 +38,7 @@
 
                 <div class="flex">
                     <!-- Heroicon name: check -->
-                    <svg class="flex-shrink-0 h-6 w-6 text-anodyne-orange-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <svg class="flex-shrink-0 h-6 w-6 text-amber-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                     </svg>
                     <div class="ml-3">
@@ -53,7 +53,7 @@
 
                 <div class="flex">
                     <!-- Heroicon name: check -->
-                    <svg class="flex-shrink-0 h-6 w-6 text-anodyne-orange-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <svg class="flex-shrink-0 h-6 w-6 text-amber-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                     </svg>
                     <div class="ml-3">
@@ -68,7 +68,7 @@
 
                 <div class="flex">
                     <!-- Heroicon name: check -->
-                    <svg class="flex-shrink-0 h-6 w-6 text-anodyne-orange-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <svg class="flex-shrink-0 h-6 w-6 text-amber-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
                     </svg>
                     <div class="ml-3">

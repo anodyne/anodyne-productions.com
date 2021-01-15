@@ -4,10 +4,10 @@
     }
 
     .note {
-        @apply rounded-md bg-white shadow overflow-hidden;
+        @apply rounded-lg bg-white shadow overflow-hidden;
 
         .accent {
-            @apply w-full h-2 bg-gradient-to-r from-purple-500 to-indigo-500;
+            @apply w-full h-2 bg-blue-500;
         }
 
         .content {
@@ -15,35 +15,35 @@
         }
 
         .identifier {
-            @apply flex items-center space-x-2 px-4 pt-2 font-medium uppercase tracking-wide text-sm text-violet-600;
+            @apply flex items-center space-x-2 px-4 pt-2 font-medium uppercase tracking-wide text-sm text-blue-500;
 
             > svg {
-                @apply h-6 w-6 flex-shrink-0 text-violet-400;
+                @apply h-6 w-6 flex-shrink-0 text-blue-400;
             }
         }
 
         &.is-tip,
         &.is-success {
             .accent {
-                @apply from-green-400 to-cyan-500;
+                @apply bg-green-500;
             }
 
             .identifier {
-                @apply text-teal-500;
+                @apply text-green-500;
 
                 > svg {
-                    @apply text-teal-400;
+                    @apply text-green-400;
                 }
             }
         }
 
         &.is-warning {
             .accent {
-                @apply from-amber-400 to-orange-600;
+                @apply bg-amber-500;
             }
 
             .identifier {
-                @apply text-orange-600;
+                @apply text-orange-500;
 
                 > svg {
                     @apply text-orange-400;
@@ -53,7 +53,7 @@
     }
 
     .badge {
-        @apply inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-purple-100 text-purple-800;
+        @apply inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-200 text-gray-800;
 
         &.is-danger {
             @apply bg-red-100 text-red-800;

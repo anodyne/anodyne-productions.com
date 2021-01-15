@@ -1,5 +1,5 @@
 @props([
-    'logoColor' => 'anodyne-orange-4',
+    'logoColor' => 'amber-500',
     'textColor' => 'white',
 ])
 

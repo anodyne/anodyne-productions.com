@@ -11,7 +11,7 @@
                 </x-nova3.components.question>
 
                 <x-nova3.components.question question="Where can I download Nova 3?" :index="1">
-                    At the moment, we do not offer a download of the work that's been done on Nova 3. People who support Anodyne through our <a href="https://patreon.com/anodyneproductions" target="_blank" class="underline text-anodyne-orange-4">Patreon</a> are given early access to a downloadable copy of Nova 3 that is updated regularly as an exclusive benefit of their support. The wider community will be given access to alpha and beta milestones in the future.
+                    At the moment, we do not offer a download of the work that's been done on Nova 3. People who support Anodyne through our <a href="https://patreon.com/anodyneproductions" target="_blank" class="underline text-amber-500">Patreon</a> are given early access to a downloadable copy of Nova 3 that is updated regularly as an exclusive benefit of their support. The wider community will be given access to alpha and beta milestones in the future.
                 </x-nova3.components.question>
 
                 <x-nova3.components.question question="Will I be able to migrate my Nova 2 site to Nova 3?" :index="2">

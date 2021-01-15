@@ -46,7 +46,7 @@
                 <x-logos.anodyne text-color="gray-600" class="h-8 w-auto" />
             </div>
             <div class="-mr-2">
-                <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-anodyne-orange-4" @click="open = false">
+                <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500" @click="open = false">
                     <span class="sr-only">Close menu</span>
                     <!-- Heroicon name: x -->
                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -72,7 +72,7 @@
 
             @if (config('services.anodyne.login'))
                 <div role="none">
-                    <a href="#" class="block w-full px-5 py-3 text-center font-medium text-anodyne-orange-4 bg-gray-50 hover:bg-gray-100" role="menuitem">
+                    <a href="#" class="block w-full px-5 py-3 text-center font-medium text-amber-500 bg-gray-50 hover:bg-gray-100" role="menuitem">
                         Log in
                     </a>
                 </div>

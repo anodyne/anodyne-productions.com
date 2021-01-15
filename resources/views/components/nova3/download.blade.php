@@ -55,14 +55,14 @@
                         <span>Nova 2.3.2 is legacy software and intended only for games hosted on a server running PHP 5.2. This version of Nova is no longer receiving updates.</span>
                     </div>
 
-                    <a x-show="genre && version" :href=`/downloads/nova2/nova-${version}-${genre}.zip` class="mt-8 bg-white border border-transparent rounded-md shadow px-6 py-3 inline-flex items-center space-x-3 text-base font-medium text-light-blue-600 hover:bg-light-blue-50">
+                    <a x-show="genre && version" :href=`/downloads/nova2/nova-${version}-${genre}.zip` class="mt-8 bg-white border border-transparent rounded-lg shadow px-6 py-3 inline-flex items-center space-x-3 text-base font-medium text-light-blue-600 hover:bg-light-blue-50">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                         <span>Download now</span>
                     </a>
                 </div>
             </div>
             <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
-                <img class="transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-12 lg:translate-y-20" src="{{ asset('images/nova2-admin.png') }}" alt="App screenshot">
+                <img class="transform translate-x-6 translate-y-6 rounded-lg object-cover object-left-top sm:translate-x-12 lg:translate-y-20" src="{{ asset('images/nova2-admin.png') }}" alt="App screenshot">
             </div>
         </div>
     </div>

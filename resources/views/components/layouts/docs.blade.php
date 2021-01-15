@@ -3,7 +3,7 @@
         <div class="flex-none pl-4 sm:pl-6 xl:pl-8 flex items-center border-b border-gray-200 lg:border-b-0 lg:w-60 xl:w-72">
             <a class="overflow-hidden w-10 md:w-auto" href="/">
                 <span class="sr-only">Anodyne home page</span>
-                <x-logos.anodyne text-color="gray-600" class="w-3/4 h-auto" />
+                <x-logos.anodyne text-color="spanish-roast" class="w-3/4 h-auto" />
             </a>
         </div>
 

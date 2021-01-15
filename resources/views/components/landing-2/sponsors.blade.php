@@ -9,8 +9,8 @@
                     We've launched a Patreon as a way for people to support Anodyne and help us continue to provide Nova and all of its resources to the community for free. As a patron, you'll have access to a private Discord community, early access to Nova 3, regular updates on Anodyne's products and services, and more. Join today!
                 </p>
                 <div class="mt-8 sm:flex">
-                    <div class="rounded-md shadow">
-                        <a href="https://patreon.com/anodyneproductions" target="_blank" class="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-anodyne-orange-4 hover:bg-light-blue-700 transition-all ease-in-out duration-200">
+                    <div class="rounded-lg shadow">
+                        <a href="https://patreon.com/anodyneproductions" target="_blank" class="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-amber-500 hover:bg-light-blue-700 transition-all ease-in-out duration-200">
                             Become a patron
                         </a>
                     </div>
@@ -48,7 +48,7 @@
         <p class="mt-4 text-lg text-gray-500">
             We've launched a Patreon as a way for people to support Anodyne and help us continue to provide Nova and all of its resources to the community for free. As a patron, you'll have access to a private Discord community, early access to Nova 3, regular updates on Anodyne's products and services, and more. Join today!
         </p>
-        <a href="https://patreon.com/anodyneproductions" target="_blank" class="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-anodyne-orange-4 sm:w-auto">
+        <a href="https://patreon.com/anodyneproductions" target="_blank" class="mt-8 bg-white border border-transparent rounded-lg shadow px-6 py-3 inline-flex items-center justify-center space-x-3 text-base font-medium text-orange-500 hover:bg-orange-50 w-full lg:w-auto transition-colors ease-in-out duration-200">
             Become a patron
         </a>
     </div>

@@ -12,41 +12,65 @@ module.exports = {
             black: '#000',
             white: '#fff',
 
-            amber: colors.amber,
-            blue: colors.blue,
-            cyan: colors.cyan,
-            emerald: colors.emerald,
-            fuchsia: colors.fuchsia,
+            amber: {
+                ...colors.amber,
+                ...{ 500: '#F99C26' }
+            },
             gray: colors.coolGray,
-            green: colors.green,
-            indigo: colors.indigo,
-            'light-blue': colors.lightBlue,
-            lime: colors.lime,
-            orange: colors.orange,
-            pink: colors.pink,
-            purple: colors.purple,
-            red: colors.red,
-            rose: colors.rose,
-            teal: colors.teal,
-            violet: colors.violet,
-            yellow: colors.yellow,
-            anodyne: {
-                'blue-1': 'rgb(59, 101, 170)',
-                'blue-2': 'rgb(89, 193, 229)',
-                'blue-3': '#0288d1',
-                'green-1': 'rgb(65, 169, 72)',
-                'green-2': 'rgb(164, 188, 188)',
-                'orange-1': 'rgb(235, 80, 70)',
-                'orange-2': 'rgb(241, 113, 60)',
-                'orange-3': 'rgb(245, 145, 54)',
-                'orange-4': 'rgb(243, 127, 43)',
-                'orange-5': 'rgb(242, 102, 34)',
-                'purple-1': 'rgb(172, 52, 138)',
-                'purple-2': 'rgb(199, 36, 127)',
-                'purple-3': 'rgb(228, 19, 119)'
-            }
+            orange: {
+                50: '#fef7f6',
+                100: '#feefed',
+                200: '#fcd8d2',
+                300: '#fac1b7',
+                400: '#f69282',
+                500: '#f2634c',
+                600: '#da5944',
+                700: '#b64a39',
+                800: '#913b2e',
+                900: '#773125'
+            },
+            green: {
+                50: '#f3fbfa',
+                100: '#e6f8f4',
+                200: '#c1ede4',
+                300: '#9be1d4',
+                400: '#50cbb4',
+                500: '#05b594',
+                600: '#05a385',
+                700: '#04886f',
+                800: '#036d59',
+                900: '#025949'
+            },
+            red: {
+                50: '#fbf4f5',
+                100: '#f8e9eb',
+                200: '#edc7cc',
+                300: '#e1a5ae',
+                400: '#cb6271',
+                500: '#b51f34',
+                600: '#a31c2f',
+                700: '#881727',
+                800: '#6d131f',
+                900: '#590f19'
+            },
+            blue: {
+                50: '#f5f8fc',
+                100: '#ecf1f8',
+                200: '#cfddee',
+                300: '#b1c9e4',
+                400: '#77a0d0',
+                500: '#3d77bc',
+                600: '#376ba9',
+                700: '#2e598d',
+                800: '#254771',
+                900: '#1e3a5c'
+            },
+            'spanish-roast': '#130f32'
         },
         extend: {
+            boxShadow: {
+                link: 'inset 0 -0.125em 0 0 #fff, inset 0 -0.375em 0 0 rgba(165, 243, 252, 0.4)',
+            },
             typography: (theme) => ({
                 DEFAULT: {
                     css: {
@@ -61,7 +85,10 @@ module.exports = {
                             marginBottom: '0',
                         },
                         'h1, h2': {
-                            letterSpacing: '-0.025em',
+                            letterSpacing: '-0.025em'
+                        },
+                        'h1, h2, h3, h4': {
+                            color: theme('colors.spanish-roast')
                         },
                         'h2, h3': {
                             'scroll-margin-block': `${(70 + 40) / 16}rem`,
@@ -95,7 +122,7 @@ module.exports = {
                         },
                         code: {
                             fontWeight: '400',
-                            color: theme('colors.purple.600'),
+                            color: theme('colors.amber.600'),
                         },
                         'code::before': {
                             // content: 'none',
