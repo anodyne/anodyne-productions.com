@@ -9,7 +9,7 @@
                 <button type="button" class="bg-gray-800 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white" id="main-menu" aria-haspopup="true" @click="open = true">
                     <span class="sr-only">Open main menu</span>
                     <!-- Heroicon name: menu -->
-                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
@@ -21,10 +21,6 @@
             <a href="#demo" class="font-medium text-white hover:text-gray-300">Demo</a>
 
             <a href="#faq" class="font-medium text-white hover:text-gray-300">FAQs</a>
-
-            {{-- <a href="#download" class="font-medium text-white hover:text-gray-300">Download</a> --}}
-
-            {{-- <a href="{{ route('docs') }}" class="font-medium text-white hover:text-gray-300">Documentation</a> --}}
 
             <a href="https://discord.gg/7WmKUks" target="_blank" class="font-medium text-white hover:text-gray-300">Join Discord</a>
         </div>
@@ -62,10 +58,6 @@
                 <a href="#demo" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Demo</a>
 
                 <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">FAQs</a>
-
-                {{-- <a href="#download" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Download</a> --}}
-
-                {{-- <a href="{{ route('docs') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Documentation</a> --}}
 
                 <a href="https://discord.gg/7WmKUks" target="_blank" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Join Discord</a>
             </div>

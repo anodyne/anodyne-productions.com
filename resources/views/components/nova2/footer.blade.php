@@ -26,15 +26,9 @@
                 <x-logos.patreon class="h-6 md:h-4 w-auto" />
             </a>
         </div>
-        <div class="md:order-1">
-            <div class="flex flex-col md:flex-row items-center justify-center md:justify-start space-y-8 md:space-y-0 md:space-x-4">
-                <x-logos.anodyne-mark color="gray-300" class="hidden md:block h-6 w-auto" />
-
-                <p class="text-center text-base text-gray-400">
-                    &copy; {{ date('Y') }} Anodyne Productions. All rights reserved.
-                </p>
-
-                <x-logos.anodyne logo-color="gray-300" text-color="gray-300" class="block md:hidden h-6 w-auto" />
+        <div class="mt-8 md:mt-0 md:order-1">
+            <div class="flex flex-col md:flex-row items-center justify-center md:justify-start">
+                <x-logos.anodyne logo-color="gray-400" text-color="gray-400" class="h-6 w-auto" />
             </div>
         </div>
     </div>
