@@ -1,6 +1,6 @@
 <div class="relative bg-gray-800 overflow-hidden" x-data="{ open: false }">
     <div class="relative pt-6 pb-16 sm:pb-0">
-        <x-landing-2.nav />
+        <x-nova2.nav />
 
         <main class="mt-16 sm:mt-24">
             <div class="mx-auto max-w-7xl">
