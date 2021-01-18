@@ -1,4 +1,4 @@
-{{-- <div>
+<div>
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div>
@@ -10,7 +10,7 @@
                 </p>
                 <div class="mt-8 sm:flex">
                     <div class="rounded-lg shadow">
-                        <a href="https://patreon.com/anodyneproductions" target="_blank" class="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-amber-500 hover:bg-light-blue-700 transition-all ease-in-out duration-200">
+                        <a href="https://patreon.com/anodyneproductions" target="_blank" class="bg-white border border-transparent rounded-lg shadow px-6 py-3 inline-flex items-center justify-center space-x-3 text-base font-medium text-orange-500 hover:bg-orange-50 w-full lg:w-auto transition-colors ease-in-out duration-200">
                             Become a patron
                         </a>
                     </div>
@@ -38,9 +38,9 @@
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 
-<div>
+{{-- <div>
     <div class="max-w-3xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
         <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
             <span class="block">Thanks to our incredible sponsors</span>
@@ -52,4 +52,4 @@
             Become a patron
         </a>
     </div>
-</div>
+</div> --}}
