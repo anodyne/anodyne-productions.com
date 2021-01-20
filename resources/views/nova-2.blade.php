@@ -13,5 +13,5 @@
 
     <x-nova2.sponsors />
 
-    <x-nova2.footer />
+    <x-footer />
 </x-layouts.base>

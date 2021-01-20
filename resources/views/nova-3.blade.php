@@ -7,5 +7,5 @@
 
     <x-nova3.faq />
 
-    <x-nova3.footer />
+    <x-footer text-color="gray-500" hover-color="gray-400" />
 </x-layouts.base>
