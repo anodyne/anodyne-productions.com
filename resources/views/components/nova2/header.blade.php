@@ -17,7 +17,7 @@
                             </a>
                             <h1 class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:leading-none lg:mt-6 lg:text-5xl xl:text-6xl">
                                 <span class="block">Painless</span>
-                                <span class="block leading-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-amber-500">RPG management</span>
+                                <span class="block text-amber-500">RPG management</span>
                             </h1>
                             <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
                                 With an easy-to-use interface, powerful posting system, a wide array of developer tools and much more, Nova is all you need to help you stop managing your game and get back to playing it.
@@ -26,7 +26,7 @@
                     </div>
                     <div class="mt-16 sm:mt-24 lg:mt-0 lg:col-span-6">
                         <div class="-mt-6 aspect-w-4 aspect-h-3">
-                            <img class="transform translate-x-0 translate-y-6 md:rounded-lg object-cover object-left-top sm:translate-x-40 lg:translate-y-0" src="{{ asset('images/nova2-manifest.png') }}" alt="App screenshot">
+                            <img class="transform translate-x-0 translate-y-6 md:rounded-xl object-cover object-left-top sm:translate-x-40 lg:translate-y-0" src="{{ asset('images/nova2-manifest.png') }}" alt="App screenshot">
                         </div>
                     </div>
                 </div>
