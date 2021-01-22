@@ -24,6 +24,7 @@
         "laravel/tinker": "^2.0",
         "league/commonmark": "^1.5",
         "livewire/livewire": "^2.3",
+        "lorisleiva/laravel-actions": "^2.0",
         "spatie/commonmark-highlighter": "^2.1"
     },
     "require-dev": {
