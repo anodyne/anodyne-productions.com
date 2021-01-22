@@ -9,7 +9,17 @@
 
     <h2>New Logo</h2>
 
-    <p>At the end of 2020, we decided to start exploring the idea of completely re-branding Anodyne. The time felt right. The given A) how long we had been using The first piece of that puzzle was coming up with a more distinct logo than what we've been using. When the current version of the website launched in 2014, there wasn't actually a logo for Anodyne. Out of necessity, we threw one together quickly and it's stuck since then.</p>
+    <p>Seven years ago when we launched the previous version of our site Anodyne didn't actually have a proper logo. Out of necessity (Twitter, Facebook, Discord, etc.) we threw one together quickly and it's stuck around since. For the better part of a year we've toyed around with the idea of a proper logo, but it's never gone beyond some sketches on scrap paper. As we were wrapping up 2020 though the time to do this work felt right.</p>
+
+    <p>The challenge with coming with a brand-new logo starts with defining what the thing you're trying to represent actually is. For something like Nova that's pretty straightforward; for Anodyne that was a lot more difficult. Some companies have names that lend themselves to specific imagery. Think about a company like Apple. An apple is a thing, so you have a starting point for a visual metaphor that you can work from. Anodyne isn't so lucky to have a clear-cut visual metaphor built-in to its name.</p>
+
+    <p>We put together a very open-ended brief for the designers to provide some initial direction, but we wanted to provide them with a lot of space to play in. After defining what the company did and some basic background information, we waiting for the designs to come rolling in.</p>
+
+    <p>For over a year now we've toyed around with the idea of a new logo, but it's never gone beyond some sketches on paper. The time to do this work felt right this time and we jumped in with both feet.</p>
+
+    <p>It was an incredibly scary prospect as the concepts started coming in. For so many years we've used the same simple logo. It </p>
+
+        The time has felt right for a while now given A) how long we had been using the existing logo The first piece of that puzzle was coming up with a more distinct logo than what we've been using. When the current version of the website launched in 2014, there wasn't actually a logo for Anodyne. Out of necessity, we threw one together quickly and it's stuck since then.</p>
     <p>Over the course of many weeks, we worked with several designer to craft an identity for Anodyne.</p>
 
     <h2>New Branding</h2>

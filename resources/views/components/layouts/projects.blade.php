@@ -31,9 +31,8 @@
                             <div class="rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                                 <div class="relative grid gap-6 bg-gray-800 px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
                                     <a href="{{ route('projects.identity') }}" class="group -m-3 p-3 flex items-start rounded-lg hover:bg-gray-700 transition ease-in-out duration-150">
-                                        <div class="relative flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
+                                        <div class="squircle relative flex-shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
                                             @svg('fluent-paint-bucket', 'h-7 w-7')
-                                            <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-4 ring-gray-800 group-hover:ring-gray-700 bg-green-500"></span>
                                         </div>
                                         <div class="ml-4">
                                             <p class="text-base font-medium text-gray-200">
@@ -46,9 +45,8 @@
                                     </a>
 
                                     <a href="{{ route('projects.website') }}" class="group -m-3 p-3 flex items-start rounded-lg hover:bg-gray-700 transition ease-in-out duration-150">
-                                        <div class="relative flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
+                                        <div class="squircle relative flex-shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
                                             @svg('fluent-app-generic', 'h-7 w-7')
-                                            <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-4 ring-gray-800 group-hover:ring-gray-700 bg-green-500"></span>
                                         </div>
                                         <div class="ml-4">
                                             <p class="text-base font-medium text-gray-200">
@@ -61,9 +59,8 @@
                                     </a>
 
                                     <a href="{{ route('projects.support') }}" class="group -m-3 p-3 flex items-start rounded-lg hover:bg-gray-700 transition ease-in-out duration-150">
-                                        <div class="relative flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
+                                        <div class="squircle relative flex-shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
                                             @svg('fluent-chat-bubbles-help', 'h-7 w-7')
-                                            <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-4 ring-gray-800 group-hover:ring-gray-700 bg-green-500"></span>
                                         </div>
                                         <div class="ml-4">
                                             <p class="text-base font-medium text-gray-200">
@@ -76,7 +73,7 @@
                                     </a>
 
                                     <a href="{{ route('projects.docs') }}" class="group -m-3 p-3 flex items-start rounded-lg hover:bg-gray-700 transition ease-in-out duration-150">
-                                        <div class="relative flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
+                                        <div class="squircle relative flex-shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
                                             @svg('fluent-class', 'h-7 w-7')
                                         </div>
                                         <div class="ml-4">
@@ -90,7 +87,7 @@
                                     </a>
 
                                     <a href="{{ route('projects.exchange') }}" class="group -m-3 p-3 flex items-start rounded-lg hover:bg-gray-700 transition ease-in-out duration-150">
-                                        <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
+                                        <div class="squircle relative flex-shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
                                             @svg('fluent-apps-add-in', 'h-7 w-7')
                                         </div>
                                         <div class="ml-4">
@@ -104,7 +101,7 @@
                                     </a>
 
                                     <a href="{{ route('projects.galaxy') }}" class="group -m-3 p-3 flex items-start rounded-lg hover:bg-gray-700 transition ease-in-out duration-150">
-                                        <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
+                                        <div class="squircle relative flex-shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
                                             @svg('fluent-rocket', 'h-7 w-7')
                                         </div>
                                         <div class="ml-4">
