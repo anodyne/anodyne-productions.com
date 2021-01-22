@@ -14,14 +14,13 @@ body {
     -webkit-font-feature-settings: 'kern' 1, 'ss01' 1, 'ss02' 1, 'ss03' 1;
 }
 
-svg.defs {
-	position: absolute;
-	width: 0;
-	height: 0;
-}
-
+/*
+ * https://blog.jim-nielsen.com/2017/creating-ios-icon-masks-in-the-browser/
+ * https://www.iosicongallery.com/
+ */
 .squircle {
-	clip-path: url(#squircle);
+	mask-image: url(/images/squircle-mask.svg);
+    mask-size: cover;
 }
 
 [x-cloak] {
