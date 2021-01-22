@@ -2,7 +2,7 @@
     'icon',
     'title',
     'titleColor' => 'white',
-    'bodyColor' => 'gray-500',
+    'bodyColor' => 'gray-700',
 ])
 
 <div>
