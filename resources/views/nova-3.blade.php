@@ -6,11 +6,7 @@
             <a name="features"></a>
             <!-- Alternating Feature Sections -->
             <div class="relative pt-16 pb-32 overflow-hidden space-y-24">
-                <x-nova3.feature-large icon="st-responsive-design" title="Play wherever you are." image="https://tailwindui.com/img/component-images/inbox-app-screenshot-2.jpg">
-                    <span class="text-lg">Bring whatever device you want, Nova doesn't care! We've designed Nova from the ground up to work on devices of all sizes.</span>
-                </x-nova3.feature-large>
-
-                <x-nova3.feature-large icon="st-quill" title="A new way to tell stories." image="https://tailwindui.com/img/component-images/inbox-app-screenshot-2.jpg" right>
+                <x-nova3.feature-large icon="st-quill" title="A new way to tell stories." :image="asset('images/nova3-stories.png')">
                     <dl class="space-y-6">
                         <div>
                             <dt class="font-semibold text-lg text-gray-300">Chronological context</dt>
@@ -29,7 +25,26 @@
                     </dl>
                 </x-nova3.feature-large>
 
-                <x-nova3.feature-large icon="st-army-badge" title="Ranks. Done right." image="https://tailwindui.com/img/component-images/inbox-app-screenshot-1.jpg">
+                <x-nova3.feature-large icon="st-responsive-design" title="Play wherever you are." :image="asset('images/nova3-dashboard.png')" right>
+                    <dl class="space-y-6">
+                        <div>
+                            <dt class="font-semibold text-lg text-gray-300">Bring any device</dt>
+                            <dd>Whether you're playing on a mobile phone or an 8k monitor, Nova is designed to let you manage and play your game from any device.</dd>
+                        </div>
+
+                        <div>
+                            <dt class="font-semibold text-lg text-gray-300">Mobile-specific designs</dt>
+                            <dd>We took cues from the different mobile operating systems so that Nova feels natural when you're using it on your phone.</dd>
+                        </div>
+
+                        <div>
+                            <dt class="font-semibold text-lg text-gray-300">Progressive web app</dt>
+                            <dd>Nova sites can be added to your home screen and will act and behave more like a native app than a webpage.</dd>
+                        </div>
+                    </dl>
+                </x-nova3.feature-large>
+
+                <x-nova3.feature-large icon="st-army-badge" title="Ranks. Done right." :image="asset('images/nova3-ranks.png')">
                     <dl class="space-y-6">
                         <div>
                             <dt class="font-semibold text-lg text-gray-300">Rank groups</dt>
