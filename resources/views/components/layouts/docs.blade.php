@@ -329,7 +329,7 @@
                 </div>
             </div>
 
-            <main class="flex-1 relative overflow-y-auto focus:outline-none" tabindex="0" x-data="" x-init="$el.focus()">
+            <main class="flex-1 relative overflow-y-auto focus:outline-none">
                 <div class="py-6">
                     <div class="flex px-4 sm:px-6 md:px-0">
                         {{ $slot }}
