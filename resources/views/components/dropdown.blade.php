@@ -39,7 +39,7 @@
         class="absolute mt-2 rounded-lg shadow-lg z-9999 w-{{ $width }} {{ $placement === 'bottom-start' ? 'left-0 origin-top-left' : 'right-0 origin-top-right' }}"
         x-cloak
     >
-        <div class="rounded-lg bg-white ring-1 ring-black ring-opacity-5 z-10 divide-y divide-gray-100">
+        <div class="relative rounded-lg bg-white ring-1 ring-black ring-opacity-5 z-50 divide-y divide-gray-100">
             {{ $slot }}
         </div>
     </div>
