@@ -311,7 +311,7 @@
         </div>
 
         <div class="flex-1 mx-auto w-0 flex flex-col md:px-8">
-            <div class="relative z-10 flex-shrink-0 h-16 bg-white shadow-lg flex">
+            <div class="relative z-10 flex-shrink-0 h-16 bg-white shadow-lg flex md:hidden">
                 <div class="flex items-center justify-between w-full md:w-auto px-6">
                     <a href="/">
                         <span class="sr-only">Anodyne</span>
