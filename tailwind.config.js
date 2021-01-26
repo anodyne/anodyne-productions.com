@@ -14,7 +14,7 @@ module.exports = {
 
             amber: {
                 ...colors.amber,
-                ...{ 500: '#F99C26' }
+                ...{ 500: '#f99c26' }
             },
             gray: colors.coolGray,
             orange: {
