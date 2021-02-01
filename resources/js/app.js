@@ -1,3 +1,5 @@
+require('./bootstrap');
+
 import 'alpinejs';
 
 import hljs from 'highlight.js/lib/core';

@@ -36,3 +36,7 @@ Route::files([
     base_path('domain/Exchange/routes/web.php'),
     base_path('domain/Galaxy/routes/web.php'),
 ]);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
