@@ -2,7 +2,11 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
 
 module.exports = {
-    purge: [],
+    purge: [
+        './vendor/laravel/jetstream/**/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+    ],
     darkMode: false, // or 'media' or 'class'
     theme: {
         colors: {
@@ -14,7 +18,7 @@ module.exports = {
 
             amber: {
                 ...colors.amber,
-                ...{ 500: '#F99C26' }
+                ...{ 500: '#f99c26' }
             },
             gray: colors.coolGray,
             orange: {
