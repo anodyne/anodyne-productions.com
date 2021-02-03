@@ -1,5 +1,5 @@
-<x-layouts.base>
+<x-base-layout>
     <div class="overflow-hidden">
         {{ $slot }}
     </div>
-</x-layouts.base>
+</x-base-layout>

@@ -1,4 +1,4 @@
-<x-layouts.base>
+<x-base-layout>
     <div class="space-y-20 sm:space-y-32 md:space-y-40 lg:space-y-44 overflow-hidden">
         {{ $slot }}
 
@@ -46,4 +46,4 @@
             </div>
         </footer>
     </div>
-</x-layouts.base>
+</x-base-layout>

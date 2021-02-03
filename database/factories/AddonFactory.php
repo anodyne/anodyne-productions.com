@@ -2,12 +2,12 @@
 
 namespace Database\Factories;
 
-use Domain\Exchange\Models\Product;
+use Domain\Exchange\Models\Addon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProductFactory extends Factory
+class AddonFactory extends Factory
 {
-    protected $model = Product::class;
+    protected $model = Addon::class;
 
     public function definition()
     {

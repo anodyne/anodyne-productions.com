@@ -6,13 +6,19 @@ namespace Domain\Exchange\Providers;
 
 use Domain\Account\Role;
 use Domain\DomainServiceProvider;
-use Domain\Exchange\Livewire\ShowProducts;
+use Domain\Exchange\Livewire\ShowAddons;
+use Domain\Exchange\Models\Addon;
+use Domain\Exchange\Policies\AddonPolicy;
 use Illuminate\Support\Facades\Gate;
 
 class ExchangeServiceProvider extends DomainServiceProvider
 {
     protected $livewireComponents = [
-        'exchange:show-products' => ShowProducts::class,
+        'exchange:show-addons' => ShowAddons::class,
+    ];
+
+    protected $policies = [
+        Addon::class => AddonPolicy::class,
     ];
 
     public function boot()

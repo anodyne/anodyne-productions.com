@@ -69,7 +69,8 @@ module.exports = {
                 800: '#254771',
                 900: '#1e3a5c'
             },
-            'spanish-roast': '#130f32'
+            'spanish-roast': '#130f32',
+            purple: colors.violet,
         },
         extend: {
             boxShadow: {

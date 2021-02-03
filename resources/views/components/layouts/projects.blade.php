@@ -1,6 +1,6 @@
 @props(['prose' => false])
 
-<x-layouts.base bg-color="white">
+<x-base-layout bg-color="white">
     <div class="relative bg-white" x-data="{ mobileMenuOpen: false }">
         <div class="max-w-3xl xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
@@ -269,4 +269,4 @@
     </div>
 
     <x-footer class="max-w-3xl xl:max-w-5xl" />
-</x-layouts.base>
+</x-base-layout>

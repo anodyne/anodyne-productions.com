@@ -96,10 +96,12 @@
                                         <span class="absolute inset-0" aria-hidden="true"></span>
                                         Nova Exchange
                                     </a>
-                                    <x-badge color="amber" size="sm">Coming Soon</x-badge>
+                                    @if (config('services.anodyne.exchange') === false)
+                                        <x-badge color="amber" size="sm">Coming this Summer</x-badge>
+                                    @endif
                                 </h3>
                                 <p class="mt-2 text-sm text-gray-500">
-                                    Discover and share add-ons for Nova from around the entire community, including themes, extensions, and rank sets.
+                                    Discover and share add-ons for Nova from around the community, including themes, extensions, and rank sets.
                                 </p>
                             </div>
                             <span class="pointer-events-none absolute top-6 right-6 text-gray-300 group-hover:text-gray-400 transition-colors ease-in-out duration-200" aria-hidden="true">
