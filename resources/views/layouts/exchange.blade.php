@@ -1,7 +1,7 @@
 <x-base-layout>
     <div class="sticky top-0 z-40 lg:z-50 w-full max-w-8xl mx-auto bg-gray-100 flex-none flex">
         <div class="flex-none pl-4 sm:pl-6 xl:pl-8 flex items-center border-b border-gray-200 lg:border-b-0 lg:w-60 xl:w-72">
-            <a class="overflow-hidden w-10 md:w-auto" href="/">
+            <a class="overflow-hidden w-10 md:w-auto" href="{{ route('home') }}">
                 <span class="sr-only">Anodyne home page</span>
                 <x-logos.anodyne class="w-3/4 h-auto" gradient />
             </a>
