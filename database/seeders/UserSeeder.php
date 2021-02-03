@@ -10,25 +10,24 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        $adminUser = User::factory()->create([
+        User::factory()->create([
             'name' => 'Admin',
-            // 'username' => 'admin',
             'email' => 'admin@admin.com',
             'password' => Hash::make('secret'),
+            'role' => 'admin',
         ]);
 
-        // $adminUser->attachRoles(['admin', 'user']);
+        User::factory()->create([
+            'name' => 'Staff',
+            'email' => 'staff@staff.com',
+            'password' => Hash::make('secret'),
+            'role' => 'staff',
+        ]);
 
-        // $deletedJohn = User::factory()->create([
-        //     'deleted_at' => now()->subDays(31),
-        // ]);
-
-        // $deletedJohn->attachRole('user');
-
-        // $deletedSusie = User::factory()->create([
-        //     'deleted_at' => now()->subDays(10),
-        // ]);
-
-        // $deletedSusie->attachRole('user');
+        User::factory()->create([
+            'name' => 'User',
+            'email' => 'user@user.com',
+            'password' => Hash::make('secret'),
+        ]);
     }
 }
