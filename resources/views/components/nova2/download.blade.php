@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
-                <img class="transform translate-x-6 translate-y-6 rounded-xl object-cover object-left-top sm:translate-x-12 lg:translate-y-20" src="{{ asset('images/nova2-admin.png') }}" alt="App screenshot">
+                <img class="transform translate-x-6 translate-y-6 rounded-xl object-cover object-left-top sm:translate-x-12 lg:translate-y-20" src="{{ asset('images/nova2-admin.webp') }}" alt="App screenshot">
             </div>
         </div>
     </div>
