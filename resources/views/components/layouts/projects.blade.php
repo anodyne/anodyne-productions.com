@@ -92,7 +92,7 @@
                                         </div>
                                         <div class="ml-4">
                                             <p class="text-base font-medium text-gray-200">
-                                                Nova Exchange
+                                                AnodyneXtras
                                             </p>
                                             <p class="mt-1 text-sm text-gray-400">
                                                 AnodyneXtras is being re-built for a better experience and new features.
