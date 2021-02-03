@@ -1,9 +1,87 @@
-<x-layouts.projects prose>
-    <x-slot name="title">Re-written Documentation</x-slot>
+<x-layouts.projects>
+    <x-slot name="title">AnodyneXtras &rarr; Nova Exchange</x-slot>
 
-    <p>In December of 2020, we announced we would be making significant changes to the way we handle support for Nova going forward. That started immediately with shutting down new user registrations and wrapped up recently with the complete removal of the forums from the server.</p>
+    <div class="prose prose-lg">
+        <dl class="space-y-6">
+            <div class="space-y-1">
+                <dt class="font-semibold text-xl text-gray-900">User registration has moved to the Xtras site</dt>
+                <dd>We've ported the user registration and password reset functionality from the old main site into the Xtras site. Users shouldn't see any major changes other than they aren't re-directed to the main site anymore for registering an account or resetting their password.</dd>
+            </div>
+        </dl>
 
-    <p>For many years, we used the forums as a way for people to interact with us. Over the years though, the forums fell into disrepair and traffic to the forums became almost non-existent. There was more spam on the forums than actual posts.</p>
+        <h2>What's next?</h2>
 
-    <p>As more and more RPG organizations adopt Discord, we felt the time was right for us to shift our entire support strategy away from the forums and over to our <a href="https://discord.gg/7WmKUks" target="_blank">Discord server</a>. In the months since we made this change, we've seen a sigfificant rise in the number of people in our Discord server. If you haven't joined yet, be sure to join today!</p>
+        <p>We've already started re-writing AnodyneXtras and have some really exciting plans for the service that we're hoping to launch this summer. One of the biggest changes is that we'll be renaming the service to <span class="font-bold">Nova Exchange</span>. Given that AnodyneXtras has been entirely focused on Nova, we felt that using Nova in the name made more sense.</p>
+
+        <p>Here are some of the features we're focused on for this new version of the service:</p>
+    </div>
+
+    @php
+        $userFeatures = [
+            ['title' => 'Realtime filtering', 'content' => "Find the add-on you're looking for quickly and easily."],
+            ['title' => 'Sorting options', 'content' => "Sort results by created, updated, popular, or their rating."],
+            ['title' => 'Quick access to download', 'content' => "No need to view the item page, just click to download."],
+            ['title' => 'User reviews', 'content' => "Give your rating context by leaving a complete review."],
+            ['title' => 'Favorites', 'content' => "Mark items as favorites to keep track of them in the future."],
+        ];
+    @endphp
+
+    <div class="mx-auto py-16">
+        <div class="max-w-3xl mx-auto text-center">
+            <h3 class="text-base text-orange-500 font-semibold tracking-wide uppercase">For Users</h3>
+            <h2 class="text-3xl font-extrabold text-gray-900">Discover add-ons for your game</h2>
+        </div>
+        <dl class="mt-12 space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-3 lg:gap-x-8">
+            @foreach ($userFeatures as $userFeature)
+            <div class="flex">
+                <!-- Heroicon name: check -->
+                <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div class="ml-3">
+                    <dt class="text-lg leading-6 font-medium text-gray-900">
+                        {{ $userFeature['title'] }}
+                    </dt>
+                    <dd class="mt-2 text-base text-gray-500">
+                        {{ $userFeature['content'] }}
+                    </dd>
+                </div>
+            </div>
+            @endforeach
+        </dl>
+    </div>
+
+    @php
+        $authorFeatures = [
+            ['title' => 'FAQs', 'content' => "Answer commonly asked questions for all users to see."],
+            ['title' => 'Multi-version compatibility', 'content' => "Associate multiple Nova versions with a single download file."],
+            ['title' => 'More Markdown options', 'content' => "Use Markdown features like fenced code blocks, tables, and more."],
+            ['title' => 'Genres', 'content' => "For Nova 3, create and share your own genre files and assets."],
+        ];
+    @endphp
+
+    <div class="mx-auto py-16">
+        <div class="max-w-3xl mx-auto text-center">
+            <h3 class="text-base text-orange-500 font-semibold tracking-wide uppercase">For Authors</h3>
+            <h2 class="text-3xl font-extrabold text-gray-900">Share your add-ons with the community</h2>
+        </div>
+        <dl class="mt-12 space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-3 lg:gap-x-8">
+            @foreach ($authorFeatures as $authorFeature)
+            <div class="flex">
+                <!-- Heroicon name: check -->
+                <svg class="flex-shrink-0 h-6 w-6 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div class="ml-3">
+                    <dt class="text-lg leading-6 font-medium text-gray-900">
+                        {{ $authorFeature['title'] }}
+                    </dt>
+                    <dd class="mt-2 text-base text-gray-500">
+                        {{ $authorFeature['content'] }}
+                    </dd>
+                </div>
+            </div>
+            @endforeach
+        </dl>
+    </div>
 </x-layouts.projects>
