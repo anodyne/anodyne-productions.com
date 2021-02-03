@@ -1,4 +1,4 @@
-<x-base-layout bg-color="white">
+<x-base-layout>
     <div class="h-screen overflow-hidden flex" x-data="{ sidebarOpen: false }" @keydown.window.escape="sidebarOpen = false">
         <div x-show="sidebarOpen" class="md:hidden" x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state." style="display: none;">
             <div class="fixed inset-0 z-40 flex">
@@ -6,7 +6,7 @@
                     <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
                 </div>
 
-                <div x-show="sidebarOpen" x-description="Off-canvas menu, show/hide based on off-canvas menu state." x-transition:enter="transition ease-in-out duration-300 transform" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="relative max-w-xs w-full bg-white pt-5 pb-4 flex-1 flex flex-col" style="display: none;">
+                <div x-show="sidebarOpen" x-description="Off-canvas menu, show/hide based on off-canvas menu state." x-transition:enter="transition ease-in-out duration-300 transform" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="relative max-w-xs w-full bg-gray-100 pt-5 pb-4 flex-1 flex flex-col" style="display: none;">
                     <div class="absolute top-0 right-0 -mr-12 pt-2">
                         <button x-show="sidebarOpen" @click="sidebarOpen = false" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" style="display: none;">
                             <span class="sr-only">Close sidebar</span>
@@ -171,7 +171,7 @@
             <div class="w-64 flex flex-col">
                 <!-- Sidebar component, swap this element with another sidebar if you like -->
                 <div class="pb-4 flex flex-col flex-grow overflow-y-auto">
-                    <div class="bg-white z-50 flex-shrink-0 px-4 flex items-center pt-8">
+                    <div class="z-50 flex-shrink-0 px-5 flex items-center pt-8">
                         <a href="{{ route('home') }}">
                             <x-logos.anodyne class="h-8 w-auto" gradient />
                         </a>
@@ -258,8 +258,8 @@
                                     </x-slot>
 
                                     <x-dropdown.group>
-                                        @foreach (['3.0', '2.6'] as $version)
-                                            <x-dropdown.item :href="route('docs', [$version])">Nova {{ $version }}</x-dropdown.item>
+                                        @foreach (['3.0', '2.6'] as $ver)
+                                            <x-dropdown.item :href="route('docs', [$ver])">Nova {{ $ver }}</x-dropdown.item>
                                         @endforeach
                                     </x-dropdown.group>
                                 </x-dropdown>
@@ -306,10 +306,10 @@
             </div>
         </div>
 
-        <div class="flex-1 mx-auto w-0 flex flex-col md:px-8">
-            <div class="relative z-10 flex-shrink-0 h-16 bg-white shadow-lg flex md:hidden">
+        <div class="flex-1 mx-auto w-0 flex flex-col">
+            <div class="relative z-10 flex-shrink-0 h-16 bg-white shadow-md flex md:hidden">
                 <div class="flex items-center justify-between w-full md:w-auto px-6">
-                    <a href="/">
+                    <a href="{{ route('home') }}">
                         <span class="sr-only">Anodyne</span>
                         <x-logos.anodyne class="h-8 w-auto sm:h-10" gradient />
                     </a>
@@ -327,7 +327,7 @@
 
             <main class="flex-1 relative overflow-y-auto focus:outline-none">
                 <div class="py-6">
-                    <div class="flex px-4 sm:px-6 md:px-0">
+                    <div class="flex px-4 sm:px-6">
                         {{ $slot }}
                     </div>
                 </div>

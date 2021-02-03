@@ -7,7 +7,7 @@
         @apply rounded-lg bg-white shadow overflow-hidden;
 
         .accent {
-            @apply w-full h-2 bg-blue-500;
+            @apply w-full h-2 bg-gradient-to-r from-purple-600 to-purple-400;
         }
 
         .content {
@@ -15,17 +15,17 @@
         }
 
         .identifier {
-            @apply flex items-center space-x-2 px-4 pt-2 font-medium uppercase tracking-wide text-sm text-blue-500;
+            @apply flex items-center space-x-2 px-4 pt-2 font-medium uppercase tracking-wide text-sm text-purple-500;
 
             > svg {
-                @apply h-6 w-6 flex-shrink-0 text-blue-400;
+                @apply h-6 w-6 flex-shrink-0 text-purple-400;
             }
         }
 
         &.is-tip,
         &.is-success {
             .accent {
-                @apply bg-green-500;
+                @apply bg-gradient-to-r from-green-500 to-green-400;
             }
 
             .identifier {
@@ -39,7 +39,7 @@
 
         &.is-warning {
             .accent {
-                @apply bg-amber-500;
+                @apply bg-gradient-to-r from-orange-500 to-amber-500;
             }
 
             .identifier {
@@ -53,7 +53,7 @@
     }
 
     .badge {
-        @apply inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-gray-200 text-gray-800;
+        @apply inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-purple-200 text-purple-800;
 
         &.is-danger {
             @apply bg-red-100 text-red-800;

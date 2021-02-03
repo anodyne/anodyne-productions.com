@@ -3,7 +3,7 @@
         <div class="flex items-center justify-between w-full md:w-auto">
             <a href="/">
                 <span class="sr-only">Anodyne</span>
-                <x-logos.anodyne text-color="white" class="h-8 w-auto sm:h-10" gradient />
+                <x-logos.anodyne text-color="white" class="h-8 w-auto" gradient />
             </a>
             <div class="-mr-2 flex items-center md:hidden">
                 <button type="button" class="bg-gray-800 rounded-lg p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white" id="main-menu" aria-haspopup="true" @click="open = true">
@@ -15,12 +15,12 @@
                 </button>
             </div>
         </div>
-        <div class="hidden space-x-10 md:flex md:ml-16">
+        <div class="hidden space-x-10 md:flex md:ml-12">
             <a href="#features" class="font-medium text-white hover:text-gray-300">Features</a>
 
             <a href="#download" class="font-medium text-white hover:text-gray-300">Download</a>
 
-            <a href="{{ route('docs') }}" class="font-medium text-white hover:text-gray-300">Documentation</a>
+            <a href="{{ route('docs') }}" class="font-medium text-white hover:text-gray-300">Docs</a>
 
             <a href="#resources" class="font-medium text-white hover:text-gray-300">Resources</a>
 
@@ -71,7 +71,7 @@
 
                 <a href="#download" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Download</a>
 
-                <a href="{{ route('docs') }}" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Documentation</a>
+                <a href="{{ route('docs') }}" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Docs</a>
 
                 <a href="#resources" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Resources</a>
 
