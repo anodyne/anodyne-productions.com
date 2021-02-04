@@ -43,6 +43,14 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function getRoleColorAttribute(): string
+    {
+        return [
+            'admin' => 'amber',
+            'staff' => 'purple',
+        ][$this->role] ?? 'gray';
+    }
+
     public function addons(): HasMany
     {
         return $this->hasMany(Addon::class);

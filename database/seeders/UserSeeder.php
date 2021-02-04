@@ -18,8 +18,15 @@ class UserSeeder extends Seeder
         ]);
 
         User::factory()->create([
-            'name' => 'Staff',
-            'email' => 'staff@staff.com',
+            'name' => 'Staff 1',
+            'email' => 'staff1@staff.com',
+            'password' => Hash::make('secret'),
+            'role' => 'staff',
+        ]);
+
+        User::factory()->create([
+            'name' => 'Staff 2',
+            'email' => 'staff2@staff.com',
             'password' => Hash::make('secret'),
             'role' => 'staff',
         ]);

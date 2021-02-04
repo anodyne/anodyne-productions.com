@@ -2,18 +2,18 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Str;
 use App\View\Components\Button;
-use App\View\Components\LandingPanel;
-use Illuminate\Support\Facades\Blade;
-use App\View\Components\LandingSection;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Builder;
-use App\View\Components\LandingFeatureList;
 use App\View\Components\LandingDefinitionList;
-use App\View\Components\LandingFeatureListItem;
 use App\View\Components\LandingDefinitionListItem;
+use App\View\Components\LandingFeatureList;
+use App\View\Components\LandingFeatureListItem;
+use App\View\Components\LandingPanel;
+use App\View\Components\LandingSection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -53,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
 
             $modelName = Str::afterLast($modelName, '\\');
 
-            return $namespace . $modelName . 'Factory';
+            return $namespace.$modelName.'Factory';
         });
     }
 

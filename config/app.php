@@ -175,6 +175,7 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
 
+        Domain\Account\Providers\AccountServiceProvider::class,
         Domain\Exchange\Providers\ExchangeServiceProvider::class,
     ],
 
