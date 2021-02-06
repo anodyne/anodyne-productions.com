@@ -1,22 +1,16 @@
 @props([
-    'field',
-    'value',
-    'activeColor' => 'bg-amber-500',
+    'activeColor' => 'bg-blue-500',
     'disabled' => false,
 ])
 
-<label
-    x-data="AlpineComponents.toggleSwitch({{ $value ? 'true' : 'false'}}, {{ $disabled ? 'true' : 'false' }})"
-    class="flex items-center"
-    x-bind:class="{ 'cursor-not-allowed': disabled, 'cursor-pointer': !disabled }"
->
+<label x-data="{ on: @entangle($attributes->wire('model')) }" class="flex items-center">
     <button
         type="button"
-        x-on:click.prevent="toggle($dispatch)"
+        x-on:click.prevent="on = !on"
         x-bind:aria-pressed="on.toString()"
         aria-pressed="false"
         aria-labelledby="toggleLabel"
-        x-bind:class="{ 'bg-gray-200': !on, '{{ $activeColor }}': on, 'opacity-50 cursor-not-allowed': disabled, 'cursor-pointer': !disabled }"
+        x-bind:class="{ 'bg-gray-200': !on, '{{ $activeColor }}': on }"
         class="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     >
         <span class="sr-only">Use setting</span>
@@ -30,13 +24,4 @@
             </span>
         </span>
     @endif
-
-    <input type="hidden" name="{{ $field }}" value="0">
-    <input
-        x-model="on"
-        type="checkbox"
-        name="{{ $field }}"
-        class="hidden"
-        value="1"
-    >
 </label>

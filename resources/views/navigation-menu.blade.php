@@ -1,4 +1,4 @@
-<header x-data="{ open: false }" class="pb-24 bg-gray-800">
+<header x-data="{ open: false }" class="py-2 lg:pt-0 lg:pb-24 bg-gray-800">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="relative flex flex-wrap items-center justify-center lg:justify-between">
             <!-- Logo -->
