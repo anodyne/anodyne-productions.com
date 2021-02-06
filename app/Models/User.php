@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Domain\Account\Role;
 use Domain\Exchange\Models\Addon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -43,6 +44,21 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function getIsAdminAttribute(): bool
+    {
+        return $this->role === Role::ADMIN;
+    }
+
+    public function getIsStaffAttribute(): bool
+    {
+        return $this->role === Role::STAFF;
+    }
+
+    public function getIsUserAttribute(): bool
+    {
+        return $this->role === Role::USER;
+    }
+
     public function getRoleColorAttribute(): string
     {
         return [
@@ -54,5 +70,10 @@ class User extends Authenticatable
     public function addons(): HasMany
     {
         return $this->hasMany(Addon::class);
+    }
+
+    protected function defaultProfilePhotoUrl()
+    {
+        return 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=f99c26&background=fef3c7';
     }
 }

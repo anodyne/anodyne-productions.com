@@ -39,9 +39,7 @@
                     </a>
                 @endif
 
-                <x-jet-button class="ml-4">
-                    {{ __('Login') }}
-                </x-jet-button>
+                <x-button type="submit" color="dark" class="ml-4">Log in</x-button>
             </div>
         </form>
     </x-jet-authentication-card>
