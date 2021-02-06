@@ -177,6 +177,7 @@ return [
 
         Domain\Account\Providers\AccountServiceProvider::class,
         Domain\Exchange\Providers\ExchangeServiceProvider::class,
+        Domain\Users\Providers\UserServiceProvider::class,
     ],
 
     /*

@@ -25,7 +25,7 @@
             @livewire('navigation-menu')
 
             <!-- Page Content -->
-            <main class="-mt-24 pb-8">
+            <main class="lg:-mt-24 pb-8">
                 {{ $slot }}
             </main>
         </div>
