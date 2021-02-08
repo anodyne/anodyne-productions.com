@@ -19,7 +19,7 @@ body {
  * https://www.iosicongallery.com/
  */
 .squircle {
-	mask-image: url(/images/squircle-mask.svg);
+	mask-image: url(/storage/images/squircle-mask.svg);
     mask-size: cover;
 }
 

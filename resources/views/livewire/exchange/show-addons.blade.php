@@ -189,7 +189,7 @@
                 <div class="space-y-6">
                     <div class="grid gap-x-6 gap-y-12 max-w-lg mx-auto md:grid-cols-2 xl:grid-cols-3 md:max-w-none">
                         @forelse ($addons as $addon)
-                            <x-card :image="asset('images/brian-mcgowan-DsYv1KJHrlE-unsplash.jpg')">
+                            <x-card :image="Storage::url('images/brian-mcgowan-DsYv1KJHrlE-unsplash.jpg')">
                                 <x-badge :color="$addon->type_color">{{ ucfirst($addon->type) }}</x-badge>
 
                                 <div class="mt-1 font-extrabold text-gray-900 tracking-tight text-xl">{{ ucfirst($addon->name) }}</div>
