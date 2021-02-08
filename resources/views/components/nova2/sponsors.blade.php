@@ -17,23 +17,17 @@
                 </div>
             </div>
             <div class="mt-8 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-0 lg:grid-cols-2">
-                <div class="col-span-1 flex justify-center py-8 px-8">
-                    <img class="max-h-12" src="https://tailwindui.com/img/logos/transistor-logo-gray-400.svg" alt="Workcation">
+                <div class="col-span-1 flex justify-center px-8">
+                    <a href="https://blackhawk.anurasims.com/" target="_blank" class="flex flex-col space-y-4 font-extrabold text-xl text-center hover:text-amber-500 transition-colors ease-in-out duration-150">
+                        <img class="max-h-48" src="{{ Storage::url('images/sponsors/blackhawklogo.png') }}" alt="USS Blackhawk logo">
+                        <span>USS Blackhawk</span>
+                    </a>
                 </div>
-                <div class="col-span-1 flex justify-center py-8 px-8">
-                    <img class="max-h-12" src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg" alt="Mirage">
-                </div>
-                <div class="col-span-1 flex justify-center py-8 px-8">
-                    <img class="max-h-12" src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg" alt="Tuple">
-                </div>
-                <div class="col-span-1 flex justify-center py-8 px-8">
-                    <img class="max-h-12" src="https://tailwindui.com/img/logos/laravel-logo-gray-400.svg" alt="Laravel">
-                </div>
-                <div class="col-span-1 flex justify-center py-8 px-8">
-                    <img class="max-h-12" src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg" alt="StaticKit">
-                </div>
-                <div class="col-span-1 flex justify-center py-8 px-8">
-                    <img class="max-h-12" src="https://tailwindui.com/img/logos/statamic-logo-gray-400.svg" alt="Statamic">
+                <div class="col-span-1 flex justify-center px-8">
+                    <a href="https://blackhawk.anurasims.com/" target="_blank" class="flex flex-col space-y-4 font-extrabold text-xl text-center hover:text-amber-500 transition-colors ease-in-out duration-150">
+                        <img class="max-h-48" src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg" alt="Sim Central logo">
+                        <span>Sim Central</span>
+                    </a>
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@
         </div>
 
         <div class="bg-white shadow-md md:shadow-xl p-8 md:p-16 md:rounded-xl">
-            <img src="{{ asset('images/undraw_server_down_s4lk.svg') }}" class="h-72 w-auto" alt="server down illustration">
+            <img src="{{ Storage::url('images/undraw_server_down_s4lk.svg') }}" class="h-72 w-auto" alt="server down illustration">
 
             <h1 class="mt-8 text-3xl leading-9 font-extrabold text-spanish-roast tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14 text-center">Service Unavailable</h1>
 
