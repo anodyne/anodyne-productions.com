@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Domain\Exchange\Models;
 
-use App\Models\User;
+use Domain\Users\Models\User;
 use Domain\Exchange\Models\Builders\AddonBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

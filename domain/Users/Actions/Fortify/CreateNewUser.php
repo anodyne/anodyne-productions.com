@@ -1,8 +1,8 @@
 <?php
 
-namespace Domain\Account\Actions\Fortify;
+namespace Domain\Users\Actions\Fortify;
 
-use App\Models\User;
+use Domain\Users\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -16,7 +16,7 @@ class CreateNewUser implements CreatesNewUsers
      * Validate and create a newly registered user.
      *
      * @param  array  $input
-     * @return \App\Models\User
+     * @return \Domain\Users\Models\User
      */
     public function create(array $input)
     {

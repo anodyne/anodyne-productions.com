@@ -1,15 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace Domain\Users\Models;
 
+use Domain\Users\Role;
 use Domain\Exchange\Models\Addon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\Traits\CausesActivity;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
@@ -18,6 +22,9 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use LogsActivity;
+    use CausesActivity;
+    use SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -25,7 +32,12 @@ class User extends Authenticatable
         'password',
         'role',
         'is_exchange_author',
+        'is_galaxy_author',
     ];
+
+    protected static $logFillable = true;
+
+    protected static $logOnlyDirty = true;
 
     protected $hidden = [
         'password',
@@ -43,6 +55,21 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function getIsAdminAttribute(): bool
+    {
+        return $this->role === Role::ADMIN;
+    }
+
+    public function getIsStaffAttribute(): bool
+    {
+        return $this->role === Role::STAFF;
+    }
+
+    public function getIsUserAttribute(): bool
+    {
+        return $this->role === Role::USER;
+    }
+
     public function getRoleColorAttribute(): string
     {
         return [
@@ -54,5 +81,10 @@ class User extends Authenticatable
     public function addons(): HasMany
     {
         return $this->hasMany(Addon::class);
+    }
+
+    protected function defaultProfilePhotoUrl()
+    {
+        return 'https://ui-avatars.com/api/?name='.urlencode($this->name).'&color=f99c26&background=fef3c7';
     }
 }

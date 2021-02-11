@@ -1,12 +1,8 @@
 <?php
 
-use Domain\Users\Controllers\UsersController;
-use Domain\Users\Livewire\ShowUsers;
+use Domain\Users\Livewire\ManageUsers;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('/users')
+Route::get('/users', ManageUsers::class)
     ->middleware('auth')
-    ->group(function () {
-        Route::get('/', ShowUsers::class)->name('users.index');
-        Route::get('{user}/edit', [UsersController::class, 'edit'])->name('users.edit');
-    });
+    ->name('users');

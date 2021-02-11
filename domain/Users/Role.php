@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Account;
+namespace Domain\Users;
 
 class Role
 {

@@ -1,6 +1,6 @@
 <?php
 
-use Domain\Account\Role;
+use Domain\Users\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -25,7 +25,9 @@ class CreateUsersTable extends Migration
             $table->text('profile_photo_path')->nullable();
             $table->string('role', 5)->default(Role::USER);
             $table->boolean('is_exchange_author')->default(true);
+            $table->boolean('is_galaxy_author')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
