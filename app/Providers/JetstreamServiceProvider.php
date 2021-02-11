@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Domain\Account\Actions\Jetstream\DeleteUser;
+use Domain\Users\Actions\Jetstream\DeleteUser;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Jetstream\Jetstream;
 

@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace Domain\Users\Policies;
 
-use App\Models\User;
-use Domain\Account\Role;
+use Domain\Users\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy

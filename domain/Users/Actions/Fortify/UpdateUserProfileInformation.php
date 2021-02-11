@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Account\Actions\Fortify;
+namespace Domain\Users\Actions\Fortify;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;

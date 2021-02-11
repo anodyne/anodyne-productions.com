@@ -4,10 +4,8 @@ namespace Domain\Users\Livewire;
 
 use App\Livewire\DataTable\WithPerPagePagination;
 use App\Livewire\DataTable\WithSorting;
-use App\Models\User;
-use Domain\Account\Actions\Fortify\UpdateUserProfileInformation;
-use Domain\Account\Actions\Jetstream\DeleteUser;
-use Illuminate\Contracts\Auth\StatefulGuard;
+use Domain\Users\Actions\Jetstream\DeleteUser;
+use Domain\Users\Models\User;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -47,7 +45,7 @@ class ManageUsers extends Component
 
     public function edit(User $user)
     {
-        $this->editing = $user;
+        $this->editing = $user->load('activities');
 
         $this->showEditSlideover = true;
     }
@@ -85,7 +83,12 @@ class ManageUsers extends Component
     public function getRowsQueryProperty()
     {
         $query = User::query()
-            ->when($this->filters['search'], fn ($query, $search) => $query->where('name', 'like', "%{$search}%"))
+            ->when($this->filters['search'], function ($query, $search) {
+                return $query->where(function ($q) use ($search) {
+                    return $q->where('name', 'like', "%{$search}%")
+                        ->orWhere('email', 'like', "%{$search}%");
+                });
+            })
             ->when($this->filters['role'], fn ($query, $role) => $query->whereIn('role', $role))
             ->when($this->filters['exchange'], fn ($query, $exchange) => $query->where('is_exchange_author', filter_var($exchange, FILTER_VALIDATE_BOOLEAN)))
             ->when($this->filters['galaxy'], fn ($query, $galaxy) => $query->where('is_galaxy_author', filter_var($galaxy, FILTER_VALIDATE_BOOLEAN)));

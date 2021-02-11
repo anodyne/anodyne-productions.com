@@ -3,8 +3,6 @@
 use Domain\Users\Livewire\ManageUsers;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('/users')
+Route::get('/users', ManageUsers::class)
     ->middleware('auth')
-    ->group(function () {
-        Route::get('/', ManageUsers::class)->name('users.index');
-    });
+    ->name('users');

@@ -1,4 +1,16 @@
-<div x-data="{ show: @entangle($attributes->wire('model')) }" x-on:keydown.window.escape="show = false" class="fixed inset-0 overflow-hidden" x-show="show">
+<div
+    class="fixed inset-0 overflow-hidden"
+    x-data="{ show: @entangle($attributes->wire('model')) }"
+    x-init="
+        $watch('show', (value) => {
+            if (value) {
+                $dispatch('slideover-opened')
+            }
+        })
+    "
+    x-show="show"
+    x-on:keydown.window.escape="show = false"
+>
     <div class="absolute inset-0 overflow-hidden">
         <div x-show="show" x-description="Background overlay, show/hide based on slide-over state." x-transition:enter="ease-in-out duration-500" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="ease-in-out duration-500" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
 
@@ -22,7 +34,7 @@
                             </div>
                         </div>
                         <div class="flex-1 flex flex-col justify-between">
-                            <div class="px-4 divide-y divide-gray-200 sm:px-6">
+                            <div class="px-4 sm:px-6">
                                 {{ $content }}
                             </div>
                         </div>

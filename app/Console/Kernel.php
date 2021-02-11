@@ -25,6 +25,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+
+        $schedule->command('activitylog:clean')->weekly();
+
+        $schedule->command('anodyne:cleanup-users')->daily();
     }
 
     /**
