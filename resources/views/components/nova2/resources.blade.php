@@ -9,7 +9,7 @@
 
     <div class="mt-12 max-w-lg mx-auto grid gap-x-6 gap-y-12 lg:grid-cols-{{ config('services.anodyne.exchange') ? '3' : '2' }} lg:max-w-none">
         <x-nova2.resource :href="route('docs')" category="Documentation" title="Learn all about Nova">
-            Nova's documentation has been re-written to be clearer and more helpful than before. We've added all-new sections about getting started, added pages to explain complex features, and dug deeper into the core of Nova to help users understand how to get the most out Nova.
+            Nova's documentation has been re-written to be clearer and more helpful. We've added all-new sections about getting started, added pages to explain complex features, and dug deeper into the core of Nova to help users understand how to get the most out Nova.
         </x-nova2.resource>
 
         <x-nova2.resource href="https://discord.gg/7WmKUks" target="_blank" category="Community" title="Join the community">
