@@ -39,8 +39,7 @@ class UserPolicy
 
     public function delete(User $user, User $model): bool
     {
-        return ($user->isStaff && $model->isUser)
-            || $user->is($model);
+        return false;
     }
 
     public function updateRole(User $user, User $model): bool
