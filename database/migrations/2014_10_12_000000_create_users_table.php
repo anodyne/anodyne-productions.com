@@ -27,7 +27,6 @@ class CreateUsersTable extends Migration
             $table->boolean('is_exchange_author')->default(true);
             $table->boolean('is_galaxy_author')->default(true);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
