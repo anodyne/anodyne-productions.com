@@ -17,7 +17,7 @@
                         <div class="flex-1">
                             <div>
                                 <label for="version" class="block text-sm font-medium text-orange-900">Version</label>
-                                <select id="version" x-model="version" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-transparent focus:outline-none focus:ring-amber-300 focus:border-amber-300 sm:text-sm rounded-md shadow">
+                                <select id="version" x-model="version" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-transparent focus:outline-none focus:ring-blue-400 focus:border-blue-400 sm:text-sm rounded-md shadow">
                                     <option value="{{ $version }}">{{ $version }} (Latest)</option>
                                     <option value="2.3.2">2.3.2 (Legacy)</option>
                                 </select>
@@ -27,7 +27,7 @@
                         <div class="flex-1">
                             <div>
                                 <label for="genre" class="block text-sm font-medium text-orange-900">Genre</label>
-                                <select id="genre" x-model="genre" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-transparent focus:outline-none focus:ring-amber-300 focus:border-amber-300 sm:text-sm rounded-md shadow">
+                                <select id="genre" x-model="genre" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-transparent focus:outline-none focus:ring-blue-400 focus:border-blue-400 sm:text-sm rounded-md shadow">
                                     <option value="">Select a genre</option>
                                     <option value="bl5">Babylon 5</option>
                                     <option value="blk">Blank</option>
