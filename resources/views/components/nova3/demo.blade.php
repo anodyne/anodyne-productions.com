@@ -10,7 +10,7 @@
                     </h2>
                     <p class="mt-4 text-lg leading-6 text-white">We regularly publish the work being done on Nova 3 to a demo site to give the community a chance to play around with what's coming.</p>
                     <p class="mt-4 text-lg leading-6 text-white">To log in to the demo site, use the email address <span class="font-mono font-bold text-amber-500">admin@admin.com</span> and the password <span class="font-mono font-bold text-amber-500">secret</span>.</p>
-                    <a href="https://nova3.anodyne-productions.com/login" class="mt-8 bg-white border border-transparent rounded-lg shadow px-6 py-3 space-x-3 inline-flex items-center text-base font-medium text-amber-500 hover:bg-orange-50">
+                    <a href="https://nova3.anodyne-productions.com/login" class="mt-8 bg-white border border-transparent rounded-lg shadow px-6 py-3 space-x-2 inline-flex items-center text-base font-medium text-amber-500 hover:bg-orange-50">
                         <span>Go to the demo</span>
                         @svg('fluent-arrow-right-circle', 'h-6 w-6')
                     </a>

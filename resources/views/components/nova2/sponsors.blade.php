@@ -10,8 +10,9 @@
                 </p>
                 <div class="mt-8 sm:flex">
                     <div class="rounded-lg shadow">
-                        <a href="https://patreon.com/anodyneproductions" target="_blank" class="bg-white border border-transparent rounded-lg shadow px-6 py-3 inline-flex items-center justify-center space-x-3 text-base font-medium text-amber-500 hover:bg-amber-50 w-full lg:w-auto transition-colors ease-in-out duration-200">
-                            Become a patron
+                        <a href="https://patreon.com/anodyneproductions" target="_blank" class="bg-white border border-transparent rounded-lg shadow px-6 py-3 inline-flex items-center justify-center space-x-2 text-base font-medium text-amber-500 hover:bg-amber-50 w-full lg:w-auto transition-colors ease-in-out duration-200">
+                            <span>Become a patron</span>
+                            @svg('fluent-arrow-right-circle', 'h-6 w-6')
                         </a>
                     </div>
                 </div>
