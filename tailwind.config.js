@@ -2,10 +2,12 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
 
 module.exports = {
+    mode: 'jit',
     purge: [
-        './vendor/laravel/jetstream/**/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
+        // './vendor/laravel/jetstream/**/*.blade.php',
+        // './storage/framework/views/*.php',
+        // './resources/views/**/*.blade.php',
+        './resources/**/*.{js,vue,blade.php}'
     ],
     darkMode: false, // or 'media' or 'class'
     theme: {
@@ -178,21 +180,7 @@ module.exports = {
             },
         },
     },
-    variants: {
-        extend: {
-            backgroundColor: ['odd', 'even', 'active'],
-            borderWidth: ['first', 'last', 'hover', 'focus'],
-            cursor: ['active'],
-            opacity: ['disabled'],
-            textColor: ['group-focus', 'group-hover'],
-            ringWidth: ['hover', 'group-hover'],
-            ringOffsetWidth: ['hover', 'group-hover'],
-            ringOffsetColor: ['hover', 'group-hover'],
-            ringColor: ['hover', 'group-hover'],
-            ringOpacity: ['hover', 'group-hover'],
-            rotate: ['first', 'last', 'odd', 'even'],
-        },
-    },
+    variants: {},
     plugins: [
         require('@tailwindcss/aspect-ratio'),
         require('@tailwindcss/forms'),
