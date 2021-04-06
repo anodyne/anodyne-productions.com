@@ -15,7 +15,7 @@
                 </button>
             </div>
         </div>
-        <div class="hidden space-x-10 md:flex md:ml-12">
+        <div class="hidden space-x-10 md:flex md:ml-16">
             <a href="#features" class="font-medium text-white hover:text-gray-300">Features</a>
 
             <a href="#download" class="font-medium text-white hover:text-gray-300">Download</a>

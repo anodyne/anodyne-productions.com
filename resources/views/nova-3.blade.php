@@ -10,7 +10,7 @@
                     <dl class="space-y-6">
                         <div>
                             <dt class="font-semibold text-lg text-gray-300">Chronological context</dt>
-                            <dd>Stories live on a timeline, giving readers the chance to experience your game's adventures in precisely the order you intend them to.</dd>
+                            <dd>Stories live on a timeline, giving readers the chance to experience your game's adventures in precisely the order you intend them.</dd>
                         </div>
 
                         <div>
@@ -20,7 +20,7 @@
 
                         <div>
                             <dt class="font-semibold text-lg text-gray-300">Post types</dt>
-                            <dd>Create different ways for players to contribute through post types with fine-grained control over a host of options for any that post type.</dd>
+                            <dd>Create different ways for players to contribute through post types with fine-tuned control over a host of options for any post of that type.</dd>
                         </div>
                     </dl>
                 </x-nova3.feature-large>
@@ -29,17 +29,17 @@
                     <dl class="space-y-6">
                         <div>
                             <dt class="font-semibold text-lg text-gray-300">Bring any device</dt>
-                            <dd>Whether you're playing on a mobile phone or an 8k monitor, Nova is designed to let you manage and play your game from any device.</dd>
+                            <dd>Whether you're playing on a mobile phone or an 4k monitor, Nova is designed to let you manage and play your game from any device.</dd>
                         </div>
 
                         <div>
                             <dt class="font-semibold text-lg text-gray-300">Mobile-specific designs</dt>
-                            <dd>We took cues from the different mobile operating systems so that Nova feels natural when you're using it on your phone.</dd>
+                            <dd>We took cues from mobile operating systems so that Nova feels natural when you're using it on your phone or tablet.</dd>
                         </div>
 
                         <div>
                             <dt class="font-semibold text-lg text-gray-300">Progressive web app</dt>
-                            <dd>Nova sites can be added to your home screen and will act and behave more like a native app than a webpage.</dd>
+                            <dd>Nova 3 sites can be added to your home screen and will act and behave more like a native app than a webpage.</dd>
                         </div>
                     </dl>
                 </x-nova3.feature-large>
