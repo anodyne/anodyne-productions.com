@@ -16,8 +16,6 @@ class DocsController
 
     public function __invoke(Documentation $docs, string $version = null, string $page = null)
     {
-        $cleanVersion = str_replace('.', '_', $version);
-
         if ($page === null) {
             if ($version !== null) {
                 return redirect()->route('docs', [$version, self::DEFAULT_PAGE]);
@@ -29,6 +27,8 @@ class DocsController
         if (! $docs->exists($version, $page) || in_array($page, self::EXCLUDED)) {
             abort(404);
         }
+
+        $cleanVersion = str_replace('.', '_', $version);
 
         $path = "docs.{$cleanVersion}.{$page}";
 
