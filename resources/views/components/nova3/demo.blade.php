@@ -6,7 +6,7 @@
                 <div class="lg:self-center">
                     <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
                         <span class="block">Experience Nova 3</span>
-                        <span class="block text-gray-700">Check out the demo now.</span>
+                        <span class="block text-gray-700 text-3xl">Check out the demo now.</span>
                     </h2>
                     <p class="mt-4 text-lg leading-6 text-white">We regularly publish the work being done on Nova 3 to a demo site to give the community a chance to play around with what's coming.</p>
                     <p class="mt-4 text-lg leading-6 text-white">To log in to the demo site, use the email address <span class="font-mono font-bold text-amber-500">admin@admin.com</span> and the password <span class="font-mono font-bold text-amber-500">secret</span>.</p>
