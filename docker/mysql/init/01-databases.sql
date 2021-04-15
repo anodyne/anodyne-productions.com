@@ -1,5 +1,0 @@
-CREATE DATABASE IF NOT EXISTS `anodyne`;
-CREATE DATABASE IF NOT EXISTS `test`;
-
-CREATE USER 'root'@'localhost' IDENTIFIED BY 'local';
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
