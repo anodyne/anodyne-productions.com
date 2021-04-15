@@ -4,10 +4,7 @@ const colors = require('tailwindcss/colors');
 module.exports = {
     mode: 'jit',
     purge: [
-        // './vendor/laravel/jetstream/**/*.blade.php',
-        // './storage/framework/views/*.php',
-        // './resources/views/**/*.blade.php',
-        './resources/**/*.{js,vue,blade.php}'
+        './resources/**/*.{js,vue,blade.php,css}'
     ],
     darkMode: false, // or 'media' or 'class'
     theme: {
@@ -169,7 +166,7 @@ module.exports = {
                 }
             }),
             fontFamily: {
-                sans: ['Inter var', ...defaultTheme.fontFamily.sans]
+                sans: ['"Inter var"', ...defaultTheme.fontFamily.sans]
             },
             spacing: {
                 18: '4.5rem',
