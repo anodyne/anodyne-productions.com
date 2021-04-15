@@ -5,51 +5,41 @@
 
     .note {
         @apply rounded-lg bg-white shadow overflow-hidden;
+    }
 
-        .accent {
-            @apply w-full h-2 bg-gradient-to-r from-purple-600 to-purple-400;
-        }
+    .note .accent {
+        @apply w-full h-2 bg-gradient-to-r from-purple-600 to-purple-400;
+    }
 
-        .content {
-            @apply p-4;
-        }
+    .note .content {
+        @apply p-4;
+    }
 
-        .identifier {
-            @apply flex items-center space-x-2 px-4 pt-2 font-medium uppercase tracking-wide text-sm text-purple-500;
+    .note .identifier {
+        @apply flex items-center space-x-2 px-4 pt-2 font-medium uppercase tracking-wide text-sm text-purple-500;
+    }
+    .note .identifier > svg {
+        @apply h-6 w-6 flex-shrink-0 text-purple-400;
+    }
 
-            > svg {
-                @apply h-6 w-6 flex-shrink-0 text-purple-400;
-            }
-        }
+    .note.is-tip .accent, .note.is-success .accent {
+        @apply bg-gradient-to-r from-green-500 to-green-400;
+    }
+    .note.is-tip .identifier, .note.is-success .identifier {
+        @apply text-green-500;
+    }
+    .note.is-tip .identifier > svg, .note.is-success .identifier > svg {
+        @apply text-green-400;
+    }
 
-        &.is-tip,
-        &.is-success {
-            .accent {
-                @apply bg-gradient-to-r from-green-500 to-green-400;
-            }
-
-            .identifier {
-                @apply text-green-500;
-
-                > svg {
-                    @apply text-green-400;
-                }
-            }
-        }
-
-        &.is-warning {
-            .accent {
-                @apply bg-gradient-to-r from-orange-500 to-amber-500;
-            }
-
-            .identifier {
-                @apply text-orange-500;
-
-                > svg {
-                    @apply text-orange-400;
-                }
-            }
-        }
+    .note.is-warning .accent {
+        @apply bg-gradient-to-r from-orange-500 to-amber-500;
+    }
+    .note.is-warning .identifier {
+        @apply text-orange-500;
+    }
+    .note.is-warning .identifier > svg {
+        @apply text-orange-400;
     }
 
     .badge {
