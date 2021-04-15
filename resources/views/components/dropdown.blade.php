@@ -2,7 +2,7 @@
     'placement' => 'bottom-start',
     'triggerColor' => 'dark-gray-text',
     'triggerSize' => 'none',
-    'width' => '56',
+    'width' => 'w-56',
 ])
 
 <div
@@ -11,7 +11,7 @@
     x-on:click.away="open = false"
     x-on:dropdown-toggle="open = !open"
     x-on:dropdown-close.window="open = false"
-    class="relative inline-block text-left leading-0"
+    class="relative inline-block text-left leading-0 w-full"
 >
     <div>
         <x-button
@@ -36,7 +36,7 @@
         x-transition:leave="transition ease-in duration-75"
         x-transition:leave-start="transform opacity-100 scale-100"
         x-transition:leave-end="transform opacity-0 scale-95"
-        class="absolute mt-2 rounded-lg shadow-lg z-9999 w-{{ $width }} {{ $placement === 'bottom-start' ? 'left-0 origin-top-left' : 'right-0 origin-top-right' }}"
+        class="absolute mt-2 rounded-lg shadow-lg z-9999 {{ $width }} {{ $placement === 'bottom-start' ? 'left-0 origin-top-left' : 'right-0 origin-top-right' }}"
         x-cloak
     >
         <div class="relative rounded-lg bg-white ring-1 ring-black ring-opacity-5 z-50 divide-y divide-gray-100">
