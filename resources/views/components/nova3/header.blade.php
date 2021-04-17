@@ -20,7 +20,7 @@
                     </div>
                     <div class="hidden md:block mt-16 sm:mt-24 lg:mt-0 lg:col-span-6">
                         <div class="-mt-6 flex justify-end">
-                            <img class="transform translate-y-6 object-cover object-left-top h-auto w-96" src="{{ Storage::url('images/nova3-illustration.svg') }}" alt="App illustration">
+                            <img class="transform translate-y-6 object-cover object-left-top h-auto w-96" src="/images/nova3-illustration.svg" alt="App illustration">
                         </div>
                     </div>
                 </div>

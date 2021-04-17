@@ -12,7 +12,10 @@ Route::get('/nova', function (GitHubManager $github) {
         fn () => $github->repo()->releases()->latest('anodyne', 'nova')['name']
     );
 
-    return view('nova-2', compact('latestVersion'));
+    return view('nova-2')->with([
+        'latestVersion' => $latestVersion,
+        'sponsors' => config('anodyne.sponsors'),
+    ]);
 })->name('home');
 
 Route::view('/nova-3', 'nova-3')->name('nova-3');

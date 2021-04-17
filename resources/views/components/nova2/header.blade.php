@@ -26,7 +26,7 @@
                     </div>
                     <div class="mt-16 sm:mt-24 lg:mt-0 lg:col-span-6">
                         <div class="-mt-6 aspect-w-4 aspect-h-3">
-                            <img src="{{ Storage::url('images/nova2-manifest.webp') }}" alt="Nova 2 manifest screenshot" class="transform translate-x-0 translate-y-6 md:rounded-xl object-cover object-left-top sm:translate-x-40 lg:translate-y-0">
+                            <img src="/images/nova2-manifest.webp" alt="Nova 2 manifest screenshot" class="transform translate-x-0 translate-y-6 md:rounded-xl object-cover object-left-top sm:translate-x-40 lg:translate-y-0">
                         </div>
                     </div>
                 </div>
