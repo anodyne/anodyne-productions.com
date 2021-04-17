@@ -5,12 +5,12 @@
         </div>
     </div>
 
-    <div class="hidden xl:text-sm xl:block flex-none w-64 pl-8 mr-8">
-        <div class="flex flex-col justify-between overflow-y-auto sticky -mt-10 pt-10 pb-4 top-0">
-            <div class="mb-8">
-                <h5 class="text-gray-900 uppercase tracking-wide font-semibold mb-3 text-sm lg:text-xs">On this page</h5>
+    <div class="z-10 flex-shrink-0 order-2 hidden w-64 min-w-0 xl:block xl:pl-8">
+        <div class="sticky top-0 max-h-screen pt-[28px] pb-10 overflow-y-auto mt-[-72px]">
+            <div>
+                <h5 class="text-gray-900 text-xs font-semibold tracking-wide uppercase">On this page</h5>
 
-                <x-buk-toc class="overflow-x-hidden text-gray-500 font-medium toc">
+                <x-buk-toc class="overflow-x-hidden text-gray-500 font-medium toc text-sm">
                     {!! $markdown !!}
                 </x-buk-toc>
             </div>

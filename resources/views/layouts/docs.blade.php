@@ -1,5 +1,5 @@
 <x-base-layout>
-    <div class="h-screen overflow-hidden flex" x-data="{ sidebarOpen: false }" @keydown.window.escape="sidebarOpen = false">
+    <div class="h-screen overflow-hidden flex px-4 mx-auto max-w-8xl sm:px-6 lg:px-8" x-data="{ sidebarOpen: false }" @keydown.window.escape="sidebarOpen = false">
         <div x-show="sidebarOpen" class="md:hidden" x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state." style="display: none;">
             <div class="fixed inset-0 z-40 flex">
                 <div @click="sidebarOpen = false" x-show="sidebarOpen" x-description="Off-canvas menu overlay, show/hide based on off-canvas menu state." x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0" aria-hidden="true" style="display: none;">
@@ -250,7 +250,7 @@
                                 </li>
                             </ul>
 
-                            <div class="px-3">
+                            <div class="hidden px-3">
                                 <x-dropdown trigger-color="dark-gray-text" width="w-48">
                                     <x-slot name="trigger">
                                         <span>Nova {{ request()->route()->version }}</span>
