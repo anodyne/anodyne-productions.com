@@ -3,8 +3,16 @@
         @apply mb-0;
     }
 
+    h1 + p + hr {
+        @apply my-8;
+    }
+
     .note {
         @apply rounded-lg bg-white shadow overflow-hidden;
+    }
+
+    .note + .note {
+        @apply mt-8;
     }
 
     .note .accent {
