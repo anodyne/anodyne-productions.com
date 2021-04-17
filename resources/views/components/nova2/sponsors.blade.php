@@ -1,3 +1,5 @@
+@props(['sponsors'])
+
 <div>
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div class="lg:grid lg:grid-cols-2 lg:gap-8">
@@ -17,34 +19,28 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-8 grid grid-cols-2 gap-x-0.5 gap-y-12 md:grid-cols-3 lg:mt-0 lg:grid-cols-2">
-                <div class="col-span-1 flex justify-center px-8">
-                    <a href="https://blackhawk.anurasims.com/" target="_blank" class="flex flex-col space-y-4 font-extrabold text-xl text-center hover:text-amber-500 transition-colors ease-in-out duration-150">
-                        <img class="h-48 w-auto" src="{{ Storage::url('images/sponsors/logo_sim_central.svg') }}" alt="Sim Central logo">
-                        <div class="flex flex-col space-y-1">
-                            <span>Sim Central</span>
-                            <span class="text-sm font-medium text-gray-400">Platinum sponsor</span>
+            <div class="mt-8 grid sm:grid-cols-2 gap-6 sm:gap-y-8 lg:gap-x-8">
+            @foreach ($sponsors as $sponsor)
+                <a href="{{ $sponsor['link'] }}" target="_blank" class="group relative bg-white rounded-lg shadow-md overflow-hidden ring-1 ring-black ring-opacity-5">
+                    <figure>
+                        <div class="relative bg-gray-100 pt-[50%] overflow-hidden">
+                            <div class="absolute inset-0 w-full h-full rounded-t-lg overflow-hidden group-hover:filter group-hover:blur-[6px] transition-all duration-300">
+                                <img src="{{ $sponsor['image'] }}" alt="{{ $sponsor['name'] }} logo" class="absolute inset-0 w-auto h-full mx-auto py-2">
+                            </div>
+                            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute z-10 inset-0 flex items-center justify-center text-sm {{ $sponsor['hoverColor'] === 'dark' ? 'text-gray-900' : 'text-white' }} font-medium">
+                                Visit site
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="ml-2"><circle cx="10" cy="10" r="7.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M12.25 11.25V7.75H8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 8L7.75 12.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                            </div>
                         </div>
-                    </a>
-                </div>
-                <div class="col-span-1 flex justify-center px-8">
-                    <a href="https://blackhawk.anurasims.com/" target="_blank" class="flex flex-col space-y-4 font-extrabold text-xl text-center hover:text-amber-500 transition-colors ease-in-out duration-150">
-                        <img class="h-48 w-auto" src="{{ Storage::url('images/sponsors/blackhawklogo.png') }}" alt="USS Blackhawk logo">
-                        <div class="flex flex-col space-y-1">
-                            <span>USS Black Hawk</span>
-                            <span class="text-sm font-medium text-gray-400">Gold sponsor</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-span-1 flex justify-center px-8">
-                    <a href="https://portal.5thfleet.net/" target="_blank" class="flex flex-col space-y-4 font-extrabold text-xl text-center hover:text-amber-500 transition-colors ease-in-out duration-150">
-                        <img class="h-48 w-auto" src="{{ Storage::url('images/sponsors/blackhawklogo.png') }}" alt="USS Blackhawk logo">
-                        <div class="flex flex-col space-y-1">
-                            <span>Fifth Fleet</span>
-                            <span class="text-sm font-medium text-gray-400">Gold sponsor</span>
-                        </div>
-                    </a>
-                </div>
+                        <figcaption class="py-3 px-4">
+                            <p class="text-sm font-medium text-gray-900 mb-1">
+                                {{ $sponsor['name'] }}
+                            </p>
+                            <p class="text-xs font-medium text-gray-500">{{ $sponsor['level'] }}</p>
+                        </figcaption>
+                    </figure>
+                </a>
+            @endforeach
             </div>
         </div>
     </div>

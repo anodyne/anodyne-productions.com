@@ -6,7 +6,7 @@
             <a name="features"></a>
             <!-- Alternating Feature Sections -->
             <div class="relative pt-16 pb-32 overflow-hidden space-y-24">
-                <x-nova3.feature-large icon="st-quill" title="A new way to tell stories." image="images/nova3-stories.webp">
+                <x-nova3.feature-large icon="st-quill" title="A new way to tell stories." image="/images/nova3-stories.webp">
                     <dl class="space-y-6">
                         <div>
                             <dt class="font-semibold text-lg text-gray-300">Chronological context</dt>
@@ -25,7 +25,7 @@
                     </dl>
                 </x-nova3.feature-large>
 
-                <x-nova3.feature-large icon="st-responsive-design" title="Play wherever you are." image="images/nova3-dashboard.webp" right>
+                <x-nova3.feature-large icon="st-responsive-design" title="Play wherever you are." image="/images/nova3-dashboard.webp" right>
                     <dl class="space-y-6">
                         <div>
                             <dt class="font-semibold text-lg text-gray-300">Bring any device</dt>
@@ -44,7 +44,7 @@
                     </dl>
                 </x-nova3.feature-large>
 
-                <x-nova3.feature-large icon="st-army-badge" title="Ranks. Done right." image="images/nova3-ranks.webp">
+                <x-nova3.feature-large icon="st-army-badge" title="Ranks. Done right." image="/images/nova3-ranks.webp">
                     <dl class="space-y-6">
                         <div>
                             <dt class="font-semibold text-lg text-gray-300">Rank groups</dt>

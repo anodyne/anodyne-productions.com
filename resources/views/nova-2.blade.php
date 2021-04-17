@@ -11,7 +11,7 @@
 
     <x-nova2.resources />
 
-    <x-nova2.sponsors />
+    <x-nova2.sponsors :sponsors="$sponsors" />
 
     <x-footer />
 </x-base-layout>
