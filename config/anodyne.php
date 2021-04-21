@@ -18,9 +18,9 @@ return [
         ],
         [
             'name' => 'Fifth Fleet',
-            'image' => '/images/sponsors/blackhawklogo.png',
+            'image' => '/images/sponsors/fifth_fleet.png',
             'link' => 'https://portal.5thfleet.net/',
-            'hoverColor' => 'light',
+            'hoverColor' => 'dark',
             'level' => 'Gold sponsor',
         ],
     ],
