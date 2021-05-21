@@ -1,6 +1,7 @@
 <?php
 
 use BladeUIKit\Components;
+use Domain\Docs\Components\Markdown;
 
 return [
     /*
@@ -35,7 +36,8 @@ return [
         // 'html' => Components\Layouts\Html::class,
         // 'social-meta' => Components\Layouts\SocialMeta::class,
         // 'mapbox' => Components\Maps\Mapbox::class,
-        'markdown' => Components\Markdown\Markdown::class,
+        // 'markdown' => Components\Markdown\Markdown::class,
+        'markdown' => \Domain\Docs\Components\Markdown::class,
         'toc' => Components\Markdown\ToC::class,
         // 'dropdown' => Components\Navigation\Dropdown::class,
         // 'avatar' => Components\Support\Avatar::class,

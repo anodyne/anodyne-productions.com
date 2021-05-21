@@ -79,7 +79,7 @@ module.exports = {
                 DEFAULT: {
                     css: {
                         maxWidth: 'none',
-                        color: theme('colors.gray.500'),
+                        color: theme('colors.gray.700'),
                         '> :first-child': { marginTop: '-' },
                         '> :last-child': { marginBottom: '-' },
                         '&:first-child > :first-child': {
@@ -99,7 +99,8 @@ module.exports = {
                         },
                         'h1 + p': {
                             fontSize: theme('fontSize.2xl')[0],
-                            marginTop: '.5rem'
+                            marginTop: '.5rem',
+                            color: theme('colors.gray.500'),
                         },
                         'ul > li': {
                             paddingLeft: '1.5em',
@@ -123,6 +124,9 @@ module.exports = {
                         'a strong': {
                             color: 'inherit',
                             fontWeight: 'inherit',
+                        },
+                        pre: {
+                            borderRadius: theme('borderRadius.lg'),
                         },
                         code: {
                             fontWeight: '400',
@@ -174,6 +178,9 @@ module.exports = {
                 '15px': '0.9375rem',
                 '23px': '1.4375rem',
                 full: '100%'
+            },
+            maxWidth: {
+                '8xl': '90rem',
             },
         },
     },
