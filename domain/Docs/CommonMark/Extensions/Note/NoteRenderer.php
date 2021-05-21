@@ -45,37 +45,14 @@ class NoteRenderer implements BlockRendererInterface
 
     protected function getIconForType(string $type): string
     {
-        switch ($type) {
-            case 'note':
-            default:
-                return 'fluent-info';
-
-                break;
-
-            case 'warning':
-                return 'fluent-warning';
-
-                break;
-
-            case 'tip':
-                return 'fluent-flash';
-
-                break;
-
-            case 'callout':
-                return 'fluent-star';
-
-                break;
-
-            case 'question':
-                return 'fluent-question-circle';
-
-                break;
-
-            case 'success':
-                return 'fluent-checkmark-circle';
-
-                break;
-        }
+        return match ($type) {
+            'note' => 'fluent-info',
+            'warning' => 'fluent-warning',
+            'tip' => 'fluent-flash',
+            'callout' => 'fluent-star',
+            'question' => 'fluent-question-circle',
+            'success' => 'fluent-checkmark-circle',
+            default => 'fluent-info',
+        };
     }
 }
