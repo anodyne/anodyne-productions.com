@@ -255,14 +255,14 @@
                             </button>
 
                             <div class="origin-top-left absolute left-0 mt-2 w-56 rounded-lg bg-white bg-opacity-50 ring-1 ring-black ring-opacity-5 focus:outline-none backdrop-filter backdrop-blur z-30" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" x-show="open" x-description="Dropdown panel, show/hide based on dropdown state." x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95">
-                                <div class="py-1" role="none">
+                                <div class="py-1 px-1" role="none">
                                     @foreach (['3.0', '2.6'] as $ver)
-                                        <a class="block relative rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" href="{{ route('docs', $ver) }}">
+                                        <a class="block relative rounded-md px-2 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" href="{{ route('docs', $ver) }}">
                                             <span>Nova {{ $ver }}</span>
                                             <span class="sr-only">documentation</span>
 
                                             @if ($ver === request()->route()->version)
-                                                <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-amber-500">
+                                                <span class="absolute inset-y-0 right-0 flex items-center pr-2 text-amber-500">
                                                     @svg('fluent-checkmark-circle', 'h-6 w-6')
                                                 </span>
                                             @endif
