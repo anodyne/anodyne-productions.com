@@ -1,5 +1,5 @@
 <x-docs-layout :sections="$sections" :current="$page" :version="$version">
-    <div class="docs prose lg:prose-lg prose-amber">
+    <div class="docs prose prose-lg prose-amber">
         <x-buk-markdown anchors>
             {!! $markdown !!}
         </x-buk-markdown>
