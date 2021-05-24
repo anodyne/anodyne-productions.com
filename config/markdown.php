@@ -132,9 +132,7 @@ return [
     |
     */
 
-    'html_input' => 'strip',
-    // 'html_input' => 'escape',
-    // 'html_input' => 'allow',
+    'html_input' => 'allow',
 
     /*
     |--------------------------------------------------------------------------
