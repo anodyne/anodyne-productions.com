@@ -175,7 +175,7 @@
 
         <div class="flex px-4 mx-auto max-w-8xl sm:px-6 lg:px-8">
             <div class="flex-shrink-0 hidden w-64 lg:block lg:pr-8 lg:pt-12">
-                <nav class="mx-auto font-medium text-base lg:text-sm space-y-8 text-gray-600 mb-8" x-data="{ openedIndex: 1 }">
+                <nav class="mx-auto font-medium text-base lg:text-sm space-y-8 text-gray-600 mb-8" x-data="{ selected: 1 }">
                     <ul>
                         <li>
                             <a
@@ -276,44 +276,46 @@
                     @foreach ($sections as $section)
                         <div>
                             @isset($section['title'])
-                                <h5 class="flex items-center justify-between px-3 mb-3 lg:mb-3 uppercase tracking-wider font-semibold text-sm lg:text-xs text-gray-900 cursor-pointer" @click="openedIndex === {{ $section['index'] }} ? openedIndex = -1 : openedIndex = {{ $section['index'] }}">
+                                <h5 class="flex items-center justify-between px-3 mb-3 lg:mb-3 uppercase tracking-wider font-semibold text-sm lg:text-xs text-gray-900 cursor-pointer" @click="selected === {{ $section['index'] }} ? selected = -1 : selected = {{ $section['index'] }}">
                                     <span>{{ $section['title'] }}</span>
 
                                     <div>
                                         {{-- Down chevron --}}
-                                        <svg x-show="openedIndex === {{ $section['index'] }}" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                        <svg x-show="selected === {{ $section['index'] }}" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
 
                                         {{-- Right chevron --}}
-                                        <svg x-cloak x-show="openedIndex !== {{ $section['index'] }}" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                                        <svg x-cloak x-show="selected !== {{ $section['index'] }}" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                                     </div>
                                 </h5>
                             @endisset
 
-                            <ul x-show.transition.in.duration.800ms="openedIndex === {{ $section['index'] }}">
-                                @foreach ($section['pages'] as $page)
-                                    @php($slug = $page['file'] ?? $page)
-                                    <li>
-                                        <a
-                                            href="{{ $page['link'] ?? route('docs', [$version, $slug]) }}"
-                                            @isset($page['link']) target="_blank" @endisset
-                                            class="group px-3 py-2 transition-colors duration-200 relative flex items-center {{ $current === $slug ? 'text-amber-600' : 'hover:text-gray-900 text-gray-500' }}"
-                                            aria-current="page"
-                                        >
-                                            <span class="rounded-lg absolute inset-0 bg-amber-50 z-0 {{ $current === $slug ? 'opacity-100' : 'opacity-0' }}"></span>
+                            <div class="relative overflow-hidden transition-all max-h-[0px] duration-700" x-ref="container{{ $section['index'] }}" x-bind:style="selected === {{ $section['index'] }} ? 'max-height: ' + $refs.container{{ $section['index'] }}.scrollHeight + 'px' : ''">
+                                <ul>
+                                    @foreach ($section['pages'] as $page)
+                                        @php($slug = $page['file'] ?? $page)
+                                        <li>
+                                            <a
+                                                href="{{ $page['link'] ?? route('docs', [$version, $slug]) }}"
+                                                @isset($page['link']) target="_blank" @endisset
+                                                class="group px-3 py-2 transition-colors duration-200 relative flex items-center {{ $current === $slug ? 'text-amber-600' : 'hover:text-gray-900 text-gray-500' }}"
+                                                aria-current="page"
+                                            >
+                                                <span class="rounded-lg absolute inset-0 bg-amber-50 z-0 {{ $current === $slug ? 'opacity-100' : 'opacity-0' }}"></span>
 
-                                            <div class="group relative flex items-center">
-                                                @isset($page['icon'])
-                                                @svg($page['icon'], 'flex-shrink-0 -ml-1 mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-600 transition ease-in-out duration-150')
-                                                @endisset
+                                                <div class="group relative flex items-center">
+                                                    @isset($page['icon'])
+                                                    @svg($page['icon'], 'flex-shrink-0 -ml-1 mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-600 transition ease-in-out duration-150')
+                                                    @endisset
 
-                                                <span class="truncate">
-                                                    {{ $page['name'] ?? str_replace('-', ' ', Illuminate\Support\Str::title($slug)) }}
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
+                                                    <span class="truncate">
+                                                        {{ $page['name'] ?? str_replace('-', ' ', Illuminate\Support\Str::title($slug)) }}
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     @endforeach
                 </nav>
