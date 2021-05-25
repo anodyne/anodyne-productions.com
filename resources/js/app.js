@@ -15,4 +15,4 @@ hljs.registerLanguage('js', javascript);
 hljs.registerLanguage('md', markdown);
 hljs.registerLanguage('php', php);
 
-hljs.initHighlightingOnLoad();
+hljs.highlightAll();
