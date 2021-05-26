@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 use Domain\Docs\CommonMark\Extensions\Badge\BadgeExtension;
 use Domain\Docs\CommonMark\Extensions\Note\NoteExtension;
+use League\CommonMark\Extension\Table\TableExtension;
 
 /*
  * This file is part of Laravel Markdown.
@@ -46,6 +47,7 @@ return [
     'extensions' => [
         BadgeExtension::class,
         NoteExtension::class,
+        TableExtension::class,
     ],
 
     /*
