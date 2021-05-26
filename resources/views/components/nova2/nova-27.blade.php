@@ -73,6 +73,21 @@
                     </svg>
                     <div class="ml-3">
                         <dt class="text-lg leading-6 font-medium text-gray-200">
+                            Improved Email Dispatching
+                        </dt>
+                        <dd class="mt-2 text-base text-gray-400">
+                            A brand-new, unified way of dispatching emails in Nova provides for easier use and extension.
+                        </dd>
+                    </div>
+                </div>
+
+                <div class="flex">
+                    <!-- Heroicon name: check -->
+                    <svg class="flex-shrink-0 h-6 w-6 text-amber-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                    <div class="ml-3">
+                        <dt class="text-lg leading-6 font-medium text-gray-200">
                             Nova 3 Migration Updates
                         </dt>
                         <dd class="mt-2 text-base text-gray-400">
