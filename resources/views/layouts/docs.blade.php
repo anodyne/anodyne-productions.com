@@ -100,36 +100,27 @@
                                 </li>
                             </ul>
 
-                            <div>
-                                <ul>
-                                    <li>
-                                        <a
-                                            href="{{ route('docs', '2.6') }}"
-                                            class="group px-3 py-2 transition ease-in-out duration-200 relative flex items-center hover:text-amber-500 text-gray-500"
-                                            aria-current="page"
-                                        >
-                                            <div class="group relative flex items-center space-x-3">
-                                                <span class="truncate">
-                                                    Nova 2.6
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="{{ route('docs', '3.0') }}"
-                                            class="group px-3 py-2 transition ease-in-out duration-200 relative flex items-center hover:text-amber-500 text-gray-500"
-                                            aria-current="page"
-                                        >
-                                            <div class="group relative flex items-center space-x-3">
-                                                <span class="truncate">
-                                                    Nova 3.0
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            @if (count(config('services.anodyne.docs-versions')) > 1)
+                                <div>
+                                    <ul>
+                                        @foreach (config('services.anodyne.docs-versions') as $ver)
+                                            <li>
+                                                <a
+                                                    href="{{ route('docs', $ver) }}"
+                                                    class="group px-3 py-2 transition ease-in-out duration-200 relative flex items-center hover:text-amber-500 text-gray-500"
+                                                    aria-current="page"
+                                                >
+                                                    <div class="group relative flex items-center space-x-3">
+                                                        <span class="truncate">
+                                                            Nova {{ $ver }}
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
 
                             @foreach ($sections as $section)
                                 <div>
@@ -249,31 +240,33 @@
                         </li>
                     </ul>
 
-                    <div>
-                        <div class="relative pb-2" x-data="{ open: false }" @click.away="open = false">
-                            <button class="focus:outline-none focus:ring flex items-center justify-between w-full px-3 py-[9px] rounded-lg bg-gray-200" @click="open = !open">
-                                <span class="text-sm font-medium text-gray-600">Nova {{ request()->route()->version }}</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-gray-400"><path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                            </button>
+                    @if (count(config('services.anodyne.docs-versions')) > 1)
+                        <div>
+                            <div class="relative pb-2" x-data="{ open: false }" @click.away="open = false">
+                                <button class="focus:outline-none focus:ring flex items-center justify-between w-full px-3 py-[9px] rounded-lg bg-gray-200" @click="open = !open">
+                                    <span class="text-sm font-medium text-gray-600">Nova {{ request()->route()->version }}</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-gray-400"><path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                </button>
 
-                            <div class="origin-top-left absolute left-0 mt-2 w-56 rounded-lg bg-white bg-opacity-50 ring-1 ring-black ring-opacity-5 focus:outline-none backdrop-filter backdrop-blur z-30" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" x-show="open" x-description="Dropdown panel, show/hide based on dropdown state." x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95">
-                                <div class="py-1 px-1" role="none">
-                                    @foreach (['3.0', '2.6'] as $ver)
-                                        <a class="block relative rounded-md px-2 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" href="{{ route('docs', $ver) }}">
-                                            <span>Nova {{ $ver }}</span>
-                                            <span class="sr-only">documentation</span>
+                                <div class="origin-top-left absolute left-0 mt-2 w-56 rounded-lg bg-white bg-opacity-50 ring-1 ring-black ring-opacity-5 focus:outline-none backdrop-filter backdrop-blur z-30" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" x-show="open" x-description="Dropdown panel, show/hide based on dropdown state." x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95">
+                                    <div class="py-1 px-1" role="none">
+                                        @foreach (config('services.anodyne.docs-versions') as $ver)
+                                            <a class="block relative rounded-md px-2 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" href="{{ route('docs', $ver) }}">
+                                                <span>Nova {{ $ver }}</span>
+                                                <span class="sr-only">documentation</span>
 
-                                            @if ($ver === request()->route()->version)
-                                                <span class="absolute inset-y-0 right-0 flex items-center pr-2 text-amber-500">
-                                                    @svg('fluent-checkmark-circle', 'h-6 w-6')
-                                                </span>
-                                            @endif
-                                        </a>
-                                    @endforeach
+                                                @if ($ver === request()->route()->version)
+                                                    <span class="absolute inset-y-0 right-0 flex items-center pr-2 text-amber-500">
+                                                        @svg('fluent-checkmark-circle', 'h-6 w-6')
+                                                    </span>
+                                                @endif
+                                            </a>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
 
                     @foreach ($sections as $section)
                         <div>

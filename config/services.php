@@ -30,8 +30,9 @@ return [
     ],
 
     'anodyne' => [
-        'exchange' => env('V2_EXCHANGE'),
-        'galaxy' => env('V2_GALAXY'),
-        'login' => env('V2_LOGIN'),
+        'docs-versions' => explode(',', env('ANODYNE_DOCS_VERSIONS')),
+        'exchange' => env('ANODYNE_NOVA_EXCHANGE'),
+        'galaxy' => env('ANODYNE_GALAXY'),
+        'login' => env('ANODYNE_HAS_LOGIN'),
     ],
 ];
