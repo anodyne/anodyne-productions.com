@@ -18,12 +18,12 @@
 
             <a href="https://github.com/anodyne" target="_blank" class="text-{{ $textColor }} hover:text-{{ $hoverColor }} transition-all ease-in-out duration-200">
                 <span class="sr-only">GitHub</span>
-                <x-logos.github class="h-8 w-8 md:h-6 md:w-6" />
+                <x-logos.github class="h-8 w-8 md:h-5 md:w-5" />
             </a>
 
             <a href="https://discord.gg/7WmKUks" target="_blank" class="text-{{ $textColor }} hover:text-{{ $hoverColor }} transition-all ease-in-out duration-200">
                 <span class="sr-only">Discord</span>
-                <x-logos.discord class="h-8 md:h-5 w-auto" />
+                <x-logos.discord class="h-8 md:h-4 w-auto" />
             </a>
 
             <a href="https://patreon.com/anodyneproductions" target="_blank" class="text-{{ $textColor }} hover:text-{{ $hoverColor }} transition-all ease-in-out duration-200">
