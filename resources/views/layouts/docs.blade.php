@@ -2,7 +2,7 @@
     <div class="font-sans antialiased" x-data="{ sidebarOpen: false }" @keydown.window.escape="sidebarOpen = false">
         <header class="sticky top-0 z-30 mx-auto bg-opacity-50 h-[72px] bg-gray-100 backdrop-filter backdrop-blur max-w-8xl xl:px-8">
             <div class="flex items-center justify-between px-4 py-5 border-b lg:px-8 sm:px-6 xl:px-0 border-gray-200">
-                <a href="{{ route('docs') }}" class="block">
+                <a href="{{ route('home') }}" class="block">
                     <x-logos.anodyne class="h-8 w-auto" gradient />
                 </a>
             </div>
@@ -23,7 +23,9 @@
 
                 <div x-show="sidebarOpen" x-description="Off-canvas menu, show/hide based on off-canvas menu state." x-transition:enter="transition ease-in-out duration-300 transform" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="relative max-w-xs w-full bg-gray-100 pt-5 pb-4 flex-1 flex flex-col" style="display: none;">
                     <div class="flex-shrink-0 px-4 flex items-center">
-                        <x-logos.anodyne class="h-8 w-auto" gradient />
+                        <a href="{{ route('home') }}" class="block">
+                            <x-logos.anodyne class="h-8 w-auto" gradient />
+                        </a>
                     </div>
                     <div class="mt-5 flex-1 h-0 overflow-y-auto">
                         <nav class="px-2 space-y-8 font-medium text-base lg:text-sm">
