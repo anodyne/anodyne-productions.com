@@ -62,6 +62,23 @@
                                             </div>
                                         </a>
                                     </li>
+                                @else
+                                    <li>
+                                        <a
+                                            href="https://xtras.anodyne-productions.com"
+                                            target="_blank"
+                                            class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-amber-500 text-gray-500"
+                                            aria-current="page"
+                                        >
+                                            <div class="group relative flex items-center space-x-3">
+                                                @svg('fluent-apps-add-in', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-amber-500 transition ease-in-out duration-150')
+
+                                                <span class="truncate">
+                                                    AnodyneXtras
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </li>
                                 @endif
 
                                 @if (config('services.anodyne.galaxy'))
@@ -198,6 +215,23 @@
 
                                         <span class="truncate">
                                             Exchange
+                                        </span>
+                                    </div>
+                                </a>
+                            </li>
+                        @else
+                            <li>
+                                <a
+                                    href="https://xtras.anodyne-productions.com"
+                                    target="_blank"
+                                    class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-amber-500 text-gray-500"
+                                    aria-current="page"
+                                >
+                                    <div class="group relative flex items-center space-x-3">
+                                        @svg('fluent-apps-add-in', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-amber-500 transition ease-in-out duration-150')
+
+                                        <span class="truncate">
+                                            AnodyneXtras
                                         </span>
                                     </div>
                                 </a>

@@ -7,7 +7,7 @@
         </p>
     </div>
 
-    <div class="mt-12 max-w-lg mx-auto grid gap-x-6 gap-y-12 lg:grid-cols-{{ config('services.anodyne.exchange') ? '3' : '2' }} lg:max-w-none">
+    <div class="mt-12 max-w-lg mx-auto grid gap-x-6 gap-y-12 lg:grid-cols-3 }} lg:max-w-none">
         <x-nova2.resource :href="route('docs')" category="Documentation" title="Learn all about Nova">
             Nova's documentation has been re-written to be clearer and more helpful. We've added all-new sections about getting started, added pages to explain complex features, and dug deeper into the core of Nova to help users understand how to get the most out Nova.
         </x-nova2.resource>
@@ -17,8 +17,12 @@
         </x-nova2.resource>
 
         @if (config('services.anodyne.exchange'))
-            <x-nova2.resource :href="route('exchange.index')" category="Exchange" title="Make Nova your own">
+            <x-nova2.resource :href="route('exchange.index')" category="Add-Ons" title="Make Nova your own">
                 Nova provides immense flexibility to truly make your game stand out.  Whether you're trying to change the way it looks with a new theme or rank set or even update how it works with an extension, the talented community artisans on the Nova Exchange have you covered.
+            </x-nova2.resource>
+        @else
+            <x-nova2.resource href="https://xtras.anodyne-productions.com" category="Add-Ons" title="Make Nova your own">
+                Nova provides incredible flexibility to truly make your game stand out from others.  Whether you're trying to change the way it looks with a brand-new skin or rank set or even update how it works with a MOD, the talented authors on the AnodyneXtras site have you covered.
             </x-nova2.resource>
         @endif
     </div>
