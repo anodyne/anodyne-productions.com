@@ -26,6 +26,8 @@
 
             @if (config('services.anodyne.exchange'))
                 <a href="{{ route('exchange.index') }}" class="font-medium text-white hover:text-gray-300">Exchange</a>
+            @else
+                <a href="https://xtras.anodyne-productions.com" target="_blank" class="font-medium text-white hover:text-gray-300">AnodyneXtras</a>
             @endif
 
             <a href="https://discord.gg/7WmKUks" target="_blank" class="font-medium text-white hover:text-gray-300">Get Help</a>
@@ -77,6 +79,8 @@
 
                 @if (config('services.anodyne.exchange'))
                     <a href="{{ route('exchange.index') }}" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Exchange</a>
+                @else
+                    <a href="https://xtras.anodyne-productions.com" target="_blank" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">AnodyneXtras</a>
                 @endif
 
                 <a href="https://discord.gg/7WmKUks" target="_blank" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Get Help</a>
