@@ -20,8 +20,6 @@ Route::get('/nova', function (GitHubManager $github) {
 
 Route::view('/nova-3', 'nova-3')->name('nova-3');
 
-Route::permanentRedirect('/service-updates', '/announcements/service-updates');
-
 Route::prefix('projects')
     ->name('projects.')
     ->group(function () {
