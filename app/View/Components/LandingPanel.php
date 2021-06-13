@@ -20,8 +20,8 @@ class LandingPanel extends Component
     public function __construct(
         $gradientStart,
         $gradientStop,
-        $gradientDirection = 'r',
-        $rotate
+        $rotate,
+        $gradientDirection = 'r'
     ) {
         $this->gradientDirection = $gradientDirection;
         $this->gradientStart = $gradientStart;

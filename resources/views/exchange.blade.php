@@ -1,3 +1,3 @@
-<x-layouts.exchange>
+<x-exchange-layout>
     @livewire('exchange:show-products')
-</x-layouts.exchange>
+</x-exchange-layout>
