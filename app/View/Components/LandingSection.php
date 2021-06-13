@@ -23,9 +23,9 @@ class LandingSection extends Component
     public string $content;
 
     public function __construct(
-        $gradientDirection = 'br',
         $gradientStart,
         $gradientStop,
+        $gradientDirection = 'br',
         $color = false,
         $icon = false,
         $heading = false,
