@@ -15,10 +15,10 @@ class LandingFeatureList extends Component
     public string $color;
 
     public function __construct(
-        $gradientDirection = 'br',
         $gradientStart,
         $gradientStop,
-        $color
+        $color,
+        $gradientDirection = 'br'
     ) {
         $this->gradientDirection = $gradientDirection;
         $this->gradientStart = $gradientStart;

@@ -12,7 +12,7 @@ class LandingDefinitionListItem extends Component
 
     public string $title;
 
-    public function __construct($color, $icon = false, $title)
+    public function __construct($color, $title, $icon = false)
     {
         $this->color = $color;
         $this->icon = $icon ?: 'fluent-checkmark';

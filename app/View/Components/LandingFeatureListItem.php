@@ -19,12 +19,12 @@ class LandingFeatureListItem extends Component
     public string $icon;
 
     public function __construct(
-        $gradientDirection = 'br',
         $gradientStart,
         $gradientStop,
         $color,
         $title,
-        $icon
+        $icon,
+        $gradientDirection = 'br'
     ) {
         $this->gradientDirection = $gradientDirection;
         $this->gradientStart = $gradientStart;
