@@ -1,6 +1,8 @@
-require('./bootstrap');
+import Alpine from 'alpinejs';
 
-import 'alpinejs';
+window.Alpine = Alpine;
+
+Alpine.start();
 
 import hljs from 'highlight.js/lib/core';
 import css from 'highlight.js/lib/languages/css';
