@@ -27,7 +27,7 @@
 
                             <div class="group relative flex items-center">
                                 @isset($page['icon'])
-                                    @svg($page['icon'], 'flex-shrink-0 -ml-1 mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-600 transition ease-in-out duration-150')
+                                    @svg($page['icon'], 'shrink-0 -ml-1 mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-600 transition ease-in-out duration-150')
                                 @endisset
 
                                 <span class="truncate">

@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
-                <img class="transform translate-x-6 translate-y-6 rounded-lg object-cover object-left-top sm:translate-x-16 lg:translate-y-20" src="/images/nova3-dashboard.webp" alt="Nova 3 dashboard screenshot">
+                <img class="translate-x-6 translate-y-6 rounded-lg object-cover object-left-top sm:translate-x-16 lg:translate-y-20" src="/images/nova3-dashboard.webp" alt="Nova 3 dashboard screenshot">
             </div>
         </div>
     </div>

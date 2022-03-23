@@ -10,7 +10,7 @@
                 {{ $question }}
             </span>
             <span class="ml-6 h-7 flex items-center">
-                <svg class="h-6 w-6 transform rotate-0" x-description="Heroicon name: chevron-down" x-state:on="Open" x-state:off="Closed" x-bind:class="{ '-rotate-180': openPanel === {{ $index }}, 'rotate-0': !(openPanel === {{ $index }}) }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <svg class="h-6 w-6 rotate-0" x-description="Heroicon name: chevron-down" x-state:on="Open" x-state:off="Closed" x-bind:class="{ '-rotate-180': openPanel === {{ $index }}, 'rotate-0': !(openPanel === {{ $index }}) }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
             </span>

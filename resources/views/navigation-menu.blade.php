@@ -2,7 +2,7 @@
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="relative flex flex-wrap items-center justify-center lg:justify-between">
             <!-- Logo -->
-            <div class="absolute left-0 py-5 flex-shrink-0 lg:static">
+            <div class="absolute left-0 py-5 shrink-0 lg:static">
                 <a href="{{ route('home') }}">
                     <span class="sr-only">Anodyne</span>
                     <x-logos.anodyne text-color="white" class="h-8 w-auto hidden md:block" gradient />
@@ -81,7 +81,7 @@
             </div>
 
             <!-- Menu button -->
-            <div class="absolute right-0 flex-shrink-0 lg:hidden">
+            <div class="absolute right-0 shrink-0 lg:hidden">
                 <!-- Mobile menu button -->
                 <button @click="open = !open" class="bg-transparent p-2 rounded-md inline-flex items-center justify-center text-gray-400 hover:text-white hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-white" x-bind:aria-expanded="open">
                     <span class="sr-only">Open main menu</span>
@@ -98,7 +98,7 @@
 
     <div x-description="Mobile menu overlay, show/hide based on mobile menu state." x-show="open" x-transition:enter="duration-150 ease-out" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="duration-150 ease-in" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="z-20 fixed inset-0 bg-black bg-opacity-25 lg:hidden" aria-hidden="true" style="display: none;"></div>
 
-    <div x-description="Mobile menu, show/hide based on mobile menu state." x-show="open" x-transition:enter="duration-150 ease-out" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-150 ease-in" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="z-30 absolute top-0 inset-x-0 max-w-3xl mx-auto w-full p-2 transition transform origin-top lg:hidden" style="display: none;">
+    <div x-description="Mobile menu, show/hide based on mobile menu state." x-show="open" x-transition:enter="duration-150 ease-out" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-150 ease-in" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="z-30 absolute top-0 inset-x-0 max-w-3xl mx-auto w-full p-2 transition origin-top lg:hidden" style="display: none;">
         <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y divide-gray-200">
             <div class="pt-3 pb-2">
                 <div class="flex items-center justify-between px-4">
@@ -122,7 +122,7 @@
             </div>
             <div class="pt-4 pb-2">
                 <div class="flex items-center px-5">
-                    <div class="flex-shrink-0">
+                    <div class="shrink-0">
                         <img class="h-10 w-10 squircle" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
                     </div>
                     <div class="ml-3 min-w-0 flex-1">

@@ -18,7 +18,7 @@
                         <div class="bg-white p-6">
                             <div class="sm:flex sm:items-center sm:justify-between">
                                 <div class="sm:flex sm:items-center sm:space-x-5">
-                                    <div class="flex-shrink-0">
+                                    <div class="shrink-0">
                                         <img class="mx-auto h-20 w-20 squircle" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
                                     </div>
                                     <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
