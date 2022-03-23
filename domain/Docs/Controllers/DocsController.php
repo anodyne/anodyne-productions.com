@@ -8,7 +8,7 @@ use Domain\Docs\Documentation;
 
 class DocsController
 {
-    private const DEFAULT_VERSION = '2.6';
+    private const DEFAULT_VERSION = '2.7';
 
     private const DEFAULT_PAGE = 'introduction';
 
