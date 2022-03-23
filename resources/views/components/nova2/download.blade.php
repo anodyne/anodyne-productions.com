@@ -19,7 +19,8 @@
                                 <label for="version" class="block text-sm font-medium text-orange-900">Version</label>
                                 <select id="version" x-model="version" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-transparent focus:outline-none focus:ring-blue-400 focus:border-blue-400 sm:text-sm rounded-md shadow">
                                     <option value="{{ $version }}">{{ $version }} (Latest)</option>
-                                    <option value="2.3.2">2.3.2 (Legacy)</option>
+                                    <option value="2.6.2">2.6.2 (Legacy - PHP 5.6)</option>
+                                    <option value="2.3.2">2.3.2 (Legacy - PHP 5.2)</option>
                                 </select>
                             </div>
                         </div>
@@ -48,6 +49,11 @@
                                 </select>
                             </div>
                         </div>
+                    </div>
+
+                    <div x-show="version === '2.6.2'" class="mt-8 flex space-x-3 text-white font-medium text-sm leading-6">
+                        @svg('fluent-warning', 'h-7 w-7 shrink-0 text-amber-300')
+                        <span>Nova 2.6.2 is legacy software and intended only for games hosted on a server running PHP 5.3 - 5.6. This version of Nova is no longer receiving updates.</span>
                     </div>
 
                     <div x-show="version === '2.3.2'" class="mt-8 flex space-x-3 text-white font-medium text-sm leading-6">
