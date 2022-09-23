@@ -3,7 +3,7 @@
         <div class="flex items-center justify-between w-full md:w-auto">
             <a href="/">
                 <span class="sr-only">Anodyne</span>
-                <x-logos.anodyne class="h-8 w-auto sm:h-10" />
+                <x-logos.anodyne text-color="white" class="h-8 w-auto sm:h-10" gradient />
             </a>
             <div class="-mr-2 flex items-center md:hidden">
                 <button type="button" class="bg-gray-800 rounded-lg p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white" id="main-menu" aria-haspopup="true" @click="open = true">
@@ -15,7 +15,7 @@
                 </button>
             </div>
         </div>
-        <div class="hidden space-x-10 md:flex md:ml-10">
+        <div class="hidden space-x-10 md:flex md:ml-16">
             <a href="#features" class="font-medium text-white hover:text-gray-300">Features</a>
 
             <a href="#download" class="font-medium text-white hover:text-gray-300">Download</a>
@@ -45,7 +45,7 @@
     <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
         <div class="px-5 pt-4 flex items-center justify-between">
             <div>
-                <x-logos.anodyne text-color="gray-600" class="h-8 w-auto" />
+                <x-logos.anodyne class="h-8 w-auto" gradient />
             </div>
             <div class="-mr-2">
                 <button type="button" class="bg-white rounded-lg p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light-blue-500" @click="open = false">

@@ -27,8 +27,9 @@
             </a>
         </div>
         <div class="mt-8 md:mt-0 md:order-1">
-            <p class="text-center text-base text-gray-500">
-                &copy; {{ date('Y') }} Anodyne Productions. All rights reserved.
+            <p class="flex items-center justify-center md:justify-start space-x-4 text-center text-base text-gray-500">
+                <x-logos.anodyne-mark class="h-6 w-auto" color="gray-600" />
+                <span>&copy; {{ date('Y') }} Anodyne Productions. All rights reserved.</span>
             </p>
         </div>
     </div>
