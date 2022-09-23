@@ -1,20 +1,27 @@
 <x-base-layout>
-    <div class="h-screen overflow-hidden flex px-4 mx-auto max-w-8xl sm:px-6 lg:px-8" x-data="{ sidebarOpen: false }" @keydown.window.escape="sidebarOpen = false">
-        <div x-show="sidebarOpen" class="md:hidden" x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state." style="display: none;">
-            <div class="fixed inset-0 z-40 flex">
-                <div @click="sidebarOpen = false" x-show="sidebarOpen" x-description="Off-canvas menu overlay, show/hide based on off-canvas menu state." x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0" aria-hidden="true" style="display: none;">
-                    <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
+    <div class="font-sans antialiased" x-data="{ sidebarOpen: false }" @keydown.window.escape="sidebarOpen = false">
+        <header class="sticky top-0 z-30 mx-auto bg-opacity-50 h-[72px] bg-gray-100 backdrop-filter backdrop-blur max-w-8xl xl:px-8">
+            <div class="flex items-center justify-between px-4 py-5 border-b lg:px-8 sm:px-6 xl:px-0 border-gray-200">
+                <a href="{{ route('docs') }}" class="block">
+                    <x-logos.anodyne class="h-8 w-auto" gradient />
+                </a>
+            </div>
+        </header>
+
+        <button class="transition fixed z-40 flex items-center justify-center w-16 h-16 text-white bg-spanish-roast rounded-full bottom-4 right-4 lg:hidden focus:outline-none focus-visible:ring bg-opacity-60 backdrop-filter backdrop-blur" @click.stop="sidebarOpen = !sidebarOpen">
+            <span class="sr-only" x-show="!sidebarOpen">Open site navigation</span>
+            <span class="sr-only" x-show="sidebarOpen" x-cloak>Close site navigation</span>
+            <svg width="24" height="24" fill="none" class="" x-show="!sidebarOpen"><path d="M4 8h16M4 16h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <svg width="24" height="24" fill="none" class="" x-show="sidebarOpen" x-cloak><path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
+
+        <div x-show="sidebarOpen" class="md:hidden" x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state." x-cloak>
+            <div class="fixed inset-0 z-30 flex">
+                <div @click="sidebarOpen = false" x-show="sidebarOpen" x-description="Off-canvas menu overlay, show/hide based on off-canvas menu state." x-transition:enter="transition-opacity ease-linear duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity ease-linear duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0" aria-hidden="true">
+                    <div class="bg-gray-900 absolute inset-0 backdrop-filter backdrop-blur bg-opacity-50"></div>
                 </div>
 
                 <div x-show="sidebarOpen" x-description="Off-canvas menu, show/hide based on off-canvas menu state." x-transition:enter="transition ease-in-out duration-300 transform" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full" class="relative max-w-xs w-full bg-gray-100 pt-5 pb-4 flex-1 flex flex-col" style="display: none;">
-                    <div class="absolute top-0 right-0 -mr-12 pt-2">
-                        <button x-show="sidebarOpen" @click="sidebarOpen = false" class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" style="display: none;">
-                            <span class="sr-only">Close sidebar</span>
-                            <svg class="h-6 w-6 text-white" x-description="Heroicon name: x" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                        </button>
-                    </div>
                     <div class="flex-shrink-0 px-4 flex items-center">
                         <x-logos.anodyne class="h-8 w-auto" gradient />
                     </div>
@@ -91,7 +98,7 @@
                                 </li>
                             </ul>
 
-                            <div class="px-3">
+                            <div>
                                 <ul>
                                     <li>
                                         <a
@@ -166,170 +173,164 @@
             </div>
         </div>
 
-        <!-- Static sidebar for desktop -->
-        <div class="hidden md:flex md:flex-shrink-0">
-            <div class="w-64 flex flex-col">
-                <!-- Sidebar component, swap this element with another sidebar if you like -->
-                <div class="pb-4 flex flex-col flex-grow overflow-y-auto">
-                    <div class="z-50 flex-shrink-0 px-5 flex items-center pt-8">
-                        <a href="{{ route('home') }}">
-                            <x-logos.anodyne class="h-8 w-auto" gradient />
-                        </a>
-                    </div>
+        <div class="flex px-4 mx-auto max-w-8xl sm:px-6 lg:px-8">
+            <div class="flex-shrink-0 hidden w-64 lg:block lg:pr-8 lg:pt-12">
+                <nav class="mx-auto font-medium text-base lg:text-sm space-y-8 text-gray-600 mb-8" x-data="{ openedIndex: 1 }">
+                    <ul>
+                        <li>
+                            <a
+                                href="{{ route('docs') }}"
+                                class="group px-3 py-2 transition ease-in-out duration-200 relative flex items-center hover:text-amber-500 text-gray-500"
+                                aria-current="page"
+                            >
+                                <div class="group relative flex items-center space-x-3">
+                                    @svg('fluent-class', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-amber-500 transition ease-in-out duration-150')
 
-                    <div class="relative flex-grow mt-5 flex flex-col z-30">
-                        <nav class="flex-1 px-2 pt-4 pb-8 font-medium text-base lg:text-sm space-y-8">
-                            <ul>
-                                <li>
-                                    <a
-                                        href="{{ route('docs') }}"
-                                        class="group px-3 py-2 transition ease-in-out duration-200 relative flex items-center hover:text-amber-500 text-gray-500"
-                                        aria-current="page"
-                                    >
-                                        <div class="group relative flex items-center space-x-3">
-                                            @svg('fluent-class', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-amber-500 transition ease-in-out duration-150')
-
-                                            <span class="truncate">
-                                                Docs
-                                            </span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                @if (config('services.anodyne.exchange'))
-                                    <li>
-                                        <a
-                                            href="{{ route('exchange.index') }}"
-                                            class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-amber-500 text-gray-500"
-                                            aria-current="page"
-                                        >
-                                            <div class="group relative flex items-center space-x-3">
-                                                @svg('fluent-apps-add-in', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-amber-500 transition ease-in-out duration-150')
-
-                                                <span class="truncate">
-                                                    Exchange
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                @endif
-
-                                @if (config('services.anodyne.galaxy'))
-                                    <li>
-                                        <a
-                                            href="{{ route('galaxy.index') }}"
-                                            class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-amber-500 text-gray-500"
-                                            aria-current="page"
-                                        >
-                                            <div class="group relative flex items-center space-x-3">
-                                                @svg('fluent-rocket', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-amber-500 transition ease-in-out duration-150')
-
-                                                <span class="truncate">
-                                                    Galaxy
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                @endif
-
-                                <li>
-                                    <a
-                                        href="https://discord.gg/7WmKUks"
-                                        target="_blank"
-                                        class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-amber-500 text-gray-500"
-                                        aria-current="page"
-                                    >
-                                        <div class="group relative flex items-center space-x-3">
-                                            @svg('fluent-chat-bubbles-help', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-amber-500 transition ease-in-out duration-150')
-
-                                            <span class="truncate">
-                                                Get Help
-                                            </span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <div class="hidden px-3">
-                                <x-dropdown trigger-color="dark-gray-text" width="w-48">
-                                    <x-slot name="trigger">
-                                        <span>Nova {{ request()->route()->version }}</span>
-                                        <svg class="-mr-1 ml-2 h-5 w-5 text-gray-400" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
-                                    </x-slot>
-
-                                    <x-dropdown.group>
-                                        @foreach (['3.0', '2.6'] as $ver)
-                                            <x-dropdown.item :href="route('docs', [$ver])">Nova {{ $ver }}</x-dropdown.item>
-                                        @endforeach
-                                    </x-dropdown.group>
-                                </x-dropdown>
-                            </div>
-
-                            @foreach ($sections as $section)
-                                <div>
-                                    @isset($section['title'])
-                                        <h5 class="px-3 mb-3 lg:mb-3 uppercase tracking-wide font-semibold text-sm lg:text-xs text-gray-900">
-                                            {{ $section['title'] }}
-                                        </h5>
-                                    @endisset
-
-                                    <ul>
-                                        @foreach ($section['pages'] as $page)
-                                            @php($slug = $page['file'] ?? $page)
-                                            <li>
-                                                <a
-                                                    href="{{ $page['link'] ?? route('docs', [$version, $slug]) }}"
-                                                    @isset($page['link']) target="_blank" @endisset
-                                                    class="group px-3 py-2 transition-colors duration-200 relative flex items-center {{ $current === $slug ? 'text-amber-600' : 'hover:text-gray-900 text-gray-500' }}"
-                                                    aria-current="page"
-                                                >
-                                                    <span class="rounded-lg absolute inset-0 bg-amber-50 z-0 {{ $current === $slug ? 'opacity-100' : 'opacity-0' }}"></span>
-
-                                                    <div class="group relative flex items-center">
-                                                        @isset($page['icon'])
-                                                        @svg($page['icon'], 'flex-shrink-0 -ml-1 mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-600 transition ease-in-out duration-150')
-                                                        @endisset
-
-                                                        <span class="truncate">
-                                                            {{ $page['name'] ?? str_replace('-', ' ', Illuminate\Support\Str::title($slug)) }}
-                                                        </span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                                    <span class="truncate">
+                                        Docs
+                                    </span>
                                 </div>
-                            @endforeach
-                        </nav>
+                            </a>
+                        </li>
+
+                        @if (config('services.anodyne.exchange'))
+                            <li>
+                                <a
+                                    href="{{ route('exchange.index') }}"
+                                    class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-amber-500 text-gray-500"
+                                    aria-current="page"
+                                >
+                                    <div class="group relative flex items-center space-x-3">
+                                        @svg('fluent-apps-add-in', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-amber-500 transition ease-in-out duration-150')
+
+                                        <span class="truncate">
+                                            Exchange
+                                        </span>
+                                    </div>
+                                </a>
+                            </li>
+                        @endif
+
+                        @if (config('services.anodyne.galaxy'))
+                            <li>
+                                <a
+                                    href="{{ route('galaxy.index') }}"
+                                    class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-amber-500 text-gray-500"
+                                    aria-current="page"
+                                >
+                                    <div class="group relative flex items-center space-x-3">
+                                        @svg('fluent-rocket', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-amber-500 transition ease-in-out duration-150')
+
+                                        <span class="truncate">
+                                            Galaxy
+                                        </span>
+                                    </div>
+                                </a>
+                            </li>
+                        @endif
+
+                        <li>
+                            <a
+                                href="https://discord.gg/7WmKUks"
+                                target="_blank"
+                                class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-amber-500 text-gray-500"
+                                aria-current="page"
+                            >
+                                <div class="group relative flex items-center space-x-3">
+                                    @svg('fluent-chat-bubbles-help', 'flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-amber-500 transition ease-in-out duration-150')
+
+                                    <span class="truncate">
+                                        Get Help
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div>
+                        <div class="relative pb-2" x-data="{ open: false }" @click.away="open = false">
+                            <button class="focus:outline-none focus:ring flex items-center justify-between w-full px-3 py-[9px] rounded-lg bg-gray-200" @click="open = !open">
+                                <span class="text-sm font-medium text-gray-600">Nova {{ request()->route()->version }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-gray-400"><path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                            </button>
+
+                            <div class="origin-top-left absolute left-0 mt-2 w-56 rounded-lg bg-white bg-opacity-50 ring-1 ring-black ring-opacity-5 focus:outline-none backdrop-filter backdrop-blur z-30" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" x-show="open" x-description="Dropdown panel, show/hide based on dropdown state." x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95">
+                                <div class="py-1" role="none">
+                                    @foreach (['3.0', '2.6'] as $ver)
+                                        <a class="block relative rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" href="{{ route('docs', $ver) }}">
+                                            <span>Nova {{ $ver }}</span>
+                                            <span class="sr-only">documentation</span>
+
+                                            @if ($ver === request()->route()->version)
+                                                <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-amber-500">
+                                                    @svg('fluent-checkmark-circle', 'h-6 w-6')
+                                                </span>
+                                            @endif
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @foreach ($sections as $section)
+                        <div>
+                            @isset($section['title'])
+                                <h5 class="flex items-center justify-between px-3 mb-3 lg:mb-3 uppercase tracking-wider font-semibold text-sm lg:text-xs text-gray-900 cursor-pointer" @click="openedIndex === {{ $section['index'] }} ? openedIndex = -1 : openedIndex = {{ $section['index'] }}">
+                                    <span>{{ $section['title'] }}</span>
+
+                                    <div>
+                                        {{-- Down chevron --}}
+                                        <svg x-show="openedIndex === {{ $section['index'] }}" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+
+                                        {{-- Right chevron --}}
+                                        <svg x-cloak x-show="openedIndex !== {{ $section['index'] }}" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                                    </div>
+                                </h5>
+                            @endisset
+
+                            <ul x-show.transition.in.duration.800ms="openedIndex === {{ $section['index'] }}">
+                                @foreach ($section['pages'] as $page)
+                                    @php($slug = $page['file'] ?? $page)
+                                    <li>
+                                        <a
+                                            href="{{ $page['link'] ?? route('docs', [$version, $slug]) }}"
+                                            @isset($page['link']) target="_blank" @endisset
+                                            class="group px-3 py-2 transition-colors duration-200 relative flex items-center {{ $current === $slug ? 'text-amber-600' : 'hover:text-gray-900 text-gray-500' }}"
+                                            aria-current="page"
+                                        >
+                                            <span class="rounded-lg absolute inset-0 bg-amber-50 z-0 {{ $current === $slug ? 'opacity-100' : 'opacity-0' }}"></span>
+
+                                            <div class="group relative flex items-center">
+                                                @isset($page['icon'])
+                                                @svg($page['icon'], 'flex-shrink-0 -ml-1 mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-600 transition ease-in-out duration-150')
+                                                @endisset
+
+                                                <span class="truncate">
+                                                    {{ $page['name'] ?? str_replace('-', ' ', Illuminate\Support\Str::title($slug)) }}
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endforeach
+                </nav>
+            </div>
+
+            <div class="z-10 flex-shrink-0 order-2 hidden w-64 min-w-0 xl:block xl:pl-8">
+                <div class="sticky top-0 max-h-screen pt-[120px] pb-10 overflow-y-auto mt-[-72px]">
+                    <div>
+                        <p class="text-xs font-semibold tracking-wide text-gray-900 uppercase">On this page</p>
+                        {{ $toc }}
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="flex-1 mx-auto w-0 flex flex-col">
-            <div class="relative z-10 flex-shrink-0 h-16 bg-white shadow-md flex md:hidden">
-                <div class="flex items-center justify-between w-full md:w-auto px-6">
-                    <a href="{{ route('home') }}">
-                        <span class="sr-only">Anodyne</span>
-                        <x-logos.anodyne class="h-8 w-auto sm:h-10" gradient />
-                    </a>
-                    <div class="flex items-center md:hidden">
-                        <button type="button" class="rounded-lg p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white" id="main-menu" aria-haspopup="true" @click.stop="sidebarOpen = true">
-                            <span class="sr-only">Open main menu</span>
-                            <!-- Heroicon name: menu -->
-                            <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <main class="flex-1 relative overflow-y-auto focus:outline-none">
-                <div class="py-6">
-                    <div class="flex px-4 sm:px-6">
-                        {{ $slot }}
-                    </div>
+            <main class="flex flex-1 min-w-0 py-12">
+                <div class="flex-1 min-w-0 max-w-[800px] mx-auto order-1">
+                    {{ $slot }}
                 </div>
             </main>
         </div>
