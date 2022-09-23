@@ -1,0 +1,29 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "docs.css";
+@import "toc.css";
+
+@import "tailwindcss/utilities";
+
+@import "highlight.js/styles/night-owl.css";
+
+body {
+    font-feature-settings: 'kern' 1, 'ss01' 1, 'ss02' 1, 'ss03' 1;
+    -webkit-font-feature-settings: 'kern' 1, 'ss01' 1, 'ss02' 1, 'ss03' 1;
+}
+
+svg.defs {
+	position: absolute;
+	width: 0;
+	height: 0;
+}
+
+.squircle {
+	clip-path: url(#squircle);
+}
+
+[x-cloak] {
+    @apply hidden;
+}
