@@ -1,4 +1,4 @@
-<x-layouts.docs :sections="$sections" :current="$page" :version="$version">
+<x-docs-layout :sections="$sections" :current="$page" :version="$version">
     <div class="min-w-0 flex-auto px-4 sm:px-6 xl:px-8">
         <div class="docs prose lg:prose-lg prose-amber">
             @include($path)
@@ -16,4 +16,4 @@
             </div>
         </div>
     </div>
-</x-layouts.docs>
+</x-docs-layout>

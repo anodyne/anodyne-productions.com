@@ -1,4 +1,4 @@
-<x-layouts.base>
+<x-base-layout>
     <x-nova2.header />
 
     <x-nova2.features />
@@ -14,4 +14,4 @@
     <x-nova2.sponsors />
 
     <x-footer />
-</x-layouts.base>
+</x-base-layout>

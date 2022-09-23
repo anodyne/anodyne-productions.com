@@ -1,6 +1,6 @@
 <?php
 
-use Domain\Exchange\Livewire\ShowProducts;
+use Domain\Exchange\Livewire\ShowAddons;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/exchange', ShowProducts::class)->name('exchange.index');
+Route::get('/exchange', ShowAddons::class)->name('exchange.index');

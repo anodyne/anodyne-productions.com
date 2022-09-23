@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
             $table->string('role', 5)->default(Role::USER);
+            $table->boolean('is_exchange_author')->default(true);
             $table->timestamps();
         });
     }

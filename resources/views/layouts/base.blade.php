@@ -1,8 +1,3 @@
-@props([
-    'bgColor' => 'gray-100',
-    'textColor' => 'gray-500',
-])
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="font-sans text-{{ $textColor }} antialiased bg-{{ $bgColor }}">
     <head>

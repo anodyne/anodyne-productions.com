@@ -1,4 +1,4 @@
-<x-layouts.base bg-color="gray-200">
+<x-base-layout bg-color="gray-200">
     <div class="max-w-3xl mx-auto h-screen flex flex-col items-center justify-center">
         <div class="mb-8">
             <x-logos.anodyne class="h-12 w-auto" gradient />
@@ -12,4 +12,4 @@
             <p class="mt-4 text-center text-xl font-medium text-gray-500">Never fear, we're on it! Try back soon.</p>
         </div>
     </div>
-</x-layouts.base>
+</x-base-layout>

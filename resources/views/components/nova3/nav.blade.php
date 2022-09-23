@@ -28,7 +28,7 @@
 
     @if (config('services.anodyne.login'))
         <div class="hidden md:flex">
-            <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700">
+            <a href="{{ route('login') }}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700">
                 Log in
             </a>
         </div>
@@ -64,7 +64,7 @@
 
             @if (config('services.anodyne.login'))
                 <div role="none">
-                    <a href="#" class="block w-full px-5 py-3 text-center font-medium text-amber-500 bg-gray-50 hover:bg-gray-100" role="menuitem">
+                    <a href="{{ route('login') }}" class="block w-full px-5 py-3 text-center font-medium text-amber-500 bg-gray-50 hover:bg-gray-100" role="menuitem">
                         Log in
                     </a>
                 </div>

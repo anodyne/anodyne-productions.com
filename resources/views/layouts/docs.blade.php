@@ -1,10 +1,4 @@
-@props([
-    'sections' => [],
-    'current' => '',
-    'version' => 'main',
-])
-
-<x-layouts.base bg-color="white">
+<x-base-layout bg-color="white">
     <div class="h-screen overflow-hidden flex" x-data="{ sidebarOpen: false }" @keydown.window.escape="sidebarOpen = false">
         <div x-show="sidebarOpen" class="md:hidden" x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state." style="display: none;">
             <div class="fixed inset-0 z-40 flex">
@@ -178,7 +172,9 @@
                 <!-- Sidebar component, swap this element with another sidebar if you like -->
                 <div class="pb-4 flex flex-col flex-grow overflow-y-auto">
                     <div class="bg-white z-50 flex-shrink-0 px-4 flex items-center pt-8">
-                        <x-logos.anodyne class="h-8 w-auto" gradient />
+                        <a href="{{ route('home') }}">
+                            <x-logos.anodyne class="h-8 w-auto" gradient />
+                        </a>
                     </div>
 
                     <div class="relative flex-grow mt-5 flex flex-col z-30">
@@ -338,4 +334,4 @@
             </main>
         </div>
     </div>
-</x-layouts.base>
+</x-base-layout>

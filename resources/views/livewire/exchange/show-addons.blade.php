@@ -7,7 +7,7 @@
                         @svg('fluent-search', 'h-5 w-5 text-gray-400')
                     </x-slot>
 
-                    <input type="text" wire:model="filters.search" class="appearance-none bg-transparent border-none p-0 focus:outline-none focus:ring-0 block w-ful text-sm" placeholder="Find an item...">
+                    <input type="text" wire:model="filters.search" class="appearance-none bg-transparent border-none p-0 focus:outline-none focus:ring-0 block w-ful text-sm" placeholder="Find an add-on...">
 
                     @if ($filters['search'])
                         <x-slot name="trailingAddOn">
@@ -188,16 +188,14 @@
 
                 <div class="space-y-6">
                     <div class="grid gap-x-6 gap-y-12 max-w-lg mx-auto md:grid-cols-2 xl:grid-cols-3 md:max-w-none">
-                        @forelse ($products as $product)
+                        @forelse ($addons as $addon)
                             <x-card :image="asset('images/brian-mcgowan-DsYv1KJHrlE-unsplash.jpg')">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-{{ $product->type_color }}-100 text-{{ $product->type_color }}-800 uppercase tracking-wide">
-                                    {{ $product->type }}
-                                </span>
+                                <x-badge :color="$addon->type_color">{{ ucfirst($addon->type) }}</x-badge>
 
-                                <div class="mt-1 font-extrabold text-gray-900 tracking-tight text-xl">{{ ucfirst($product->name) }}</div>
+                                <div class="mt-1 font-extrabold text-gray-900 tracking-tight text-xl">{{ ucfirst($addon->name) }}</div>
 
                                 <div class="mt-1 flex items-center">
-                                    <x-ratings :rating="$product->rating" />
+                                    <x-ratings :rating="$addon->rating" />
 
                                     <span class="ml-2 text-gray-500 font-medium text-sm">{{ mt_rand(10, 50) }}</span>
                                 </div>
@@ -205,10 +203,10 @@
                                 <x-slot name="footer">
                                     <div class="flex items-center justify-between">
                                         <div class="flex items-center space-x-3">
-                                            <div class="rounded-full overflow-hidden ring ring-white bg-white">
+                                            <div class="squircle overflow-hidden ring ring-white bg-white">
                                                 <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.6&w=256&h=256&q=80" alt="" class="h-10 w-10">
                                             </div>
-                                            <span class="text-gray-700 font-medium">{{ $product->user->name }}</span>
+                                            <span class="text-gray-700 font-medium">{{ $addon->user->name }}</span>
                                         </div>
 
                                         <div class="flex items-center space-x-4">
@@ -223,12 +221,12 @@
                                 </x-slot>
                             </x-card>
                         @empty
-                            No products found.
+                            No add-ons found.
                         @endforelse
                     </div>
 
                     <div>
-                        {{ $products->links() }}
+                        {{ $addons->links() }}
                     </div>
                 </div>
             </div>

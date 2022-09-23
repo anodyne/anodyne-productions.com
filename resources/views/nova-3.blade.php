@@ -1,4 +1,4 @@
-<x-layouts.base bg-color="gray-800" text-color="gray-400">
+<x-base-layout bg-color="gray-800" text-color="gray-400">
     <div class="min-h-screen">
         <x-nova3.header />
 
@@ -116,4 +116,4 @@
 
         <x-footer text-color="gray-500" hover-color="gray-400" />
     </div>
-</x-layouts.base>
+</x-base-layout>

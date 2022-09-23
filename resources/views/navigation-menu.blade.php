@@ -3,9 +3,10 @@
         <div class="relative flex flex-wrap items-center justify-center lg:justify-between">
             <!-- Logo -->
             <div class="absolute left-0 py-5 flex-shrink-0 lg:static">
-                <a href="#">
+                <a href="{{ route('home') }}">
                     <span class="sr-only">Anodyne</span>
-                    <x-logos.anodyne text-color="white" class="h-8 w-auto" gradient />
+                    <x-logos.anodyne text-color="white" class="h-8 w-auto hidden md:block" gradient />
+                    <x-logos.anodyne-mark class="h-auto w-8 block md:hidden" gradient />
                 </a>
             </div>
 
@@ -90,7 +91,7 @@
             <!-- Menu button -->
             <div class="absolute right-0 flex-shrink-0 lg:hidden">
                 <!-- Mobile menu button -->
-                <button @click="open = !open" class="bg-transparent p-2 rounded-md inline-flex items-center justify-center text-cyan-200 hover:text-white hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-white" x-bind:aria-expanded="open">
+                <button @click="open = !open" class="bg-transparent p-2 rounded-md inline-flex items-center justify-center text-gray-400 hover:text-white hover:bg-white hover:bg-opacity-10 focus:outline-none focus:ring-2 focus:ring-white" x-bind:aria-expanded="open">
                     <span class="sr-only">Open main menu</span>
                     <svg x-state:on="Menu open" x-state:off="Menu closed" :class="{ 'hidden': open, 'block': !open }" class="block h-6 w-6" x-description="Heroicon name: menu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -110,7 +111,7 @@
             <div class="pt-3 pb-2">
                 <div class="flex items-center justify-between px-4">
                     <div>
-                        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-cyan-600.svg" alt="Workflow">
+                        <x-logos.anodyne-mark class="h-8 w-auto" gradient />
                     </div>
                     <div class="-mr-2">
                         <button @click="open = false" type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500">
@@ -122,253 +123,35 @@
                     </div>
                 </div>
                 <div class="mt-3 px-2 space-y-1">
-                    <a href="#" class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Home</a>
-                    <a href="#" class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Profile</a>
-                    <a href="#" class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Resources</a>
-                    <a href="#" class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Company Directory</a>
-                    <a href="#" class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Openings</a>
+                    <a href="{{ route('dashboard') }}" class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">{{ __('Dashboard') }}</a>
                 </div>
             </div>
             <div class="pt-4 pb-2">
                 <div class="flex items-center px-5">
                     <div class="flex-shrink-0">
-                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="">
+                        <img class="h-10 w-10 squircle" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
                     </div>
                     <div class="ml-3 min-w-0 flex-1">
-                        <div class="text-base font-medium text-gray-800 truncate">Rebecca Nicholas</div>
-                        <div class="text-sm font-medium text-gray-500 truncate">rebecca.nicholas@example.com</div>
+                        <div class="text-base font-medium text-gray-800 truncate">{{ Auth::user()->name }}</div>
+                        <div class="text-sm font-medium text-gray-500 truncate">{{ Auth::user()->email }}</div>
                     </div>
-                    <button class="ml-auto flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
+                    {{-- <button class="ml-auto flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
                         <span class="sr-only">View notifications</span>
                         <svg class="h-6 w-6" x-description="Heroicon name: bell" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
                         </svg>
-                    </button>
+                    </button> --}}
                 </div>
                 <div class="mt-3 px-2 space-y-1">
-                    <a href="#" class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Your Profile</a>
-                    <a href="#" class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Settings</a>
-                    <a href="#" class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">Sign out</a>
+                    <a href="{{ route('profile.show') }}" class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">{{ __('Profile') }}</a>
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <a href="{{ route('logout') }}" class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800" onclick="event.preventDefault();this.closest('form').submit();">{{ __('Logout') }}</a>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </header>
-
-{{-- <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
-    <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
-                    </a>
-                </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-jet-nav-link>
-                </div>
-            </div>
-
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <!-- Teams Dropdown -->
-                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                <div class="ml-3 relative">
-                    <x-jet-dropdown align="right" width="60">
-                        <x-slot name="trigger">
-                            <span class="inline-flex rounded-md">
-                                <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
-                                    {{ Auth::user()->currentTeam->name }}
-
-                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                            </span>
-                        </x-slot>
-
-                        <x-slot name="content">
-                            <div class="w-60">
-                                <!-- Team Management -->
-                                <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ __('Manage Team') }}
-                                </div>
-
-                                <!-- Team Settings -->
-                                <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
-                                    {{ __('Team Settings') }}
-                                </x-jet-dropdown-link>
-
-                                @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                                <x-jet-dropdown-link href="{{ route('teams.create') }}">
-                                    {{ __('Create New Team') }}
-                                </x-jet-dropdown-link>
-                                @endcan
-
-                                <div class="border-t border-gray-100"></div>
-
-                                <!-- Team Switcher -->
-                                <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ __('Switch Teams') }}
-                                </div>
-
-                                @foreach (Auth::user()->allTeams() as $team)
-                                <x-jet-switchable-team :team="$team" />
-                                @endforeach
-                            </div>
-                        </x-slot>
-                    </x-jet-dropdown>
-                </div>
-                @endif
-
-                <!-- Settings Dropdown -->
-                <div class="ml-3 relative">
-                    <x-jet-dropdown align="right" width="48">
-                        <x-slot name="trigger">
-                            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                            <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                                <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-                            </button>
-                            @else
-                            <span class="inline-flex rounded-md">
-                                <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                                    {{ Auth::user()->name }}
-
-                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                    </svg>
-                                </button>
-                            </span>
-                            @endif
-                        </x-slot>
-
-                        <x-slot name="content">
-                            <!-- Account Management -->
-                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
-                            </div>
-
-                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
-                            </x-jet-dropdown-link>
-
-                            @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                            <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                                {{ __('API Tokens') }}
-                            </x-jet-dropdown-link>
-                            @endif
-
-                            <div class="border-t border-gray-100"></div>
-
-                            <!-- Authentication -->
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-
-                                <x-jet-dropdown-link href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                this.closest('form').submit();">
-                                {{ __('Logout') }}
-                            </x-jet-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-jet-dropdown>
-            </div>
-        </div>
-
-        <!-- Hamburger -->
-        <div class="-mr-2 flex items-center sm:hidden">
-            <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                    <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- Responsive Navigation Menu -->
-<div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-    <div class="pt-2 pb-3 space-y-1">
-        <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-            {{ __('Dashboard') }}
-        </x-jet-responsive-nav-link>
-    </div>
-
-    <!-- Responsive Settings Options -->
-    <div class="pt-4 pb-1 border-t border-gray-200">
-        <div class="flex items-center px-4">
-            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-            <div class="flex-shrink-0 mr-3">
-                <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-            </div>
-            @endif
-
-            <div>
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
-        </div>
-
-        <div class="mt-3 space-y-1">
-            <!-- Account Management -->
-            <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                {{ __('Profile') }}
-            </x-jet-responsive-nav-link>
-
-            @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-            <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
-                {{ __('API Tokens') }}
-            </x-jet-responsive-nav-link>
-            @endif
-
-            <!-- Authentication -->
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-
-                <x-jet-responsive-nav-link href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                this.closest('form').submit();">
-                {{ __('Logout') }}
-            </x-jet-responsive-nav-link>
-        </form>
-
-        <!-- Team Management -->
-        @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-        <div class="border-t border-gray-200"></div>
-
-        <div class="block px-4 py-2 text-xs text-gray-400">
-            {{ __('Manage Team') }}
-        </div>
-
-        <!-- Team Settings -->
-        <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">
-            {{ __('Team Settings') }}
-        </x-jet-responsive-nav-link>
-
-        @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-        <x-jet-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
-            {{ __('Create New Team') }}
-        </x-jet-responsive-nav-link>
-        @endcan
-
-        <div class="border-t border-gray-200"></div>
-
-        <!-- Team Switcher -->
-        <div class="block px-4 py-2 text-xs text-gray-400">
-            {{ __('Switch Teams') }}
-        </div>
-
-        @foreach (Auth::user()->allTeams() as $team)
-        <x-jet-switchable-team :team="$team" component="jet-responsive-nav-link" />
-        @endforeach
-        @endif
-    </div>
-</div>
-</div>
-</nav> --}}
