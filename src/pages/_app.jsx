@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
-
 import { DocsLayout } from '@/layouts/DocsLayout'
-
 import 'focus-visible'
 import '@/styles/tailwind.css'
 
