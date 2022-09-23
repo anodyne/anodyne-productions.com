@@ -22,7 +22,6 @@ for v in "${DOCS_VERSIONS[@]}"; do
 
     if [ -d "src/pages/docs/$v/images" ]; then
         echo "Moving images for $v..."
-        (mkdir public/images/docs/"$v")
         (cp -a src/pages/docs/"$v"/images public/images/docs/"$v")
     fi;
 done
