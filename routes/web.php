@@ -21,7 +21,7 @@ Route::permanentRedirect('/service-updates', '/announcements/service-updates');
 
 Route::prefix('projects')
     ->name('projects.')
-    ->group(function() {
+    ->group(function () {
         Route::view('/', 'projects.index')->name('index');
         Route::view('/identity', 'projects.identity')->name('identity');
         Route::view('/website', 'projects.website')->name('website');
@@ -35,6 +35,7 @@ Route::files([
     base_path('domain/Docs/routes/web.php'),
     base_path('domain/Exchange/routes/web.php'),
     base_path('domain/Galaxy/routes/web.php'),
+    base_path('domain/Users/routes/web.php'),
 ]);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
