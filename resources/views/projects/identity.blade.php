@@ -1,4 +1,4 @@
-<x-layouts.projects>
+<x-layouts.projects prose>
     <x-slot name="title">A New Look for Anodyne</x-slot>
 
     <p>As 2020 came to a close, an idea started to percolate: if we were going to re-brand Anodyne, what might that look like?</p>
@@ -36,7 +36,5 @@
 
     <h2>New Website</h2>
 
-    <p>The final piece of the puzzle was a brand-new website.</p>
-
-    <p>For this iteration of the Anodyne home (it's 7th for those keeping count), we opted for a much simpler approach. Since the vast majority of visitors are either looking to learn about Nova or download it, we've put Nova front and center.</p>
+    <p>The final piece of the puzzle was a brand-new website. To learn more about the goals and thought-process behind our new website, <a href="{{ route('projects.website') }}">keep reading</a>.</p>
 </x-layouts.projects>

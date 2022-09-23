@@ -10,7 +10,7 @@
                 </p>
                 <div class="mt-8 sm:flex">
                     <div class="rounded-lg shadow">
-                        <a href="https://patreon.com/anodyneproductions" target="_blank" class="bg-white border border-transparent rounded-lg shadow px-6 py-3 inline-flex items-center justify-center space-x-3 text-base font-medium text-orange-500 hover:bg-orange-50 w-full lg:w-auto transition-colors ease-in-out duration-200">
+                        <a href="https://patreon.com/anodyneproductions" target="_blank" class="bg-white border border-transparent rounded-lg shadow px-6 py-3 inline-flex items-center justify-center space-x-3 text-base font-medium text-amber-500 hover:bg-amber-50 w-full lg:w-auto transition-colors ease-in-out duration-200">
                             Become a patron
                         </a>
                     </div>

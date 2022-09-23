@@ -1,4 +1,4 @@
-<x-layouts.projects>
+<x-layouts.projects prose>
     <x-slot name="title">Re-written Documentation</x-slot>
 
     <p>In December of 2020, we announced we would be making significant changes to the way we handle support for Nova going forward. That started immediately with shutting down new user registrations and wrapped up recently with the complete removal of the forums from the server.</p>

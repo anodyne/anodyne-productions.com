@@ -2,7 +2,7 @@
 
 <x-layouts.base bg-color="white">
     <div class="relative bg-white" x-data="{ mobileMenuOpen: false }">
-        <div class="max-w-3xl xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-0">
+        <div class="max-w-3xl xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
                 <div class="flex justify-start lg:w-0 lg:flex-1">
                     <a href="#">
@@ -19,8 +19,8 @@
                     </button>
                 </div>
                 <nav class="hidden md:flex space-x-10">
-                    <div x-on:click.away="flyoutMenuOpen = false" x-data="{ flyoutMenuOpen: false }" class="relative">
-                        <button type="button" x-on:click="flyoutMenuOpen = !flyoutMenuOpen" x-state:on="Item active" x-state:off="Item inactive" :class="{ 'text-gray-900': flyoutMenuOpen, 'text-gray-500': !flyoutMenuOpen }" class="group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 text-gray-900">
+                    <div x-on:click.away="flyoutMenuOpen = false" x-data="{ flyoutMenuOpen: false }" class="relative" x-cloak>
+                        <button type="button" x-on:click="flyoutMenuOpen = !flyoutMenuOpen" x-state:on="Item active" x-state:off="Item inactive" :class="{ 'text-gray-900': flyoutMenuOpen, 'text-gray-500': !flyoutMenuOpen }" class="group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none text-gray-900">
                             <span>Projects</span>
                             <svg x-state:on="Item active" x-state:off="Item inactive" class="ml-2 h-5 w-5 group-hover:text-gray-500 transition ease-in-out duration-150 text-gray-600" x-bind:class="{ 'text-gray-600': flyoutMenuOpen, 'text-gray-400': !flyoutMenuOpen }" x-description="Heroicon name: chevron-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -252,7 +252,7 @@
     </div>
 
     <div class="relative mt-8">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl">
             <main>
                 <article>
                     <header class="pt-6 xl:pb-10">
@@ -271,41 +271,5 @@
         </div>
     </div>
 
-    <footer>
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 xl:max-w-5xl xl:px-0 py-6 md:flex md:items-center md:justify-between border-t border-gray-200">
-            <div class="flex items-center justify-center space-x-6 md:order-2">
-                <a href="https://facebook.com/anodyneproductions" target="_blank" class="text-gray-400 hover:text-gray-500 transition-all ease-in-out duration-200">
-                    <span class="sr-only">Facebook</span>
-                    <x-logos.facebook class="h-8 w-8 md:h-6 md:w-6" />
-                </a>
-
-                <a href="https://twitter.com/anodyneprod" target="_blank" class="text-gray-400 hover:text-gray-500 transition-all ease-in-out duration-200">
-                    <span class="sr-only">Twitter</span>
-                    <x-logos.twitter class="h-8 w-8 md:h-6 md:w-6" />
-                </a>
-
-                <a href="https://github.com/anodyne" target="_blank" class="text-gray-400 hover:text-gray-500 transition-all ease-in-out duration-200">
-                    <span class="sr-only">GitHub</span>
-                    <x-logos.github class="h-8 w-8 md:h-6 md:w-6" />
-                </a>
-
-                <a href="https://discord.gg/7WmKUks" target="_blank" class="text-gray-400 hover:text-gray-500 transition-all ease-in-out duration-200">
-                    <span class="sr-only">Discord</span>
-                    <x-logos.discord class="h-8 md:h-6 w-auto" />
-                </a>
-
-                <a href="https://patreon.com/anodyneproductions" target="_blank" class="text-gray-400 hover:text-gray-500 transition-all ease-in-out duration-200">
-                    <span class="sr-only">Patreon</span>
-                    <x-logos.patreon class="h-6 md:h-4 w-auto" />
-                </a>
-            </div>
-            <div class="mt-8 md:mt-0 md:order-1">
-                <div class="flex flex-col md:flex-row items-center justify-center md:justify-start">
-                    <a href="{{ route('home') }}">
-                        <x-logos.anodyne logo-color="gray-400" text-color="gray-400" class="h-6 w-auto" />
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <x-footer class="max-w-3xl xl:max-w-5xl" />
 </x-layouts.base>
