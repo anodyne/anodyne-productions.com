@@ -9,15 +9,15 @@
                         <span class="block text-gray-700">Check out the demo now.</span>
                     </h2>
                     <p class="mt-4 text-lg leading-6 text-white">We regularly publish the work being done on Nova 3 to a demo site to give the community a chance to play around with what's coming.</p>
-                    <p class="mt-4 text-lg leading-6 text-white">To log in to the demo site, use the email address <span class="font-mono font-bold text-anodyne-orange-4">admin@admin.com</span> and the password <span class="font-mono font-bold text-anodyne-orange-4">secret</span>.</p>
-                    <a href="https://nova3.anodyne-productions.com/login" class="mt-8 bg-white border border-transparent rounded-lg shadow px-6 py-3 space-x-3 inline-flex items-center text-base font-medium text-anodyne-orange-4 hover:bg-orange-50">
+                    <p class="mt-4 text-lg leading-6 text-white">To log in to the demo site, use the email address <span class="font-mono font-bold text-amber-500">admin@admin.com</span> and the password <span class="font-mono font-bold text-amber-500">secret</span>.</p>
+                    <a href="https://nova3.anodyne-productions.com/login" class="mt-8 bg-white border border-transparent rounded-lg shadow px-6 py-3 space-x-3 inline-flex items-center text-base font-medium text-amber-500 hover:bg-orange-50">
                         <span>Go to the demo</span>
                         @svg('fluent-arrow-right-circle', 'h-6 w-6')
                     </a>
                 </div>
             </div>
             <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
-                <img class="transform translate-x-6 translate-y-6 rounded-md object-cover object-left-top sm:translate-x-16 lg:translate-y-20" src="{{ asset('images/nova3-dashboard.png') }}" alt="App screenshot">
+                <img class="transform translate-x-6 translate-y-6 rounded-lg object-cover object-left-top sm:translate-x-16 lg:translate-y-20" src="{{ asset('images/nova3-dashboard.png') }}" alt="App screenshot">
             </div>
         </div>
     </div>

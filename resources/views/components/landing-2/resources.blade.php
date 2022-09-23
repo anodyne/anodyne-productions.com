@@ -1,13 +1,10 @@
 <div class="relative max-w-7xl mx-auto pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
     <div class="text-center">
         <a name="resources"></a>
-        <h2 class="text-base text-anodyne-orange-4 font-semibold tracking-wide uppercase">Learn</h2>
+        <h2 class="text-base text-orange-500 font-semibold tracking-wide uppercase">Learn</h2>
         <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
             Helpful Resources
         </p>
-        {{-- <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa libero labore natus atque, ducimus sed.
-        </p> --}}
     </div>
 
     <div class="mt-12 max-w-lg mx-auto grid gap-x-6 gap-y-12 lg:grid-cols-{{ config('services.anodyne.exchange') ? '3' : '2' }} lg:max-w-none">

@@ -6,7 +6,7 @@
                 <x-logos.anodyne class="h-8 w-auto sm:h-10" />
             </a>
             <div class="-mr-2 flex items-center md:hidden">
-                <button type="button" class="bg-gray-800 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white" id="main-menu" aria-haspopup="true" @click="open = true">
+                <button type="button" class="bg-gray-800 rounded-lg p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-700 focus:outline-none focus:ring-2 focus-ring-inset focus:ring-white" id="main-menu" aria-haspopup="true" @click="open = true">
                     <span class="sr-only">Open main menu</span>
                     <!-- Heroicon name: menu -->
                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -34,7 +34,7 @@
 
     @if (config('services.anodyne.login'))
         <div class="hidden md:flex">
-            <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700">
+            <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-gray-600 hover:bg-gray-700">
                 Log in
             </a>
         </div>
@@ -48,7 +48,7 @@
                 <x-logos.anodyne text-color="gray-600" class="h-8 w-auto" />
             </div>
             <div class="-mr-2">
-                <button type="button" class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light-blue-500" @click="open = false">
+                <button type="button" class="bg-white rounded-lg p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-light-blue-500" @click="open = false">
                     <span class="sr-only">Close menu</span>
                     <!-- Heroicon name: x -->
                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -59,24 +59,24 @@
         </div>
         <div role="menu" aria-orientation="vertical" aria-labelledby="main-menu">
             <div class="px-2 pt-2 pb-3 space-y-1" role="none">
-                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Features</a>
+                <a href="#features" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Features</a>
 
-                <a href="#download" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Download</a>
+                <a href="#download" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Download</a>
 
-                <a href="{{ route('docs') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Documentation</a>
+                <a href="{{ route('docs') }}" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Documentation</a>
 
-                <a href="#resources" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Resources</a>
+                <a href="#resources" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Resources</a>
 
                 @if (config('services.anodyne.exchange'))
-                    <a href="{{ route('exchange.index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Exchange</a>
+                    <a href="{{ route('exchange.index') }}" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Exchange</a>
                 @endif
 
-                <a href="https://discord.gg/7WmKUks" target="_blank" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Get Help</a>
+                <a href="https://discord.gg/7WmKUks" target="_blank" class="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" role="menuitem">Get Help</a>
             </div>
 
             @if (config('services.anodyne.login'))
                 <div role="none">
-                    <a href="#" class="block w-full px-5 py-3 text-center font-medium text-anodyne-orange-4 bg-gray-50 hover:bg-gray-100" role="menuitem">
+                    <a href="#" class="block w-full px-5 py-3 text-center font-medium text-amber-500 bg-gray-50 hover:bg-gray-100" role="menuitem">
                         Log in
                     </a>
                 </div>

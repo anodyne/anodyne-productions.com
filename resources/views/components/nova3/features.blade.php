@@ -2,7 +2,7 @@
     <div class="max-w-7xl mx-auto pb-16 px-4 sm:px-6 lg:pb-24 lg:px-8">
         <div class="lg:text-center">
             <a name="features"></a>
-            <h2 class="text-base text-anodyne-orange-4 font-semibold tracking-wide uppercase">Features</h2>
+            <h2 class="text-base text-amber-500 font-semibold tracking-wide uppercase">Features</h2>
             <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
                 Better at... everything.
             </p>

@@ -2,11 +2,11 @@
     <header class="relative w-full h-96 py-32 bg-gray-800">
         <div class="max-w-6xl mx-auto space-y-10">
             <div class="flex items-center space-x-4">
-                <x-logos.galaxy color="anodyne-orange-4" class="w-auto h-24" />
+                <x-logos.galaxy color="amber-500" class="w-auto h-24" />
                 <h1 class="text-4xl sm:text-6xl lg:text-7xl leading-none font-extrabold tracking-tight text-white">Welcome to the Galaxy</h1>
             </div>
 
-            <p class="max-w-screen-lg text-lg sm:text-2xl sm:leading-10 font-medium mb-10 sm:mb-11"><code class="font-mono text-anodyne-orange-4 font-bold ">Explore</code> and <code class="font-mono text-anodyne-orange-4 font-bold ">discover</code> new and exciting games around the world.</p>
+            <p class="max-w-screen-lg text-lg sm:text-2xl sm:leading-10 font-medium mb-10 sm:mb-11"><code class="font-mono text-amber-500 font-bold ">Explore</code> and <code class="font-mono text-amber-500 font-bold ">discover</code> new and exciting games around the world.</p>
         </div>
     </header>
 
@@ -21,7 +21,7 @@
             <div class="space-y-6">
                 <div class="grid gap-x-6 gap-y-12 max-w-lg mx-auto md:grid-cols-2 xl:grid-cols-3 md:max-w-none">
                     <x-card :image="asset('images/brian-mcgowan-DsYv1KJHrlE-unsplash.jpg')">
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-anodyne-orange-4 uppercase tracking-wide">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-amber-500 uppercase tracking-wide">
                             Star Trek: DS9
                         </span>
 
@@ -48,7 +48,7 @@
                     </x-card>
 
                     <x-card :image="asset('images/brian-mcgowan-DsYv1KJHrlE-unsplash.jpg')">
-                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-anodyne-orange-4 uppercase tracking-wide">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-amber-500 uppercase tracking-wide">
                             Star Trek: DS9
                         </span>
 

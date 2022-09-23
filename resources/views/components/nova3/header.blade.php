@@ -9,7 +9,7 @@
                         <div>
                             <h1 class="text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:leading-none lg:mt-6 lg:text-5xl xl:text-6xl">
                                 <span class="block">Nova 3:</span>
-                                <span class="block bg-clip-text text-transparent bg-gradient-to-r from-anodyne-orange-4 to-pink-500">
+                                <span class="block bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-amber-500">
                                     The Next Generation
                                 </span>
                             </h1>

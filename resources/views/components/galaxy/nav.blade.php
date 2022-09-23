@@ -11,7 +11,7 @@
                     class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-gray-500 text-gray-300"
                     aria-current="page"
                 >
-                    <span class="rounded-md absolute inset-0 bg-teal-50 opacity-0"></span>
+                    <span class="rounded-lg absolute inset-0 bg-teal-50 opacity-0"></span>
 
                     <div class="group relative flex items-center">
                         <span class="truncate">
