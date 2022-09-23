@@ -12,7 +12,7 @@ export default function Home() {
         <>
             <Header />
             <Hero />
-            {/* <Features /> */}
+            <Features />
             <Download />
             <Resources />
             <Sponsors />
