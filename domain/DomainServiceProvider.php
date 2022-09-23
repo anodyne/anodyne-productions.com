@@ -28,15 +28,11 @@ abstract class DomainServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->bootingDomain();
-
         $this->registerCommands();
         $this->registerListeners();
         $this->registerPolicies();
         $this->registerBladeComponents();
         $this->registerLivewireComponents();
-
-        $this->bootedDomain();
     }
 
     /**
@@ -44,11 +40,7 @@ abstract class DomainServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registeringDomain();
-
         $this->registerMorphMaps();
-
-        $this->registeredDomain();
     }
 
     /**
