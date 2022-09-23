@@ -24,7 +24,7 @@
                 <a href="{{ $sponsor['link'] }}" target="_blank" class="group relative bg-white rounded-lg shadow-md overflow-hidden ring-1 ring-black ring-opacity-5">
                     <figure>
                         <div class="relative bg-gray-100 pt-[50%] overflow-hidden">
-                            <div class="absolute inset-0 w-full h-full rounded-t-lg overflow-hidden group-hover:filter group-hover:blur-[6px] transition-all duration-300">
+                            <div class="absolute inset-0 w-full h-full rounded-t-lg overflow-hidden group-hover:blur-[6px] transition-all duration-300">
                                 <img src="{{ $sponsor['image'] }}" alt="{{ $sponsor['name'] }} logo" class="absolute inset-0 w-auto h-full mx-auto py-2">
                             </div>
                             <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute z-10 inset-0 flex items-center justify-center text-sm {{ $sponsor['hoverColor'] === 'dark' ? 'text-gray-900' : 'text-white' }} font-medium">

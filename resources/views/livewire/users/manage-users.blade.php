@@ -24,7 +24,7 @@
                                 <x-table.row>
                                     <x-table.cell>
                                         <div class="flex items-center">
-                                            <div class="flex-shrink-0 h-10 w-10">
+                                            <div class="shrink-0 h-10 w-10">
                                                 <img class="h-10 w-10 squircle" src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}">
                                             </div>
                                             <div class="ml-4">
@@ -252,7 +252,7 @@
                                         @if ($activity->description === 'updated')
                                         <dd class="flex items-center space-x-8 text-sm text-gray-500">
                                             <div class="flex items-center space-x-2">
-                                                @svg('fluent-edit-settings', 'h-5 w-5 text-gray-400 flex-shrink-0')
+                                                @svg('fluent-edit-settings', 'h-5 w-5 text-gray-400 shrink-0')
                                                 <span>{{ ucwords(str_replace('_', ' ', implode(', ', array_keys($activity->properties->get('attributes'))))) }}</span>
                                             </div>
                                         </dd>

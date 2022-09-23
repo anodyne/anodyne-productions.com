@@ -27,11 +27,11 @@
                             </svg>
                         </button>
 
-                        <div x-description="Flyout menu, show/hide based on flyout menu state." x-show="flyoutMenuOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute z-10 right-0 mt-3 px-2 w-screen max-w-md sm:px-0 lg:max-w-3xl">
+                        <div x-description="Flyout menu, show/hide based on flyout menu state." x-show="flyoutMenuOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="origin-top-right absolute z-10 right-0 mt-3 px-2 w-screen max-w-md sm:px-0 lg:max-w-3xl">
                             <div class="rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                                 <div class="relative grid gap-6 bg-gray-800 px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
                                     <a href="{{ route('projects.identity') }}" class="group -m-3 p-3 flex items-start rounded-lg hover:bg-gray-700 transition ease-in-out duration-150">
-                                        <div class="squircle relative flex-shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
+                                        <div class="squircle relative shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
                                             @svg('fluent-paint-bucket', 'h-7 w-7')
                                         </div>
                                         <div class="ml-4">
@@ -45,7 +45,7 @@
                                     </a>
 
                                     <a href="{{ route('projects.website') }}" class="group -m-3 p-3 flex items-start rounded-lg hover:bg-gray-700 transition ease-in-out duration-150">
-                                        <div class="squircle relative flex-shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
+                                        <div class="squircle relative shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
                                             @svg('fluent-app-generic', 'h-7 w-7')
                                         </div>
                                         <div class="ml-4">
@@ -59,7 +59,7 @@
                                     </a>
 
                                     <a href="{{ route('projects.support') }}" class="group -m-3 p-3 flex items-start rounded-lg hover:bg-gray-700 transition ease-in-out duration-150">
-                                        <div class="squircle relative flex-shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
+                                        <div class="squircle relative shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
                                             @svg('fluent-chat-bubbles-help', 'h-7 w-7')
                                         </div>
                                         <div class="ml-4">
@@ -73,7 +73,7 @@
                                     </a>
 
                                     <a href="{{ route('projects.docs') }}" class="group -m-3 p-3 flex items-start rounded-lg hover:bg-gray-700 transition ease-in-out duration-150">
-                                        <div class="squircle relative flex-shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
+                                        <div class="squircle relative shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
                                             @svg('fluent-class', 'h-7 w-7')
                                         </div>
                                         <div class="ml-4">
@@ -87,7 +87,7 @@
                                     </a>
 
                                     <a href="{{ route('projects.exchange') }}" class="group -m-3 p-3 flex items-start rounded-lg hover:bg-gray-700 transition ease-in-out duration-150">
-                                        <div class="squircle relative flex-shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
+                                        <div class="squircle relative shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
                                             @svg('fluent-apps-add-in', 'h-7 w-7')
                                         </div>
                                         <div class="ml-4">
@@ -101,7 +101,7 @@
                                     </a>
 
                                     <a href="{{ route('projects.galaxy') }}" class="group -m-3 p-3 flex items-start rounded-lg hover:bg-gray-700 transition ease-in-out duration-150">
-                                        <div class="squircle relative flex-shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
+                                        <div class="squircle relative shrink-0 flex items-center justify-center h-10 w-10 bg-gradient-to-r from-orange-500 to-amber-500 text-white sm:h-12 sm:w-12">
                                             @svg('fluent-rocket', 'h-7 w-7')
                                         </div>
                                         <div class="ml-4">
@@ -136,7 +136,7 @@
             </div>
         </div>
 
-        <div x-description="Mobile menu, show/hide based on mobile menu state." x-show="mobileMenuOpen" x-transition:enter="duration-200 ease-out" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-100 ease-in" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="absolute z-50 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+        <div x-description="Mobile menu, show/hide based on mobile menu state." x-show="mobileMenuOpen" x-transition:enter="duration-200 ease-out" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-100 ease-in" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95" class="absolute z-50 top-0 inset-x-0 p-2 transition origin-top-right md:hidden">
             <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-gray-800 divide-y-2 divide-gray-700">
                 <div class="pt-5 pb-6 px-5">
                     <div class="flex items-center justify-between">
@@ -155,42 +155,42 @@
                     <div class="mt-6">
                         <nav class="grid gap-y-8">
                             <a href="{{ route('projects.identity') }}" class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-700 space-x-3 transition ease-in-out duration-200">
-                                @svg('fluent-paint-bucket', 'flex-shrink-0 h-7 w-7 text-amber-500')
+                                @svg('fluent-paint-bucket', 'shrink-0 h-7 w-7 text-amber-500')
                                 <span class="text-base font-medium text-gray-200">
                                     All-new Visual Identity
                                 </span>
                             </a>
 
                             <a href="{{ route('projects.website') }}" class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-700 space-x-3 transition ease-in-out duration-200">
-                                @svg('fluent-app-generic', 'flex-shrink-0 h-7 w-7 text-amber-500')
+                                @svg('fluent-app-generic', 'shrink-0 h-7 w-7 text-amber-500')
                                 <span class="text-base font-medium text-gray-200">
                                     Brand-new Website
                                 </span>
                             </a>
 
                             <a href="{{ route('projects.support') }}" class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-700 space-x-3 transition ease-in-out duration-200">
-                                @svg('fluent-chat-bubbles-help', 'flex-shrink-0 h-7 w-7 text-amber-500')
+                                @svg('fluent-chat-bubbles-help', 'shrink-0 h-7 w-7 text-amber-500')
                                 <span class="text-base font-medium text-gray-200">
                                     Support Changes
                                 </span>
                             </a>
 
                             <a href="{{ route('projects.docs') }}" class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-700 space-x-3 transition ease-in-out duration-200">
-                                @svg('fluent-class', 'flex-shrink-0 h-7 w-7 text-amber-500')
+                                @svg('fluent-class', 'shrink-0 h-7 w-7 text-amber-500')
                                 <span class="text-base font-medium text-gray-200">
                                     Re-written Nova docs
                                 </span>
                             </a>
 
                             <a href="{{ route('projects.exchange') }}" class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-700 space-x-3 transition ease-in-out duration-200">
-                                @svg('fluent-apps-add-in', 'flex-shrink-0 h-7 w-7 text-amber-500')
+                                @svg('fluent-apps-add-in', 'shrink-0 h-7 w-7 text-amber-500')
                                 <span class="text-base font-medium text-gray-200">
                                     The Nova Exchange
                                 </span>
                             </a>
 
                             <a href="{{ route('projects.galaxy') }}" class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-700 space-x-3 transition ease-in-out duration-200">
-                                @svg('fluent-rocket', 'flex-shrink-0 h-7 w-7 text-amber-500')
+                                @svg('fluent-rocket', 'shrink-0 h-7 w-7 text-amber-500')
                                 <span class="text-base font-medium text-gray-200">
                                     Secret Project
                                 </span>

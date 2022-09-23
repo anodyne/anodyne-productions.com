@@ -51,7 +51,7 @@
                     </div>
 
                     <div x-show="version === '2.3.2'" class="mt-8 flex space-x-3 text-white font-medium text-sm leading-6">
-                        @svg('fluent-warning', 'h-7 w-7 flex-shrink-0 text-amber-300')
+                        @svg('fluent-warning', 'h-7 w-7 shrink-0 text-amber-300')
                         <span>Nova 2.3.2 is legacy software and intended only for games hosted on a server running PHP 5.2. This version of Nova is no longer receiving updates.</span>
                     </div>
 
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="-mt-6 aspect-w-5 aspect-h-3 md:aspect-w-2 md:aspect-h-1">
-                <img class="transform translate-x-6 translate-y-6 rounded-xl object-cover object-left-top sm:translate-x-12 lg:translate-y-20" src="/images/nova2-admin.webp" alt="Nova 2 admin screenshot">
+                <img class="translate-x-6 translate-y-6 rounded-xl object-cover object-left-top sm:translate-x-12 lg:translate-y-20" src="/images/nova2-admin.webp" alt="Nova 2 admin screenshot">
             </div>
         </div>
     </div>
