@@ -1,8 +1,12 @@
 <div class="relative bg-gray-800 overflow-hidden" x-data="{ open: false }">
     <div class="relative pt-6 pb-16 sm:pb-0">
+        <div class="transform blur-2xl absolute inset-0 opacity-50">
+            <img src="/images/circle-scatter-haikei.png" alt="">
+        </div>
+
         <x-nova2.nav />
 
-        <main class="mt-16 sm:mt-24">
+        <main class="relative mt-16 sm:mt-24">
             <div class="mx-auto max-w-7xl">
                 <div class="lg:grid lg:grid-cols-12 lg:gap-8">
                     <div class="px-4 sm:px-6 lg:px-8 sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left lg:flex lg:items-center">
@@ -35,4 +39,4 @@
     </div>
 </div>
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="text-gray-800 "><path fill="currentColor" fill-opacity="1" d="M0,32L60,48C120,64,240,96,360,101.3C480,107,600,85,720,80C840,75,960,85,1080,106.7C1200,128,1320,160,1380,176L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
+{{-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="text-gray-800 "><path fill="currentColor" fill-opacity="1" d="M0,32L60,48C120,64,240,96,360,101.3C480,107,600,85,720,80C840,75,960,85,1080,106.7C1200,128,1320,160,1380,176L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg> --}}

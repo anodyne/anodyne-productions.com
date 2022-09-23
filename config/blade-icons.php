@@ -18,7 +18,26 @@ return [
             'prefix' => 'fluent',
             'class' => '',
         ],
-
+        'flex' => [
+            'path' => 'resources/svg/flex-line',
+            'prefix' => 'flex',
+            'class' => '',
+        ],
+        'plump' => [
+            'path' => 'resources/svg/plump',
+            'prefix' => 'plump',
+            'class' => '',
+        ],
+        'core' => [
+            'path' => 'resources/svg/core',
+            'prefix' => 'core',
+            'class' => '',
+        ],
+        'uxl' => [
+            'path' => 'resources/svg/ux-line',
+            'prefix' => 'uxl',
+            'class' => '',
+        ],
         'streamline' => [
             'path' => 'resources/svg/streamline',
             'prefix' => 'st',

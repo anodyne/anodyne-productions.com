@@ -51,19 +51,19 @@
                         </div>
                     </div>
 
-                    <div x-show="version === '2.6.2'" class="mt-8 flex space-x-3 text-white font-medium text-sm leading-6">
-                        @svg('fluent-warning', 'h-7 w-7 shrink-0 text-amber-300')
+                    <div x-show="version === '2.6.2'" class="mt-8 flex space-x-3 text-white font-medium text-sm leading-6" x-cloak>
+                        @svg('plump-s-warning-triangle', 'h-7 w-7 shrink-0 text-amber-300')
                         <span>Nova 2.6.2 is legacy software and intended only for games hosted on a server running PHP 5.3 - 5.6. This version of Nova is no longer receiving updates.</span>
                     </div>
 
-                    <div x-show="version === '2.3.2'" class="mt-8 flex space-x-3 text-white font-medium text-sm leading-6">
-                        @svg('fluent-warning', 'h-7 w-7 shrink-0 text-amber-300')
+                    <div x-show="version === '2.3.2'" class="mt-8 flex space-x-3 text-white font-medium text-sm leading-6" x-cloak>
+                        @svg('plump-s-warning-triangle', 'h-7 w-7 shrink-0 text-amber-300')
                         <span>Nova 2.3.2 is legacy software and intended only for games hosted on a server running PHP 5.2. This version of Nova is no longer receiving updates.</span>
                     </div>
 
-                    <a x-show="genre && version" :href=`/downloads/nova2/nova-${version}-${genre}.zip` class="mt-8 bg-white border border-transparent rounded-lg shadow px-6 py-3 inline-flex items-center justify-center space-x-2 text-base font-medium text-amber-500 hover:bg-amber-50 w-full lg:w-auto transition-colors ease-in-out duration-200">
+                    <a x-show="genre && version" :href=`/downloads/nova2/nova-${version}-${genre}.zip` class="mt-8 bg-white border border-transparent rounded-lg shadow px-6 py-3 inline-flex items-center justify-center space-x-2 text-base font-medium text-amber-500 hover:bg-amber-50 w-full lg:w-auto transition-colors ease-in-out duration-200" x-cloak>
                         <span>Download now</span>
-                        @svg('fluent-cloud-download', 'h-6 w-6')
+                        @svg('plump-s-cloud-download', 'h-6 w-6')
                     </a>
                 </div>
             </div>

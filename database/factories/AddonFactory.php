@@ -12,9 +12,15 @@ class AddonFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->words(3, true),
-            'type' => $this->faker->randomElement(['theme', 'extension', 'genre', 'rank']),
+            'name' => str($this->faker->words(3, true))->title(),
+            'type' => $this->faker->randomElement([
+                'theme',
+                'extension',
+                // 'genre',
+                // 'rank'
+            ]),
             'rating' => $this->faker->randomFloat(1, 1, 5),
+            'published' => $this->faker->randomElement([true, false]),
         ];
     }
 }

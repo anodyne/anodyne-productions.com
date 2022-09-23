@@ -12,9 +12,9 @@
                 </p>
                 <div class="mt-8 sm:flex">
                     <div class="rounded-lg shadow">
-                        <a href="https://patreon.com/anodyneproductions" target="_blank" class="bg-white border border-transparent rounded-lg shadow px-6 py-3 inline-flex items-center justify-center space-x-2 text-base font-medium text-amber-500 hover:bg-amber-50 w-full lg:w-auto transition-colors ease-in-out duration-200">
+                        <a href="https://patreon.com/anodyneproductions" target="_blank" class="group bg-spanish-roast text-white hover:text-amber-500 rounded-lg shadow px-6 py-3 inline-flex items-center justify-center space-x-2 text-base font-semibold w-full lg:w-auto transition">
                             <span>Become a patron</span>
-                            @svg('fluent-arrow-right-circle', 'h-6 w-6')
+                            @svg('plump-s-arrow-right-circle', 'h-6 w-6 text-white/50 group-hover:text-amber-500 transition')
                         </a>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                             </div>
                             <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute z-10 inset-0 flex items-center justify-center text-sm {{ $sponsor['hoverColor'] === 'dark' ? 'text-gray-900' : 'text-white' }} font-medium">
                                 Visit site
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="ml-2"><circle cx="10" cy="10" r="7.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle><path d="M12.25 11.25V7.75H8.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 8L7.75 12.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                @svg('plump-s-link-square', 'h-4 w-4 ml-2')
                             </div>
                         </div>
                         <figcaption class="py-3 px-4">

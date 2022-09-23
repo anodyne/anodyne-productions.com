@@ -22,12 +22,12 @@ class AddonPolicy
 
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     public function view(User $user, Addon $addon): bool
     {
-        return true;
+        return $addon->user->is($user);
     }
 
     public function create(User $user): bool

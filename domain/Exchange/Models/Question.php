@@ -5,13 +5,20 @@ declare(strict_types = 1);
 namespace Domain\Exchange\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Question extends Model
 {
-    public $table = 'products_questions';
+    protected $table = 'addon_questions';
 
-    public function product()
+    protected $fillable = ['question', 'answer', 'published'];
+
+    protected $casts = [
+        'published' => 'boolean',
+    ];
+
+    public function addon(): BelongsTo
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Addon::class);
     }
 }

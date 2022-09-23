@@ -1,31 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Domain\Docs\CommonMark\Extensions\Badge;
 
-use League\CommonMark\ElementRendererInterface;
-use League\CommonMark\HtmlElement;
-use League\CommonMark\Inline\Element\AbstractInline;
-use League\CommonMark\Inline\Renderer\InlineRendererInterface;
+use League\CommonMark\Node\Node;
+use League\CommonMark\Renderer\ChildNodeRendererInterface;
+use League\CommonMark\Renderer\NodeRendererInterface;
+use League\CommonMark\Util\HtmlElement;
 
-final class BadgeRenderer implements InlineRendererInterface
+class BadgeRenderer implements NodeRendererInterface
 {
-    public function render(AbstractInline $inline, ElementRendererInterface $htmlRenderer)
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer)
     {
-        if (! ($inline instanceof Badge)) {
-            throw new \InvalidArgumentException('Incompatible inline type: '.get_class($inline));
-        }
+        $attributes = $node->data->getData('attributes', ['class' => 'badge']);
 
-        $attributes = $inline->getData('attributes', ['class' => 'badge']);
-
-        if ($inline->type) {
+        if ($node->type) {
             $attributes['class'] = isset($attributes['class']) ? $attributes['class'].' ' : '';
-            $attributes['class'] .= "is-{$inline->type}";
+            $attributes['class'] .= "is-{$node->type}";
         }
 
         return new HtmlElement(
             'span',
-            $attributes,
-            $htmlRenderer->renderInlines($inline->children())
+            (array) $attributes,
+            $childRenderer->renderNodes($node->children())
         );
     }
 }

@@ -3,6 +3,7 @@
 namespace Domain\Docs\Components;
 
 use BladeUIKit\Components\Markdown\Markdown as BUKMarkdown;
+use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\GithubFlavoredMarkdownConverter;
 use League\CommonMark\MarkdownConverterInterface;
 
@@ -19,6 +20,6 @@ class Markdown extends BUKMarkdown
             return new GithubFlavoredMarkdownConverter($options);
         }
 
-        return resolve('markdown');
+        return new CommonMarkConverter();
     }
 }

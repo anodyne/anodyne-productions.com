@@ -2,9 +2,12 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
 
 module.exports = {
+    darkMode: 'class',
     content: [
         './resources/**/*.{js,ts,vue,blade.php,css}',
+        './vendor/filament/**/*.blade.php',
         './app/View/Components/*.php',
+        './app/Filament/Resources/*.php',
         './vendor/livewire-ui/modal/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './safelist.txt',
@@ -19,6 +22,11 @@ module.exports = {
 
                 black: '#000',
                 white: '#fff',
+
+                primary: colors.sky,
+                danger: colors.rose,
+                success: colors.emerald,
+                warning: colors.amber,
 
                 amber: {
                     ...colors.amber,
@@ -159,7 +167,8 @@ module.exports = {
                 }
             }),
             fontFamily: {
-                sans: ['"Inter var"', ...defaultTheme.fontFamily.sans]
+                sans: ['"Inter var"', ...defaultTheme.fontFamily.sans],
+                display: ['"Lexend"', ...defaultTheme.fontFamily.sans]
             },
             spacing: {
                 18: '4.5rem',

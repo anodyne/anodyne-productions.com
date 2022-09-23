@@ -4,6 +4,8 @@ namespace Domain\Users\Models;
 
 use Domain\Exchange\Models\Addon;
 use Domain\Users\Role;
+use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,10 +13,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens;
     use HasFactory;
@@ -53,19 +56,30 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function getIsAdminAttribute(): bool
+    public function canAccessFilament(): bool
     {
-        return $this->role === Role::ADMIN;
+        return true;
     }
 
-    public function getIsStaffAttribute(): bool
+    public function isAdmin(): Attribute
     {
-        return $this->role === Role::STAFF;
+        return Attribute::make(
+            get: fn ($value): bool => $this->role === Role::ADMIN
+        );
     }
 
-    public function getIsUserAttribute(): bool
+    public function isStaff(): Attribute
     {
-        return $this->role === Role::USER;
+        return Attribute::make(
+            get: fn ($value): bool => $this->role === Role::STAFF
+        );
+    }
+
+    public function isUser(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value): bool => $this->role === Role::USER
+        );
     }
 
     public function getRoleColorAttribute(): string
@@ -79,6 +93,11 @@ class User extends Authenticatable
     public function addons(): HasMany
     {
         return $this->hasMany(Addon::class);
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults();
     }
 
     protected function defaultProfilePhotoUrl()

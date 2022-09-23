@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Filament\Resources\AddonResource;
 use App\View\Components\Button;
 use App\View\Components\LandingDefinitionList;
 use App\View\Components\LandingDefinitionListItem;
@@ -9,6 +10,10 @@ use App\View\Components\LandingFeatureList;
 use App\View\Components\LandingFeatureListItem;
 use App\View\Components\LandingPanel;
 use App\View\Components\LandingSection;
+use Filament\Facades\Filament;
+use Filament\Navigation\NavigationBuilder;
+use Filament\Navigation\NavigationItem;
+use Filament\Navigation\UserMenuItem;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Blade;
@@ -44,6 +49,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->setupFactories();
         $this->setupMacros();
+        $this->setupFilament();
     }
 
     protected function setupFactories()
@@ -55,6 +61,29 @@ class AppServiceProvider extends ServiceProvider
 
             return $namespace.$modelName.'Factory';
         });
+    }
+
+    protected function setupFilament(): void
+    {
+        Filament::serving(function () {
+            Filament::registerTheme('/css/filament.css');
+
+            Filament::registerUserMenuItems([
+                'account' => UserMenuItem::make()->icon('flex-user-square'),
+                'logout' => UserMenuItem::make()->icon('flex-logout'),
+            ]);
+        });
+
+        // Filament::navigation(function (NavigationBuilder $builder): NavigationBuilder {
+        //     return $builder->items([
+        //         NavigationItem::make('Dashboard')
+        //             ->icon('flex-home')
+        //             ->isActiveWhen(fn (): bool => request()->routeIs('filament.pages.dashboard'))
+        //             ->url(route('filament.pages.dashboard')),
+        //         // ...AddonResource::getNavigationItems(),
+        //         // ...Settings::getNavigationItems(),
+        //     ]);
+        // });
     }
 
     protected function setupMacros()
