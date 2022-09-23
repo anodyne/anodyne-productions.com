@@ -1,16 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace Domain\Users\Models;
 
-use Domain\Account\Role;
+use Domain\Users\Role;
 use Domain\Exchange\Models\Addon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Activitylog\Traits\CausesActivity;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable
 {
@@ -19,6 +22,9 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use LogsActivity;
+    use CausesActivity;
+    use SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -26,7 +32,12 @@ class User extends Authenticatable
         'password',
         'role',
         'is_exchange_author',
+        'is_galaxy_author',
     ];
+
+    protected static $logFillable = true;
+
+    protected static $logOnlyDirty = true;
 
     protected $hidden = [
         'password',

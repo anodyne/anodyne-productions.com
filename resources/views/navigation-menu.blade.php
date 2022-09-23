@@ -70,27 +70,13 @@
                                 {{ __('Dashboard') }}
                             </x-jet-nav-link>
 
-                            @can('viewAny', App\Models\User::class)
-                            <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
+                            @can('viewAny', Domain\Users\Models\User::class)
+                            <x-jet-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">
                                 {{ __('Users') }}
                             </x-jet-nav-link>
                             @endcan
                         </nav>
                     </div>
-                    {{-- <div class="px-12 lg:px-0">
-                        <!-- Search -->
-                        <div class="max-w-xs mx-auto w-full lg:max-w-md">
-                            <label for="search" class="sr-only">Search</label>
-                            <div class="relative text-gray-400 focus-within:text-gray-600">
-                                <div class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
-                                    <svg class="h-5 w-5" x-description="Heroicon name: search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </div>
-                                <input id="search" class="block w-full text-white bg-white bg-opacity-20 py-2 pl-10 pr-3 border border-transparent rounded-md leading-5 focus:text-gray-900 placeholder-gray-300 focus:outline-none focus:bg-opacity-100 focus:border-transparent focus:placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Search" type="search" name="search">
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
 
@@ -130,6 +116,8 @@
                 </div>
                 <div class="mt-3 px-2 space-y-1">
                     <a href="{{ route('dashboard') }}" class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">{{ __('Dashboard') }}</a>
+
+                    <a href="{{ route('users') }}" class="block rounded-md px-3 py-2 text-base text-gray-900 font-medium hover:bg-gray-100 hover:text-gray-800">{{ __('Users') }}</a>
                 </div>
             </div>
             <div class="pt-4 pb-2">

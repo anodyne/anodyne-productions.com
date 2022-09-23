@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Domain\Exchange\Policies;
 
-use App\Models\User;
-use Domain\Account\Role;
+use Domain\Users\Models\User;
+use Domain\Users\Role;
 use Domain\Exchange\Models\Addon;
 use Illuminate\Auth\Access\HandlesAuthorization;
 

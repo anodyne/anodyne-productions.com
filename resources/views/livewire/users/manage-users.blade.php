@@ -132,95 +132,143 @@
 
     <x-slideover wire:model.defer="showEditSlideover" :title="optional($editing)->name">
         <x-slot name="content">
-            <div class="space-y-6 pt-6 pb-5">
-                <x-input.group label="Name" for="name" :error="$errors->first('name')">
-                    <x-input.text id="name" wire:model="editing.name" />
-                </x-input.group>
+            <div x-data="{ activeTab: 'user' }" x-on:slideover-opened.window="activeTab = 'user'">
+                <div class="border-b border-gray-200">
+                    <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                        <button type="button" x-on:click.prevent="activeTab = 'user'" class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors ease-in-out duration-150" :class="{ 'border-orange-500 text-orange-600': activeTab === 'user', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': activeTab !== 'user' }">User Info</button>
+                        <button type="button" x-on:click.prevent="activeTab = 'activity'" class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-colors ease-in-out duration-150" :class="{ 'border-orange-500 text-orange-600': activeTab === 'activity', 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300': activeTab !== 'activity' }">Activity Log</button>
+                    </nav>
+                </div>
 
-                <x-input.group label="Email Address" for="email" :error="$errors->first('email')">
-                    <x-input.email id="email" wire:model="editing.email" />
-                </x-input.group>
+                <div x-show="activeTab === 'user'" class="divide-y divide-gray-200">
+                    <div class="space-y-6 pt-6 pb-5">
+                        <x-input.group label="Name" for="name" :error="$errors->first('name')">
+                            <x-input.text id="name" wire:model="editing.name" />
+                        </x-input.group>
 
-                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                <div x-data="{ photoName: null, photoPreview: null }" class="col-span-6 sm:col-span-4">
-                    <!-- Profile Photo File Input -->
-                    <input type="file" class="hidden"
-                        wire:model="photo"
-                        x-ref="photo"
-                        x-on:change="
-                            photoName = $refs.photo.files[0].name;
-                            const reader = new FileReader();
-                            reader.onload = (e) => {
-                                photoPreview = e.target.result;
-                            };
-                            reader.readAsDataURL($refs.photo.files[0]);
-                        " />
+                        <x-input.group label="Email Address" for="email" :error="$errors->first('email')">
+                            <x-input.email id="email" wire:model="editing.email" />
+                        </x-input.group>
 
-                    <x-jet-label for="photo" value="{{ __('Photo') }}" />
+                        @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                        <div x-data="{ photoName: null, photoPreview: null }" class="col-span-6 sm:col-span-4">
+                            <!-- Profile Photo File Input -->
+                            <input type="file" class="hidden"
+                                wire:model="photo"
+                                x-ref="photo"
+                                x-on:change="
+                                    photoName = $refs.photo.files[0].name;
+                                    const reader = new FileReader();
+                                    reader.onload = (e) => {
+                                        photoPreview = e.target.result;
+                                    };
+                                    reader.readAsDataURL($refs.photo.files[0]);
+                                " />
 
-                    <!-- Current Profile Photo -->
-                    <div class="mt-2" x-show="! photoPreview">
-                        <img src="{{ optional($editing)->profile_photo_url }}" alt="{{ optional($editing)->name }}" class="squircle h-20 w-20 object-cover">
+                            <x-jet-label for="photo" value="{{ __('Photo') }}" />
+
+                            <!-- Current Profile Photo -->
+                            <div class="mt-2" x-show="! photoPreview">
+                                <img src="{{ optional($editing)->profile_photo_url }}" alt="{{ optional($editing)->name }}" class="squircle h-20 w-20 object-cover">
+                            </div>
+
+                            <!-- New Profile Photo Preview -->
+                            <div class="mt-2" x-show="photoPreview">
+                                <span class="block squircle w-20 h-20"
+                                    x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
+                                </span>
+                            </div>
+
+                            <x-button class="mt-2 mr-2" x-on:click.prevent="$refs.photo.click()">Select a New Photo</x-button>
+
+                            @if (optional($editing)->profile_photo_path)
+                                <x-button class="mt-2" wire:click="deleteProfilePhoto">Remove Photo</x-button>
+                            @endif
+
+                            <x-jet-input-error for="photo" class="mt-2" />
+                        </div>
+                    @endif
                     </div>
 
-                    <!-- New Profile Photo Preview -->
-                    <div class="mt-2" x-show="photoPreview">
-                        <span class="block squircle w-20 h-20"
-                            x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
-                        </span>
+                    @if (auth()->user()->can('updateRole', $editing) || auth()->user()->can('updatePermissions', $editing))
+                    <div class="space-y-6 pt-6 pb-5">
+                        @can('updateRole', $editing)
+                        <x-input.group label="Role" for="role">
+                            <x-input.select id="role" wire:model="editing.role">
+                                <option value="admin">Admin</option>
+                                <option value="staff">Staff</option>
+                                <option value="user">User</option>
+                            </x-input.select>
+                        </x-input.group>
+                        @endcan
+
+                        @can('updatePermissions', $editing)
+                        <fieldset>
+                            <legend class="text-sm font-medium text-gray-900">
+                                Permissions
+                            </legend>
+                            <div class="flex flex-col mt-2 space-y-3">
+                                @if (config('services.anodyne.exchange'))
+                                    <x-input.checkbox label="Exchange Author" for="is_exchange_author" wire:model="editing.is_exchange_author" />
+                                @endif
+
+                                @if (config('services.anodyne.galaxy'))
+                                    <x-input.checkbox label="Galaxy Author" for="is_galaxy_author" wire:model="editing.is_galaxy_author" />
+                                @endif
+                            </div>
+                        </fieldset>
+                        @endcan
                     </div>
-
-                    <x-button class="mt-2 mr-2" x-on:click.prevent="$refs.photo.click()">Select a New Photo</x-button>
-
-                    @if (optional($editing)->profile_photo_path)
-                        <x-button class="mt-2" wire:click="deleteProfilePhoto">Remove Photo</x-button>
                     @endif
 
-                    <x-jet-input-error for="photo" class="mt-2" />
-                </div>
-            @endif
-            </div>
+                    @can('delete', $editing)
+                    <div class="space-y-4 pt-6 pb-5">
+                        <h2 class="text-lg font-medium">Delete account?</h2>
 
-            @if (auth()->user()->can('updateRole', $editing) || auth()->user()->can('updatePermissions', $editing))
-            <div class="space-y-6 pt-6 pb-5">
-                @can('updateRole', $editing)
-                <x-input.group label="Role" for="role">
-                    <x-input.select id="role" wire:model="editing.role">
-                        <option value="admin">Admin</option>
-                        <option value="staff">Staff</option>
-                        <option value="user">User</option>
-                    </x-input.select>
-                </x-input.group>
-                @endcan
+                        <p class="text-sm leading-6 text-gray-600">Once this account is deleted, all of its resources and data will be permanently deleted. Before deleting the account, please verify this is the correct account and you have downloaded any data or information that should be retained.</p>
 
-                @can('updatePermissions', $editing)
-                <fieldset>
-                    <legend class="text-sm font-medium text-gray-900">
-                        Permissions
-                    </legend>
-                    <div class="flex flex-col mt-2 space-y-3">
-                        @if (config('services.anodyne.exchange'))
-                            <x-input.checkbox label="Exchange Author" for="is_exchange_author" wire:model="editing.is_exchange_author" />
-                        @endif
-
-                        @if (config('services.anodyne.galaxy'))
-                            <x-input.checkbox label="Galaxy Author" for="is_galaxy_author" wire:model="editing.is_galaxy_author" />
-                        @endif
+                        <x-button color="red-soft" wire:click="deleteUser">Delete account</x-button>
                     </div>
-                </fieldset>
-                @endcan
+                    @endcan
+                </div>
+
+                <div x-show="activeTab === 'activity'">
+                    @can('viewActivity', $editing)
+                    <div class="space-y-6 pt-6 pb-5">
+                        <div>
+                            @if ($editing)
+                                <dl class="space-y-4">
+                                    @forelse (optional($editing)->activities->reverse() as $activity)
+                                    <div class="space-y-1">
+                                        <dt>{{ optional($activity->causer)->name ?? 'Anodyne System' }} {{ $activity->description }} {{ optional($activity->subject)->name }}'s account</dt>
+
+                                        <dd class="flex items-center space-x-8 text-sm text-gray-500">
+                                            <div class="flex items-center space-x-2">
+                                                @svg('fluent-clock', 'h-5 w-5 text-gray-400')
+                                                <span>{{ $activity->created_at->diffForHumans() }}</span>
+                                            </div>
+                                        </dd>
+
+                                        @if ($activity->description === 'updated')
+                                        <dd class="flex items-center space-x-8 text-sm text-gray-500">
+                                            <div class="flex items-center space-x-2">
+                                                @svg('fluent-edit-settings', 'h-5 w-5 text-gray-400 flex-shrink-0')
+                                                <span>{{ ucwords(str_replace('_', ' ', implode(', ', array_keys($activity->properties->get('attributes'))))) }}</span>
+                                            </div>
+                                        </dd>
+                                        @endif
+                                    </div>
+                                    @empty
+                                        No activity found
+                                    @endforelse
+                                </dl>
+                            @endif
+                        </div>
+                    </div>
+                    @endcan
+                </div>
+
             </div>
-            @endif
-
-            @can('delete', $editing)
-            <div class="space-y-4 pt-6 pb-5">
-                <h2 class="text-lg font-medium">Delete account?</h2>
-
-                <p class="text-sm leading-6 text-gray-600">Once this account is deleted, all of its resources and data will be permanently deleted. Before deleting the account, please verify this is the correct account and you have downloaded any data or information that should be retained.</p>
-
-                <x-button color="red-soft" wire:click="deleteUser">Delete account</x-button>
-            </div>
-            @endcan
         </x-slot>
 
         <x-slot name="footer">

@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Domain\Exchange\Providers;
 
-use Domain\Account\Role;
+use Domain\Users\Role;
 use Domain\DomainServiceProvider;
 use Domain\Exchange\Livewire\ShowAddons;
 use Domain\Exchange\Models\Addon;
