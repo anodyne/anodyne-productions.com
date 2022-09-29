@@ -38,7 +38,7 @@ function Resource({ category, title, content, url, buttonText }) {
 
 const resources = [
     {
-        url: '/docs',
+        url: '/docs/3.0/introduction',
         category: 'Documentation',
         title: 'Learn all about Nova',
         content: "Nova's documentation has been re-written to be clearer and more helpful. We've added all-new sections about getting started, added pages to explain complex features, and dug deeper into the core of Nova to help users understand how to get the most out Nova.",

@@ -5,50 +5,47 @@ import { Button } from '@/components/marketing/Button'
 import { ExternalLinkIcon } from '@/components/icons/flex/ExternalLinkIcon'
 import { ArrowRightCircleIcon } from '@/components/icons/flex/ArrowRightCircleIcon'
 import Link from 'next/link'
-import simCentralImage from '@/images/sponsors/logo_sim_central.svg'
-import blackHawkImage from '@/images/sponsors/blackhawklogo.png'
-import fifthFleetImage from '@/images/sponsors/fifth_fleet.png'
 
-const sponsors = [
-    {
-        title: 'Sim Central',
-        image: simCentralImage,
-        url: 'https://simcentral.org/',
-    },
-    {
-        title: 'USS Black Hawk',
-        image: blackHawkImage,
-        url: 'https://blackhawk.anurasims.com/',
-    },
-    {
-        title: 'Fifth Fleet',
-        image: fifthFleetImage,
-        url: 'https://portal.5thfleet.net/',
-    },
-]
+// const sponsors = [
+//     {
+//         title: 'Sim Central',
+//         image: simCentralImage,
+//         url: 'https://simcentral.org/',
+//     },
+//     {
+//         title: 'USS Black Hawk',
+//         image: blackHawkImage,
+//         url: 'https://blackhawk.anurasims.com/',
+//     },
+//     {
+//         title: 'Fifth Fleet',
+//         image: fifthFleetImage,
+//         url: 'https://portal.5thfleet.net/',
+//     },
+// ]
 
-function Sponsor({ title, image, url }) {
+function Sponsor({ name, link, image }) {
     return (
         <li className="group relative rounded-lg p-4 bg-white/10 hover:bg-white/[15%] ring-1 ring-inset ring-white/10 space-y-4 text-center transition">
             <h3 className="font-display text-xl leading-7 text-white">
-                {title}
+                {name}
             </h3>
 
-            <Image src={image} alt={title} className="block mx-auto w-auto h-32" />
+            <Image src={image} alt={name} width={500} height={500} layout="fill" className="block mx-auto w-auto h-32" />
 
             <div className='flex items-center justify-center space-x-1.5 text-blue-100 font-medium text-sm'>
                 <span>Visit site</span>
                 <ExternalLinkIcon className="h-3 w-3" />
             </div>
 
-            <Link href={url} className="absolute inset-0 group-hover:shadow-xl">
+            <a href={link} target="_blank" className="absolute inset-0 group-hover:shadow-xl" rel="noreferrer">
                 <span></span>
-            </Link>
+            </a>
         </li>
     )
 }
 
-export function Sponsors() {
+export function Sponsors({ sponsors }) {
     return (
         <section
             id="sponsors"
@@ -87,11 +84,13 @@ export function Sponsors() {
                     </Button>
                 </div>
 
-                <ul role="list" className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
-                    {sponsors.map((sponsor, sponsorIdx) => (
-                        <Sponsor {...sponsor} key={sponsorIdx} />
-                    ))}
-                </ul>
+                {sponsors.length > 0 && (
+                    <ul role="list" className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
+                        {sponsors.map((sponsor) => (
+                            <Sponsor {...sponsor} key={sponsor.id} />
+                        ))}
+                    </ul>
+                )}
             </Container>
         </section>
     )

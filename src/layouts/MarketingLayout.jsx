@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 export function MarketingLayout({ children, title }) {
     useEffect(() => {
         document.documentElement.classList.add('antialiased')
-        document.documentElement.classList.add("[font-feature-settings:'ss01']")
         document.documentElement.classList.add('h-full')
         document.documentElement.classList.add('scroll-smooth')
         document.body.classList.remove('bg-white')

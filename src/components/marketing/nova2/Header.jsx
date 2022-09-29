@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 import Link from 'next/link'
-import { Popover, Transition } from '@headlessui/react'
+import { Popover, Transition, Menu } from '@headlessui/react'
 import clsx from 'clsx'
 import { Container } from '@/components/marketing/Container'
 import { NovaLogo } from '@/components/Logos'
@@ -11,6 +11,8 @@ import { BookIcon } from '@/components/icons/flex/BookIcon'
 import { ArchiveIcon } from '@/components/icons/flex/ArchiveIcon'
 import { SupportIcon } from '@/components/icons/flex/SupportIcon'
 import { LoginIcon } from '@/components/icons/flex/LoginIcon'
+import { useAuth } from '@/hooks/auth'
+import { UserIcon } from '@/components/icons/flex/UserIcon'
 
 function MobileNavLink({ href, children }) {
     return (
@@ -51,7 +53,7 @@ function MobileNavIcon({ open }) {
     )
 }
 
-function MobileNavigation() {
+function MobileNavigation({ user }) {
     return (
         <Popover>
             <Popover.Button
@@ -95,7 +97,7 @@ function MobileNavigation() {
                             <DownloadIcon className="h-6 w-6 text-slate-500" />
                             <span>Download</span>
                         </MobileNavLink>
-                        <MobileNavLink href="/docs/2.6/introduction">
+                        <MobileNavLink href={"/docs/" + process.env.NEXT_PUBLIC_DOCS_CURRENT_VERSION + "/introduction"}>
                             <BookIcon className="h-6 w-6 text-slate-500" />
                             <span>Docs</span>
                         </MobileNavLink>
@@ -108,10 +110,18 @@ function MobileNavigation() {
                             <span>Get Help</span>
                         </MobileNavLink>
                         <hr className="m-2 border-slate-300/40" />
-                        <MobileNavLink href="/login">
-                            <LoginIcon className="h-6 w-6 text-slate-500" />
-                            <span>Sign in</span>
-                        </MobileNavLink>
+
+                        {user ? (
+                            <MobileNavLink href="/login">
+                                <UserIcon className="h-6 w-6 text-slate-500" />
+                                <span>{user.name}</span>
+                            </MobileNavLink>
+                        ) : (
+                            <MobileNavLink href={process.env.NEXT_PUBLIC_BACKEND_URL + '/login'}>
+                                <LoginIcon className="h-6 w-6 text-slate-500" />
+                                <span>Sign in</span>
+                            </MobileNavLink>
+                        )}
                     </Popover.Panel>
                 </Transition.Child>
             </Transition.Root>
@@ -120,12 +130,14 @@ function MobileNavigation() {
 }
 
 export function Header() {
+    const { user } = useAuth()
+
     return (
         <header className="py-10">
             <Container>
                 <nav className="relative z-50 flex justify-between">
                     <div className="flex items-center md:gap-x-8">
-                        <Link href="#" aria-label="Home">
+                        <Link href="/" aria-label="Home">
                             <NovaLogo className="h-9 w-auto text-slate-700" />
                         </Link>
                         <div className="hidden md:flex md:gap-x-6">
@@ -141,7 +153,7 @@ export function Header() {
                                     <div>Download</div>
                                 </div>
                             </NavLink>
-                            <NavLink href="/docs/2.6/introduction">
+                            <NavLink href={"/docs/" + process.env.NEXT_PUBLIC_DOCS_CURRENT_VERSION + "/introduction"}>
                                 <BookIcon className="shrink-0 h-6 w-6 text-slate-500" />
                                 <div className='relative top-px'>
                                     <div>Docs</div>
@@ -163,15 +175,84 @@ export function Header() {
                     </div>
                     <div className="flex items-center gap-x-5 md:gap-x-8">
                         <div className="hidden md:block">
-                            <NavLink href="/login">
-                                <LoginIcon className="shrink-0 h-6 w-6 text-slate-500" />
-                                <div className='relative top-px'>
-                                    <div>Sign in</div>
-                                </div>
-                            </NavLink>
+                            {user ? (
+                                <Menu as="div" className="relative">
+                                    <Menu.Button className="inline-flex items-center space-x-2 rounded-md py-1 px-3 ring-1 ring-inset ring-transparent text-slate-600 hover:bg-white/30 hover:ring-white/30 hover:text-slate-900 transition font-display leading-none">
+                                        <UserIcon className="shrink-0 h-6 w-6 text-slate-500" />
+                                        <div className='relative top-px'>
+                                            <div>Account</div>
+                                        </div>
+                                    </Menu.Button>
+                                    <Transition
+                                        enter="transition duration-100 ease-out"
+                                        enterFrom="transform scale-95 opacity-0"
+                                        enterTo="transform scale-100 opacity-100"
+                                        leave="transition duration-75 ease-out"
+                                        leaveFrom="transform scale-100 opacity-100"
+                                        leaveTo="transform scale-95 opacity-0"
+                                    >
+                                        <Menu.Items className="absolute top-full right-0 mt-3 -mr-0.5 w-60 origin-top-right divide-y divide-slate-100 rounded-lg bg-white text-sm font-normal text-slate-900 shadow-md ring-1 ring-slate-900/5 focus:outline-none sm:-mr-3.5">
+                                            <p className="truncate py-3 px-3.5" role="none">
+                                                <span className="block text-xs text-slate-500" role="none">Signed in as</span>
+                                                <span className="mt-0.5 font-semibold" role="none">{user.email}</span>
+                                            </p>
+                                            <div className="py-1.5">
+                                                <Menu.Item>
+                                                    {({ active }) => (
+                                                        <a
+                                                            href={process.env.NEXT_PUBLIC_BACKEND_URL}
+                                                            className={clsx(
+                                                                'block px-3.5 py-1.5 hover:bg-slate-100',
+                                                                active && 'bg-slate-100 text-slate-900'
+                                                            )}
+                                                        >
+                                                            Dashboard
+                                                        </a>
+                                                    )}
+                                                </Menu.Item>
+                                                <Menu.Item>
+                                                    {({ active }) => (
+                                                        <a
+                                                            href={process.env.NEXT_PUBLIC_BACKEND_URL + '/profile'}
+                                                            className={clsx(
+                                                                'block px-3.5 py-1.5 hover:bg-slate-100',
+                                                                active && 'bg-slate-100 text-slate-900'
+                                                            )}
+                                                        >
+                                                            My profile
+                                                        </a>
+                                                    )}
+                                                </Menu.Item>
+                                            </div>
+                                            <div className="py-1.5">
+                                                <Menu.Item>
+                                                    {({ active }) => (
+                                                        <a
+                                                            href="/account-settings"
+                                                            className={clsx(
+                                                                'block px-3.5 py-1.5 hover:bg-slate-100',
+                                                                active && 'bg-slate-100 text-slate-900'
+                                                            )}
+                                                        >
+                                                            Log out
+                                                        </a>
+                                                    )}
+                                                </Menu.Item>
+                                            </div>
+                                        </Menu.Items>
+                                    </Transition>
+                                </Menu>
+                            ) : (
+                                <NavLink href={process.env.NEXT_PUBLIC_BACKEND_URL + '/login'}>
+                                    <LoginIcon className="shrink-0 h-6 w-6 text-slate-500" />
+                                    <div className='relative top-px'>
+                                        <div>Sign in</div>
+                                    </div>
+                                </NavLink>
+                            )}
                         </div>
                         <div className="-mr-1 md:hidden">
-                            <MobileNavigation />
+                            <MobileNavigation user={user} />
                         </div>
                     </div>
                 </nav>

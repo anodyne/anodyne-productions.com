@@ -4,3 +4,7 @@
 @import './prism.css';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+body {
+    font-feature-settings: 'ss01', 'ss03', 'cv11', 'zero';
+}

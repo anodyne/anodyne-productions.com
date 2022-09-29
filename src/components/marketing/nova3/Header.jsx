@@ -6,11 +6,11 @@ import { Container } from '@/components/marketing/Container'
 import { NovaLogo } from '@/components/Logos'
 import { NavLink } from '@/components/marketing/NavLink'
 import { StarIcon } from '@/components/icons/flex/StarIcon'
-import { DownloadIcon } from '@/components/icons/flex/DownloadIcon'
 import { BookIcon } from '@/components/icons/flex/BookIcon'
 import { QuestionIcon } from '@/components/icons/flex/QuestionIcon'
-import { SupportIcon } from '@/components/icons/flex/SupportIcon'
 import { LoginIcon } from '@/components/icons/flex/LoginIcon'
+import { useAuth } from '@/hooks/auth'
+import { UserIcon } from '@/components/icons/flex/UserIcon'
 
 function MobileNavLink({ href, children }) {
     return (
@@ -51,7 +51,7 @@ function MobileNavIcon({ open }) {
     )
 }
 
-function MobileNavigation() {
+function MobileNavigation({ user }) {
     return (
         <Popover>
             <Popover.Button
@@ -100,10 +100,18 @@ function MobileNavigation() {
                             <span>FAQs</span>
                         </MobileNavLink>
                         <hr className="m-2 border-slate-300/40" />
-                        <MobileNavLink href="/login">
-                            <LoginIcon className="h-6 w-6 text-slate-500" />
-                            <span>Sign in</span>
-                        </MobileNavLink>
+
+                        {user ? (
+                            <MobileNavLink href="/login">
+                                <UserIcon className="h-6 w-6 text-slate-500" />
+                                <span>{user.name}</span>
+                            </MobileNavLink>
+                        ) : (
+                            <MobileNavLink href={process.env.NEXT_PUBLIC_BACKEND_URL + '/login'}>
+                                <LoginIcon className="h-6 w-6 text-slate-500" />
+                                <span>Sign in</span>
+                            </MobileNavLink>
+                        )}
                     </Popover.Panel>
                 </Transition.Child>
             </Transition.Root>
@@ -112,12 +120,14 @@ function MobileNavigation() {
 }
 
 export function Header() {
+    const { user } = useAuth()
+
     return (
         <header className="py-10">
             <Container>
                 <nav className="relative z-50 flex justify-between">
                     <div className="flex items-center md:gap-x-8">
-                        <Link href="#" aria-label="Home">
+                        <Link href="/" aria-label="Home">
                             <NovaLogo className="h-9 w-auto text-slate-700" />
                         </Link>
                         <div className="hidden md:flex md:gap-x-6">
@@ -143,15 +153,24 @@ export function Header() {
                     </div>
                     <div className="flex items-center gap-x-5 md:gap-x-8">
                         <div className="hidden md:block">
-                            <NavLink href="/login">
-                                <LoginIcon className="shrink-0 h-6 w-6 text-slate-500" />
-                                <div className='relative top-px'>
-                                    <div>Sign in</div>
-                                </div>
-                            </NavLink>
+                            {user ? (
+                                <NavLink href="/login">
+                                    <UserIcon className="shrink-0 h-6 w-6 text-slate-500" />
+                                    <div className='relative top-px'>
+                                        <div>{user.name}</div>
+                                    </div>
+                                </NavLink>
+                            ) : (
+                                <NavLink href={process.env.NEXT_PUBLIC_BACKEND_URL+'/login'}>
+                                    <LoginIcon className="shrink-0 h-6 w-6 text-slate-500" />
+                                    <div className='relative top-px'>
+                                        <div>Sign in</div>
+                                    </div>
+                                </NavLink>
+                            )}
                         </div>
                         <div className="-mr-1 md:hidden">
-                            <MobileNavigation />
+                            <MobileNavigation user={user} />
                         </div>
                     </div>
                 </nav>

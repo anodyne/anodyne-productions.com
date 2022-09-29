@@ -95,7 +95,6 @@ export function DocsLayout({ children, title, tableOfContents }) {
 
     useEffect(() => {
         document.documentElement.classList.add('antialiased')
-        document.documentElement.classList.add("[font-feature-settings:'ss01']")
         document.body.classList.add('bg-white')
         document.body.classList.add('dark:bg-slate-900')
         document.body.classList.remove('bg-slate-50')

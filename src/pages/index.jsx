@@ -6,8 +6,9 @@ import { Download } from '@/components/marketing/nova2/Download'
 import { Resources } from '@/components/marketing/nova2/Resources'
 import { Sponsors } from '@/components/marketing/nova2/Sponsors'
 import { Footer } from '@/components/marketing/nova2/Footer'
+import axios from '@/lib/axios'
 
-export default function Home() {
+export default function Home({ sponsors }) {
     return (
         <>
             <Header />
@@ -15,10 +16,20 @@ export default function Home() {
             <Features />
             <Download />
             <Resources />
-            <Sponsors />
+            <Sponsors sponsors={sponsors} />
             <Footer />
         </>
     )
+}
+
+export async function getStaticProps() {
+    const response = await axios.get('/api/sponsors/premium')
+
+    return {
+        props: {
+            sponsors: response.data.data
+        }
+    }
 }
 
 Home.layoutProps = {
