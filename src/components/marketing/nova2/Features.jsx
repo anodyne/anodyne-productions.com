@@ -104,7 +104,7 @@ export function Features() {
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-3 gap-x-8 gap-y-16">
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 sm:gap-x-8 gap-y-16">
           {features.map((feature, featureIndex) => (
               <Feature
                 key={feature.name}

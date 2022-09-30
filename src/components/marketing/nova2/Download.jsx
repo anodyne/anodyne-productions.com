@@ -63,7 +63,7 @@ export function Download() {
                         Download Nova today.
                     </h2>
 
-                    <div className="relative grid grid-cols-2 gap-8 text-left mt-6">
+                    <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-8 text-left mt-6">
                         <Listbox value={selectedVersion} onChange={setSelectedVersion}>
                             <div className="relative">
                                 <Listbox.Label className="font-medium text-white/75 text-sm">Version</Listbox.Label>
