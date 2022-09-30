@@ -1,4 +1,4 @@
-import React, { lazy, useCallback, useEffect, useState } from 'react'
+import React, { Fragment, useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import clsx from 'clsx'
@@ -7,6 +7,8 @@ import { Hero3 } from '@/components/docs/Hero3'
 import { Navigation } from '@/components/Navigation'
 import { Prose } from '@/components/Prose'
 import { Header } from '@/components/docs/Header'
+import { BookIcon } from '@/components/icons/flex/BookIcon'
+import { Transition } from '@headlessui/react'
 
 const importNavigationFor = version => import(`@/pages/docs/${version}/navigation`)
 
@@ -61,15 +63,18 @@ function useTableOfContents(tableOfContents) {
 }
 
 export function DocsLayout({ children, title, tableOfContents }) {
-    const router = useRouter()
     const [navigation, setNavigation] = useState([])
+    const [reminderExpiration, setReminderExpiration] = useState(null)
+    const [reminderDismissed, setReminderDismissed] = useState(false)
+
+    console.log(children.props.markdoc.frontmatter.homePage)
+
+    const router = useRouter()
     const segments = router.pathname.split('/')
     const version = segments[2]
     const page = segments[3]
 
-    importNavigationFor(version).then(data => setNavigation(data.navigation))
-
-    let isHomePage = page === 'introduction'
+    let isHomePage = children.props.markdoc.frontmatter.homePage || false
     let isNova2 = version.includes('2.')
     let isNova3 = version.includes('3.')
     let allLinks = navigation.flatMap((section) => section.links)
@@ -93,12 +98,37 @@ export function DocsLayout({ children, title, tableOfContents }) {
         return section.children.findIndex(isActive) > -1
     }
 
+    const updateReminderExpirationFor = (version) => {
+        return () => {
+            let expiration = new Date()
+            expiration.setDate(expiration.getDate() + 30)
+
+            localStorage.setItem('anodyne-docs-' + version, expiration)
+            setReminderExpiration(expiration)
+        }
+    }
+
     useEffect(() => {
         document.documentElement.classList.add('antialiased')
         document.body.classList.add('bg-white')
         document.body.classList.add('dark:bg-slate-900')
         document.body.classList.remove('bg-slate-50')
-    })
+
+        importNavigationFor(version).then(data => setNavigation(data.navigation))
+
+        const reminderDismissalExpiration = localStorage.getItem("anodyne-docs-" + version)
+
+        if (reminderDismissalExpiration !== null) {
+            const now = new Date()
+            const expiration = new Date(reminderDismissalExpiration)
+
+            const nowUTC = Date.UTC(now.getFullYear(), now.getMonth(), now.getDay())
+            const expirationUTC = Date.UTC(expiration.getFullYear(), expiration.getMonth(), expiration.getDay())
+            const diffInDays = Math.floor((expirationUTC - nowUTC) / 1000 * 60 * 60 * 24)
+
+            setReminderDismissed(diffInDays > 0)
+        }
+    }, [version, reminderExpiration])
 
     return (
         <>
@@ -230,6 +260,52 @@ export function DocsLayout({ children, title, tableOfContents }) {
                             </>
                         )}
                     </nav>
+                </div>
+            </div>
+
+            <div aria-live="assertive" className="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:p-6 sm:items-end">
+                <div className="flex w-full flex-col items-center space-y-4 sm:items-end">
+                    <Transition
+                        as={Fragment}
+                        show={!reminderDismissed}
+                        enter="transform ease-out duration-300 transition"
+                        enterFrom="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+                        enterTo="translate-y-0 opacity-100 sm:translate-x-0"
+                        leave="transition ease-in duration-100"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-sky-500 dark:bg-sky-900 shadow-lg dark:highlight-white/10 shadow-sky-800/50 ring-1 ring-black ring-opacity-5">
+                            <div className="p-4">
+                                <div className="flex items-start">
+                                    <div className="flex-shrink-0">
+                                        <BookIcon className="h-7 w-7 text-sky-300 dark:text-sky-500" />
+                                    </div>
+                                    <div className="ml-3 w-0 flex-1">
+                                        <p className="text-sm font-medium text-white">You are viewing the Nova {version} docs</p>
+                                        <p className="mt-1 text-sm text-sky-200 dark:text-sky-400">If this doesn&rsquo;t match your version of Nova, you can use the dropdown in the header to change versions.</p>
+                                        <div className="mt-3 flex space-x-7">
+                                            <Link href={"/docs/" + version + "/resources/versioning#what-version-of-nova-am-i-running"} className="rounded-md bg-transparent text-sm font-medium text-sky-100 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-100 focus:ring-offset-2">
+                                                <span>What version of Nova do I have?</span>
+                                                <span className="ml-1.5">&rarr;</span>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                    <div className="ml-4 flex flex-shrink-0">
+                                        <button
+                                            type="button"
+                                            onClick={updateReminderExpirationFor(version)}
+                                            className="inline-flex rounded-md text-sky-300 dark:text-sky-600 hover:text-sky-200 dark:hover:text-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+                                        >
+                                            <span className="sr-only">Close</span>
+                                            <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" /></svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </Transition>
                 </div>
             </div>
         </>
