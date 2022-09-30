@@ -67,12 +67,9 @@ export function DocsLayout({ children, title, tableOfContents }) {
     const [reminderExpiration, setReminderExpiration] = useState(null)
     const [reminderDismissed, setReminderDismissed] = useState(false)
 
-    console.log(children.props.markdoc.frontmatter.homePage)
-
     const router = useRouter()
     const segments = router.pathname.split('/')
     const version = segments[2]
-    const page = segments[3]
 
     let isHomePage = children.props.markdoc.frontmatter.homePage || false
     let isNova2 = version.includes('2.')
