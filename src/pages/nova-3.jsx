@@ -1,4 +1,4 @@
-import { MarketingLayout } from '@/layouts/MarketingLayout'
+import { LightMarketingLayout } from '@/layouts/LightMarketingLayout'
 import { Header } from '@/components/marketing/nova3/Header'
 import { Hero } from '@/components/marketing/nova3/Hero'
 import { Features } from '@/components/marketing/nova3/Features'
@@ -21,5 +21,5 @@ export default function Nova3() {
 }
 
 Nova3.layoutProps = {
-    Layout: MarketingLayout
+    Layout: LightMarketingLayout
 }
