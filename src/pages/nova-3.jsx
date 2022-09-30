@@ -21,5 +21,6 @@ export default function Nova3() {
 }
 
 Nova3.layoutProps = {
-    Layout: LightMarketingLayout
+    Layout: LightMarketingLayout,
+    PageTitle: 'Nova 3 by Anodyne Productions'
 }

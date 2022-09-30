@@ -33,5 +33,6 @@ export async function getStaticProps() {
 }
 
 Home.layoutProps = {
-    Layout: LightMarketingLayout
+    Layout: LightMarketingLayout,
+    PageTitle: 'Nova by Anodyne Productions'
 }

@@ -67,6 +67,8 @@ export default function App({ Component, pageProps }) {
 
         pageTitle = pageProps.markdoc?.frontmatter.pageTitle || `${pageProps.markdoc?.frontmatter.title} - Docs`
         description = pageProps.markdoc?.frontmatter.description
+    } else {
+        pageTitle = Component.layoutProps.PageTitle
     }
 
     const Layout = layoutFile ? layouts[layoutFile] : Component.layoutProps.Layout

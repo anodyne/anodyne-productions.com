@@ -7,5 +7,6 @@ export default function Custom500() {
 }
 
 Custom500.layoutProps = {
-    Layout: LightMarketingLayout
+    Layout: LightMarketingLayout,
+    PageTitle: '500 Server Error'
 }

@@ -7,5 +7,6 @@ export default function Custom404() {
 }
 
 Custom404.layoutProps = {
-    Layout: LightMarketingLayout
+    Layout: LightMarketingLayout,
+    PageTitle: '404 Not Found'
 }
