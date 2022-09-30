@@ -11,8 +11,10 @@ import { BookIcon } from '@/components/icons/flex/BookIcon'
 import { ArchiveIcon } from '@/components/icons/flex/ArchiveIcon'
 import { SupportIcon } from '@/components/icons/flex/SupportIcon'
 import { LoginIcon } from '@/components/icons/flex/LoginIcon'
+import { LogoutIcon } from '@/components/icons/flex/LogoutIcon'
 import { useAuth } from '@/hooks/auth'
 import { UserIcon } from '@/components/icons/flex/UserIcon'
+import { HomeIcon } from '@/components/icons/flex/HomeIcon'
 
 function MobileNavLink({ href, children }) {
     return (
@@ -112,10 +114,24 @@ function MobileNavigation({ user }) {
                         <hr className="m-2 border-slate-300/40" />
 
                         {user ? (
-                            <MobileNavLink href="/login">
-                                <UserIcon className="h-6 w-6 text-slate-500" />
-                                <span>{user.name}</span>
-                            </MobileNavLink>
+                            <>
+                                <p className="truncate w-full p-2 font-medium" role="none">
+                                    <span className="block text-sm text-slate-500" role="none">Signed in as</span>
+                                    <span className="mt-0.5 font-semibold" role="none">{user.email}</span>
+                                </p>
+                                <MobileNavLink href={process.env.NEXT_PUBLIC_BACKEND_URL}>
+                                    <HomeIcon className="h-6 w-6 text-slate-500" />
+                                    <span>Dashboard</span>
+                                </MobileNavLink>
+                                <MobileNavLink href="/login">
+                                    <UserIcon className="h-6 w-6 text-slate-500" />
+                                    <span>My profile</span>
+                                </MobileNavLink>
+                                <MobileNavLink href="/login">
+                                    <LogoutIcon className="h-6 w-6 text-slate-500" />
+                                    <span>Log out</span>
+                                </MobileNavLink>
+                            </>
                         ) : (
                             <MobileNavLink href={process.env.NEXT_PUBLIC_BACKEND_URL + '/login'}>
                                 <LoginIcon className="h-6 w-6 text-slate-500" />
