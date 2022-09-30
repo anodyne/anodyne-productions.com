@@ -8,14 +8,15 @@ export function Footer() {
         <footer className="bg-slate-50">
             <Container>
                 <div className="py-16">
-                    <AnodyneLogo className="mx-auto h-6 w-auto grayscale text-slate-400" />
+                    <AnodyneLogo className="mx-auto h-6 w-auto text-slate-400" />
 
                     <nav className="mt-10 text-sm" aria-label="quick links">
-                        <div className="-my-1 flex flex-col sm:flex-row text-center sm:text-left justify-center items-center gap-x-6 gap-y-3 sm:gap-y-0 text-lg sm:text-sm">
+                        <div className="-my-1 flex flex-col sm:flex-row text-center sm:text-left justify-center items-center gap-x-6 gap-y-3 sm:gap-y-0 text-lg sm:text-base">
                             <NavLink href="#features">Features</NavLink>
                             <NavLink href="#download">Download</NavLink>
                             <NavLink href={"/docs/" + process.env.NEXT_PUBLIC_DOCS_CURRENT_VERSION + "/introduction"}>Docs</NavLink>
                             <NavLink href="#resources">Resources</NavLink>
+                            {/* <NavLink href="/exchange">Exchange</NavLink> */}
                             <NavLink href="https://discord.gg/7WmKUks">Get Help</NavLink>
                             <NavLink href="/nova-3">Nova 3</NavLink>
                         </div>
