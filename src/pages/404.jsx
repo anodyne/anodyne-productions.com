@@ -1,4 +1,4 @@
-import { MarketingLayout } from '@/layouts/MarketingLayout'
+import { LightMarketingLayout } from '@/layouts/LightMarketingLayout'
 
 export default function Custom404() {
     return (
@@ -7,5 +7,5 @@ export default function Custom404() {
 }
 
 Custom404.layoutProps = {
-    Layout: MarketingLayout
+    Layout: LightMarketingLayout
 }

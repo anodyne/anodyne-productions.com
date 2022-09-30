@@ -1,4 +1,4 @@
-import { MarketingLayout } from '@/layouts/MarketingLayout'
+import { LightMarketingLayout } from '@/layouts/LightMarketingLayout'
 
 export default function Custom500() {
     return (
@@ -7,5 +7,5 @@ export default function Custom500() {
 }
 
 Custom500.layoutProps = {
-    Layout: MarketingLayout
+    Layout: LightMarketingLayout
 }
