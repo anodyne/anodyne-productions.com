@@ -186,7 +186,7 @@ export function Download() {
                     ) : null}
 
                     {selectedVersion && selectedGenre ? (
-                        <Button href={getDownloadLink()} color="slate" className="mt-10 flex items-center space-x-2.5">
+                        <Button href={getDownloadLink()} color="slate" variant="nodark" className="mt-10 flex items-center space-x-2.5">
                             <div className='relative top-px'>
                                 <div>Download</div>
                             </div>

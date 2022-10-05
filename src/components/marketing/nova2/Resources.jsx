@@ -1,19 +1,6 @@
 import { Card } from '@/components/marketing/Card'
 import { Container } from '@/components/marketing/Container'
 
-function Resource({ category, title, content, url, buttonText }) {
-    return (
-        <Card as="article">
-            <Card.Title as="h3" href={url}>
-                {title}
-            </Card.Title>
-            <Card.Eyebrow>{category}</Card.Eyebrow>
-            <Card.Description>{content}</Card.Description>
-            <Card.Cta>{buttonText}</Card.Cta>
-        </Card>
-    )
-}
-
 const resources = [
     {
         url: "/docs/" + process.env.NEXT_PUBLIC_DOCS_CURRENT_VERSION + "/introduction",
@@ -38,12 +25,25 @@ const resources = [
     },
 ]
 
+function Resource({ category, title, content, url, buttonText }) {
+    return (
+        <Card as="article">
+            <Card.Title as="h3" href={url}>
+                {title}
+            </Card.Title>
+            <Card.Eyebrow>{category}</Card.Eyebrow>
+            <Card.Description>{content}</Card.Description>
+            <Card.Cta>{buttonText}</Card.Cta>
+        </Card>
+    )
+}
+
 export function Resources() {
     return (
-        <section id="resources" aria-label="Resources" className="bg-slate-50 py-20 sm:py-32">
+        <section id="resources" aria-label="Resources" className="bg-slate-50 dark:bg-slate-900 py-20 sm:py-32">
             <Container>
                 <div className="md:text-center">
-                    <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
+                    <h2 className="font-display text-3xl tracking-tight text-slate-900 dark:text-white sm:text-4xl">
                         <span className="relative whitespace-nowrap">Helpful resources</span>
                     </h2>
                 </div>
@@ -56,12 +56,6 @@ export function Resources() {
                         <Resource {...resource} key={resourceIdx} />
                     ))}
                 </ul>
-
-                {/* <div className="-mx-4 mt-16 grid max-w-2xl grid-cols-1 gap-y-10 sm:mx-auto lg:-mx-8 lg:max-w-none lg:grid-cols-3 xl:mx-0 xl:gap-x-8">
-                    {resources.map((resource, resourceIdx) => (
-                        <Resource {...resource} key={resourceIdx} />
-                    ))}
-                </div> */}
             </Container>
         </section>
     )

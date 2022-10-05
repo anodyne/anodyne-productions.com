@@ -1,4 +1,4 @@
-import { LightMarketingLayout } from '@/layouts/LightMarketingLayout'
+import { MarketingLayout } from '@/layouts/MarketingLayout'
 import { Header } from '@/components/marketing/nova2/Header'
 import { Hero } from '@/components/marketing/nova2/Hero'
 import { Features } from '@/components/marketing/nova2/Features'
@@ -33,6 +33,6 @@ export async function getStaticProps() {
 }
 
 Home.layoutProps = {
-    Layout: LightMarketingLayout,
+    Layout: MarketingLayout,
     PageTitle: 'Nova by Anodyne Productions'
 }
