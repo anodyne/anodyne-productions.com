@@ -44,7 +44,7 @@ export function Header({ navigation, currentVersion }) {
                     <NovaLogomark className="h-9 w-9 lg:hidden" />
                     <NovaLogo className="hidden h-9 w-auto text-slate-700 dark:text-white lg:block" />
                 </Link>
-                <VersionSwitcher currentVersion={currentVersion} />
+                <VersionSwitcher currentVersion={currentVersion} className="relative" />
             </div>
             <div className="-my-5 mr-6 sm:mr-8 md:mr-0">
                 <Search />
