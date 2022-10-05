@@ -14,7 +14,7 @@ pre {
 }
 
 pre code.torchlight {
-    @apply block py-4 min-w-max;
+    @apply block min-w-max;
 }
 
 pre code.torchlight .line-number,
