@@ -9,6 +9,7 @@ import { Prose } from '@/components/Prose'
 import { Header } from '@/components/docs/Header'
 import { BookIcon } from '@/components/icons/flex/BookIcon'
 import { Transition } from '@headlessui/react'
+import { addDays, differenceInDays, format, parse } from 'date-fns'
 
 const importNavigationFor = version => import(`@/pages/docs/${version}/navigation`)
 
@@ -97,16 +98,17 @@ export function DocsLayout({ children, title, tableOfContents }) {
 
     const updateReminderExpirationFor = (version) => {
         return () => {
-            let expiration = new Date()
-            expiration.setDate(expiration.getDate() + 30)
+            let expiration = addDays(new Date(), 30)
+            let expirationStr = format(expiration, 'P')
 
-            localStorage.setItem('anodyne-docs-' + version, expiration)
-            setReminderExpiration(expiration)
+            localStorage.setItem('anodyne-docs-' + version, expirationStr)
+            setReminderExpiration(expirationStr)
         }
     }
 
     useEffect(() => {
         document.documentElement.classList.add('antialiased')
+        document.documentElement.classList.add('scroll-smooth')
         document.body.classList.add('bg-white')
         document.body.classList.add('dark:bg-slate-900')
         document.body.classList.remove('bg-slate-50')
@@ -116,12 +118,10 @@ export function DocsLayout({ children, title, tableOfContents }) {
         const reminderDismissalExpiration = localStorage.getItem("anodyne-docs-" + version)
 
         if (reminderDismissalExpiration !== null) {
-            const now = new Date()
-            const expiration = new Date(reminderDismissalExpiration)
-
-            const nowUTC = Date.UTC(now.getFullYear(), now.getMonth(), now.getDay())
-            const expirationUTC = Date.UTC(expiration.getFullYear(), expiration.getMonth(), expiration.getDay())
-            const diffInDays = Math.floor((expirationUTC - nowUTC) / 1000 * 60 * 60 * 24)
+            const diffInDays = differenceInDays(
+                parse(reminderDismissalExpiration, 'P', new Date()),
+                new Date()
+            )
 
             setReminderDismissed(diffInDays > 0)
         }
