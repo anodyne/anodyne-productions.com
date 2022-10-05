@@ -7,6 +7,10 @@ import { HeroBackground } from '@/components/docs/HeroBackground'
 import blurCyanImage from '@/images/blur-cyan.png'
 import blurIndigoImage from '@/images/blur-indigo.png'
 
+import Prism from "prism-react-renderer/prism"
+(typeof global !== "undefined" ? global : window).Prism = Prism;
+require("prismjs/components/prism-php")
+
 const codeLanguage = 'php'
 const code = `public function index()
 {
