@@ -1,5 +1,6 @@
-import { Callout } from '@/components/Callout'
-import { QuickLink, QuickLinks } from '@/components/QuickLinks'
+import { Callout } from '@/components/docs/Callout'
+import { Screenshot } from '@/components/docs/Screenshot'
+import { QuickLink, QuickLinks } from '@/components/docs/QuickLinks'
 
 const tags = {
   callout: {
@@ -13,6 +14,13 @@ const tags = {
       },
     },
     render: Callout,
+  },
+  screenshot: {
+    attributes: {
+      src: { type: String },
+      alt: { type: String },
+    },
+    render: Screenshot,
   },
   figure: {
     selfClosing: true,
