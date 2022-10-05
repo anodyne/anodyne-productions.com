@@ -1,49 +1,51 @@
-import { Menu } from '@headlessui/react'
+import { Menu, Transition } from '@headlessui/react'
 import clsx from 'clsx'
+import { Fragment } from 'react'
 
-export function VersionSwitcher({ className, currentVersion }) {
-  const versions = process.env.NEXT_PUBLIC_DOCS_VERSIONS.split(',')
+export function VersionSwitcher({ currentVersion }) {
+   const versions = process.env.NEXT_PUBLIC_DOCS_VERSIONS.split(',')
 
-  return (
-    <Menu as="div" className="relative text-slate-500 dark:text-slate-400">
-      <Menu.Button className="text-sm leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5">
-        v{currentVersion}
-        <svg width="6" height="3" className="ml-2 overflow-visible" aria-hidden="true">
-          <path
-            d="M0 0L3 3L6 0"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      </Menu.Button>
-      <Menu.Items className="absolute top-full mt-2 py-2 w-40 rounded-lg bg-white shadow ring-1 ring-slate-900/5 text-sm leading-6 font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:highlight-white/5">
-        {versions.map((version) => (
-          <Menu.Item key={version} disabled={version === currentVersion}>
-            {({ active }) => (
-              <>
-                {(version === currentVersion) ? (
-                  <span className="flex items-center justify-between px-3 py-1 text-sky-500 dark:text-sky-400">
-                    v{version}
-                    <svg width="24" height="24" fill="none" aria-hidden="true"><path d="m7.75 12.75 2.25 2.5 6.25-6.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  </span>
-                ) : (
-                  <a
-                    href={`/docs/${version}/introduction`}
-                    className={clsx(
-                      'block px-3 py-1',
-                      active && 'bg-slate-50 text-slate-900 dark:bg-slate-600/30 dark:text-white'
-                    )}
-                  >
-                    v{version}
-                  </a>
-                )}
-              </>
-            )}
-          </Menu.Item>
-        ))}
-      </Menu.Items>
-    </Menu>
-  )
+   return (
+      <Menu as="div" className="relative">
+         <Menu.Button className="text-sm leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5 text-slate-500 dark:text-slate-400">
+            v{currentVersion}
+            <svg width="6" height="3" className="ml-2 overflow-visible" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+         </Menu.Button>
+
+         <Transition
+            enter="transition duration-100 ease-out"
+            enterFrom="transform scale-95 opacity-0"
+            enterTo="transform scale-100 opacity-100"
+            leave="transition duration-75 ease-out"
+            leaveFrom="transform scale-100 opacity-100"
+            leaveTo="transform scale-95 opacity-0"
+         >
+            <Menu.Items className="absolute top-full mt-2 p-2 w-40 origin-top-left rounded-lg bg-white dark:bg-slate-800 text-sm font-medium text-slate-900 dark:text-slate-200 shadow-md ring-1 ring-slate-900/5 dark:highlight-white/5">
+               {versions.map((version) => (
+                  <Menu.Item key={version} as={Fragment} disabled={version === currentVersion}>
+                     {({ active, disabled }) => (
+                        <a
+                           href={`/docs/${version}/introduction`}
+                           className={clsx(
+                              'flex items-center justify-between rounded-md py-1.5 px-3',
+                              {
+                                 'text-sky-500': disabled,
+                                 'bg-slate-100 dark:bg-slate-900/40 text-slate-900 dark:text-white': active && !disabled,
+                                 'text-slate-700 dark:text-slate-400': !active && !disabled,
+                              }
+                           )}
+                        >
+                           <span>v{version}</span>
+
+                           {disabled && (
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                           )}
+                        </a>
+                     )}
+                  </Menu.Item>
+               ))}
+            </Menu.Items>
+         </Transition>
+      </Menu>
+   )
 }
