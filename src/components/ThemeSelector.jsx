@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Listbox } from '@headlessui/react'
+import { Listbox, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 
 const themes = [
@@ -55,49 +55,58 @@ export function ThemeSelector(props) {
     >
       <Listbox.Label className="sr-only">Theme</Listbox.Label>
       <Listbox.Button
-        className="flex h-8 w-8 items-center justify-center rounded-lg shadow-md shadow-black/5 ring-1 ring-black/5 dark:bg-slate-700 dark:ring-inset dark:ring-white/5"
+        className="flex items-center justify-center"
         aria-label={selectedTheme?.name}
       >
-        <LightIcon className="hidden h-5 w-5 text-sky-500 [[data-theme=light]_&]:block" />
-        <DarkIcon className="hidden h-5 w-5 text-sky-400 [[data-theme=dark]_&]:block" />
-        <LightIcon className="hidden h-5 w-5 text-slate-400 [:not(.dark)[data-theme=system]_&]:block" />
-        <DarkIcon className="hidden h-5 w-5 text-slate-400 [.dark[data-theme=system]_&]:block" />
+        <LightIcon className="hidden h-6 w-6 text-sky-500 [[data-theme=light]_&]:block" />
+        <DarkIcon className="hidden h-6 w-6 text-sky-400 [[data-theme=dark]_&]:block" />
+        <LightIcon className="hidden h-6 w-6 text-slate-400 [:not(.dark)[data-theme=system]_&]:block" />
+        <DarkIcon className="hidden h-6 w-6 text-slate-400 [.dark[data-theme=system]_&]:block" />
       </Listbox.Button>
-      <Listbox.Options className="absolute top-full left-1/2 mt-3 w-36 -translate-x-1/2 space-y-1 rounded-lg bg-white p-2 text-sm font-medium shadow-md shadow-black/5 ring-1 ring-black/5 dark:bg-slate-800 dark:ring-white/5">
-        {themes.map((theme) => (
-          <Listbox.Option
-            key={theme.value}
-            value={theme}
-            className={({ active, selected }) =>
-              clsx(
-                'flex cursor-pointer select-none items-center rounded-md py-1.5 px-3',
-                {
-                  'text-sky-500': selected,
-                  'text-slate-900 dark:text-white': active && !selected,
-                  'text-slate-700 dark:text-slate-400': !active && !selected,
-                  'bg-slate-100 dark:bg-slate-900/40': active,
-                }
-              )
-            }
-          >
-            {({ selected }) => (
-              <>
-                <div>
-                  <theme.icon
-                    className={clsx(
-                      'h-5 w-5',
-                      selected
-                        ? 'stroke-sky-400 dark:stroke-sky-400'
-                        : 'stroke-slate-400'
-                    )}
-                  />
-                </div>
-                <div className="ml-3">{theme.name}</div>
-              </>
-            )}
-          </Listbox.Option>
-        ))}
-      </Listbox.Options>
+      <Transition
+          enter="transition duration-100 ease-out"
+          enterFrom="transform scale-95 opacity-0"
+          enterTo="transform scale-100 opacity-100"
+          leave="transition duration-75 ease-out"
+          leaveFrom="transform scale-100 opacity-100"
+          leaveTo="transform scale-95 opacity-0"
+      >
+        <Listbox.Options className="absolute top-full right-0 origin-top-right mt-3 -mr-0.5 sm:-mr-3.5 w-36 space-y-1 rounded-lg bg-white p-2 text-sm font-medium shadow-md shadow-black/5 ring-1 ring-black/5 dark:bg-slate-800 dark:highlight-white/5">
+          {themes.map((theme) => (
+            <Listbox.Option
+              key={theme.value}
+              value={theme}
+              className={({ active, selected }) =>
+                clsx(
+                  'flex cursor-pointer select-none items-center rounded-md py-1.5 px-3',
+                  {
+                    'text-sky-500': selected,
+                    'text-slate-900 dark:text-white': active && !selected,
+                    'text-slate-700 dark:text-slate-400': !active && !selected,
+                    'bg-slate-100 dark:bg-slate-900/40': active,
+                  }
+                )
+              }
+            >
+              {({ selected }) => (
+                <>
+                  <div>
+                    <theme.icon
+                      className={clsx(
+                        'h-5 w-5',
+                        selected
+                          ? 'stroke-sky-400 dark:stroke-sky-400'
+                          : 'stroke-slate-400'
+                      )}
+                    />
+                  </div>
+                  <div className="ml-3">{theme.name}</div>
+                </>
+              )}
+            </Listbox.Option>
+          ))}
+        </Listbox.Options>
+      </Transition>
     </Listbox>
   )
 }
