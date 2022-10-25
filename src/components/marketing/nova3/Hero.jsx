@@ -1,13 +1,13 @@
 import Image from 'next/future/image'
 import { Button } from '@/components/marketing/Button'
 import { Container } from '@/components/marketing/Container'
-import backgroundImage from '@/images/background-faqs.jpg'
+import backgroundImage from '@/images/bg-blur-hero.svg'
 
 export function Hero() {
     return (
-        <Container className="pt-20 pb-16 text-center lg:pt-32 bg-slate-50">
+        <Container className="pt-20 pb-16 text-center lg:pt-32 bg-slate-50 dark:bg-slate-900">
             <Image
-                className="hidden md:block absolute top-0 left-1/2 max-w-none translate-x-[-30%] -translate-y-1/4"
+                className="hidden md:block absolute top-0 left-1/2 max-w-none translate-x-[-30%] -translate-y-1/4 opacity-30 dark:opacity-50"
                 src={backgroundImage}
                 alt=""
                 width={1558}
@@ -15,17 +15,21 @@ export function Hero() {
                 unoptimized
             />
 
-            <h1 className="mt-4 relative mx-auto max-w-4xl font-display text-4xl font-medium tracking-tight text-slate-700 sm:text-6xl md:text-7xl">
+            <h1 className="mt-4 relative mx-auto max-w-4xl font-display text-4xl font-medium tracking-tight text-slate-700 dark:text-white sm:text-6xl md:text-7xl">
                 Nova 3:{' '}
                 <span className="relative whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-sky-400">The Next Generation</span>
             </h1>
 
-            <p className="relative mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
+            <p className="relative mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700 dark:text-white/60">
                 Re-written from the ground up, Nova 3 is the culmination of years of re-thinking the way stories can be told and RPGs should be managed. Say hello to the next generation.
             </p>
 
             <div className="relative mt-10 flex justify-center gap-x-6">
-                {/* <Button href="#download">Download now</Button> */}
+                <Button href="#download">
+                    <div className='relative top-px'>
+                        <div>Download now</div>
+                    </div>
+                </Button>
                 <Button href="#features" variant="outline">
                     <div className='relative top-px'>
                         <div>Learn more</div>
