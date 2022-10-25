@@ -1,4 +1,4 @@
-import Image from 'next/future/image'
+import Image from 'next/image'
 import { Button } from '@/components/marketing/Button'
 import { Container } from '@/components/marketing/Container'
 import backgroundImage from '@/images/bg-blur-hero.svg'
