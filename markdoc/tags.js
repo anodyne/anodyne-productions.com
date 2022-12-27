@@ -1,19 +1,26 @@
-import { Callout } from '@/components/docs/Callout'
+import { Tip, Note, Warning } from '@/components/docs/Callout'
 import { Screenshot } from '@/components/docs/Screenshot'
 import { QuickLink, QuickLinks } from '@/components/docs/QuickLinks'
+import { HeroPattern } from '@/components/docs/HeroPattern'
 
 const tags = {
-   callout: {
+   note: {
       attributes: {
-         title: { type: String },
-         type: {
-            type: String,
-            default: 'note',
-            matches: ['note', 'warning'],
-            errorLevel: 'critical',
-         },
+         title: { type: String }
       },
-      render: Callout,
+      render: Note
+   },
+   warning: {
+      attributes: {
+         title: { type: String }
+      },
+      render: Warning
+   },
+   tip: {
+      attributes: {
+         title: { type: String }
+      },
+      render: Tip
    },
    screenshot: {
       attributes: {
@@ -50,6 +57,10 @@ const tags = {
          href: { type: String },
       },
    },
+   'hero-pattern': {
+      selfClosing: true,
+      render: HeroPattern
+   }
 }
 
 export default tags
