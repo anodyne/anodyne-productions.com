@@ -5,12 +5,12 @@ import { Float } from '@headlessui-float/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/solid'
 import { DownloadIcon } from '@/components/icons/flex/DownloadIcon'
 import { AlertCircleIcon } from '@/components/icons/flex/AlertCircleIcon'
-import { Button } from '@/components/marketing/Button'
+import { Button } from '@/components/marketing/nova2/Button'
 import { Container } from '@/components/marketing/Container'
 import backgroundImage from '@/images/background-call-to-action.jpg'
 
 const versions = [
-    { name: '2.7', value: '2.7.0' },
+    { name: process.env.NEXT_PUBLIC_NOVA_CURRENT_VERSION, value: process.env.NEXT_PUBLIC_NOVA_CURRENT_VERSION },
     { name: '2.6.2 (Legacy - PHP 5.6)', value: '2.6.2' },
     { name: '2.3.2 (Legacy - PHP 5.2)', value: '2.3.2' },
 ]
@@ -39,7 +39,7 @@ export function Download() {
     const [selectedGenre, setSelectedGenre] = useState()
 
     function getDownloadLink() {
-        return `nova-${selectedVersion.value}-${selectedGenre.value}.zip`
+        return `https://nova2-releases.s3.amazonaws.com/nova-${selectedVersion.value}-${selectedGenre.value}.zip`
     }
 
     return (
@@ -186,7 +186,7 @@ export function Download() {
                     ) : null}
 
                     {selectedVersion && selectedGenre ? (
-                        <Button href={getDownloadLink()} color="slate" variant="nodark" className="mt-10 flex items-center space-x-2.5">
+                        <Button href={getDownloadLink()} color="slate" className="mt-10 flex items-center space-x-2.5">
                             <div className='relative top-px'>
                                 <div>Download</div>
                             </div>

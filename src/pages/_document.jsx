@@ -1,59 +1,38 @@
 import { Head, Html, Main, NextScript } from 'next/document'
 
-const themeScript = `
-    let mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+const modeScript = `
+  let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
-    function updateTheme(savedTheme) {
-        let theme = 'system'
+  updateMode()
+  darkModeMediaQuery.addEventListener('change', updateModeWithoutTransitions)
+  window.addEventListener('storage', updateModeWithoutTransitions)
 
-        try {
-            if (!savedTheme) {
-                savedTheme = window.localStorage.theme
-            }
+  function updateMode() {
+    let isSystemDarkMode = darkModeMediaQuery.matches
+    let isDarkMode = window.localStorage.isDarkMode === 'true' || (!('isDarkMode' in window.localStorage) && isSystemDarkMode)
 
-            if (savedTheme === 'dark') {
-                theme = 'dark'
-                document.documentElement.classList.add('dark')
-            } else if (savedTheme === 'light') {
-                theme = 'light'
-                document.documentElement.classList.remove('dark')
-            } else if (mediaQuery.matches) {
-                document.documentElement.classList.add('dark')
-            } else {
-                document.documentElement.classList.remove('dark')
-            }
-        } catch {
-            theme = 'light'
-            document.documentElement.classList.remove('dark')
-        }
-
-        return theme
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
     }
 
-    function updateThemeWithoutTransitions(savedTheme) {
-        updateTheme(savedTheme)
-        document.documentElement.classList.add('[&_*]:!transition-none')
-        window.setTimeout(() => {
-            document.documentElement.classList.remove('[&_*]:!transition-none')
-        }, 0)
+    if (isDarkMode === isSystemDarkMode) {
+      delete window.localStorage.isDarkMode
     }
+  }
 
-    document.documentElement.setAttribute('data-theme', updateTheme())
+  function disableTransitionsTemporarily() {
+    document.documentElement.classList.add('[&_*]:!transition-none')
+    window.setTimeout(() => {
+      document.documentElement.classList.remove('[&_*]:!transition-none')
+    }, 0)
+  }
 
-    new MutationObserver(([{ oldValue }]) => {
-        let newValue = document.documentElement.getAttribute('data-theme')
-
-        if (newValue !== oldValue) {
-            try {
-                window.localStorage.setItem('theme', newValue)
-            } catch {}
-
-            updateThemeWithoutTransitions(newValue)
-        }
-    }).observe(document.documentElement, { attributeFilter: ['data-theme'], attributeOldValue: true })
-
-    mediaQuery.addEventListener('change', updateThemeWithoutTransitions)
-    window.addEventListener('storage', updateThemeWithoutTransitions)
+  function updateModeWithoutTransitions() {
+    disableTransitionsTemporarily()
+    updateMode()
+  }
 `
 
 export default function Document() {
@@ -68,7 +47,7 @@ export default function Document() {
                 <meta name="msapplication-TileColor" content="#130f32" />
                 <meta name="theme-color" content="#ffffff" />
 
-                <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+                <script dangerouslySetInnerHTML={{ __html: modeScript }} />
             </Head>
             <body>
                 <Main />

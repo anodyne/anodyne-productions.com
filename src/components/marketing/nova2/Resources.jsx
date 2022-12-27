@@ -1,4 +1,4 @@
-import { Card } from '@/components/marketing/Card'
+import { Card } from '@/components/marketing/nova2/Card'
 import { Container } from '@/components/marketing/Container'
 
 const resources = [
@@ -40,10 +40,10 @@ function Resource({ category, title, content, url, buttonText }) {
 
 export function Resources() {
     return (
-        <section id="resources" aria-label="Resources" className="bg-slate-50 dark:bg-slate-900 py-20 sm:py-32">
+        <section id="resources" aria-label="Resources" className="bg-slate-50 py-20 sm:py-32">
             <Container>
                 <div className="md:text-center">
-                    <h2 className="font-display text-3xl tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                    <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
                         <span className="relative whitespace-nowrap">Helpful resources</span>
                     </h2>
                 </div>

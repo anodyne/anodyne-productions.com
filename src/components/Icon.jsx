@@ -9,6 +9,7 @@ import { WarningIcon } from '@/components/icons/WarningIcon'
 import { SupportIcon } from '@/components/icons/SupportIcon'
 import { GithubIcon } from '@/components/icons/GithubIcon'
 import { DiscordIcon } from '@/components/icons/DiscordIcon'
+import { BoltIcon } from '@/components/icons/BoltIcon'
 
 const icons = {
    installation: InstallationIcon,
@@ -16,6 +17,7 @@ const icons = {
    plugins: PluginsIcon,
    theming: ThemingIcon,
    lightbulb: LightbulbIcon,
+   bolt: BoltIcon,
    warning: WarningIcon,
    support: SupportIcon,
    github: GithubIcon,
@@ -25,6 +27,7 @@ const icons = {
 const iconStyles = {
    blue: '[--icon-foreground:theme(colors.slate.900)] [--icon-background:theme(colors.white)]',
    amber: '[--icon-foreground:theme(colors.amber.900)] [--icon-background:theme(colors.amber.100)]',
+   emerald: '[--icon-foreground:theme(colors.emerald.900)] [--icon-background:theme(colors.emerald.100)]',
 }
 
 export function Icon({ color = 'blue', icon, className, ...props }) {

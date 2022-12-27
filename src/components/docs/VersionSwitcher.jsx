@@ -7,7 +7,7 @@ export function VersionSwitcher({ currentVersion }) {
 
    return (
       <Menu as="div" className="relative">
-         <Menu.Button className="text-sm leading-5 font-semibold bg-slate-400/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-400/20 dark:highlight-white/5 text-slate-500 dark:text-slate-400">
+         <Menu.Button className="text-sm font-medium bg-slate-600/10 rounded-full py-1 px-3 flex items-center space-x-2 hover:bg-slate-600/20 dark:highlight-white/5 text-slate-600 dark:text-slate-400 transition">
             v{currentVersion}
             <svg width="6" height="3" className="ml-2 overflow-visible" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
          </Menu.Button>
@@ -20,7 +20,7 @@ export function VersionSwitcher({ currentVersion }) {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
          >
-            <Menu.Items className="absolute top-full mt-2 p-2 w-40 origin-top-left rounded-lg bg-white dark:bg-slate-800 text-sm font-medium text-slate-900 dark:text-slate-200 shadow-md ring-1 ring-slate-900/5 dark:highlight-white/5">
+            <Menu.Items className="absolute top-full right-0 mt-2 p-2 w-40 origin-top-right rounded-lg bg-white dark:bg-slate-800 text-sm font-medium text-slate-900 dark:text-slate-200 shadow-md ring-1 ring-slate-900/5 dark:highlight-white/5 z-50">
                {versions.map((version) => (
                   <Menu.Item key={version} as={Fragment} disabled={version === currentVersion}>
                      {({ active, disabled }) => (

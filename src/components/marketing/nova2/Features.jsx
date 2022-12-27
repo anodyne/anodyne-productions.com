@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import { Container } from '@/components/marketing/Container'
 
 const features = [
@@ -73,15 +72,15 @@ const features = [
 function Feature({ feature, isActive, className, ...props }) {
   return (
     <div {...props}>
-      <div className="inline-flex p-2.5 rounded-lg bg-slate-400 dark:bg-slate-600">
+      <div className="inline-flex p-2.5 rounded-lg bg-slate-400">
         <svg aria-hidden="true" className="h-6 w-6 text-white" fill="none" viewBox="0 0 14 14">
           <feature.icon />
         </svg>
       </div>
-      <p className="mt-4 font-display text-xl text-slate-800 dark:text-slate-300">
+      <p className="mt-4 font-display text-xl text-slate-800">
         {feature.name}
       </p>
-      <p className="mt-2 text-sm text-slate-600 dark:text-slate-500">{feature.description}</p>
+      <p className="mt-2 text-sm text-slate-600">{feature.description}</p>
     </div>
   )
 }
@@ -91,14 +90,14 @@ export function Features() {
     <section
       id="features"
       aria-label="Features for simplifying everyday business tasks"
-      className="bg-slate-50 dark:bg-slate-900 pt-20 pb-14 sm:pb-20 sm:pt-32 lg:pb-32"
+      className="bg-slate-50 pt-20 pb-14 sm:pb-20 sm:pt-32 lg:pb-32"
     >
       <Container>
         <div className="mx-auto max-w-2xl md:text-center">
-          <h2 className="font-display text-3xl tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+          <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
             Powerful RPG management features
           </h2>
-          <p className="mt-4 text-lg tracking-tight text-slate-700 dark:text-slate-500">
+          <p className="mt-4 text-lg tracking-tight text-slate-700">
             Simplify your RPG management with features and tools that will let
             you stop managing your game and start playing it again.
           </p>

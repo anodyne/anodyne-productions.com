@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Container } from '@/components/marketing/Container'
 import backgroundImage from '@/images/background-features.jpg'
-import { Button } from '@/components/marketing/Button'
+import { Button } from '@/components/marketing/nova2/Button'
 import { ExternalLinkIcon } from '@/components/icons/flex/ExternalLinkIcon'
 import { ArrowRightCircleIcon } from '@/components/icons/flex/ArrowRightCircleIcon'
 import Link from 'next/link'
@@ -74,7 +74,7 @@ export function Sponsors({ sponsors }) {
                         We&rsquo;ve launched a Patreon as a way for people to support Anodyne and help us continue to provide Nova and all of its resources to the community for free. As a patron, you&rsquo;ll have access to a private Discord community, early access to Nova 3, and more. Join today!
                     </p>
 
-                    <Button href="https://www.patreon.com/anodyneproductions" color="slate" variant='nodark' className="mt-6">
+                    <Button href="https://www.patreon.com/anodyneproductions" color="slate" className="mt-6">
                         <div className="flex items-center space-x-2.5">
                             <div className='relative top-px'>
                                 <div>Become a patron</div>

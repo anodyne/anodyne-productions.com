@@ -22,7 +22,7 @@ function collectHeadings(nodes, slugify = slugifyWithCounter()) {
     let sections = []
 
     for (let node of nodes) {
-        if (node.name === 'h2' || node.name === 'h3') {
+        if (node.name === 'Heading' && node.attributes.level === 2) {
             let title = getNodeText(node)
 
             if (title) {
@@ -62,7 +62,11 @@ export default function App({ Component, pageProps }) {
     if (layoutFile === 'docs') {
         layoutProps = {
             title: pageProps.markdoc?.frontmatter.title,
-            tableOfContents: pageProps.markdoc?.content ? collectHeadings(pageProps.markdoc.content) : []
+            description: pageProps.markdoc?.frontmatter.description,
+            tag: pageProps.markdoc?.frontmatter.tag,
+            label: pageProps.markdoc?.frontmatter.label,
+            isHomePage: pageProps.markdoc?.frontmatter.homePage,
+            sections: pageProps.markdoc?.content ? collectHeadings(pageProps.markdoc.content) : []
         }
 
         pageTitle = pageProps.markdoc?.frontmatter.pageTitle || `${pageProps.markdoc?.frontmatter.title} - Docs`
