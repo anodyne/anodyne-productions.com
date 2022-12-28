@@ -1,5 +1,8 @@
 import Head from 'next/head'
+import { Router, useRouter } from 'next/router'
 import { slugifyWithCounter } from '@sindresorhus/slugify'
+
+import { useMobileNavigationStore } from '@/components/docs/MobileNavigation'
 import { DocsLayout } from '@/layouts/DocsLayout'
 import 'focus-visible'
 import '@/styles/tailwind.css'
@@ -53,6 +56,14 @@ function collectHeadings(nodes, slugify = slugifyWithCounter()) {
 const layouts = {
     docs: DocsLayout
 }
+
+function onRouteChange() {
+  useMobileNavigationStore.getState().close()
+}
+
+Router.events.on('hashChangeStart', onRouteChange)
+Router.events.on('routeChangeComplete', onRouteChange)
+Router.events.on('routeChangeError', onRouteChange)
 
 export default function App({ Component, pageProps }) {
     const layoutFile = pageProps.markdoc?.frontmatter.layout
