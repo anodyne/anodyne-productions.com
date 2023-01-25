@@ -14,8 +14,27 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'tailwindui.com',
-        port: '',
         pathname: '/img/ecommerce-images/**'
+      },
+      {
+        protocol: 'http',
+        hostname: 'admin.anodyne-productions.com.test',
+        pathname: '/storage/*/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'next-admin.anodyne-productions.com',
+        pathname: '/storage/*/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'admin.anodyne-productions.com',
+        pathname: '/storage/*/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'ui-avatars.com',
+        pathname: '/api/**'
       }
     ]
   },

@@ -37,14 +37,12 @@ const valueColorMap = {
   rank: 'sky',
   extension: 'amber',
   genre: 'rose',
-  experimental: 'amber',
-  wip: 'slate',
 }
 
 export function Tag({
   children,
   variant = 'medium',
-  color = valueColorMap[children.toLowerCase()] ?? 'emerald',
+  color = valueColorMap[children.toLowerCase()] ?? 'slate',
 }) {
   return (
     <span
