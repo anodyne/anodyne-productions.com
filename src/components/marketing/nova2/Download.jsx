@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { Float } from '@headlessui-float/react'
@@ -6,14 +5,6 @@ import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/solid'
 import { DownloadIcon } from '@/components/icons/flex/DownloadIcon'
 import { AlertCircleIcon } from '@/components/icons/flex/AlertCircleIcon'
 import { Button } from '@/components/marketing/nova2/Button'
-import { Container } from '@/components/marketing/Container'
-import backgroundImage from '@/images/background-call-to-action.jpg'
-
-const versions = [
-    { name: process.env.NEXT_PUBLIC_NOVA_CURRENT_VERSION, value: process.env.NEXT_PUBLIC_NOVA_CURRENT_VERSION },
-    { name: '2.6.2 (Legacy - PHP 5.6)', value: '2.6.2' },
-    { name: '2.3.2 (Legacy - PHP 5.2)', value: '2.3.2' },
-]
 
 const genres = [
     { value: 'bl5', name: 'Babylon 5' },
@@ -34,7 +25,13 @@ const genres = [
     { value: 'sto', name: 'Star Trek Online' },
 ]
 
-export function Download() {
+export function Download({ latestVersion }) {
+    const versions = [
+        { name: latestVersion, value: latestVersion },
+        { name: '2.6.2 (Legacy - PHP 5.6)', value: '2.6.2' },
+        { name: '2.3.2 (Legacy - PHP 5.2)', value: '2.3.2' },
+    ]
+
     const [selectedVersion, setSelectedVersion] = useState(versions[0])
     const [selectedGenre, setSelectedGenre] = useState()
 
@@ -43,23 +40,14 @@ export function Download() {
     }
 
     return (
-        <section id="download" className="relative overflow-hidden bg-sky-600 py-32">
-            <Image
-                className="absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2"
-                src={backgroundImage}
-                alt=""
-                width={2347}
-                height={1244}
-                unoptimized
-            />
-
-            <Container className="relative">
-                <div className="mx-auto max-w-lg text-center">
-                    <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl">
+        <section id="download" className="relative isolate overflow-hidden bg-slate-900">
+            <div className="py-24 px-6 sm:px-6 sm:py-32 lg:px-8">
+                <div className="mx-auto max-w-2xl text-center">
+                    <h2 className="font-display text-3xl tracking-tight text-white/50 sm:text-4xl">
                         Ready to get started?
                     </h2>
 
-                    <h2 className="font-display text-3xl tracking-tight text-sky-900 sm:text-4xl font-medium">
+                    <h2 className="mt-1.5 font-display text-3xl tracking-tight text-white sm:text-4xl font-medium">
                         Download Nova today.
                     </h2>
 
@@ -69,7 +57,7 @@ export function Download() {
                                 <Listbox.Label className="font-medium text-white/75 text-sm">Version</Listbox.Label>
 
                                 <Float offset={4} portal>
-                                    <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white mt-1 py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                                    <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white mt-1 py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-sky-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                                         <span className="block truncate">{selectedVersion?.name || 'Select a version'}</span>
                                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                             <ChevronUpDownIcon className="h-5 w-5 text-slate-400" aria-hidden="true" />
@@ -122,7 +110,7 @@ export function Download() {
                                 <Listbox.Label className="font-medium text-white/75 text-sm">Genre</Listbox.Label>
 
                                 <Float offset={4} portal>
-                                    <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white mt-1 py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+                                    <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white mt-1 py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-sky-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                                         <span className="block truncate">{selectedGenre?.name || 'Select a genre'}</span>
                                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                                             <ChevronUpDownIcon className="h-5 w-5 text-slate-400" aria-hidden="true" />
@@ -173,20 +161,20 @@ export function Download() {
 
                     {selectedVersion.value.includes('2.6') ? (
                         <div className="mt-8 flex space-x-3 text-white font-medium text-sm leading-6 text-left">
-                            <AlertCircleIcon className="h-8 w-8 text-sky-200 shrink-0" aria-hidden="true" />
+                            <AlertCircleIcon className="h-8 w-8 text-purple-300 shrink-0" aria-hidden="true" />
                             <span>Nova 2.6.2 is legacy software and intended only for games hosted on a server running PHP 5.3 - 5.6. This version of Nova is no longer receiving updates.</span>
                         </div>
                     ) : null}
 
                     {selectedVersion.value.includes('2.3') ? (
                         <div className="mt-8 flex space-x-3 text-white font-medium text-sm leading-6 text-left">
-                            <AlertCircleIcon className="h-8 w-8 text-sky-200 shrink-0" aria-hidden="true" />
+                            <AlertCircleIcon className="h-8 w-8 text-purple-300 shrink-0" aria-hidden="true" />
                             <span>Nova 2.3.2 is legacy software and intended only for games hosted on a server running PHP 5.2. This version of Nova is no longer receiving updates.</span>
                         </div>
                     ) : null}
 
                     {selectedVersion && selectedGenre ? (
-                        <Button href={getDownloadLink()} color="slate" className="mt-10 flex items-center space-x-2.5">
+                        <Button href={getDownloadLink()} color="white" className="mt-10 flex items-center space-x-2.5">
                             <div className='relative top-px'>
                                 <div>Download</div>
                             </div>
@@ -194,7 +182,20 @@ export function Download() {
                         </Button>
                     ) : null}
                 </div>
-            </Container>
+            </div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" className="absolute top-1/2 left-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2" aria-hidden="true">
+                <circle cx={512} cy={512} r={512} fill="url(#8d958450-c69f-4251-94bc-4e091a323369)" fillOpacity="0.7" />
+                <defs>
+                    <radialGradient id="8d958450-c69f-4251-94bc-4e091a323369" cx={0} cy={0} r={1} gradientUnits="userSpaceOnUse" gradientTransform="translate(512 512) rotate(90) scale(512)">
+                        <stop stopColor="#7775D6" />
+                        {/* <stop stopColor="#e9d5ff" /> */}
+                        {/* <stop stopColor="#7dd3fc" /> */}
+                        {/* <stop offset={1} stopColor="#E935C1" stopOpacity={0} /> */}
+                        <stop offset={1} stopColor="#7dd3fc" stopOpacity={0} />
+                    </radialGradient>
+                </defs>
+            </svg>
         </section>
     )
 }

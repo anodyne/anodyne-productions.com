@@ -8,13 +8,13 @@ import { Sponsors } from '@/components/marketing/nova2/Sponsors'
 import { Footer } from '@/components/marketing/nova2/Footer'
 import axios from '@/lib/axios'
 
-export default function Home({ sponsors }) {
+export default function Home({ sponsors, latestVersion }) {
     return (
         <>
             <Header />
             <Hero />
             <Features />
-            <Download />
+            <Download latestVersion={latestVersion} />
             <Resources />
             <Sponsors sponsors={sponsors} />
             <Footer />
@@ -23,11 +23,13 @@ export default function Home({ sponsors }) {
 }
 
 export async function getStaticProps() {
-    const response = await axios.get('/api/sponsors/premium')
+    const sponsors = await axios.get('/api/sponsors/premium')
+    const latestVersion = await axios.get('/api/nova/latest-version')
 
     return {
         props: {
-            sponsors: response.data.data
+            sponsors: sponsors.data.data,
+            latestVersion: latestVersion.data.version,
         }
     }
 }

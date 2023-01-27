@@ -6,24 +6,6 @@ import { ExternalLinkIcon } from '@/components/icons/flex/ExternalLinkIcon'
 import { ArrowRightCircleIcon } from '@/components/icons/flex/ArrowRightCircleIcon'
 import Link from 'next/link'
 
-// const sponsors = [
-//     {
-//         title: 'Sim Central',
-//         image: simCentralImage,
-//         url: 'https://simcentral.org/',
-//     },
-//     {
-//         title: 'USS Black Hawk',
-//         image: blackHawkImage,
-//         url: 'https://blackhawk.anurasims.com/',
-//     },
-//     {
-//         title: 'Fifth Fleet',
-//         image: fifthFleetImage,
-//         url: 'https://portal.5thfleet.net/',
-//     },
-// ]
-
 function Sponsor({ name, link, image }) {
     return (
         <li className="group relative rounded-lg p-4 bg-white/10 hover:bg-white/[15%] ring-1 ring-inset ring-white/10 space-y-4 text-center transition">
@@ -70,7 +52,7 @@ export function Sponsors({ sponsors }) {
                         Thanks to our incredible sponsors
                     </h2>
 
-                    <p className="mt-4 text-lg tracking-tight text-blue-100">
+                    <p className="mt-4 text-lg tracking-tight text-blue-50">
                         We&rsquo;ve launched a Patreon as a way for people to support Anodyne and help us continue to provide Nova and all of its resources to the community for free. As a patron, you&rsquo;ll have access to a private Discord community, early access to Nova 3, and more. Join today!
                     </p>
 

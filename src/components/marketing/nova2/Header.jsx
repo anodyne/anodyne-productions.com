@@ -20,7 +20,7 @@ function NavLink({ href, children }) {
    return (
       <Link
          href={href}
-         className="inline-flex items-center space-x-2 rounded-md py-1 px-3 ring-1 ring-inset ring-transparent text-slate-600 hover:bg-white/30 hover:ring-white/30 hover:text-slate-900 transition font-display leading-none"
+         className="group inline-flex items-center space-x-2 text-slate-600 hover:text-sky-500 transition font-display font-medium leading-none"
       >
          {children}
       </Link>
@@ -161,40 +161,40 @@ export function Header() {
    const { user } = useAuth()
 
    return (
-      <header className="py-10 bg-slate-50">
+      <header className="py-10">
          <Container>
             <nav className="relative z-50 flex justify-between">
-               <div className="flex items-center md:gap-x-8">
+               <div className="flex items-center md:gap-x-12">
                   <Link href="/" aria-label="Home">
                      <NovaLogo className="h-9 w-auto text-slate-700" />
                   </Link>
-                  <div className="hidden md:flex md:gap-x-6">
+                  <div className="hidden md:flex md:gap-x-8">
                      <NavLink href="#features">
-                        <StarIcon className="shrink-0 h-6 w-6 text-slate-500" />
+                        <StarIcon className="shrink-0 h-6 w-6 text-slate-500 group-hover:text-sky-400 transition" />
                         <div className='relative top-px'>
                            <div>Features</div>
                         </div>
                      </NavLink>
                      <NavLink href="#download" className="flex items-center space-x-2">
-                        <DownloadIcon className="shrink-0 h-6 w-6 text-slate-500" />
+                        <DownloadIcon className="shrink-0 h-6 w-6 text-slate-500 group-hover:text-sky-400 transition" />
                         <div className='relative top-px'>
                            <div>Download</div>
                         </div>
                      </NavLink>
                      <NavLink href={"/docs/" + process.env.NEXT_PUBLIC_DOCS_CURRENT_VERSION + "/introduction"}>
-                        <BookIcon className="shrink-0 h-6 w-6 text-slate-500" />
+                        <BookIcon className="shrink-0 h-6 w-6 text-slate-500 group-hover:text-sky-400 transition" />
                         <div className='relative top-px'>
                            <div>Docs</div>
                         </div>
                      </NavLink>
                      <NavLink href="#resources">
-                        <ArchiveIcon className="shrink-0 h-6 w-6 text-slate-500" />
+                        <ArchiveIcon className="shrink-0 h-6 w-6 text-slate-500 group-hover:text-sky-400 transition" />
                         <div className='relative top-px'>
                            <div>Resources</div>
                         </div>
                      </NavLink>
                      <NavLink href="https://discord.gg/7WmKUks">
-                        <SupportIcon className="shrink-0 h-6 w-6 text-slate-500" />
+                        <SupportIcon className="shrink-0 h-6 w-6 text-slate-500 group-hover:text-sky-400 transition" />
                         <div className='relative top-px'>
                            <div>Get Help</div>
                         </div>
@@ -205,8 +205,8 @@ export function Header() {
                   <div className="hidden md:flex md:items-center relative space-x-4">
                      {user ? (
                         <Menu as="div" className="relative">
-                           <Menu.Button className="inline-flex items-center space-x-2 rounded-md py-1 px-3 ring-1 ring-inset ring-transparent dark:ring-0 text-slate-600 hover:bg-white/30 hover:ring-white/30 hover:text-slate-900 transition font-display leading-none">
-                              <UserIcon className="shrink-0 h-6 w-6 text-slate-500" />
+                           <Menu.Button className="group inline-flex items-center space-x-2 text-slate-600 hover:text-sky-500 transition font-display font-medium leading-none">
+                              <UserIcon className="shrink-0 h-6 w-6 text-slate-500 group-hover:text-sky-400 transition" />
                               <div className='relative top-px'>
                                  <div>Account</div>
                               </div>
@@ -273,7 +273,7 @@ export function Header() {
                         </Menu>
                      ) : (
                         <NavLink href={process.env.NEXT_PUBLIC_BACKEND_URL + '/login'}>
-                           <LoginIcon className="shrink-0 h-6 w-6 text-slate-500" />
+                           <LoginIcon className="shrink-0 h-6 w-6 text-slate-500 group-hover:text-sky-400 transition" />
                            <div className='relative top-px'>
                               <div>Sign in</div>
                            </div>

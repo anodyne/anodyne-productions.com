@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import clsx from 'clsx'
 import { ChevronRightIcon } from '@/components/icons/flex/ChevronRightIcon'
+import { ArrowRightCircleIcon } from '@/components/icons/flex/ArrowRightCircleIcon'
 
 export function Card({ as: Component = 'div', className, children }) {
     return (
@@ -45,7 +46,7 @@ Card.Cta = function CardCta({ children }) {
             className="relative z-10 mt-4 flex items-center text-sm font-medium text-sky-500 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition"
         >
             {children}
-            <ChevronRightIcon className="ml-2 h-3 w-3 stroke-current" />
+            <span className="ml-1.5">&rarr;</span>
         </div>
     )
 }
