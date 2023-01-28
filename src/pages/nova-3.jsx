@@ -6,14 +6,16 @@ import { Download } from '@/components/marketing/nova3/Download'
 import { Faqs } from '@/components/marketing/nova3/Faqs'
 import { Footer } from '@/components/marketing/nova3/Footer'
 import { PrimaryFeatures } from '@/components/marketing/nova3/PrimaryFeatures'
+import { Demo } from '@/components/marketing/nova3/Demo'
 
 export default function Nova3() {
     return (
         <>
             <Header />
             <Hero />
-            <PrimaryFeatures />
-            <Features />
+            {/* <PrimaryFeatures /> */}
+            {/* <Features /> */}
+            {/* <Demo /> */}
             <Faqs />
             <Footer />
         </>

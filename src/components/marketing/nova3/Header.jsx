@@ -145,12 +145,12 @@ export function Header() {
    const { user } = useAuth()
 
    return (
-      <header className="py-10 bg-slate-50 dark:bg-slate-900">
+      <header className="py-10 bg-slate-900">
          <Container>
                <nav className="relative z-50 flex justify-between">
                   <div className="flex items-center md:gap-x-8">
                      <Link href="/" aria-label="Home">
-                           <NovaLogo className="h-9 w-auto text-slate-700 dark:text-white" />
+                           <NovaLogo className="h-9 w-auto text-white" />
                      </Link>
                      <div className="hidden md:flex md:gap-x-6">
                            <NavLink href="/features">
