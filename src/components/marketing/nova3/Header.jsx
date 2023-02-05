@@ -1,264 +1,97 @@
 import { Fragment } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
-import { Popover, Transition, Menu } from '@headlessui/react'
 import clsx from 'clsx'
-import { Container } from '@/components/marketing/Container'
-import { NovaLogo } from '@/components/Logos'
-import { NavLink } from '@/components/marketing/NavLink'
-import { StarIcon } from '@/components/icons/flex/StarIcon'
-import { DownloadIcon } from '@/components/icons/flex/DownloadIcon'
-import { BookIcon } from '@/components/icons/flex/BookIcon'
-import { ArchiveIcon } from '@/components/icons/flex/ArchiveIcon'
-import { SupportIcon } from '@/components/icons/flex/SupportIcon'
-import { LoginIcon } from '@/components/icons/flex/LoginIcon'
-import { LogoutIcon } from '@/components/icons/flex/LogoutIcon'
-import { useAuth } from '@/hooks/auth'
-import { UserIcon } from '@/components/icons/flex/UserIcon'
-import { HomeIcon } from '@/components/icons/flex/HomeIcon'
-import { ThemeSelector } from '@/components/ThemeSelector'
-import { logout } from '@/hooks/auth'
-import { QuestionIcon } from '@/components/icons/flex/QuestionIcon'
+import { Popover, Transition, Menu } from '@headlessui/react'
 
-function MobileNavLink({ href, children }) {
-   return (
-      <Popover.Button
-         as={Link}
-         href={href}
-         className="flex items-center space-x-3 w-full p-2 font-medium"
-      >
-         {children}
-      </Popover.Button>
-   )
-}
+import { Button } from '@/components/marketing/Button'
+import AppDark from '@/images/screenshots/nova3-app-story-writing-dark.png'
+import { LandingNavigation } from '@/components/Navigation'
 
-function MobileNavIcon({ open }) {
-   return (
-      <svg
-         aria-hidden="true"
-         className="h-3.5 w-3.5 overflow-visible stroke-slate-700"
-         fill="none"
-         strokeWidth={2}
-         strokeLinecap="round"
-      >
-         <path
-            d="M0 1H14M0 7H14M0 13H14"
-            className={clsx(
-               'origin-center transition',
-               open && 'scale-90 opacity-0'
-            )}
-         />
-         <path
-            d="M2 2L12 12M12 2L2 12"
-            className={clsx(
-               'origin-center transition',
-               !open && 'scale-90 opacity-0'
-            )}
-         />
-      </svg>
-   )
-}
-
-function MobileNavigation({ user }) {
-   return (
-      <Popover>
-         <Popover.Button
-            className="relative z-10 flex h-8 w-8 items-center justify-center [&:not(:focus-visible)]:focus:outline-none"
-            aria-label="Toggle Navigation"
-         >
-            {({ open }) => <MobileNavIcon open={open} />}
-         </Popover.Button>
-
-         <Transition.Root>
-            <Transition.Child
-               as={Fragment}
-               enter="duration-150 ease-out"
-               enterFrom="opacity-0"
-               enterTo="opacity-100"
-               leave="duration-150 ease-in"
-               leaveFrom="opacity-100"
-               leaveTo="opacity-0"
-            >
-               <Popover.Overlay className="fixed inset-0 bg-slate-300/50" />
-            </Transition.Child>
-
-            <Transition.Child
-               as={Fragment}
-               enter="duration-150 ease-out"
-               enterFrom="opacity-0 scale-95"
-               enterTo="opacity-100 scale-100"
-               leave="duration-100 ease-in"
-               leaveFrom="opacity-100 scale-100"
-               leaveTo="opacity-0 scale-95"
-            >
-               <Popover.Panel
-                  as="div"
-                  className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
-               >
-                  <MobileNavLink href="/features">
-                     <StarIcon className="h-6 w-6 text-slate-500" />
-                     <span>Features</span>
-                  </MobileNavLink>
-                  <MobileNavLink href={"/docs/3.0/introduction"}>
-                     <BookIcon className="h-6 w-6 text-slate-500" />
-                     <span>Docs</span>
-                  </MobileNavLink>
-                  <MobileNavLink href="/#faqs">
-                     <QuestionIcon className="h-6 w-6 text-slate-500" />
-                     <span>FAQs</span>
-                  </MobileNavLink>
-
-                  <hr className="m-2 border-slate-300/40" />
-
-                  {user ? (
-                     <>
-                        <p className="truncate w-full p-2 font-medium" role="none">
-                           <span className="block text-sm text-slate-500" role="none">Signed in as</span>
-                           <span className="mt-0.5 font-semibold" role="none">{user.email}</span>
-                        </p>
-                        <MobileNavLink href={process.env.NEXT_PUBLIC_BACKEND_URL}>
-                           <HomeIcon className="h-6 w-6 text-slate-500" />
-                           <span>Dashboard</span>
-                        </MobileNavLink>
-                        <MobileNavLink href="/login">
-                           <UserIcon className="h-6 w-6 text-slate-500" />
-                           <span>My profile</span>
-                        </MobileNavLink>
-                        <MobileNavLink href="/login">
-                           <LogoutIcon className="h-6 w-6 text-slate-500" />
-                           <span>Log out</span>
-                        </MobileNavLink>
-                     </>
-                  ) : (
-                     <MobileNavLink href={process.env.NEXT_PUBLIC_BACKEND_URL + '/login'}>
-                        <LoginIcon className="h-6 w-6 text-slate-500" />
-                        <span>Sign in</span>
-                     </MobileNavLink>
-                  )}
-               </Popover.Panel>
-            </Transition.Child>
-         </Transition.Root>
-      </Popover>
-   )
-}
+const navItems = [
+  { href: '#features', title: 'Features' },
+  { href: '#demo', title: 'Demo' },
+  { href: '/docs/3.0/introduction', title: 'Docs' },
+  { href: '#faq', title: 'FAQs' },
+  { href: 'https://discord.gg/7WmKUks', title: 'Discuss' },
+]
 
 export function Header() {
-   const { user } = useAuth()
+  return (
+    <header className="relative bg-slate-900">
+      <div className="px-4 sm:px-6 md:px-8">
+        <div className="isolate">
+          <svg className="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
+            <defs>
+              <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc" width={200} height={200} x="50%" y={-1} patternUnits="userSpaceOnUse">
+                <path d="M.5 200V.5H200" fill="none" />
+              </pattern>
+            </defs>
+            <svg x="50%" y={-1} className="overflow-visible fill-slate-800/20">
+              <path d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z" strokeWidth={0} />
+            </svg>
+            <rect width="100%" height="100%" strokeWidth={0} fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)" />
+          </svg>
 
-   return (
-      <header className="py-10 bg-slate-900">
-         <Container>
-               <nav className="relative z-50 flex justify-between">
-                  <div className="flex items-center md:gap-x-8">
-                     <Link href="/" aria-label="Home">
-                           <NovaLogo className="h-9 w-auto text-white" />
-                     </Link>
-                     <div className="hidden md:flex md:gap-x-6">
-                           <NavLink href="/features">
-                              <StarIcon className="shrink-0 h-6 w-6 text-slate-500" />
-                              <div className='relative top-px'>
-                                 <div>Features</div>
-                              </div>
-                           </NavLink>
-                           <NavLink href="/docs/3.0/introduction">
-                              <BookIcon className="shrink-0 h-6 w-6 text-slate-500" />
-                              <div className='relative top-px'>
-                                 <div>Docs</div>
-                              </div>
-                           </NavLink>
-                           <NavLink href="/#faq">
-                              <BookIcon className="shrink-0 h-6 w-6 text-slate-500" />
-                              <div className='relative top-px'>
-                                 <div>FAQs</div>
-                              </div>
-                           </NavLink>
-                     </div>
-                  </div>
-                  <div className="flex items-center gap-x-5 md:gap-x-8">
-                     <div className="hidden md:flex md:items-center relative space-x-4">
-                           <ThemeSelector />
-                           {user ? (
-                              <Menu as="div" className="relative">
-                                 <Menu.Button className="inline-flex items-center space-x-2 rounded-md py-1 px-3 ring-1 ring-inset ring-transparent dark:ring-0 text-slate-600 dark:text-slate-400 hover:bg-white/30 dark:hover:bg-white/10 hover:ring-white/30 hover:text-slate-900 dark:hover:text-slate-200 transition font-display leading-none">
-                                       <UserIcon className="shrink-0 h-6 w-6 text-slate-500" />
-                                       <div className='relative top-px'>
-                                          <div>Account</div>
-                                       </div>
-                                 </Menu.Button>
-                                 <Transition
-                                       enter="transition duration-100 ease-out"
-                                       enterFrom="transform scale-95 opacity-0"
-                                       enterTo="transform scale-100 opacity-100"
-                                       leave="transition duration-75 ease-out"
-                                       leaveFrom="transform scale-100 opacity-100"
-                                       leaveTo="transform scale-95 opacity-0"
-                                 >
-                                       <Menu.Items className="absolute top-full right-0 mt-3 -mr-0.5 w-60 origin-top-right divide-y divide-slate-100 dark:divide-slate-600/30 rounded-lg bg-white dark:bg-slate-800 text-sm font-medium text-slate-900 dark:text-slate-200 shadow-md ring-1 ring-slate-900/5 dark:highlight-white/5 focus:outline-none sm:-mr-3.5">
-                                          <p className="truncate py-3 px-5" role="none">
-                                             <span className="block text-xs text-slate-500" role="none">Signed in as</span>
-                                             <span className="mt-0.5 font-semibold" role="none">{user.email}</span>
-                                          </p>
-                                          <div className="p-2">
-                                             <Menu.Item>
-                                                   {({ active }) => (
-                                                      <a
-                                                         href={process.env.NEXT_PUBLIC_BACKEND_URL}
-                                                         className={clsx(
-                                                               'block rounded-md py-1.5 px-3',
-                                                               !active && 'text-slate-700 dark:text-slate-400',
-                                                               active && 'bg-slate-100 dark:bg-slate-900/40 text-slate-900 dark:text-white'
-                                                         )}
-                                                      >
-                                                         Dashboard
-                                                      </a>
-                                                   )}
-                                             </Menu.Item>
-                                             <Menu.Item>
-                                                   {({ active }) => (
-                                                      <a
-                                                         href={process.env.NEXT_PUBLIC_BACKEND_URL + '/profile'}
-                                                         className={clsx(
-                                                               'block rounded-md py-1.5 px-3',
-                                                               !active && 'text-slate-700 dark:text-slate-400',
-                                                               active && 'bg-slate-100 dark:bg-slate-900/40 text-slate-900 dark:text-white'
-                                                         )}
-                                                      >
-                                                         My profile
-                                                      </a>
-                                                   )}
-                                             </Menu.Item>
-                                          </div>
-                                          <div className="p-2">
-                                             <Menu.Item>
-                                                {({ active }) => (
-                                                   <button
-                                                      className={clsx(
-                                                         'block w-full text-left rounded-md py-1.5 px-3',
-                                                         !active && 'text-slate-700 dark:text-slate-400',
-                                                         active && 'bg-slate-100 dark:bg-slate-900/40 text-slate-900 dark:text-white'
-                                                      )}
-                                                      onClick={logout}
-                                                   >Log out</button>
-                                                   )}
-                                             </Menu.Item>
-                                          </div>
-                                       </Menu.Items>
-                                 </Transition>
-                              </Menu>
-                           ) : (
-                              <NavLink href={process.env.NEXT_PUBLIC_BACKEND_URL + '/login'}>
-                                 <LoginIcon className="shrink-0 h-6 w-6 text-slate-500" />
-                                 <div className='relative top-px'>
-                                       <div>Sign in</div>
-                                 </div>
-                              </NavLink>
-                           )}
-                     </div>
-                     <div className="-mr-1 md:hidden">
-                           <MobileNavigation user={user} />
-                     </div>
-                  </div>
-               </nav>
-         </Container>
-      </header>
-   )
+          <svg viewBox="0 0 1108 632" aria-hidden="true" className="absolute top-10 left-[calc(50%-4rem)] -z-10 w-[69.25rem] max-w-none transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]">
+            <path fill="url(#175c433f-44f6-4d59-93f0-c5c51ad5566d)" fillOpacity=".2" d="M235.233 402.609 57.541 321.573.83 631.05l234.404-228.441 320.018 145.945c-65.036-115.261-134.286-322.756 109.01-230.655C968.382 433.026 1031 651.247 1092.23 459.36c48.98-153.51-34.51-321.107-82.37-385.717L810.952 324.222 648.261.088 235.233 402.609Z" />
+            <defs>
+              <linearGradient id="175c433f-44f6-4d59-93f0-c5c51ad5566d" x1="1220.59" x2="-85.053" y1="432.766" y2="638.714" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#4F46E5" />
+                <stop offset={1} stopColor="#80CAFF" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <LandingNavigation items={navItems} dark={true} />
+
+        <main>
+          <div className="relative py-24 sm:py-32 lg:pb-40">
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+              <div className="mx-auto max-w-2xl text-center">
+                <h1 className="mt-4 relative mx-auto max-w-4xl text-4xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl">
+                  Nova 3:{' '}
+                  <span className="relative whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-sky-400">The Next Generation</span>
+                </h1>
+
+                <p className="mt-6 text-lg leading-8 text-slate-300">
+                  Re-written from the ground up, Nova 3 is the culmination of years of re-thinking the way stories can be told and RPGs should be managed. Say hello to the next generation.
+                </p>
+
+                <div className="mt-10 flex items-center justify-center gap-x-6">
+                  <Button href="#" variant="dark" color="secondary">
+                    Learn more <span className="pl-1.5" aria-hidden="true">&rarr;</span>
+                  </Button>
+                </div>
+              </div>
+
+              <Image
+                src={AppDark}
+                alt="App screenshot"
+                width={2880}
+                height={2332}
+                className="mt-16 rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10 sm:mt-24"
+              />
+            </div>
+
+            <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+              <svg
+                className="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]"
+                viewBox="0 0 1155 678"
+              >
+                <path fill="url(#ee0717bf-3e43-49df-b1bd-de36422ed3d3)" fillOpacity=".2" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />
+                <defs>
+                  <linearGradient id="ee0717bf-3e43-49df-b1bd-de36422ed3d3" x1="1155.49" x2="-78.208" y1=".177" y2="474.645" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#9089FC" />
+                    <stop offset={1} stopColor="#FF80B5" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+        </main>
+      </div>
+    </header>
+  )
 }
