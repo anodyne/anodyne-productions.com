@@ -40,13 +40,6 @@ export default function Head() {
     <>
       <title>Nova &bull; Anodyne Productions</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-      <Script
-        id="theme-mode"
-        dangerouslySetInnerHTML={{
-          __html: modeScript,
-        }}
-      />
     </>
   )
 }
