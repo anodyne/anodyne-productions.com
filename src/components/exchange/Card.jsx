@@ -1,11 +1,13 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Tag } from "./Tag";
 
 export default function Card({ addon }) {
     return (
         <div className="group relative flex flex-col overflow-hidden rounded-xl ring-1 ring-gray-900/5 bg-white shadow-lg">
             <div className="aspect-w-3 aspect-h-3 bg-gray-200 group-hover:opacity-75 transition">
-                <Image width={500} height={500} src={addon.previewImage} className="object-contain object-center" alt="" />
+                {/* <Image width={500} height={500} src={addon.previewImage} className="object-contain object-center" alt="" /> */}
+                <Image width={500} height={300} src="https://via.placeholder.com/300" className="object-contain object-center" alt="" />
             </div>
             <div className="flex flex-1 flex-col p-4">
                 <div className="flex items-center gap-x-3">
@@ -17,10 +19,10 @@ export default function Card({ addon }) {
                 </div>
 
                 <h3 className="text-base font-semibold text-gray-900 mt-3">
-                    <a href="#">
+                    <Link href={`/addons/` + addon.slug}>
                         <span aria-hidden="true" className="absolute inset-0"></span>
                         {addon.name}
-                    </a>
+                    </Link>
                 </h3>
 
                 <div className="flex items-center space-x-3">
@@ -36,9 +38,9 @@ export default function Card({ addon }) {
                     {/* <span className="text-xs text-slate-500">(12 reviews)</span> */}
                 </div>
 
-                {addon.description && (
+                {/* {addon.description && (
                     <p className="mt-3 text-sm text-gray-600">{addon.description}</p>
-                )}
+                )} */}
 
                 <div className="mt-6 flex items-center gap-x-4">
                     <div className="flex items-center space-x-3">

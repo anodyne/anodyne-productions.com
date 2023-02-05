@@ -1,291 +1,98 @@
-import { Fragment } from 'react'
+'use client'
+
 import Link from 'next/link'
-import { Popover, Transition, Menu } from '@headlessui/react'
-import clsx from 'clsx'
-import { Container } from '@/components/marketing/Container'
-import { NovaLogo } from '@/components/Logos'
-import { StarIcon } from '@/components/icons/flex/StarIcon'
-import { DownloadIcon } from '@/components/icons/flex/DownloadIcon'
-import { BookIcon } from '@/components/icons/flex/BookIcon'
-import { ArchiveIcon } from '@/components/icons/flex/ArchiveIcon'
-import { SupportIcon } from '@/components/icons/flex/SupportIcon'
-import { LoginIcon } from '@/components/icons/flex/LoginIcon'
-import { LogoutIcon } from '@/components/icons/flex/LogoutIcon'
-import { useAuth } from '@/hooks/auth'
-import { UserIcon } from '@/components/icons/flex/UserIcon'
-import { HomeIcon } from '@/components/icons/flex/HomeIcon'
-import { logout } from '@/hooks/auth'
 
-function NavLink({ href, children }) {
-   return (
-      <Link
-         href={href}
-         className="group inline-flex items-center space-x-2 text-slate-600 hover:text-sky-500 transition font-display font-medium leading-none"
-      >
-         {children}
-      </Link>
-   )
-}
+import { Button } from '@/components/marketing/Button'
+import { Navigation } from '@/components/marketing/Navigation'
 
-function MobileNavLink({ href, children }) {
-   return (
-      <Popover.Button
-         as={Link}
-         href={href}
-         className="flex items-center space-x-3 w-full p-2 font-medium"
-      >
-         {children}
-      </Popover.Button>
-   )
-}
-
-function MobileNavIcon({ open }) {
-   return (
-      <svg
-         aria-hidden="true"
-         className="h-3.5 w-3.5 overflow-visible stroke-slate-700"
-         fill="none"
-         strokeWidth={2}
-         strokeLinecap="round"
-      >
-         <path
-            d="M0 1H14M0 7H14M0 13H14"
-            className={clsx(
-               'origin-center transition',
-               open && 'scale-90 opacity-0'
-            )}
-         />
-         <path
-            d="M2 2L12 12M12 2L2 12"
-            className={clsx(
-               'origin-center transition',
-               !open && 'scale-90 opacity-0'
-            )}
-         />
-      </svg>
-   )
-}
-
-function MobileNavigation({ user }) {
-   return (
-      <Popover>
-         <Popover.Button
-            className="relative z-10 flex h-8 w-8 items-center justify-center [&:not(:focus-visible)]:focus:outline-none"
-            aria-label="Toggle Navigation"
-         >
-            {({ open }) => <MobileNavIcon open={open} />}
-         </Popover.Button>
-
-         <Transition.Root>
-            <Transition.Child
-               as={Fragment}
-               enter="duration-150 ease-out"
-               enterFrom="opacity-0"
-               enterTo="opacity-100"
-               leave="duration-150 ease-in"
-               leaveFrom="opacity-100"
-               leaveTo="opacity-0"
-            >
-               <Popover.Overlay className="fixed inset-0 bg-slate-300/50" />
-            </Transition.Child>
-
-            <Transition.Child
-               as={Fragment}
-               enter="duration-150 ease-out"
-               enterFrom="opacity-0 scale-95"
-               enterTo="opacity-100 scale-100"
-               leave="duration-100 ease-in"
-               leaveFrom="opacity-100 scale-100"
-               leaveTo="opacity-0 scale-95"
-            >
-               <Popover.Panel
-                  as="div"
-                  className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5"
-               >
-                  <MobileNavLink href="#features">
-                     <StarIcon className="h-6 w-6 text-slate-500" />
-                     <span>Features</span>
-                  </MobileNavLink>
-                  <MobileNavLink href="#download">
-                     <DownloadIcon className="h-6 w-6 text-slate-500" />
-                     <span>Download</span>
-                  </MobileNavLink>
-                  <MobileNavLink href={"/docs/" + process.env.NEXT_PUBLIC_DOCS_CURRENT_VERSION + "/introduction"}>
-                     <BookIcon className="h-6 w-6 text-slate-500" />
-                     <span>Docs</span>
-                  </MobileNavLink>
-                  <MobileNavLink href="#resources">
-                     <ArchiveIcon className="h-6 w-6 text-slate-500" />
-                     <span>Resources</span>
-                  </MobileNavLink>
-                  <MobileNavLink href="https://discord.gg/7WmKUks">
-                     <SupportIcon className="h-6 w-6 text-slate-500" />
-                     <span>Get Help</span>
-                  </MobileNavLink>
-
-                  <hr className="m-2 border-slate-300/40" />
-
-                  {user ? (
-                     <>
-                        <p className="truncate w-full p-2 font-medium" role="none">
-                           <span className="block text-sm text-slate-500" role="none">Signed in as</span>
-                           <span className="mt-0.5 font-semibold" role="none">{user.email}</span>
-                        </p>
-                        <MobileNavLink href={process.env.NEXT_PUBLIC_BACKEND_URL}>
-                           <HomeIcon className="h-6 w-6 text-slate-500" />
-                           <span>Dashboard</span>
-                        </MobileNavLink>
-                        <MobileNavLink href="/login">
-                           <UserIcon className="h-6 w-6 text-slate-500" />
-                           <span>My profile</span>
-                        </MobileNavLink>
-                        <MobileNavLink href="/login">
-                           <LogoutIcon className="h-6 w-6 text-slate-500" />
-                           <span>Log out</span>
-                        </MobileNavLink>
-                     </>
-                  ) : (
-                     <MobileNavLink href={process.env.NEXT_PUBLIC_BACKEND_URL + '/login'}>
-                        <LoginIcon className="h-6 w-6 text-slate-500" />
-                        <span>Sign in</span>
-                     </MobileNavLink>
-                  )}
-               </Popover.Panel>
-            </Transition.Child>
-         </Transition.Root>
-      </Popover>
-   )
-}
+const navItems = [
+  { href: '#features', title: 'Features' },
+  { href: '#download', title: 'Download' },
+  { href: "/docs/" + process.env.NEXT_PUBLIC_DOCS_CURRENT_VERSION + "/introduction", title: 'Docs' },
+  { href: '#resources', title: 'Resources' },
+  { href: 'https://discord.gg/7WmKUks', title: 'Get Help' },
+]
 
 export function Header() {
-   const { user } = useAuth()
+  return (
+    <header className="relative">
+      <div className="px-4 sm:px-6 md:px-8">
+        <div className="isolate bg-slate-50 z-10">
+          <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
+            <svg className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]" viewBox="0 0 1155 678" xmlns="http://www.w3.org/2000/svg">
+                <path fill="url(#45de2b6b-92d5-4d68-a6a0-9b9b2abad533)" fillOpacity=".3" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />
+                <defs>
+                  <linearGradient id="45de2b6b-92d5-4d68-a6a0-9b9b2abad533" x1="1155.49" x2="-78.208" y1=".177" y2="474.645" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#9089FC" />
+                    <stop offset={1} stopColor="#FF80B5" />
+                  </linearGradient>
+                </defs>
+            </svg>
+          </div>
 
-   return (
-      <header className="py-10">
-         <Container>
-            <nav className="relative z-50 flex justify-between">
-               <div className="flex items-center md:gap-x-12">
-                  <Link href="/" aria-label="Home">
-                     <NovaLogo className="h-9 w-auto text-slate-700" />
-                  </Link>
-                  <div className="hidden md:flex md:gap-x-8">
-                     <NavLink href="#features">
-                        <StarIcon className="shrink-0 h-6 w-6 text-slate-500 group-hover:text-sky-400 transition" />
-                        <div className='relative top-px'>
-                           <div>Features</div>
-                        </div>
-                     </NavLink>
-                     <NavLink href="#download" className="flex items-center space-x-2">
-                        <DownloadIcon className="shrink-0 h-6 w-6 text-slate-500 group-hover:text-sky-400 transition" />
-                        <div className='relative top-px'>
-                           <div>Download</div>
-                        </div>
-                     </NavLink>
-                     <NavLink href={"/docs/" + process.env.NEXT_PUBLIC_DOCS_CURRENT_VERSION + "/introduction"}>
-                        <BookIcon className="shrink-0 h-6 w-6 text-slate-500 group-hover:text-sky-400 transition" />
-                        <div className='relative top-px'>
-                           <div>Docs</div>
-                        </div>
-                     </NavLink>
-                     <NavLink href="#resources">
-                        <ArchiveIcon className="shrink-0 h-6 w-6 text-slate-500 group-hover:text-sky-400 transition" />
-                        <div className='relative top-px'>
-                           <div>Resources</div>
-                        </div>
-                     </NavLink>
-                     <NavLink href="https://discord.gg/7WmKUks">
-                        <SupportIcon className="shrink-0 h-6 w-6 text-slate-500 group-hover:text-sky-400 transition" />
-                        <div className='relative top-px'>
-                           <div>Get Help</div>
-                        </div>
-                     </NavLink>
-                  </div>
-               </div>
-               <div className="flex items-center gap-x-5 md:gap-x-8">
-                  <div className="hidden md:flex md:items-center relative space-x-4">
-                     {user ? (
-                        <Menu as="div" className="relative">
-                           <Menu.Button className="group inline-flex items-center space-x-2 text-slate-600 hover:text-sky-500 transition font-display font-medium leading-none">
-                              <UserIcon className="shrink-0 h-6 w-6 text-slate-500 group-hover:text-sky-400 transition" />
-                              <div className='relative top-px'>
-                                 <div>Account</div>
-                              </div>
-                           </Menu.Button>
-                           <Transition
-                              enter="transition duration-100 ease-out"
-                              enterFrom="transform scale-95 opacity-0"
-                              enterTo="transform scale-100 opacity-100"
-                              leave="transition duration-75 ease-out"
-                              leaveFrom="transform scale-100 opacity-100"
-                              leaveTo="transform scale-95 opacity-0"
-                           >
-                              <Menu.Items className="absolute top-full right-0 mt-3 -mr-0.5 w-60 origin-top-right divide-y divide-slate-100 dark:divide-slate-600/30 rounded-lg bg-white text-sm font-medium text-slate-900 shadow-md ring-1 ring-slate-900/5 focus:outline-none sm:-mr-3.5">
-                                 <p className="truncate py-3 px-5" role="none">
-                                    <span className="block text-xs text-slate-500" role="none">Signed in as</span>
-                                    <span className="mt-0.5 font-semibold" role="none">{user.email}</span>
-                                 </p>
-                                 <div className="p-2">
-                                    <Menu.Item>
-                                       {({ active }) => (
-                                          <a
-                                             href={process.env.NEXT_PUBLIC_BACKEND_URL}
-                                             className={clsx(
-                                                'block rounded-md py-1.5 px-3',
-                                                !active && 'text-slate-700',
-                                                active && 'bg-slate-100 text-slate-900'
-                                             )}
-                                          >
-                                             Dashboard
-                                          </a>
-                                       )}
-                                    </Menu.Item>
-                                    <Menu.Item>
-                                       {({ active }) => (
-                                          <a
-                                             href={process.env.NEXT_PUBLIC_BACKEND_URL + '/profile'}
-                                             className={clsx(
-                                                'block rounded-md py-1.5 px-3',
-                                                !active && 'text-slate-700',
-                                                active && 'bg-slate-100 text-slate-900'
-                                             )}
-                                          >
-                                             My profile
-                                          </a>
-                                       )}
-                                    </Menu.Item>
-                                 </div>
-                                 <div className="p-2">
-                                    <Menu.Item>
-                                       {({ active }) => (
-                                          <button
-                                             className={clsx(
-                                                'block w-full text-left rounded-md py-1.5 px-3',
-                                                !active && 'text-slate-700',
-                                                active && 'bg-slate-100 text-slate-900'
-                                             )}
-                                             onClick={logout}
-                                          >Log out</button>
-                                          )}
-                                    </Menu.Item>
-                                 </div>
-                              </Menu.Items>
-                           </Transition>
-                        </Menu>
-                     ) : (
-                        <NavLink href={process.env.NEXT_PUBLIC_BACKEND_URL + '/login'}>
-                           <LoginIcon className="shrink-0 h-6 w-6 text-slate-500 group-hover:text-sky-400 transition" />
-                           <div className='relative top-px'>
-                              <div>Sign in</div>
-                           </div>
-                        </NavLink>
-                     )}
-                  </div>
-                  <div className="-mr-1 md:hidden">
-                     <MobileNavigation user={user} />
-                  </div>
-               </div>
-            </nav>
-         </Container>
-      </header>
-   )
+          <svg className="absolute inset-0 -z-10 h-full w-full stroke-purple-700/15 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
+            <defs>
+              <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc" width={200} height={200} x="50%" y={-1} patternUnits="userSpaceOnUse">
+                <path d="M.5 200V.5H200" fill="none" />
+              </pattern>
+            </defs>
+
+            <svg x="50%" y={-1} className="overflow-visible fill-purple-200/20">
+              <path d="M-200 0h201v201h-201Z M600 0h201v201h-201Z M-400 600h201v201h-201Z M200 800h201v201h-201Z" strokeWidth={0} />
+            </svg>
+            <rect width="100%" height="100%" strokeWidth={0} fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)" />
+          </svg>
+        </div>
+
+        <Navigation items={navItems} dark={false} />
+
+        <div className="relative px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl py-32 sm:py-48 lg:py-56">
+            <div className="hidden sm:mb-8 sm:flex sm:justify-center">
+              <Link href="/nova-3" className="group inline-flex items-center rounded-full font-medium space-x-3 px-3.5 py-0.5 bg-purple-200/60 text-purple-700 text-sm hover:bg-purple-200 hover:text-purple-800 transition">
+                <div className="shrink-0 inline-flex items-center -ml-2.5">
+                  <div className="inline-flex items-center bg-purple-50 rounded-full px-2.5">Nova 3</div>
+                </div>
+                <span className="inline-flex items-center">Explore Nova&rsquo;s next generation <span className="text-base ml-1.5 text-purple-500 group-hover:text-purple-700 font-semibold transition">&rarr;</span></span>
+              </Link>
+            </div>
+
+            <div className="text-center">
+              <h1 className="mt-4 relative mx-auto max-w-4xl text-4xl font-extrabold tracking-tight text-slate-700 sm:text-6xl md:text-7xl">
+                <span className="before:block before:absolute before:rounded-xl before:-inset-1 before:-skew-y-3 before:bg-gradient-to-r before:from-purple-500 before:to-sky-400 relative inline-block px-2 py-1.5">
+                  <span className="relative text-white">Painless{' '}</span>
+                </span>
+                <span className="relative whitespace-nowrap">RPG management</span>
+              </h1>
+
+              <p className="mt-6 mx-auto max-w-2xl text-lg leading-8 text-slate-600">
+                With an easy-to-use interface, integrated posting system, a wide array of developer tools and much more, Nova is all you need to stop managing your game and get back to playing it.
+              </p>
+
+              <div className="mt-10 flex items-center justify-center gap-x-6">
+                <Button href="#download" variant="light" color="primary">
+                  Download now
+                </Button>
+                <Button href="#features" variant="light" color="secondary">
+                  Learn more
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+            <svg className="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]" viewBox="0 0 1155 678" xmlns="http://www.w3.org/2000/svg">
+              <path fill="url(#ecb5b0c9-546c-4772-8c71-4d3f06d544bc)" fillOpacity=".3" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />
+              <defs>
+                <linearGradient id="ecb5b0c9-546c-4772-8c71-4d3f06d544bc" x1="1155.49" x2="-78.208" y1=".177" y2="474.645" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#9089FC" />
+                  <stop offset={1} stopColor="#FF80B5" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </header>
+  )
 }

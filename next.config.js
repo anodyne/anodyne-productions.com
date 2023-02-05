@@ -35,10 +35,16 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'ui-avatars.com',
         pathname: '/api/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+        pathname: '/**'
       }
     ]
   },
   experimental: {
+    appDir: true,
     scrollRestoration: true,
   },
 }

@@ -9,8 +9,8 @@ const faqs = [
   },
   {
     id: 2,
-    question: 'Will I be able to use my existing skins and MODs in Nova 3?',
-    answer: "No. The format for themes and extensions in Nova 3 is completely different from Nova 2. All add-ons for Nova 3 will have to be written from scratch.",
+    question: 'Will I be able to use my existing themes and extensions in Nova 3?',
+    answer: "No. The format for themes and extensions in Nova 3 is completely different from Nova 2. All add-ons for Nova 3 will have to be re-written from scratch.",
   },
   {
     id: 3,

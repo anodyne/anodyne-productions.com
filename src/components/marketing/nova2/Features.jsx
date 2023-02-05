@@ -71,16 +71,18 @@ const features = [
 
 function Feature({ feature, isActive, className, ...props }) {
   return (
-    <div {...props}>
-      <div className="inline-flex p-2.5 rounded-lg bg-slate-400">
-        <svg aria-hidden="true" className="h-6 w-6 text-white" fill="none" viewBox="0 0 14 14">
-          <feature.icon />
-        </svg>
-      </div>
-      <p className="mt-4 font-display text-xl text-slate-800">
+    <div {...props} className="flex flex-col">
+      <dt className="text-base font-semibold leading-7 text-slate-900">
+        <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-slate-400">
+          <svg aria-hidden="true" className="h-7 w-7 text-white" fill="none" viewBox="0 0 14 14">
+            <feature.icon />
+          </svg>
+        </div>
         {feature.name}
-      </p>
-      <p className="mt-2 text-sm text-slate-600">{feature.description}</p>
+      </dt>
+      <dd className="mt-1 flex flex-auto flex-col text-base leading-7 text-slate-600">
+        <p className="flex-auto">{feature.description}</p>
+      </dd>
     </div>
   )
 }
@@ -90,14 +92,14 @@ export function Features() {
     <section
       id="features"
       aria-label="Features for simplifying everyday business tasks"
-      className="bg-slate-50 pt-20 pb-14 sm:pb-20 sm:pt-32 lg:pb-32"
+      className="pt-20 pb-14 sm:pb-20 sm:pt-32 lg:pb-32"
     >
       <Container>
         <div className="mx-auto max-w-2xl md:text-center">
-          <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
             Powerful RPG management features
           </h2>
-          <p className="mt-4 text-lg tracking-tight text-slate-700">
+          <p className="mt-6 text-lg leading-8 text-slate-600">
             Simplify your RPG management with features and tools that will let
             you stop managing your game and start playing it again.
           </p>
@@ -105,15 +107,15 @@ export function Features() {
 
         <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 sm:gap-x-8 gap-y-16">
           {features.map((feature, featureIndex) => (
-              <Feature
-                key={feature.name}
-                feature={{
-                  ...feature,
-                  name: feature.name,
-                }}
-                className="relative"
-              />
-            ))}
+            <Feature
+              key={feature.name}
+              feature={{
+                ...feature,
+                name: feature.name,
+              }}
+              className="relative"
+            />
+          ))}
         </div>
       </Container>
     </section>

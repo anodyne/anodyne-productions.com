@@ -1,13 +1,11 @@
-import { Container } from "@/components/marketing/Container";
 import { Footer } from "@/components/marketing/nova3/Footer";
 import { Header } from "@/components/marketing/nova3/Header";
-import { Hero } from "@/components/marketing/nova3/Hero";
-import { MarketingLayout } from "@/layouts/MarketingLayout";
+import { LightMarketingLayout } from "@/layouts/LightMarketingLayout";
 
 const features = [
-   {
-      name: 'Stories',
-      intro: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus distinctio in voluptatum quis a consequatur nihil aut tempora? Necessitatibus nulla voluptatibus provident fugiat similique perspiciatis quia. Laboriosam dolores omnis qui?",
+  {
+    name: 'Stories',
+    intro: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus distinctio in voluptatum quis a consequatur nihil aut tempora? Necessitatibus nulla voluptatibus provident fugiat similique perspiciatis quia. Laboriosam dolores omnis qui?",
       items: [
          {
             icon: '',
@@ -59,13 +57,12 @@ const features = [
 
 function FeatureOverview({ name, intro, items }) {
    return (
-      <Container>
-         <div className="py-16 md:py-24">
+         <div className="py-16 md:py-24 bg-slate-900">
             <div className="mx-auto max-w-2xl">
-               <h2 className="font-display font-medium text-3xl sm:text-4xl text-slate-700 dark:text-white">
+               <h2 className="font-bold tracking-tight text-3xl sm:text-4xl text-white">
                   {name}
                </h2>
-               <p className="text-slate-500 dark:text-slate-400 text-xl">
+               <p className="text-slate-400 text-xl leading-8">
                   {intro}
                </p>
             </div>
@@ -81,38 +78,36 @@ function FeatureOverview({ name, intro, items }) {
                         >
                            {item.icon}
                         </svg>
-                        <h4 className="font-display font-normal text-lg text-white">{item.title}</h4>
+                        <h4 className="font-semibold text-lg text-white">{item.title}</h4>
                         <p className="text-sm">{item.content}</p>
                      </div>
                   ))}
                </div>
             </div>
          </div>
-      </Container>
    )
 }
 
 export default function Features() {
-   return (
-      <>
-         <Header />
-         <Hero />
+  return (
+    <>
+      <Header />
 
-         <div>
-            {features.map((feature) => (
-               <>
-                  <hr className="mx-auto max-w-3xl border-slate-400 dark:border-slate-700" />
-                  <FeatureOverview {...feature} key={feature.name} />
-               </>
-            ))}
-         </div>
+      <div>
+        {features.map((feature) => (
+          <>
+            <hr className="mx-auto max-w-3xl border-slate-800" />
+            <FeatureOverview {...feature} key={feature.name} />
+          </>
+        ))}
+      </div>
 
-         <Footer />
-      </>
-   )
+      <Footer />
+    </>
+  )
 }
 
 Features.layoutProps = {
-   Layout: MarketingLayout,
-   PageTitle: 'Features - Nova by Anodyne Productions'
+  Layout: LightMarketingLayout,
+  PageTitle: 'Features - Nova by Anodyne Productions'
 }

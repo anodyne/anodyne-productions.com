@@ -9,17 +9,17 @@ import { Footer } from '@/components/marketing/nova2/Footer'
 import axios from '@/lib/axios'
 
 export default function Home({ sponsors, latestVersion }) {
-    return (
-        <>
-            <Header />
-            <Hero />
-            <Features />
-            <Download latestVersion={latestVersion} />
-            <Resources />
-            <Sponsors sponsors={sponsors} />
-            <Footer />
-        </>
-    )
+  return (
+    <>
+      <Header />
+      {/* <Hero /> */}
+      <Features />
+      <Download latestVersion={latestVersion} />
+      <Resources />
+      <Sponsors sponsors={sponsors} />
+      <Footer />
+    </>
+  )
 }
 
 export async function getStaticProps() {
