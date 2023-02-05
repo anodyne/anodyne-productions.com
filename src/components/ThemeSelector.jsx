@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import clsx from 'clsx'
@@ -58,8 +60,8 @@ export function ThemeSelector(props) {
         className="flex items-center justify-center"
         aria-label={selectedTheme?.name}
       >
-        <LightIcon className="hidden h-6 w-6 text-sky-500 [[data-theme=light]_&]:block" />
-        <DarkIcon className="hidden h-6 w-6 text-sky-400 [[data-theme=dark]_&]:block" />
+        <LightIcon className="hidden h-6 w-6 text-purple-500 [[data-theme=light]_&]:block" />
+        <DarkIcon className="hidden h-6 w-6 text-purple-400 [[data-theme=dark]_&]:block" />
         <LightIcon className="hidden h-6 w-6 text-slate-400 [:not(.dark)[data-theme=system]_&]:block" />
         <DarkIcon className="hidden h-6 w-6 text-slate-400 [.dark[data-theme=system]_&]:block" />
       </Listbox.Button>
@@ -80,7 +82,7 @@ export function ThemeSelector(props) {
                 clsx(
                   'flex cursor-pointer select-none items-center rounded-md py-1.5 px-3',
                   {
-                    'text-sky-500': selected,
+                    'text-purple-500': selected,
                     'text-slate-900 dark:text-white': active && !selected,
                     'text-slate-700 dark:text-slate-400': !active && !selected,
                     'bg-slate-100 dark:bg-slate-900/40': active,
@@ -95,7 +97,7 @@ export function ThemeSelector(props) {
                       className={clsx(
                         'h-5 w-5',
                         selected
-                          ? 'stroke-sky-400 dark:stroke-sky-400'
+                          ? 'stroke-purple-400 dark:stroke-purple-400'
                           : 'stroke-slate-400'
                       )}
                     />

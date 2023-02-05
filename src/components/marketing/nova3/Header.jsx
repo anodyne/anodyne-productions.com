@@ -6,7 +6,7 @@ import { Popover, Transition, Menu } from '@headlessui/react'
 
 import { Button } from '@/components/marketing/Button'
 import AppDark from '@/images/screenshots/nova3-app-story-writing-dark.png'
-import { Navigation } from '@/components/marketing/Navigation'
+import { LandingNavigation } from '@/components/Navigation'
 
 const navItems = [
   { href: '#features', title: 'Features' },
@@ -44,7 +44,7 @@ export function Header() {
           </svg>
         </div>
 
-        <Navigation items={navItems} dark={true} />
+        <LandingNavigation items={navItems} dark={true} />
 
         <main>
           <div className="relative py-24 sm:py-32 lg:pb-40">

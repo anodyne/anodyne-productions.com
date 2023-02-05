@@ -3,7 +3,7 @@
 import Link from 'next/link'
 
 import { Button } from '@/components/marketing/Button'
-import { Navigation } from '@/components/marketing/Navigation'
+import { LandingNavigation } from '@/components/Navigation'
 
 const navItems = [
   { href: '#features', title: 'Features' },
@@ -44,7 +44,7 @@ export function Header() {
           </svg>
         </div>
 
-        <Navigation items={navItems} dark={false} />
+        <LandingNavigation items={navItems} dark={false} />
 
         <div className="relative px-6 lg:px-8">
           <div className="mx-auto max-w-4xl py-32 sm:py-48 lg:py-56">

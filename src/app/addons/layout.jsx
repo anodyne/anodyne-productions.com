@@ -5,7 +5,7 @@ export default function AddonsLayout({ children }) {
     <>
       <Header />
 
-      <main className="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
+      <main className="mx-auto max-w-2xl px-4 lg:max-w-8xl lg:px-8">
         {children}
       </main>
     </>

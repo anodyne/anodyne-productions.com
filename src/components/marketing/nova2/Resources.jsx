@@ -17,7 +17,7 @@ const resources = [
     buttonText: 'Join now',
   },
   {
-    url: '/exchange',
+    url: '/addons',
     category: 'Add-Ons',
     title: 'Make Nova your own',
     content: "Nova provides incredible flexibility to make your game stand out from others. Whether you're trying to change the way it looks with a brand-new skin or rank set or even update how it works with a MOD, the talented authors on the AnodyneXtras site have you covered.",
