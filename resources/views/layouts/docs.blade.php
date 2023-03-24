@@ -13,7 +13,7 @@
   >
     <x-slot:trailingLogo>
       <div class="relative" x-data x-menu>
-        <button type="button" x-menu:button class="group relative inline-flex items-center justify-center transition-all rounded-full leading-none font-sans font-semibold bg-slate-200/50 hover:bg-slate-200/70 text-slate-600 py-2 px-3 text-xs space-x-1.5" aria-haspopup="true" aria-expanded="false">
+        <button type="button" x-menu:button class="group relative inline-flex items-center justify-center transition-all rounded-full leading-none font-sans font-semibold bg-slate-200/50 dark:bg-slate-700 hover:bg-slate-200/70 dark:hover:bg-slate-600 text-slate-600 dark:text-white py-2 px-3 text-xs space-x-1.5" aria-haspopup="true" aria-expanded="false">
           <span>v{{ request()->route('version') }}</span>
           <svg width="6" height="3" class="overflow-visible" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
         </button>
