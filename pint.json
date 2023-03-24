@@ -1,0 +1,7 @@
+{
+    "preset": "laravel",
+    "exclude": [
+        "bin",
+        "node_modules"
+    ]
+}

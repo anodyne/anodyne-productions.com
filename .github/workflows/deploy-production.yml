@@ -1,0 +1,16 @@
+name: Production Deployment
+
+concurrency: production_deployment
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  production-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: jbrooksuk/laravel-forge-action@v1.0.4
+        with:
+          trigger_url: ${{ secrets.PRODUCTION_TRIGGER_URL }}

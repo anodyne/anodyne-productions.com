@@ -1,0 +1,161 @@
+@import "../../vendor/wire-elements/pro/resources/css/tailwind/overlay-component.css";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@font-face {
+    font-family: 'Inter var';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('/fonts/Inter-roman.var.woff2?v=3.18') format('woff2');
+    font-named-instance: 'Regular';
+}
+
+@font-face {
+    font-family: 'Inter var';
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('../fonts/Inter-italic.var.woff2?v=3.18') format('woff2');
+    font-named-instance: 'Italic';
+}
+
+body, button {
+    font-feature-settings: 'ss01', 'ss03', 'cv11', 'zero';
+}
+
+.wep-modal {
+    @apply z-50;
+}
+
+.wep-modal-content {
+    @apply rounded-xl bg-white dark:bg-slate-800 ring-1 ring-slate-900/5 dark:highlight-white/10;
+}
+
+/*
+ * https://blog.jim-nielsen.com/2017/creating-ios-icon-masks-in-the-browser/
+ * https://www.iosicongallery.com/
+ */
+.squircle {
+	mask-image: url(/images/squircle-mask.svg);
+    mask-size: cover;
+}
+
+[x-cloak] {
+    @apply hidden;
+}
+
+.border {
+    background-clip: padding-box;
+}
+
+@layer components {
+    .docs {
+        h1 {
+            @apply mb-0;
+        }
+
+        h1 + p + hr {
+            @apply my-8;
+        }
+
+        .anchor {
+            @apply block pt-[72px];
+
+            margin-top: -72px;
+        }
+
+        .note {
+            @apply rounded-lg bg-white shadow overflow-hidden;
+        }
+
+        .note + .note {
+            @apply mt-8;
+        }
+
+        .note .accent {
+            @apply w-full h-2 bg-gradient-to-r from-purple-600 to-purple-400;
+        }
+
+        .note .content {
+            @apply p-4;
+        }
+
+        .note .identifier {
+            @apply flex items-center space-x-2 px-4 pt-2 font-medium uppercase tracking-wide text-sm text-purple-500;
+        }
+        .note .identifier > svg {
+            @apply h-6 w-6 shrink-0 text-purple-400;
+        }
+
+        .note.is-tip .accent, .note.is-success .accent {
+            @apply bg-gradient-to-r from-green-500 to-green-400;
+        }
+        .note.is-tip .identifier, .note.is-success .identifier {
+            @apply text-green-500;
+        }
+        .note.is-tip .identifier > svg, .note.is-success .identifier > svg {
+            @apply text-green-400;
+        }
+
+        .note.is-warning .accent {
+            @apply bg-gradient-to-r from-orange-500 to-amber-500;
+        }
+        .note.is-warning .identifier {
+            @apply text-orange-500;
+        }
+        .note.is-warning .identifier > svg {
+            @apply text-orange-400;
+        }
+
+        .badge {
+            @apply inline-flex items-center px-4 py-1 rounded-full text-sm font-medium bg-purple-200 text-purple-800;
+
+            &.is-danger {
+                @apply bg-red-100 text-red-800;
+            }
+
+            &.is-warning {
+                @apply bg-amber-100 text-amber-800;
+            }
+        }
+
+        /*
+        Push the code away from the line numbers and
+        summary caret indicators.
+        */
+        pre code.torchlight .line-number,
+        pre code.torchlight .summary-caret {
+            @apply mr-4;
+        }
+
+        /*
+        Blur and dim the lines that don't have the `.line-focus` class,
+        but are within a code block that contains any focus lines.
+        */
+        .torchlight.has-focus-lines .line:not(.line-focus) {
+            transition: filter 0.35s, opacity 0.35s;
+            filter: blur(.095rem);
+            opacity: .65;
+        }
+
+        /*
+        When the code block is hovered, bring all the lines into focus.
+        */
+        .torchlight.has-focus-lines:hover .line:not(.line-focus) {
+            filter: blur(0px);
+            opacity: 1;
+        }
+    }
+
+    .toc li {
+        @apply mt-5;
+    }
+    .toc li a {
+        @apply font-medium text-slate-500 hover:text-slate-700 transition-colors duration-200;
+    }
+    .toc li > ul > li {
+        @apply pl-4;
+    }
+}

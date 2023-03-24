@@ -1,0 +1,34 @@
+{
+    "private": true,
+    "scripts": {
+        "css:build-dev": "cross-env ENV_BUILD=dev postcss resources/css/*.css --base resources --dir public --verbose",
+        "css:build-prod": "cross-env ENV_BUILD=prod postcss resources/css/*.css --base resources --dir public --verbose",
+        "js:build-dev": "esbuild resources/js/app.js --bundle --minify --sourcemap=inline --outfile=public/js/app.js",
+        "js:build-prod": "esbuild resources/js/app.js --bundle --minify --outfile=public/js/app.js",
+        "dev": "concurrently \"npm run js:build-dev\" \"npm run css:build-dev\"",
+        "prod": "concurrently \"npm run js:build-prod\" \"npm run css:build-prod\""
+    },
+    "dependencies": {
+        "@alpinejs/collapse": "^3.11.1",
+        "@alpinejs/focus": "^3.11.1",
+        "@awcodes/alpine-floating-ui": "^3.5.0",
+        "@tailwindcss/aspect-ratio": "^0.4.2",
+        "@tailwindcss/forms": "^0.5.3",
+        "@tailwindcss/line-clamp": "^0.4.2",
+        "@tailwindcss/typography": "^0.5.9",
+        "alpinejs": "^3.12.0",
+        "autoprefix": "^1.0.1",
+        "autoprefixer": "^10.4.8",
+        "concurrently": "^6.3.0",
+        "cross-env": "^7.0.3",
+        "cssnano": "^5.1.14",
+        "esbuild": "^0.13.8",
+        "postcss": "^8.4.21",
+        "postcss-cli": "^10.1.0",
+        "postcss-import": "^13.0.0",
+        "postcss-nested": "^5.0.3",
+        "resolve-url-loader": "^3.1.0",
+        "tailwindcss": "^3.2.4",
+        "tippy.js": "^6.3.7"
+    }
+}
