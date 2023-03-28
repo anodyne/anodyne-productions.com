@@ -9,7 +9,7 @@
     <img src="{{ asset($image ?? '/images/nova3-features/feeds.png') }}" alt="">
   </div> --}}
   <div class="p-4">
-    <h3 class="text-lg font-semibold text-white">{{ $title }}</h3>
+    <h3 class="text-lg font-display font-semibold text-white">{{ $title }}</h3>
     <p class="mt-2">{{ $content }}</p>
   </div>
 </div>
