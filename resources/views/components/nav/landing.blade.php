@@ -98,7 +98,7 @@
     @guest
       <x-button
         :href="route('filament.auth.login')"
-        variant="brand"
+        :variant="$dark ? 'primary' : 'secondary'"
         size="xs"
       >
         Sign in
