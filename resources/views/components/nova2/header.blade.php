@@ -41,12 +41,16 @@
 
     <div class="relative px-6 lg:px-8">
       <div class="mx-auto max-w-4xl py-32 sm:py-48 lg:py-56">
-        <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+        <div class="mb-8 flex justify-center">
           <a href="{{ route('nova-3') }}" class="group inline-flex items-center rounded-full font-medium space-x-3 px-3.5 py-0.5 bg-purple-200/60 text-purple-700 text-sm hover:bg-purple-200 hover:text-purple-800 transition">
             <div class="shrink-0 inline-flex items-center -ml-2.5">
               <div class="inline-flex items-center bg-purple-50 rounded-full px-2.5">Nova 3</div>
             </div>
-            <span class="inline-flex items-center">Explore Nova&rsquo;s next generation <span class="text-base ml-1.5 text-purple-500 group-hover:text-purple-700 font-semibold transition">&rarr;</span></span>
+            <span class="inline-flex items-center">
+              <span class="hidden lg:block">Explore Nova&rsquo;s next generation</span>
+              <span class="block lg:hidden">Explore the next generation</span>
+              <span class="text-base ml-1.5 text-purple-500 group-hover:text-purple-700 font-semibold transition">&rarr;</span>
+            </span>
           </a>
         </div>
 
