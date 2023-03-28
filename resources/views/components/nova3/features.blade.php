@@ -43,7 +43,7 @@
 
     <x-nova3.feature-group
       title="Users & Characters"
-      content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa sequi nihil est nam possimus suscipit, sed inventore, aut assumenda repellendus eum vitae id quidem eaque natus? Ducimus maxime sed rem?"
+      content="Users and characters are at the heart of Nova and we've worked hard to improve the experience and provide more creative flexibility moving forward."
       color="text-amber-500"
       :features="[
         ['title' => 'Create new users', 'content' => 'Admins can create new users without needing to use the join form'],
@@ -56,7 +56,6 @@
 
     <x-nova3.feature-group
       title="And much more..."
-      content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa sequi nihil est nam possimus suscipit, sed inventore, aut assumenda repellendus eum vitae id quidem eaque natus? Ducimus maxime sed rem?"
       color="text-purple-500"
       :features="[
         ['title' => 'Mobile support', 'content' => 'Do everything from your phone or tablet that you would at your computer'],

@@ -23,7 +23,7 @@ class Button extends Component
         return [
             'brand' => 'bg-purple-500 hover:bg-purple-600 text-white ring-1 ring-inset ring-black/15 transition-all after:block after:absolute after:-inset-[1px] after:rounded-full after:bg-gradient-to-t dark:after:bg-gradient-to-b after:from-black/5 dark:after:from-white/5 after:opacity-50 hover:after:opacity-100 after:transition-opacity',
             'primary' => 'bg-slate-700 dark:bg-white hover:bg-slate-600 dark:hover:bg-slate-200 text-white dark:text-slate-600 ring-1 ring-inset ring-black/15 transition-all after:block after:absolute after:-inset-[1px] after:rounded-full after:bg-gradient-to-t after:from-black/5 after:opacity-50 hover:after:opacity-100 after:transition-opacity',
-            'secondary' => 'bg-slate-200/50 dark:bg-slate-700 hover:bg-slate-200/70 dark:hover:bg-slate-600 text-slate-600 dark:text-white ring-1 ring-inset ring-black/15 transition-all after:block after:absolute after:-inset-[1px] after:rounded-full after:bg-gradient-to-t dark:after:bg-gradient-to-b after:from-black/5 dark:after:from-white/5 after:opacity-50 hover:after:opacity-100 after:transition-opacity',
+            'secondary' => 'bg-slate-100 dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 text-slate-600 dark:text-white ring-1 ring-inset ring-black/15 transition-all after:block after:absolute after:-inset-[1px] after:rounded-full after:bg-gradient-to-t dark:after:bg-gradient-to-b after:from-black/5 dark:after:from-white/5 after:opacity-50 hover:after:opacity-100 after:transition-opacity',
             'text' => 'font-semibold text-slate-700 hover:text-slate-900 transition',
         ][$this->variant];
     }

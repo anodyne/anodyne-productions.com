@@ -56,17 +56,13 @@
             </div>
           </div>
 
-          <div class="mt-16">
-            <x-nova3.overview />
-          </div>
-
-          {{-- <img
+          <img
             src="/images/nova3-app-story-writing-dark.png"
             alt="App screenshot"
             width="2880"
             height="2332"
             class="mt-16 rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10 sm:mt-24"
-          /> --}}
+          />
         </div>
 
         <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">

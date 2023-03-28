@@ -14,7 +14,10 @@
     <h2 class="inline-block text-4xl font-bold tracking-tight {{ $color }}">
       {{ $title }}
     </h2>
-    <p class="max-w-3xl mt-6 text-lg text-slate-400">{{ $content }}</p>
+
+    @isset($content)
+      <p class="max-w-3xl mt-6 text-lg text-slate-400">{{ $content }}</p>
+    @endisset
   </div>
 
   <div class="mt-12 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
