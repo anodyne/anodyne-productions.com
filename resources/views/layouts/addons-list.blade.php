@@ -33,7 +33,7 @@
 
           <header class="mb-16 prose dark:prose-invert">
             <p class="mb-2 text-sm leading-6 font-semibold text-purple-500 dark:text-purple-400">{{ $eyebrow }}</p>
-            <h1 class="scroll-mt-24">{{ $title }}</h1>
+            <h1 class="font-display scroll-mt-24">{{ $title }}</h1>
             <p class="lead">{{ $description }}</p>
           </header>
 

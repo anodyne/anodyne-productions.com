@@ -12,12 +12,12 @@
     <div class="mx-auto max-w-2xl lg:mx-0">
       <h2
         id="sponsors-title"
-        class="font-bold text-3xl tracking-tight text-white sm:text-4xl"
+        class="font-display font-bold text-3xl text-white sm:text-4xl"
       >
         Thanks to our incredible sponsors
       </h2>
 
-      <p class="mt-4 text-lg tracking-tight text-blue-100">
+      <p class="mt-4 text-lg text-blue-100">
         We launched a Patreon as a way for people to support Anodyne and help us continue to provide Nova and all of its resources to the community for free. As a patron, you&rsquo;ll have access to a private Discord community, early access to Nova 3, and more. Join today!
       </p>
 

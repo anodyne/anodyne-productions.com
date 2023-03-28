@@ -39,12 +39,12 @@
       <div class="relative py-24 sm:py-32 lg:pb-40">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
           <div class="mx-auto max-w-2xl text-center">
-            <h1 class="mt-4 relative mx-auto max-w-4xl text-4xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl">
+            <h1 class="mt-4 relative mx-auto max-w-4xl text-4xl font-display font-extrabold text-white sm:text-6xl md:text-7xl">
               Nova 3
               <span class="relative whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-sky-400">The Next Generation</span>
             </h1>
 
-            <p class="mt-6 text-lg leading-8 text-slate-300">
+            <p class="mt-6 text-lg text-slate-300">
               Re-written from the ground up, Nova 3 is the culmination of years of re-thinking the way stories can be told and RPGs should be managed. Say hello to the next generation.
             </p>
 
@@ -56,13 +56,17 @@
             </div>
           </div>
 
-          <img
+          <div class="mt-16">
+            <x-nova3.overview />
+          </div>
+
+          {{-- <img
             src="/images/nova3-app-story-writing-dark.png"
             alt="App screenshot"
             width="2880"
             height="2332"
             class="mt-16 rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10 sm:mt-24"
-          />
+          /> --}}
         </div>
 
         <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">

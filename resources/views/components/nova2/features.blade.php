@@ -37,8 +37,8 @@
 <div class="py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl sm:text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Powerful RPG management features</h2>
-      <p class="mt-6 text-lg leading-8 text-slate-600">Simplify your RPG management with features and tools that will let
+      <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Powerful RPG management features</h2>
+      <p class="mt-6 text-lg text-slate-600">Simplify your RPG management with features and tools that will let
         you stop managing your game and start playing it again.</p>
     </div>
   </div>

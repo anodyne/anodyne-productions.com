@@ -90,7 +90,7 @@
             @endforeach
           </div>
 
-          <h1 class="mt-4 text-2xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-3xl">{{ $addon->name }}</h1>
+          <h1 class="mt-4 text-2xl font-display font-bold text-slate-900 dark:text-white sm:text-3xl">{{ $addon->name }}</h1>
 
           <div class="flex items-center space-x-1.5 relative mt-2">
             <div class="text-slate-700 dark:text-slate-300 font-medium text-sm">
@@ -188,7 +188,7 @@
                 @endphp
 
                 <div>
-                  <dt class="flex items-center space-x-2 font-bold tracking-tight">
+                  <dt class="flex items-center space-x-2 font-display font-bold">
                     @svg($compatibility['status']->icon(), 'h-5 w-5 shrink-0 ' . $compatibility['status']->iconColor())
                     <span class="{{ $compatibility['status']->textColor() }}">{{ $series->name }}</span>
                   </dt>

@@ -12,7 +12,7 @@
       'category' => 'Community',
       'cta' => 'Join now',
       'url' => 'https://discord.gg/7WmKUks',
-      'content' => "Over the years Nova has fostered a global community of artists, developers, and writers who are passionate about the stories they tell. No matter if you're looking to chat with people, find a new game, or get help with Nova, the Anodyne community is ready to welcome you.",
+      'content' => "Over the years Nova has fostered a global community of artists, developers, and writers passionate about the stories they tell. No matter if you're looking to chat with people, find a new game, or get help with Nova, the Anodyne community is ready to welcome you.",
     ],
     [
       'title' => 'Make Nova your own',
@@ -28,7 +28,7 @@
 <section id="resources" aria-label="Resources" class="bg-slate-50 py-20 sm:py-32">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="md:text-center">
-      <h2 class="font-bold text-3xl tracking-tight text-slate-900 sm:text-4xl">
+      <h2 class="font-display font-bold text-3xl text-slate-900 sm:text-4xl">
         <span class="relative whitespace-nowrap">Helpful resources</span>
       </h2>
     </div>
@@ -43,7 +43,7 @@
             <div class="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-slate-100 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 sm:-inset-x-6 sm:rounded-2xl"></div>
             <a href="{{ $resource['url'] }}">
               <span class="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl"></span>
-              <span class="relative z-10">{{ $resource['title'] }}</span>
+              <span class="font-display relative z-10">{{ $resource['title'] }}</span>
             </a>
           </h3>
 
@@ -51,11 +51,11 @@
             <span>{{ $resource['category'] }}</span>
           </p>
 
-          <p class="relative z-10 mt-2 text-sm leading-6 text-slate-600">
+          <p class="relative z-10 mt-2 text-sm text-slate-600">
             {{ $resource['content'] }}
           </p>
 
-          <div class="relative z-10 mt-4 flex items-center text-sm font-medium text-purple-500 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition">
+          <div class="relative z-10 mt-4 flex items-center font-semibold text-purple-500 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition">
             {{ $resource['cta'] }}
             <span class="ml-1.5">&rarr;</span>
           </div>

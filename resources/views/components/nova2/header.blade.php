@@ -51,14 +51,14 @@
         </div>
 
         <div class="text-center">
-          <h1 class="mt-4 relative mx-auto max-w-4xl text-4xl font-extrabold tracking-tight text-slate-700 sm:text-6xl md:text-7xl">
+          <h1 class="mt-4 relative mx-auto max-w-4xl text-4xl font-display font-extrabold text-slate-700 sm:text-6xl md:text-7xl">
             <span class="before:block before:absolute before:rounded-xl before:-inset-1 before:-skew-y-3 before:bg-gradient-to-r before:from-purple-500 before:to-sky-400 relative inline-block px-2 py-1.5">
               <span class="relative text-white">Painless</span>
             </span>
             <span class="relative whitespace-nowrap">RPG management</span>
           </h1>
 
-          <p class="mt-6 mx-auto max-w-2xl text-lg leading-8 text-slate-600">
+          <p class="mt-6 mx-auto max-w-2xl text-lg text-slate-600">
             With an easy-to-use interface, integrated posting system, a wide array of developer tools and much more, Nova is all you need to stop managing your game and get back to playing it.
           </p>
 

@@ -36,6 +36,11 @@ module.exports = {
     },
     typography: require('./typography'),
     extend: {
+      backgroundImage: ({ theme }) => ({
+        'gradient-radial': 'radial-gradient(closest-side, var(--tw-gradient-stops))',
+        'gradient-radial-center': 'radial-gradient(circle at center, var(--tw-gradient-stops))',
+        'gradient-radial-center-4xl': 'radial-gradient(circle at center, var(--tw-gradient-stops) ' + theme('maxWidth.4xl') + ')',
+      }),
       borderRadius: {
         '4xl': '2rem',
       },
@@ -79,8 +84,19 @@ module.exports = {
         `,
       },
       fontFamily: {
-        sans: ['"Inter var"', ...defaultTheme.fontFamily.sans],
-        display: ['"Lexend"', ...defaultTheme.fontFamily.sans]
+        sans: [
+          'Inter var, sans-serif',
+          {
+            fontFeatureSettings: '"ss01", "ss02", "ss03", "cv11"',
+          }
+        ],
+        display: [
+          'Inter var, sans-serif',
+          {
+            fontFeatureSettings: '"ss01", "ss02", "ss03", "cv11"',
+            fontVariationSettings: '"opsz" 32',
+          }
+        ]
       },
       lineHeight: {
         0: 0,

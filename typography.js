@@ -184,7 +184,7 @@ module.exports = ({ theme }) => ({
         fontSize: theme('fontSize.4xl')[0],
         ...theme('fontSize.4xl')[1],
         marginBottom: theme('spacing.4'),
-        fontFamily: theme('fontFamily.sans')[0]
+        fontFamily: theme('fontFamily.display')[0],
       },
       h2: {
         color: 'var(--tw-prose-headings)',

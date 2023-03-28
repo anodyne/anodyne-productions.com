@@ -5,7 +5,7 @@
 ])
 
 <nav @class([
-  'relative z-20 pt-6 lg:pt-8 flex items-center justify-between font-semibold text-sm leading-6',
+  'relative z-20 pt-6 lg:pt-8 flex items-center justify-between font-semibold text-sm',
   'text-slate-700' => !$dark,
   'text-white' => $dark,
 ])>
@@ -21,7 +21,7 @@
     </a>
     <div class="hidden md:flex items-center">
       <nav>
-        <ul class="flex items-center gap-x-8">
+        <ul class="flex items-center gap-x-10">
           @foreach ($items as $item)
             <li>
               <x-nav.link :href="$item['href']" :dark="$dark">

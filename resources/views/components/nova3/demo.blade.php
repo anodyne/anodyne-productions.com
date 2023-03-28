@@ -4,18 +4,18 @@
     <div class="grid grid-cols-1 gap-y-16 gap-x-8 sm:gap-y-20 lg:grid-cols-2 lg:items-start">
       <div class="px-6 lg:px-0 lg:pt-4 lg:pr-4">
         <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-          <h2 class="text-lg font-semibold leading-8 tracking-tight text-purple-400">Demo</h2>
-          <p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">Explore Nova 3 today</p>
-          <p class="mt-6 text-lg leading-8 text-slate-500">
+          <h2 class="text-lg font-semibold text-purple-400">Demo</h2>
+          <p class="mt-2 font-display font-bold text-white text-3xl sm:text-4xl">Explore Nova 3 today</p>
+          <p class="mt-6 text-lg text-slate-400">
             Instead of endlessly scrolling through a list of features and improvements, experience Nova 3 for yourself with our demo site that&rsquo;s regularly updated with the latest development work. Use the email address and password below to start exploring.
           </p>
-          <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-slate-500 lg:max-w-none">
+          <dl class="mt-10 max-w-xl space-y-8 text-base text-slate-500 lg:max-w-none">
             <div class="relative pl-9">
               <dt class="inline font-semibold text-white">
                 @svg('flex-at-symbol', 'absolute top-1 left-1 h-5 w-5 text-purple-400')
                 Email address
               </dt>
-              <dd class="inline">admin@admin.com</dd>
+              <dd class="inline pl-2">admin@admin.com</dd>
             </div>
 
             <div class="relative pl-9">
@@ -23,7 +23,7 @@
                 @svg('flex-lock-closed', 'absolute top-1 left-1 h-5 w-5 text-purple-400')
                 Password
               </dt>
-              <dd class="inline">secret</dd>
+              <dd class="inline pl-2">secret</dd>
             </div>
 
             <x-button href="https://nova3.anodyne-productions.com" variant="secondary">

@@ -31,13 +31,13 @@
 >
   <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:py-40 lg:px-8">
     <div class="mx-auto max-w-4xl divide-y divide-white/10">
-      <h2 class="text-2xl font-bold leading-10 tracking-tight text-white">Frequently asked questions</h2>
+      <h2 class="text-2xl font-display font-bold text-white">Frequently asked questions</h2>
       <dl class="mt-10 space-y-6 divide-y divide-white/10" x-data>
         @foreach ($faqs as $faq)
           <div x-disclosure class="pt-6 cursor-pointer" {{ $loop->first ? 'default-open' : '' }}>
             <dt>
               <div x-disclosure:button class="flex w-full items-start justify-between text-left text-white">
-                <span class="text-base font-semibold leading-7">{{ $faq['question'] }}</span>
+                <span class="text-base font-semibold">{{ $faq['question'] }}</span>
                 <span class="ml-6 flex h-7 items-center text-slate-500">
                   <span x-show="$disclosure.isOpen" x-cloak aria-hidden="true" class="ml-4">
                     @svg('flex-remove-square', 'h-5 w-5 shrink-0')
@@ -49,7 +49,7 @@
               </div>
             </dt>
             <dd class="mt-2 pr-12" x-disclosure:panel x-collapse>
-              <p class="text-base leading-7 text-slate-300">{{ $faq['answer'] }}</p>
+              <p class="text-base text-slate-400">{{ $faq['answer'] }}</p>
             </dd>
           </div>
         @endforeach

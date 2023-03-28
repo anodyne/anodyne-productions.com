@@ -55,16 +55,16 @@
 >
   <div class="py-24 px-6 sm:px-6 sm:py-32 lg:px-8">
     <div class="mx-auto max-w-4xl text-center">
-      <h2 class="text-3xl tracking-tight text-white/50 sm:text-4xl">
+      <h2 class="text-3xl font-display text-white/50 sm:text-4xl">
         Ready to get started?
       </h2>
 
-      <h2 class="mt-1.5 font-bold text-3xl tracking-tight text-white sm:text-4xl">
+      <h2 class="mt-1.5 font-bold text-3xl font-display text-white sm:text-4xl">
         Download Nova today.
       </h2>
 
       <div class="mt-12">
-        <label class="text-slate-100 text-lg">Choose your version</label>
+        <label class="text-slate-100 text-lg font-medium">Choose your version</label>
 
         <div class="mt-4 flex flex-col md:flex-row md:items-center md:justify-center gap-y-6 md:gap-y-0 md:gap-x-6">
           <template x-for="version in versions" :key="version.id">
@@ -109,7 +109,7 @@
       </div>
 
       <div class="mt-8">
-        <label class="text-slate-100 text-lg">Choose your genre</label>
+        <label class="text-slate-100 text-lg font-medium">Choose your genre</label>
 
         <div class="mt-4 grid grid-cols-1 md:grid-cols-4 gap-y-6 md:gap-x-6 md:gap-y-3">
           <template x-for="genre in genres" :key="genre.id">
