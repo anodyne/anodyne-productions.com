@@ -44,6 +44,64 @@
         </div>
       </div>
     </x-slot:trailingLogo>
+
+    <x-slot:sidebar>
+      <ul role="list">
+        @foreach ($navigation as $nav)
+          <li @class([
+            'relative md:mt-6',
+            'md:mt-0' => $loop->first
+          ])>
+            <h2 class="text-xs font-semibold text-slate-900 dark:text-white">
+              {{ $nav->title }}
+            </h2>
+
+            <div class="relative mt-3 pl-2">
+              <div class="absolute inset-y-0 left-2 w-px bg-slate-900/10 dark:bg-white/10"></div>
+
+              <ul role="list" class="border-l border-transparent">
+                @foreach ($nav->links as $link)
+                  @if (request()->is("docs/{$version}/{$link->href}"))
+                    <div class="absolute mt-1 left-2 h-6 w-px bg-purple-500"></div>
+                  @endif
+
+                  <li class="relative">
+                    <a
+                      href="/docs/{{ $version }}/{{ $link->href }}"
+                      @class([
+                        'flex justify-between gap-2 py-2 pr-3 transition pl-4',
+                        'text-slate-900 dark:text-white' => request()->is("docs/{$version}/{$link->href}"),
+                        'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white' => ! request()->is("docs/{$version}/{$link->href}"),
+                      ])
+                    >
+                      <span class="truncate">{{ $link->title }}</span>
+                    </a>
+
+                    @if (request()->is("docs/{$version}/{$link->href}"))
+                      <ul role="list">
+                        @foreach ($sections as $section)
+                          <li>
+                            <a
+                              href="/docs/{{ $version }}/{{ $link->href }}#{{ $section['anchor'] }}"
+                              @class([
+                                'flex justify-between gap-2 py-1 pr-3 text-sm transition pl-7',
+                                'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white',
+                              ])
+                            >
+                              <span class="truncate">{{ $section['title'] }}</span>
+                            </a>
+                          </li>
+                        @endforeach
+                      </ul>
+                    @endif
+                  </li>
+                @endforeach
+              </ul>
+            </div>
+          </li>
+        @endforeach
+      </ul>
+    </x-slot:sidebar>
   </x-header.app>
 
   <div class="overflow-hidden">
@@ -170,7 +228,7 @@
           @endisset
 
           <header class="mb-16 prose dark:prose-invert">
-            <p class="mb-2 text-sm leading-6 font-semibold text-purple-500 dark:text-purple-400">{{ $frontmatter['section'] }}</p>
+            <p class="mb-2 text-sm font-semibold text-purple-500 dark:text-purple-400">{{ $frontmatter['section'] }}</p>
 
             @isset($frontmatter['tag'])
               <div class="flex items-center gap-x-3">
@@ -185,6 +243,7 @@
             @endisset
 
             <h1 @class([
+              'font-display',
               'mt-2 scroll-mt-32' => isset($frontmatter['tag']),
               'scroll-mt-24' => ! isset($frontmatter['tag'])
             ])>
@@ -241,4 +300,5 @@
 
   <div id="overlay"></div>
   <div id="modal"></div>
+  <div id="slideover"></div>
 </x-base-layout>

@@ -50,7 +50,7 @@
                   type="button"
                   @click="setMode('light');open = false;"
                   class="flex items-center w-full px-3 py-1.5 text-sm transition-colors rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 space-x-2"
-                  x-bind:class="{ 'text-purple-500': isLightModeSelected(), 'text-slate-500 dark:text-gray-400': !isLightModeSelected() }"
+                  x-bind:class="{ 'text-purple-500': isLightModeSelected(), 'text-slate-500 dark:text-slate-400': !isLightModeSelected() }"
                 >
                   @svg('flex-weather-sun', 'w-5 h-5')
                   <span>Light</span>
@@ -59,7 +59,7 @@
                   type="button"
                   @click="setMode('dark');open = false;"
                   class="flex items-center w-full px-3 py-1.5 text-sm transition-colors rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 space-x-2"
-                  x-bind:class="{ 'text-purple-500': isDarkModeSelected(), 'text-slate-500 dark:text-gray-400': !isDarkModeSelected() }"
+                  x-bind:class="{ 'text-purple-500': isDarkModeSelected(), 'text-slate-500 dark:text-slate-400': !isDarkModeSelected() }"
                 >
                   @svg('flex-weather-moon', 'w-5 h-5')
                   <span>Dark</span>
@@ -68,7 +68,7 @@
                   type="button"
                   @click="setMode();open = false;"
                   class="flex items-center w-full px-3 py-1.5 text-sm transition-colors rounded-md hover:bg-slate-100 dark:hover:bg-slate-700 space-x-2"
-                  x-bind:class="{ 'text-purple-500': isSystemModeSelected(), 'text-slate-500 dark:text-gray-400': !isSystemModeSelected() }"
+                  x-bind:class="{ 'text-purple-500': isSystemModeSelected(), 'text-slate-500 dark:text-slate-400': !isSystemModeSelected() }"
                 >
                   @svg('flex-computer', 'w-5 h-5')
                   <span>System</span>
@@ -162,8 +162,8 @@
 
               @auth
                 <p class="truncate w-full p-2 font-medium" role="none">
-                  <span class="block text-sm text-slate-500" role="none">Signed in as</span>
-                  <span class="mt-0.5 font-semibold" role="none">{{ auth()->user()->email }}</span>
+                  <span class="block text-sm text-slate-500 dark:text-slate-400" role="none">Signed in as</span>
+                  <span class="mt-0.5 font-semibold text-slate-900 dark:text-white" role="none">{{ auth()->user()->email }}</span>
                 </p>
                 <x-nav.link-mobile :href="route('filament.pages.dashboard')">
                   Dashboard
@@ -220,10 +220,59 @@
       @endif
 
       @isset($sidebar)
-        <button type="button" class="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
-          <span class="sr-only">Navigation</span>
-          <svg width="24" height="24"><path d="M5 6h14M5 12h14M5 18h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
-        </button>
+        <div class="flex items-center" x-data="{ open: false }">
+          <button type="button" x-on:click="open = true" class="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
+            <span class="sr-only">Navigation</span>
+            <svg width="24" height="24"><path d="M5 6h14M5 12h14M5 18h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+          </button>
+
+          <template x-teleport="#slideover">
+            <div
+              x-dialog
+              x-model="open"
+              class="fixed inset-0 overflow-hidden z-50"
+              x-cloak
+            >
+              <!-- Overlay -->
+              <div x-dialog:overlay x-transition.opacity class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur"></div>
+
+              <!-- Panel -->
+              <div class="fixed inset-y-0 left-0 w-4/5 lg:max-w-lg lg:w-full">
+                <div
+                  x-dialog:panel
+                  x-transition:enter="transition ease-out duration-300"
+                  x-transition:enter-start="-translate-x-full"
+                  x-transition:enter-end="translate-x-0"
+                  x-transition:leave="transition ease-in duration-300"
+                  x-transition:leave-start="translate-x-0"
+                  x-transition:leave-end="-translate-x-full"
+                  class="h-full w-full"
+                >
+                  <div class="h-full flex flex-col justify-between bg-white dark:bg-slate-800 shadow-md overflow-y-auto">
+                    <!-- Close Button -->
+                    <div class="absolute top-0 right-0 pt-6 pr-6">
+                      <button type="button" @click="$dialog.close()" class="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-2 text-slate-600 dark:text-slate-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 z-10">
+                        <span class="sr-only">Close slideover</span>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                      </button>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="p-6">
+                      <x-logos.nova class="text-slate-700 dark:text-white w-auto h-8 mb-6"></x-logos.nova>
+
+                      <!-- Content -->
+                      <div class="text-slate-600 flex-1">{{ $sidebar }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
       @endisset
 
       <ol class="flex text-sm leading-6 whitespace-nowrap min-w-0">
