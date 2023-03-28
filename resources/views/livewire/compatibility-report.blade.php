@@ -2,7 +2,7 @@
   <div class="p-4 sm:px-6 sm:py-5">
     <div class="flex items-center space-x-2">
       @svg('flex-flash', 'h-5 w-5 text-slate-700 dark:text-slate-300')
-      <h3 class="text-lg leading-4 font-semibold text-slate-900 dark:text-white">Submit compatibility report</h3>
+      <h3 class="text-lg/4 font-display font-semibold text-slate-900 dark:text-white">Submit compatibility report</h3>
     </div>
     <div class="mt-1 pl-7 text-xs text-slate-600 dark:text-slate-400">Let the community know your experience using this add-on</div>
   </div>

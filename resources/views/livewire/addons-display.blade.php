@@ -179,7 +179,7 @@
             </button>
           </div>
 
-          <div class="prose prose-sm mt-4 text-slate-600 dark:text-slate-400">
+          <div class="mt-4 text-slate-600 dark:text-slate-400">
             <dl class="space-y-6" role="list">
               @foreach ($this->releaseSeries as $series)
                 @php
@@ -188,7 +188,7 @@
                 @endphp
 
                 <div>
-                  <dt class="flex items-center space-x-2 font-display font-bold">
+                  <dt class="flex items-center space-x-3 font-display font-bold text-lg">
                     @svg($compatibility['status']->icon(), 'h-5 w-5 shrink-0 ' . $compatibility['status']->iconColor())
                     <span class="{{ $compatibility['status']->textColor() }}">{{ $series->name }}</span>
                   </dt>
@@ -208,12 +208,12 @@
                   @endif
 
                   <dd class="text-sm pl-8">
-                    {{
+                    {!!
                       $compatibility['status']->description(
                         series: $series->name,
                         hasResults: ($compatibility['versionStats']->incompatible > 0 || $compatibility['versionStats']->compatible > 0)
                       )
-                    }}
+                    !!}
                   </dd>
 
                   @auth

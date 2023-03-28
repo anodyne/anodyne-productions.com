@@ -23,13 +23,13 @@ enum CompatibilityStatus: string
         return match ($this) {
             self::compatible => 'Members of the community have confirmed this add-on works with '.$series,
             self::compatibleOverride => 'This add-on works with '.$series,
-            self::compatiblePreviously => "Members of the community confirmed this add-on worked in a previous version, but haven't confirmed that this specific version of the add-on works with {$series}",
+            self::compatiblePreviously => "Members of the community confirmed this add-on worked in a previous version, but haven&rsquo;t confirmed that this specific version of the add-on works with {$series}",
             self::incompatible => 'Members of the community have confirmed this add-on does not work with '.$series,
             self::incompatibleOverride => 'This add-on does not work with '.$series,
-            self::incompatiblePreviously => "Members of the community confirmed this add-on did not work in a previous version, but haven't confirmed that this specific version of the add-on does not work with {$series}",
+            self::incompatiblePreviously => "Members of the community confirmed this add-on did not work in a previous version, but haven&rsquo;t confirmed that this specific version of the add-on does not work with {$series}",
             self::unknown => $hasResults
-                ? "This add-on may work with {$series}, but there aren't enough members of the community that have confirmed"
-                : "This add-on may work with {$series}, but members of the community haven't confirmed",
+                ? "This add-on may work with {$series}, but there aren&rsquo;t enough members of the community that have confirmed"
+                : "This add-on may work with {$series}, but members of the community haven&rsquo;t confirmed",
         };
     }
 
