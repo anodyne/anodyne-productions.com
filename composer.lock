@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd0a925445e20dc06b7f8d06eabacbaf",
+    "content-hash": "53cb701e2b99e9235ad7bf7b8b23cd49",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -131,16 +131,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.262.2",
+            "version": "3.262.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "6359e467b6f099149f93769e014416b5f841bb42"
+                "reference": "f5c8142d43846194bbb3bb40b18e7f6df2788409"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/6359e467b6f099149f93769e014416b5f841bb42",
-                "reference": "6359e467b6f099149f93769e014416b5f841bb42",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f5c8142d43846194bbb3bb40b18e7f6df2788409",
+                "reference": "f5c8142d43846194bbb3bb40b18e7f6df2788409",
                 "shasum": ""
             },
             "require": {
@@ -219,9 +219,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.262.2"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.262.3"
             },
-            "time": "2023-03-27T18:22:32+00:00"
+            "time": "2023-03-28T18:18:50+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -2938,16 +2938,16 @@
         },
         {
             "name": "laravel/pennant",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pennant.git",
-                "reference": "3bb8f79d663addf6400582c7e1aeea95211a4129"
+                "reference": "783ea43eaa51867247192b30505af0ef5f19ccf1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pennant/zipball/3bb8f79d663addf6400582c7e1aeea95211a4129",
-                "reference": "3bb8f79d663addf6400582c7e1aeea95211a4129",
+                "url": "https://api.github.com/repos/laravel/pennant/zipball/783ea43eaa51867247192b30505af0ef5f19ccf1",
+                "reference": "783ea43eaa51867247192b30505af0ef5f19ccf1",
                 "shasum": ""
             },
             "require": {
@@ -3010,7 +3010,7 @@
                 "issues": "https://github.com/laravel/pennant/issues",
                 "source": "https://github.com/laravel/pennant"
             },
-            "time": "2023-02-24T19:41:17+00:00"
+            "time": "2023-03-17T18:08:19+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -6214,16 +6214,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "10.7.13",
+            "version": "10.7.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "a992f2505f37abc49b0914c34d01a9dc7543cae1"
+                "reference": "20f083354e3933af87f9b4c550c06897e4a2ed56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/a992f2505f37abc49b0914c34d01a9dc7543cae1",
-                "reference": "a992f2505f37abc49b0914c34d01a9dc7543cae1",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/20f083354e3933af87f9b4c550c06897e4a2ed56",
+                "reference": "20f083354e3933af87f9b4c550c06897e4a2ed56",
                 "shasum": ""
             },
             "require": {
@@ -6307,7 +6307,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/10.7.13"
+                "source": "https://github.com/spatie/laravel-medialibrary/tree/10.7.15"
             },
             "funding": [
                 {
@@ -6319,7 +6319,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-03-06T11:26:25+00:00"
+            "time": "2023-03-29T12:36:16+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
