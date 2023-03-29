@@ -1,1 +1,25 @@
 @import '../../vendor/filament/filament/resources/css/app.css';
+
+@font-face {
+    font-family: 'Inter var';
+    font-display: swap;
+    font-style: normal;
+    font-weight: 100 900;
+    src: url("/fonts/Inter.var.woff2?v=3.19") format("woff2-variations"),
+         url("/fonts/Inter.var.woff2?v=3.19") format("woff2");
+    src: url("/fonts/Inter.var.woff2?v=3.19") format("woff2") tech("variations");
+}
+
+@font-face {
+    font-family: 'Inter var';
+    font-display: swap;
+    font-style: italic;
+    font-weight: 100 900;
+    src: url("/fonts/Inter-Italic.var.woff2?v=3.19") format("woff2-variations"),
+         url("/fonts/Inter-Italic.var.woff2?v=3.19") format("woff2");
+    src: url("/fonts/Inter-Italic.var.woff2?v=3.19") format("woff2") tech("variations");
+}
+
+.filament-login-page form {
+    @apply before:from-transparent before:via-primary-500 before:to-transparent;
+}
