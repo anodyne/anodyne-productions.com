@@ -38,6 +38,7 @@ class AddonsMigrated extends Notification
             ->markdown('mail.migration.addons', [
                 'addons' => $notifiable->addons,
                 'url' => route('filament.auth.login'),
+                'name' => $notifiable->name,
             ]);
     }
 
