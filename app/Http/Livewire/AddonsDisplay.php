@@ -9,7 +9,6 @@ use App\Models\Version;
 use App\View\Components\BaseLayout;
 use Illuminate\Support\Collection;
 use Livewire\Component;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class AddonsDisplay extends Component
 {
@@ -17,7 +16,7 @@ class AddonsDisplay extends Component
 
     public ?Version $version = null;
 
-    public function download(): BinaryFileResponse
+    public function download()
     {
         Download::create([
             'addon_id' => $this->addon->id,
@@ -25,17 +24,7 @@ class AddonsDisplay extends Component
             'user_id' => auth()->id(),
         ]);
 
-        $media = $this->version->getFirstMedia('downloads');
-
-        return response()->download(
-            $media->getPath(),
-            sprintf(
-                '%s-%s.%s',
-                $this->addon->slug,
-                $this->version->version,
-                $media->extension
-            )
-        );
+        return $this->version->getFirstMedia('downloads');
     }
 
     public function getQuestionsProperty(): Collection

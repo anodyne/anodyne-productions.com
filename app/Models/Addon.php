@@ -93,7 +93,7 @@ class Addon extends Model implements HasMedia
 
     public static function getMediaPath(): string
     {
-        return 'addons/{model_id}/{media_id}/';
+        return '{model_id}/';
     }
 
     public function getRouteKeyName()
@@ -112,9 +112,11 @@ class Addon extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('primary-preview')
-            ->acceptsMimeTypes(['image/jpeg', 'image/jpg', 'image/png']);
+            ->acceptsMimeTypes(['image/jpeg', 'image/jpg', 'image/png'])
+            ->useDisk(app()->environment('local') ? 'public' : 'r2');
 
         $this->addMediaCollection('additional-previews')
-            ->acceptsMimeTypes(['image/jpeg', 'image/jpg', 'image/png']);
+            ->acceptsMimeTypes(['image/jpeg', 'image/jpg', 'image/png'])
+            ->useDisk(app()->environment('local') ? 'public' : 'r2');
     }
 }

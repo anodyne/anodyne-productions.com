@@ -15,6 +15,7 @@ class CustomPathGenerator implements PathGenerator
 
         if (method_exists($model, 'getMediaPath')) {
             return strtr($model::getMediaPath(), [
+                '{addon_id}' => $media->model->addon_id,
                 '{media_id}' => $media->id,
                 '{model_id}' => $media->model_id,
             ]);

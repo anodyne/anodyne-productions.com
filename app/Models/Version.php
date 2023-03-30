@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Traits\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Version extends Model implements HasMedia
 {
@@ -55,6 +55,12 @@ class Version extends Model implements HasMedia
     {
         $this->addMediaCollection('downloads')
             ->acceptsMimeTypes(['application/zip'])
-            ->singleFile();
+            ->singleFile()
+            ->useDisk(app()->environment('local') ? 'public' : 'r2');
+    }
+
+    public static function getMediaPath(): string
+    {
+        return '{addon_id}/versions/{model_id}/';
     }
 }
