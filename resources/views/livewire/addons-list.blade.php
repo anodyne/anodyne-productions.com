@@ -86,6 +86,62 @@
     </div>
   </x-slot:sidebar>
 
+  <div class="block lg:hidden mb-8" x-data="{ open: false }">
+    <x-button @click="open = !open" variant="primary" class="w-full">
+      <div class="flex items-center space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" class="h-5 w-5"><path stroke="currentColor" stroke-linejoin="round" d="M11.5518 1.31079C8.47592 0.989562 5.52397 0.989566 2.44805 1.31091C1.18438 1.44293 0.388506 2.73124 0.9895 3.85066C1.95727 5.65323 3.33709 7.32436 5.27247 8.58037V12.0129C5.27247 12.7328 6.01032 13.2168 6.6707 12.9301L8.12579 12.2984C8.49117 12.1398 8.72756 11.7795 8.72756 11.3811V8.58023C10.6629 7.32415 12.0427 5.65308 13.0105 3.85054C13.6115 2.7311 12.7056 1.43128 11.5518 1.31079Z"></path></svg>
+
+        <span>Toggle filters</span>
+      </div>
+    </x-button>
+
+    <div class="mt-6 grid grid-cols-1 gap-6" x-show="open" x-cloak x-collapse>
+      <div>
+        <x-input.text placeholder="Search for add-ons..." wire:model.debounce.500ms="search">
+          @if (filled($filters['search']))
+            <x-slot:trailingAddOn>
+              <button wire:click="$set('filters.search', '')">
+                @svg('flex-delete-circle', 'h-4 w-4')
+              </button>
+            </x-slot:trailingAddOn>
+          @endif
+        </x-input.text>
+      </div>
+
+      <div>
+        <h2 class="text-xs font-semibold text-slate-900 dark:text-white">
+          Version
+        </h2>
+
+        <div class="relative mt-3 pl-2">
+          <ul class="space-y-1">
+            @foreach ($this->products as $id => $name)
+              <li class="relative flex items-center">
+                <x-input.checkbox :label="$name" id="product_{{ $id }}" wire:model="filters.products" :value="$id" />
+              </li>
+            @endforeach
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-xs font-semibold text-slate-900 dark:text-white">
+          Type
+        </h2>
+
+        <div class="relative mt-3 pl-2">
+          <ul class="space-y-1">
+            @foreach (App\Enums\AddonType::cases() as $type)
+              <li class="relative flex items-center">
+                <x-input.checkbox :label="$type->displayName()" id="type_{{ $type->value }}" wire:model="filters.types" :value="$type->value" />
+              </li>
+            @endforeach
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div @class([
     'grid',
     'grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-12' => $this->addons->count() > 0,
@@ -95,7 +151,7 @@
       <a href="{{ route('addons.show', $addon) }}" class="flex flex-col bg-white dark:bg-slate-800 overflow-hidden shadow hover:shadow-lg dark:shadow-lg rounded-xl ring-1 ring-slate-900/5 transition">
         <div class="relative">
           @if ($addon->getMedia('primary-preview')->count() === 1)
-            <img src="{{ $addon->getFirstMediaUrl('primary-preview') }}" alt="" class="w-full h-56 bg-cover">
+            <img src="{{ $addon->getFirstTemporaryUrl(now()->addMinutes(5), 'primary-preview') }}" alt="" class="w-full h-56 bg-cover">
           @else
             <div class="bg-slate-300 dark:bg-slate-700 flex items-center justify-center px-6 py-16">
               <x-logos.nova.mark class="text-slate-400 dark:text-slate-600 h-24 w-auto" :colors="false"></x-logos.nova.mark>

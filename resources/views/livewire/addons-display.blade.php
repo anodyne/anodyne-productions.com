@@ -5,7 +5,7 @@
     <div class="lg:col-span-4 lg:row-end-1" x-data="{ image: 0 }">
       <div class="aspect-w-4 aspect-h-3 overflow-hidden rounded-xl bg-slate-100 dark:bg-slate-800">
         @if ($addon->getMedia('primary-preview')->count() === 1)
-          <img src="{{ $addon->getFirstMediaUrl('primary-preview') }}" alt="" class="object-cover object-center" x-show="image === 0" x-cloak>
+          <img src="{{ $addon->getFirstTemporaryUrl(now()->addMinutes(5), 'primary-preview') }}" alt="" class="object-cover object-left" x-show="image === 0" x-cloak>
         @else
           <div class="bg-slate-300 dark:bg-slate-800 flex items-center justify-center">
             <x-logos.nova.mark class="text-slate-400 dark:text-slate-700 h-60 w-auto" :colors="false"></x-logos.nova.mark>
@@ -14,7 +14,7 @@
 
         @if ($addon->getMedia('additional-previews')->count() > 0)
           @foreach ($addon->getMedia('additional-previews') as $preview)
-            <img src="{{ $preview->getUrl() }}" alt="" class="object-cover object-center" x-show="image === {{ $loop->iteration }}" x-cloak>
+            <img src="{{ $preview->getTemporaryUrl(now()->addMinutes(5)) }}" alt="" class="object-cover object-left" x-show="image === {{ $loop->iteration }}" x-cloak>
           @endforeach
         @endif
       </div>
@@ -27,7 +27,7 @@
             :class="{ 'ring-2 ring-purple-500 ring-offset-4 ring-offset-white dark:ring-offset-slate-900': image === 0 }"
             @click="image = 0"
           >
-            <img src="{{ $addon->getFirstMediaUrl('primary-preview') }}" alt="" class="object-cover object-center">
+            <img src="{{ $addon->getFirstTemporaryUrl(now()->addMinutes(5), 'primary-preview') }}" alt="" class="object-cover object-left">
           </button>
 
           @foreach ($addon->getMedia('additional-previews') as $preview)
@@ -37,33 +37,9 @@
               :class="{ 'ring-2 ring-purple-500 ring-offset-4 ring-offset-white dark:ring-offset-slate-900': image === {{ $loop->iteration }} }"
               @click="image = {{ $loop->iteration }}"
             >
-              <img src="{{ $preview->getUrl() }}" alt="" class="object-cover object-center">
+              <img src="{{ $preview->getTemporaryUrl(now()->addMinutes(5)) }}" alt="" class="object-cover object-left">
             </button>
           @endforeach
-          {{-- <button
-            type="button"
-            class="aspect-w-4 aspect-h-3 overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800"
-            :class="{ 'ring-2 ring-purple-500 ring-offset-4 ring-offset-white dark:ring-offset-slate-900': image === 2 }"
-            @click="image = 2"
-          >
-            <img src="https://images.unsplash.com/photo-1614926857083-7be149266cda?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=512&q=80" alt="Sample of 30 icons with friendly and fun details in outline, filled, and brand color styles." class="object-cover object-center">
-          </button>
-          <button
-            type="button"
-            class="aspect-w-4 aspect-h-3 overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800"
-            :class="{ 'ring-2 ring-purple-500 ring-offset-4 ring-offset-white dark:ring-offset-slate-900': image === 3 }"
-            @click="image = 3"
-          >
-            <img src="https://images.unsplash.com/photo-1586348943529-beaae6c28db9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=512&q=80" alt="Sample of 30 icons with friendly and fun details in outline, filled, and brand color styles." class="object-cover object-center">
-          </button>
-          <button
-            type="button"
-            class="aspect-w-4 aspect-h-3 overflow-hidden rounded-lg bg-slate-100 dark:bg-slate-800"
-            :class="{ 'ring-2 ring-purple-500 ring-offset-4 ring-offset-white dark:ring-offset-slate-900': image === 4 }"
-            @click="image = 4"
-          >
-            <img src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=512&q=80" alt="Sample of 30 icons with friendly and fun details in outline, filled, and brand color styles." class="object-cover object-center">
-          </button> --}}
         </div>
       @endif
     </div>
