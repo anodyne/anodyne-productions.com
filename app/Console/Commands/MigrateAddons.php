@@ -10,21 +10,21 @@ use App\Models\User;
 use App\Models\Version;
 use Illuminate\Console\Command;
 
-class MigrateXtras extends Command
+class MigrateAddons extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'anodyne:migrate-xtras';
+    protected $signature = 'one-off:migrate-addons';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Migrate Xtras from the old database';
+    protected $description = 'Migrate add-ons from the old database';
 
     /**
      * Execute the console command.
@@ -73,9 +73,23 @@ class MigrateXtras extends Command
 
             $addon->products()->sync($xtra->product_id);
 
-            // $addon->addMediaFromDisk($xtra->metadata->image1, 'r2')->toMediaCollection('primary-preview');
-            // $addon->addMediaFromDisk($xtra->metadata->image2, 'r2')->toMediaCollection('additional-previews');
-            // $addon->addMediaFromDisk($xtra->metadata->image3, 'r2')->toMediaCollection('additional-previews');
+            if ($xtra->metadata->image1 && file_exists($imagePath1 = public_path('xtras/'.$xtra->metadata->image1))) {
+                $addon->addMedia($imagePath1)
+                    ->preservingOriginal()
+                    ->toMediaCollection('primary-preview');
+            }
+
+            if ($xtra->metadata->image2 && file_exists($imagePath2 = public_path('xtras/'.$xtra->metadata->image2))) {
+                $addon->addMedia($imagePath2)
+                    ->preservingOriginal()
+                    ->toMediaCollection('additional-previews');
+            }
+
+            if ($xtra->metadata->image3 && file_exists($imagePath3 = public_path('xtras/'.$xtra->metadata->image3))) {
+                $addon->addMedia($imagePath3)
+                    ->preservingOriginal()
+                    ->toMediaCollection('additional-previews');
+            }
 
             $xtra->files->each(function (XtraFile $file) use ($xtra) {
                 Version::unguarded(function () use ($file, $xtra) {
@@ -97,7 +111,11 @@ class MigrateXtras extends Command
 
                     $version->product()->sync($xtra->product_id);
 
-                    // $version->addMediaFromDisk($file->filename, 'r2')->toMediaCollection('downloads');
+                    if (file_exists($downloadFile = public_path('xtras/'.$file->filename))) {
+                        $version->addMedia($downloadFile)
+                            ->preservingOriginal()
+                            ->toMediaCollection('downloads');
+                    }
 
                     $addon->versions()->save($version);
                 });

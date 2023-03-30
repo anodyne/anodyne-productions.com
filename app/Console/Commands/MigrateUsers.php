@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Models\Legacy\User as LegacyUser;
 use App\Models\User;
-use App\Notifications\AnodyneAccountMigrated;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -16,7 +15,7 @@ class MigrateUsers extends Command
      *
      * @var string
      */
-    protected $signature = 'anodyne:migrate-users';
+    protected $signature = 'one-off:migrate-users';
 
     /**
      * The console command description.
@@ -54,8 +53,6 @@ class MigrateUsers extends Command
                 $newUser->legacy_id = $legacyUser->id;
                 $newUser->password = Hash::make($password);
                 $newUser->save();
-
-                // $newUser->notify(new AnodyneAccountMigrated($newUser, $password));
             }
 
             $bar->advance();
