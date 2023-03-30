@@ -61,6 +61,6 @@ class Version extends Model implements HasMedia
 
     public static function getMediaPath(): string
     {
-        return '{addon_id}/versions/{model_id}/';
+        return '{user_id}/{addon_id}/versions/{model_id}/';
     }
 }

@@ -18,6 +18,7 @@ class CustomPathGenerator implements PathGenerator
                 '{addon_id}' => $media->model->addon_id,
                 '{media_id}' => $media->id,
                 '{model_id}' => $media->model_id,
+                '{user_id}' => $media->model->user_id ?? $media->getCustomProperty('user_id'),
             ]);
         }
 

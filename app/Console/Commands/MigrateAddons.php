@@ -113,6 +113,7 @@ class MigrateAddons extends Command
 
                     if (file_exists($downloadFile = public_path('xtras/'.$file->filename))) {
                         $version->addMedia($downloadFile)
+                            ->withCustomProperties(['user_id' => $addon->user_id])
                             ->preservingOriginal()
                             ->toMediaCollection('downloads');
                     }

@@ -93,7 +93,7 @@ class Addon extends Model implements HasMedia
 
     public static function getMediaPath(): string
     {
-        return '{model_id}/';
+        return '{user_id}/{model_id}/';
     }
 
     public function getRouteKeyName()
