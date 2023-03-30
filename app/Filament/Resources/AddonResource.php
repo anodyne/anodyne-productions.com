@@ -214,6 +214,7 @@ class AddonResource extends Resource
                     Forms\Components\SpatieMediaLibraryFileUpload::make('primary-preview')
                         ->label('Primary preview image')
                         ->collection('primary-preview')
+                        ->visibility('private')
                         ->columnSpan('full'),
                     Forms\Components\SpatieMediaLibraryFileUpload::make('additional-previews')
                         ->label('Additional preview image(s)')
@@ -221,6 +222,7 @@ class AddonResource extends Resource
                         ->multiple()
                         ->maxFiles(4)
                         ->collection('additional-previews')
+                        ->visibility('private')
                         ->columnSpan('full'),
                 ])
                 ->columns(3)
@@ -234,12 +236,14 @@ class AddonResource extends Resource
                     Forms\Components\SpatieMediaLibraryFileUpload::make('primary-preview')
                         ->label('Primary preview image')
                         ->collection('primary-preview')
+                        ->visibility('private')
                         ->columnSpan('full'),
                     Forms\Components\SpatieMediaLibraryFileUpload::make('additional-previews')
                         ->label('Additional preview image(s)')
                         ->helperText('Upload up to 4 additional screenshots for your add-on to give users a preview of what they can expect')
                         ->maxFiles(4)
                         ->collection('additional-previews')
+                        ->visibility('private')
                         ->columnSpan('full'),
                 ])
                 ->columns(3)
