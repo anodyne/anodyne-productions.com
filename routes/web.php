@@ -7,6 +7,8 @@ use App\Http\Livewire\AddonsList;
 use App\Models\Addon;
 use App\Models\Release;
 use App\Models\Sponsor;
+use App\Notifications\AccountMigrated;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
@@ -74,4 +76,9 @@ Route::get('/test', function () {
     return view('test', [
         'markdown' => $converter->convert($markdown)->getContent(),
     ]);
+});
+
+Route::get('email-test', function () {
+    Notification::route('mail', 'david.vanscott@gmail.com')
+        ->notify(new AccountMigrated('abc123'));
 });
