@@ -20,7 +20,7 @@
     src: url("/fonts/Inter-Italic.var.woff2?v=3.19") format("woff2") tech("variations");
 }
 
-.filament-login-page form,
+/* .filament-login-page form,
 .filament-sidebar-header {
     @apply before:from-transparent before:via-primary-500 before:to-transparent;
-}
+} */
