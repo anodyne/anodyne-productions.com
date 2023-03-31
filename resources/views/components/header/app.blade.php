@@ -103,7 +103,7 @@
                       <span>Sign out</span>
 
                       <x-slot:buttonForm>
-                        <x-form :action="route('filament.auth.logout')" class="hidden" id="logout-form" />
+                        <x-form :action="route('filament.auth.logout')" class="invisible" id="logout-form" />
                       </x-slot:buttonForm>
                     </x-dropdown.item>
                   </x-dropdown.group>
