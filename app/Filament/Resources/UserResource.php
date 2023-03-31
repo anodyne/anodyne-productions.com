@@ -11,18 +11,19 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
-
-    protected static bool $isGloballySearchable = false;
 
     protected static ?string $navigationIcon = 'flex-user-multiple';
 
     protected static ?string $navigationGroup = 'System';
 
     protected static ?int $navigationSort = 10;
+
+    protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Form $form): Form
     {
@@ -125,6 +126,13 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
             // 'view' => Pages\ViewUser::route('/{record}'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        return [
+            'Email' => $record->email,
         ];
     }
 }
