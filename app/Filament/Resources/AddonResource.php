@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class AddonResource extends Resource
 {
@@ -151,10 +152,22 @@ class AddonResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
+            ->with(['user'])
             ->when(auth()->user()->isUser, fn ($query) => $query->where('user_id', auth()->id()))
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+    }
+
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        $details['Type'] = $record->type->displayName();
+
+        if (! auth()->user()->isUser) {
+            $details['Author'] = $record->user->name;
+        }
+
+        return $details;
     }
 
     protected function getTableEmptyStateHeading(): ?string

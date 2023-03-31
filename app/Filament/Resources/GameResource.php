@@ -14,6 +14,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class GameResource extends Resource
 {
@@ -21,11 +22,11 @@ class GameResource extends Resource
 
     protected static ?string $navigationIcon = 'flex-game-controller';
 
-    protected static bool $isGloballySearchable = false;
-
     protected static ?string $navigationGroup = 'System';
 
     protected static ?int $navigationSort = 30;
+
+    protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Form $form): Form
     {
@@ -151,5 +152,17 @@ class GameResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()->orderBy('updated_at', 'desc');
+    }
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'url'];
+    }
+
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        return [
+            'URL' => $record->url,
+        ];
     }
 }
