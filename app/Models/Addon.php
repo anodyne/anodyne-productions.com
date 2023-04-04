@@ -113,10 +113,10 @@ class Addon extends Model implements HasMedia
     {
         $this->addMediaCollection('primary-preview')
             ->acceptsMimeTypes(['image/jpeg', 'image/jpg', 'image/png'])
-            ->useDisk(app()->environment('local') ? 'public' : 'r2');
+            ->useDisk(app()->environment('local') ? 'public' : 'r2-addons');
 
         $this->addMediaCollection('additional-previews')
             ->acceptsMimeTypes(['image/jpeg', 'image/jpg', 'image/png'])
-            ->useDisk(app()->environment('local') ? 'public' : 'r2');
+            ->useDisk(app()->environment('local') ? 'public' : 'r2-addons');
     }
 }

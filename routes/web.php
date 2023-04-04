@@ -3,16 +3,10 @@
 use App\Http\Controllers\DocsController;
 use App\Http\Livewire\AddonsDisplay;
 use App\Http\Livewire\AddonsList;
-use App\Models\Release;
 use App\Models\Sponsor;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/nova', function () {
-    $release = Release::query()
-        ->where('published', true)
-        ->latest('date')
-        ->first();
-
     $sponsors = Sponsor::query()
         ->active()
         ->premiumTier()
@@ -21,7 +15,6 @@ Route::get('/nova', function () {
         ->sortBy('formattedName');
 
     return view('nova-2', [
-        'latestVersion' => $release->version,
         'sponsors' => $sponsors,
     ]);
 })->name('home');

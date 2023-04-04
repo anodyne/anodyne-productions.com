@@ -7,7 +7,7 @@
 
   <x-nova2.features />
 
-  <x-nova2.download :version="$latestVersion" />
+  <livewire:download-nova />
 
   <x-nova2.resources />
 

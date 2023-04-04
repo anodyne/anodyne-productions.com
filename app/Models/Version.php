@@ -56,7 +56,7 @@ class Version extends Model implements HasMedia
         $this->addMediaCollection('downloads')
             ->acceptsMimeTypes(['application/zip'])
             ->singleFile()
-            ->useDisk(app()->environment('local') ? 'public' : 'r2');
+            ->useDisk(app()->environment('local') ? 'public' : 'r2-addons');
     }
 
     public static function getMediaPath(): string
