@@ -30,6 +30,4 @@ return [
     ],
 
     'docs-versions' => explode(',', env('ANODYNE_DOCS_VERSIONS')),
-
-    'download-url' => env('ANODYNE_DOWNLOAD_URL'),
 ];
