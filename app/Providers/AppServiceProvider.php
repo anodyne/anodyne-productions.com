@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             'addon' => Models\Addon::class,
             'question' => Models\Question::class,
+            'sponsor' => Models\Sponsor::class,
             'version' => Models\Version::class,
         ]);
 
