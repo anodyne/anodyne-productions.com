@@ -228,6 +228,7 @@ class AddonResource extends Resource
                     Forms\Components\SpatieMediaLibraryFileUpload::make('primary-preview')
                         ->label('Primary preview image')
                         ->collection('primary-preview')
+                        ->disk(app()->environment('local') ? 'public' : 'r2-addons')
                         ->visibility('private')
                         ->columnSpan('full'),
                     Forms\Components\SpatieMediaLibraryFileUpload::make('additional-previews')
@@ -236,6 +237,7 @@ class AddonResource extends Resource
                         ->multiple()
                         ->maxFiles(4)
                         ->collection('additional-previews')
+                        ->disk(app()->environment('local') ? 'public' : 'r2-addons')
                         ->visibility('private')
                         ->columnSpan('full'),
                 ])
@@ -250,6 +252,7 @@ class AddonResource extends Resource
                     Forms\Components\SpatieMediaLibraryFileUpload::make('primary-preview')
                         ->label('Primary preview image')
                         ->collection('primary-preview')
+                        ->disk(app()->environment('local') ? 'public' : 'r2-addons')
                         ->visibility('private')
                         ->columnSpan('full'),
                     Forms\Components\SpatieMediaLibraryFileUpload::make('additional-previews')
@@ -257,6 +260,7 @@ class AddonResource extends Resource
                         ->helperText('Upload up to 4 additional screenshots for your add-on to give users a preview of what they can expect')
                         ->maxFiles(4)
                         ->collection('additional-previews')
+                        ->disk(app()->environment('local') ? 'public' : 'r2-addons')
                         ->visibility('private')
                         ->columnSpan('full'),
                 ])
