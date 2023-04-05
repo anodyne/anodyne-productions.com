@@ -295,15 +295,17 @@
                 {!! str($version->upgrade_instructions)->markdown() !!}
               @endif
 
-              <h3>Links</h3>
-              <dl class="space-y-3">
-                @foreach ($addon->links as $link)
-                  <div>
-                    <dt class="font-medium">{{ $link['type'] }}</dt>
-                    <dd><a href="{{ $link['value'] }}">{{ $link['value'] }}</a></dd>
-                  </div>
-                @endforeach
-              </dl>
+              @if (count($addon->links) > 0)
+                <h3>Links</h3>
+                <dl class="space-y-3">
+                  @foreach ($addon->links as $link)
+                    <div>
+                      <dt class="font-medium">{{ $link['type'] }}</dt>
+                      <dd><a href="{{ $link['value'] }}">{{ $link['value'] }}</a></dd>
+                    </div>
+                  @endforeach
+                </dl>
+              @endif
             </div>
           </div>
 
