@@ -9,6 +9,7 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 class VersionsRelationManager extends RelationManager
@@ -37,7 +38,9 @@ class VersionsRelationManager extends RelationManager
                 Forms\Components\MarkdownEditor::make('upgrade_instructions')->columnSpanFull(),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('filename')
                     ->columnSpanFull()
-                    ->collection('downloads'),
+                    ->collection('downloads')
+                    ->disk(app()->environment('local') ? 'public' : 'r2-addons')
+                    ->customProperties(fn (Model $record) => ['user_id' => $record->addon->user_id]),
                 Forms\Components\Toggle::make('published')->default(true),
             ]);
     }
