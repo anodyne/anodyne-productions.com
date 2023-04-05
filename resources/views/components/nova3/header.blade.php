@@ -28,7 +28,7 @@
       :items="[
         ['href' => route('nova-3-features'), 'title' => 'Features' ],
         ['href' => route('nova-3').'#demo', 'title' => 'Demo' ],
-        ['href' => route('docs', '3.0'), 'title' => 'Docs' ],
+        // ['href' => route('docs', '3.0'), 'title' => 'Docs' ],
         ['href' => route('nova-3').'#faq', 'title' => 'FAQs' ],
         ['href' => 'https://discord.gg/7WmKUks', 'title' => 'Discuss' ],
       ]"
