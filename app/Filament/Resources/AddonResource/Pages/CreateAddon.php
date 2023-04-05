@@ -25,11 +25,13 @@ class CreateAddon extends CreateRecord
                 ->schema([
                     Card::make(AddonResource::getFormSchema())
                         ->columns(1)
-                        ->columnSpan('full'),
-
+                        ->columnSpanFull(),
+                    Card::make(AddonResource::getFormSchema('links'))
+                        ->columns(3)
+                        ->columnSpanFull(),
                     Card::make(AddonResource::getFormSchema('previews'))
                         ->columns(1)
-                        ->columnSpan('full'),
+                        ->columnSpanFull(),
                 ]),
 
             Step::make('Add-on files')
@@ -37,7 +39,7 @@ class CreateAddon extends CreateRecord
                 ->schema([
                     Forms\Components\Group::make(AddonResource::getFormSchema('versions'))
                         ->columns(1)
-                        ->columnSpan('full'),
+                        ->columnSpanFull(),
                 ]),
         ];
     }

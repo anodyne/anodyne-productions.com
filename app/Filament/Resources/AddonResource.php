@@ -38,6 +38,7 @@ class AddonResource extends Resource
             [
                 Forms\Components\Tabs::make('Add-on')->tabs([
                     Forms\Components\Tabs\Tab::make('Basic info')->schema(self::getFormSchema()),
+                    Forms\Components\Tabs\Tab::make('Links')->schema(self::getFormSchema('links')),
                     Forms\Components\Tabs\Tab::make('Preview images')->schema(self::getFormSchema('previews')),
                 ])
                 ->columns(1)
@@ -261,6 +262,24 @@ class AddonResource extends Resource
                 ])
                 ->columns(3)
                 ->columnSpan('full'),
+            ];
+        }
+
+        if ($section === 'links') {
+            return [
+                Forms\Components\Repeater::make('links')
+                    ->schema([
+                        Forms\Components\Select::make('type')->options([
+                            'Website' => 'Website',
+                            'Discord server' => 'Discord server',
+                            'Github repo' => 'Github repo',
+                            'Twitter' => 'Twitter',
+                            'Mastodon' => 'Mastodon',
+                        ])->required(),
+                        Forms\Components\TextInput::make('value')->required(),
+                    ])
+                    ->columnSpan(2)
+                    ->columns(1),
             ];
         }
 

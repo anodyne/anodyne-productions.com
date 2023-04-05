@@ -32,9 +32,11 @@ class Addon extends Model implements HasMedia
         'published',
         'user_id',
         'install_instructions',
+        'links',
     ];
 
     protected $casts = [
+        'links' => 'array',
         'published' => 'boolean',
         'type' => AddonType::class,
     ];
