@@ -66,6 +66,11 @@ class User extends Authenticatable implements FilamentUser, HasMedia
         'is_addon_author' => 'boolean',
     ];
 
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function sponsor(): HasOne
     {
         return $this->hasOne(Sponsor::class);

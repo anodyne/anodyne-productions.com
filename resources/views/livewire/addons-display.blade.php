@@ -102,24 +102,24 @@
             <!--
               Heroicon name: mini/star
 
-              Active: "text-yellow-400", Default: "text-slate-300"
+              Active: "text-amber-400", Default: "text-slate-300"
             -->
-            <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <svg class="text-amber-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
             </svg>
 
             <!-- Heroicon name: mini/star -->
-            <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <svg class="text-amber-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
             </svg>
 
             <!-- Heroicon name: mini/star -->
-            <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <svg class="text-amber-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
             </svg>
 
             <!-- Heroicon name: mini/star -->
-            <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <svg class="text-amber-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
             </svg>
 
@@ -295,7 +295,7 @@
                 {!! str($version->upgrade_instructions)->markdown() !!}
               @endif
 
-              @if (count($addon->links) > 0)
+              @if (isset($addon->links) && count($addon->links) > 0)
                 <h3>Links</h3>
                 <dl class="space-y-3">
                   @foreach ($addon->links as $link)
@@ -325,106 +325,133 @@
 
           <!-- 'Customer Reviews' panel, show/hide based on tab state -->
           <div x-tabs:panel id="tab-panel-reviews" id="tab-panel-reviews" class="relative -mb-10 px-4" aria-labelledby="tab-reviews" role="tabpanel" tabindex="0">
-            <div class="absolute inset-0 backdrop-blur bg-white bg-opacity-25">
-              <div class="flex flex-col items-center justify-center min-h-full prose dark:prose-invert">
-                <h2>Ratings and reviews are coming soon</h2>
-                <p>We&rsquo;re hard at work adding more features, so stay tuned</p>
+            @if ($addon->reviews->count() > 0)
+              <div class="prose dark:prose-invert mt-10">
+                <h2>Customer Reviews</h2>
               </div>
-            </div>
 
-            <h3 class="sr-only">Customer Reviews</h3>
-
-            <div class="flex space-x-4 text-sm text-slate-500">
-              <div class="flex-none py-10">
-                <img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80" alt="" class="h-10 w-10 rounded-full bg-slate-100">
-              </div>
-              <div class="flex-1 py-10">
-                <h3 class="font-medium text-slate-900">Emily Selman</h3>
-                <p><time datetime="2021-07-16">July 16, 2021</time></p>
-
-                <div class="mt-4 flex items-center">
-                  <!--
-                    Heroicon name: mini/star
-
-                    Active: "text-yellow-400", Default: "text-slate-300"
-                  -->
-                  <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                  </svg>
-
-                  <!-- Heroicon name: mini/star -->
-                  <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                  </svg>
-
-                  <!-- Heroicon name: mini/star -->
-                  <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                  </svg>
-
-                  <!-- Heroicon name: mini/star -->
-                  <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                  </svg>
-
-                  <!-- Heroicon name: mini/star -->
-                  <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                  </svg>
+              <div class="mt-3 flex items-center w-full xl:w-2/3">
+                <div>
+                  <div class="flex items-center">
+                    @for ($s = 1; $s <= 5; $s++)
+                      <svg
+                        @class([
+                          'h-5 w-5 shrink-0',
+                          'text-slate-300 dark:text-slate-600' => floor($addon->rating) < $s,
+                          'text-amber-400 dark:text-amber-500' => floor($addon->rating) >= $s,
+                        ])
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                      </svg>
+                    @endfor
+                  </div>
+                  <p class="sr-only">{{ floor($addon->rating) }} out of 5 stars</p>
                 </div>
-                <p class="sr-only">5 out of 5 stars</p>
+                <p class="ml-2 text-sm text-slate-600 dark:text-slate-500">Based on {{ $addon->reviews->count() }} {{ str('review')->plural($addon->reviews->count()) }}</p>
+              </div>
 
-                <div class="prose prose-sm mt-4 max-w-none text-slate-500">
-                  <p>This icon pack is just what I need for my latest project. There's an icon for just about anything I could ever need. Love the playful look!</p>
+              <div class="mt-6 w-full xl:w-2/3">
+                <h3 class="sr-only">Review data</h3>
+
+                <dl class="space-y-3">
+                  @for ($r = 5; $r >= 1; $r--)
+                    <div class="flex items-center text-sm">
+                      <dt class="flex flex-1 items-center">
+                        <p class="w-3 font-medium text-slate-700 dark:text-slate-300">{{ $r }}<span class="sr-only"> star reviews</span></p>
+                        <div aria-hidden="true" class="ml-1 flex flex-1 items-center">
+                          <svg class="h-5 w-5 flex-shrink-0 text-amber-400 dark:text-amber-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                          </svg>
+
+                          <div class="relative ml-3 flex-1">
+                            <div class="h-3 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+
+                            @php($rating = $this->reviewStats->{"rating$r"} / $addon->reviews->count())
+
+                            @if ($rating > 0)
+                              <div style="width: calc({{ $rating }} * 100%)" class="absolute inset-y-0 rounded-full bg-amber-400 dark:bg-amber-500"></div>
+                            @endif
+                          </div>
+                        </div>
+                      </dt>
+                      <dd class="ml-3 w-10 text-right text-sm tabular-nums text-slate-700 dark:text-slate-300">{{ $rating * 100 }}%</dd>
+                    </div>
+                  @endfor
+                </dl>
+              </div>
+
+              <div class="prose dark:prose-invert mt-6">
+                <h3>Share your thoughts</h3>
+                <p>If you’ve used this add-on, share your thoughts with other users.</p>
+              </div>
+
+              @auth
+                <x-button
+                  type="button"
+                  wire:click="$emit('modal.open', 'addon-review', {'addonId': {{ $addon->id }}})"
+                  class="mt-6"
+                >
+                  Write a review
+                </x-button>
+              @endauth
+            @endif
+
+            @forelse ($addon->reviews as $review)
+              <div class="flex space-x-4 text-sm text-slate-500">
+                <div class="flex-none py-10">
+                  <img src="{{ $review->user->getFirstMediaUrl('avatar') }}" alt="" class="h-10 w-10 squircle bg-slate-100">
+                </div>
+                <div
+                  @class([
+                    'flex-1 py-10',
+                    'border-t border-slate-200 dark:border-slate-200/10' => !$loop->first
+                  ])
+                >
+                  <h3 class="font-medium text-slate-900">{{ $review->user->name }}</h3>
+                  <p><time datetime="{{ $review->updated_at->format('Y-m-d') }}">{{ $review->updated_at->format('F d, Y') }}</time></p>
+
+                  <div class="mt-4 flex items-center">
+                    @for ($s = 1; $s <= 5; $s++)
+                      <svg
+                        @class([
+                          'h-5 w-5 shrink-0',
+                          'text-slate-300 dark:text-slate-600' => $review->rating < $s,
+                          'text-amber-400 dark:text-amber-500' => $review->rating >= $s,
+                        ])
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                      </svg>
+                    @endfor
+                  </div>
+                  <p class="sr-only">{{ $review->rating }} out of 5 stars</p>
+
+                  <div class="prose prose-sm dark:prose-invert mt-4 max-w-none">
+                    {!! str($review->content)->markdown() !!}
+                  </div>
                 </div>
               </div>
-            </div>
+            @empty
+              <div class="text-center py-10">
+                @svg('flex-favorite-star', 'h-12 w-12 mx-auto text-slate-400')
+                <h3 class="mt-2 text-sm font-semibold text-slate-900">No reviews</h3>
 
-            <div class="flex space-x-4 text-sm text-slate-500">
-              <div class="flex-none py-10">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80" alt="" class="h-10 w-10 rounded-full bg-slate-100">
+                @auth
+                  <p class="mt-1 text-sm text-slate-500">Be the first to review this add-on</p>
+                  <div class="mt-6">
+                    <x-button type="button" wire:click="$emit('modal.open', 'addon-review', {'addonId': {{ $addon->id }}})">
+                      Write a review
+                    </x-button>
+                  </div>
+                @endauth
               </div>
-              <div class="flex-1 py-10 border-t border-slate-200 dark:border-slate-200/10">
-                <h3 class="font-medium text-slate-900">Hector Gibbons</h3>
-                <p><time datetime="2021-07-12">July 12, 2021</time></p>
-
-                <div class="mt-4 flex items-center">
-                  <!--
-                    Heroicon name: mini/star
-
-                    Active: "text-yellow-400", Default: "text-slate-300"
-                  -->
-                  <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                  </svg>
-
-                  <!-- Heroicon name: mini/star -->
-                  <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                  </svg>
-
-                  <!-- Heroicon name: mini/star -->
-                  <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                  </svg>
-
-                  <!-- Heroicon name: mini/star -->
-                  <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                  </svg>
-
-                  <!-- Heroicon name: mini/star -->
-                  <svg class="text-yellow-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-                  </svg>
-                </div>
-                <p class="sr-only">5 out of 5 stars</p>
-
-                <div class="prose prose-sm mt-4 max-w-none text-slate-500">
-                  <p>Blown away by how polished this icon pack is. Everything looks so consistent and each SVG is optimized out of the box so I can use it directly with confidence. It would take me several hours to create a single icon this good, so it's a steal at this price.</p>
-                </div>
-              </div>
-            </div>
+            @endforelse
           </div>
         </div>
       </div>

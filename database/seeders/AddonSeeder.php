@@ -36,6 +36,7 @@ class AddonSeeder extends Seeder
             Addon::factory()
                 ->hasQuestions(mt_rand(0, 5))
                 ->hasVersions(mt_rand(1, 5))
+                ->hasReviews(mt_rand(1, 10))
                 ->hasAttached(
                     $products === 'all' ? Product::published()->get() : Product::find($products)
                 )
