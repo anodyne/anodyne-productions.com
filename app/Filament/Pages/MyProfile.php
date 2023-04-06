@@ -12,7 +12,7 @@ class MyProfile extends BaseProfile
         return array_merge(parent::getUpdateProfileFormSchema(), [
             Forms\Components\TextInput::make('username')
               ->required()
-              ->helperText('The username is used for your profile page and associating your add-ons to your account. Please use caution when changing this value.'),
+              ->helperText('This will be used in the URL of your profile page as well as the URL(s) of any add-on(s) you create. Please use caution when changing this value.'),
             Forms\Components\Repeater::make('links')
               ->schema([
                   Forms\Components\Select::make('type')->options([
