@@ -136,6 +136,7 @@ class AddonResource extends Resource
         return [
             RelationManagers\VersionsRelationManager::class,
             RelationManagers\QuestionsRelationManager::class,
+            RelationManagers\ReviewsRelationManager::class,
             RelationManagers\CompatibilityRelationManager::class,
         ];
     }

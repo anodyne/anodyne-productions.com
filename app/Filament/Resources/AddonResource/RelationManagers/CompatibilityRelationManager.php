@@ -103,4 +103,14 @@ class CompatibilityRelationManager extends RelationManager
             ])
             ->bulkActions([]);
     }
+
+    protected function getTableEmptyStateHeading(): ?string
+    {
+        return 'No compatibility reports found';
+    }
+
+    protected function getTableEmptyStateIcon(): ?string
+    {
+        return 'uxl-like-sparkling';
+    }
 }

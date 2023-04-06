@@ -89,7 +89,7 @@
                       <div class="font-normal text-xs leading-5 text-slate-500 dark:text-slate-400">
                         Signed in as
                       </div>
-                      <div class="truncate">
+                      <div class="truncate text-slate-900 dark:text-white">
                         {{ auth()->user()->email }}
                       </div>
                     </div>

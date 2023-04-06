@@ -193,7 +193,7 @@
                   </dd>
 
                   @auth
-                    @if ($compatibility['status'] !== $compatibility['status']::compatibleOverride && $compatibility['status'] !== $compatibility['status']::incompatibleOverride)
+                    @if ($compatibility['status'] !== $compatibility['status']::compatibleOverride && $compatibility['status'] !== $compatibility['status']::incompatibleOverride && auth()->id() !== $addon->user_id)
                       <dd class="pl-8">
                         <button
                           type="button"
@@ -389,13 +389,15 @@
               </div>
 
               @auth
-                <x-button
-                  type="button"
-                  wire:click="$emit('modal.open', 'addon-review', {'addonId': {{ $addon->id }}})"
-                  class="mt-6"
-                >
-                  Write a review
-                </x-button>
+                @if (auth()->id() !== $addon->user_id)
+                  <x-button
+                    type="button"
+                    wire:click="$emit('modal.open', 'addon-review', {'addonId': {{ $addon->id }}})"
+                    class="mt-6"
+                  >
+                    Write a review
+                  </x-button>
+                @endif
               @endauth
             @endif
 
@@ -410,7 +412,7 @@
                     'border-t border-slate-200 dark:border-slate-200/10' => !$loop->first
                   ])
                 >
-                  <h3 class="font-medium text-slate-900">{{ $review->user->name }}</h3>
+                  <h3 class="font-medium text-slate-900 dark:text-white">{{ $review->user->name }}</h3>
                   <p><time datetime="{{ $review->updated_at->format('Y-m-d') }}">{{ $review->updated_at->format('F d, Y') }}</time></p>
 
                   <div class="mt-4 flex items-center">
@@ -440,15 +442,17 @@
             @empty
               <div class="text-center py-10">
                 @svg('flex-favorite-star', 'h-12 w-12 mx-auto text-slate-400')
-                <h3 class="mt-2 text-sm font-semibold text-slate-900">No reviews</h3>
+                <h3 class="mt-2 text-sm font-semibold text-slate-900 dark:text-white">No reviews</h3>
 
                 @auth
-                  <p class="mt-1 text-sm text-slate-500">Be the first to review this add-on</p>
-                  <div class="mt-6">
-                    <x-button type="button" wire:click="$emit('modal.open', 'addon-review', {'addonId': {{ $addon->id }}})">
-                      Write a review
-                    </x-button>
-                  </div>
+                  @if (auth()->id() !== $addon->user_id)
+                    <p class="mt-1 text-sm text-slate-500">Be the first to review this add-on</p>
+                    <div class="mt-6">
+                      <x-button type="button" wire:click="$emit('modal.open', 'addon-review', {'addonId': {{ $addon->id }}})">
+                        Write a review
+                      </x-button>
+                    </div>
+                  @endif
                 @endauth
               </div>
             @endforelse
