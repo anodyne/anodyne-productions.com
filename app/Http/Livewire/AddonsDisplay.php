@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Addon;
 use App\Models\Download;
 use App\Models\ReleaseSeries;
+use App\Models\Review;
 use App\Models\Version;
 use App\View\Components\BaseLayout;
 use Illuminate\Support\Collection;
@@ -37,6 +38,18 @@ class AddonsDisplay extends Component
         return ReleaseSeries::ordered()->get();
     }
 
+    public function getReviewStatsProperty()
+    {
+        return Review::toBase()
+            ->selectRaw('count(case when rating = 1 then 1 end) as rating1')
+            ->selectRaw('count(case when rating = 2 then 1 end) as rating2')
+            ->selectRaw('count(case when rating = 3 then 1 end) as rating3')
+            ->selectRaw('count(case when rating = 4 then 1 end) as rating4')
+            ->selectRaw('count(case when rating = 5 then 1 end) as rating5')
+            ->where('addon_id', $this->addon->id)
+            ->first();
+    }
+
     public function getVersionsProperty(): Collection
     {
         return $this->addon->versions()->published()->get();
@@ -53,11 +66,14 @@ class AddonsDisplay extends Component
     {
         return [
             'compatibilityReportSubmitted' => '$refresh',
+            'reviewSaved' => '$refresh',
         ];
     }
 
     public function mount(): void
     {
+        $this->addon->loadMissing('reviews');
+
         $this->version = $this->addon->latestVersion;
     }
 

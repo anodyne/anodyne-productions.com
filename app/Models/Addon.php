@@ -61,6 +61,11 @@ class Addon extends Model implements HasMedia
         return $this->hasMany(Question::class);
     }
 
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

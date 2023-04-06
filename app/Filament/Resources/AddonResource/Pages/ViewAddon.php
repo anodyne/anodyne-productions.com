@@ -14,11 +14,11 @@ class ViewAddon extends ViewRecord
         return true;
     }
 
-    // protected function getHeaderWidgets(): array
-    // {
-    //     return [
-    //         AddonResource\Widgets\AddonDownloads::class,
-    //         AddonResource\Widgets\AddonRating::class,
-    //     ];
-    // }
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            AddonResource\Widgets\AddonDownloads::class,
+            AddonResource\Widgets\AddonRating::class,
+        ];
+    }
 }

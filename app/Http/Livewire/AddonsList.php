@@ -6,6 +6,7 @@ use App\Enums\AddonType;
 use App\Enums\CompatibilityStatus;
 use App\Models\Addon;
 use App\Models\Product;
+use App\Models\User;
 use App\View\Components\BaseLayout;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
@@ -16,9 +17,12 @@ class AddonsList extends Component
 {
     use WithPagination;
 
+    public ?User $user = null;
+
     public array $filters = [
         'products' => ['1', '2'],
         'types' => [],
+        'rating' => '',
         'search' => '',
         'compat_series' => [],
         'compat_status' => [],
@@ -32,7 +36,13 @@ class AddonsList extends Component
     public function getAddonsProperty()
     {
         return Addon::query()
+            ->with('user')
+            ->withCount('reviews')
             ->published()
+            ->when(
+                $this->user,
+                fn (Builder $query, User $user) => $query->where('user_id', $user->id)
+            )
             ->when(
                 $this->filters['types'],
                 fn (Builder $query, array $values): Builder => $query->whereIn('type', $values)
@@ -47,6 +57,10 @@ class AddonsList extends Component
             ->when(
                 $this->filters['search'],
                 fn (Builder $query, string $search) => $query->where('name', 'like', "%{$search}%")
+            )
+            ->when(
+                $this->filters['rating'],
+                fn (Builder $query, string $rating) => $query->where('rating', '>=', $rating)
             )
             // ->when(
             //     $this->filters['compat_status'],
@@ -104,5 +118,7 @@ class AddonsList extends Component
         $this->filters['types'] = collect(AddonType::cases())
             ->flatMap(fn ($type) => [$type->value])
             ->all();
+
+        $this->filters['rating'] = '';
     }
 }

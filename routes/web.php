@@ -26,7 +26,7 @@ Route::get('/docs/{version?}/{page?}', DocsController::class)
     ->where('page', '(.*)')
     ->name('docs');
 
-Route::get('/addons', AddonsList::class)->name('addons.index');
-Route::get('/addons/{addon}', AddonsDisplay::class)->name('addons.show');
+Route::get('/addons/{user:username?}', AddonsList::class)->name('addons.index');
+Route::get('/addons/{user:username}/{addon:slug}', AddonsDisplay::class)->name('addons.show');
 
 Route::redirect('/', '/nova');

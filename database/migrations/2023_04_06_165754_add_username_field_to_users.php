@@ -11,8 +11,8 @@ return new class() extends Migration
      */
     public function up(): void
     {
-        Schema::table('addons', function (Blueprint $table) {
-            $table->json('links')->nullable()->after('install_instructions');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('username')->after('name')->nullable();
         });
     }
 
@@ -21,8 +21,8 @@ return new class() extends Migration
      */
     public function down(): void
     {
-        Schema::table('addons', function (Blueprint $table) {
-            $table->dropColumn('links');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('username');
         });
     }
 };
