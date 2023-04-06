@@ -8,7 +8,7 @@ class Button extends Component
 {
     public function __construct(
         public ?string $href = null,
-        public string $variant = 'hero',
+        public string $variant = 'primary',
         public string $size = 'md'
     ) {
     }
