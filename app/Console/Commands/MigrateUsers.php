@@ -49,9 +49,11 @@ class MigrateUsers extends Command
 
                 $newUser = new User();
                 $newUser->name = $username;
+                $newUser->username = $username;
                 $newUser->email = $legacyUser->email;
                 $newUser->legacy_id = $legacyUser->id;
                 $newUser->password = Hash::make($password);
+                $newUser->links = $this->setLinksFromLegacyUser($legacyUser);
                 $newUser->save();
             }
 
@@ -65,5 +67,26 @@ class MigrateUsers extends Command
         $this->info(count($legacyUsers).' users migrated');
 
         return Command::SUCCESS;
+    }
+
+    protected function setLinksFromLegacyUser(LegacyUser $user): ?array
+    {
+        $links = [];
+
+        if (! is_null($user->twitter)) {
+            $links[] = [
+                'type' => 'Twitter',
+                'value' => 'https://twitter.com/'.str($user->twitter)->after('@'),
+            ];
+        }
+
+        if (! is_null($user->facebook)) {
+            $links[] = [
+                'type' => 'Facebook',
+                'value' => 'https://facebook.com/'.str($user->facebook)->after('facebook.com/'),
+            ];
+        }
+
+        return $links;
     }
 }
