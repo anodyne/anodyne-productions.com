@@ -279,7 +279,10 @@
                 </svg>
               @endfor
             </div>
-            <div class="text-sm text-slate-500">{{ $addon->rating }}</div>
+
+            @if ($addon->reviews_count > 0)
+              <div class="text-sm text-slate-500">{{ $addon->rating }} <span class="sr-only">out of 5 stars</span></div>
+            @endif
           </div>
 
           <div class="mt-4 flex items-center justify-between">
