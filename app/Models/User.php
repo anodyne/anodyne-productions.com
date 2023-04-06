@@ -33,10 +33,12 @@ class User extends Authenticatable implements FilamentUser, HasMedia
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
         'role',
         'is_addon_author',
+        'links',
     ];
 
     protected static $logFillable = true;
@@ -64,6 +66,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
         'role' => UserRole::class,
         'email_verified_at' => 'datetime',
         'is_addon_author' => 'boolean',
+        'links' => 'array',
     ];
 
     public function reviews(): HasMany

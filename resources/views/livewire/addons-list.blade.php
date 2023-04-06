@@ -1,8 +1,19 @@
 <x-addons-list-layout
-  title="Make Nova your own"
-  description="Nova provides the flexibility to make your game stand out from others. Whether you're trying to change the way it looks with a theme or rank set or even update how it works with an extension, the community's talented add-on authors here have you covered."
+  :title="$user ? $user->name.' - Author Profile' : 'Make Nova your own'"
   eyebrow="Add-ons"
 >
+  <x-slot:description>
+    @if ($user)
+      <div class="flex items-center space-x-6 mb-8">
+        @foreach ($user->links as $link)
+          <a href="{{ $link['value'] }}">{{ $link['type'] }}</a>
+        @endforeach
+      </div>
+    @else
+      Nova provides the flexibility to make your game stand out from others. Whether you're trying to change the way it looks with a theme or rank set or even update how it works with an extension, the community's talented add-on authors here have you covered.
+    @endif
+  </x-slot:description>
+
   <x-slot:sidebar>
     <div class="space-y-8">
       <div>
@@ -22,7 +33,7 @@
           Version
         </h2>
 
-        <div class="relative mt-3 pl-2">
+        <div class="relative mt-3 pl-3">
           <ul class="space-y-1">
             @foreach ($this->products as $id => $name)
               <li class="relative flex items-center">
@@ -38,7 +49,7 @@
           Type
         </h2>
 
-        <div class="relative mt-3 pl-2">
+        <div class="relative mt-3 pl-3">
           <ul class="space-y-1">
             @foreach (App\Enums\AddonType::cases() as $type)
               <li class="relative flex items-center">
@@ -46,6 +57,49 @@
               </li>
             @endforeach
           </ul>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-xs font-semibold text-slate-900 dark:text-white">
+          Rating
+        </h2>
+
+        <div class="relative mt-3">
+          <dl class="space-y-1">
+            @for ($r = 4; $r >= 1; $r--)
+              <label
+                for="rating{{ $r }}"
+                @class([
+                  'inline-flex text-sm cursor-pointer rounded-full px-3 py-0.5',
+                  'hover:bg-slate-100 dark:hover:bg-slate-800' => $filters['rating'] != $r,
+                  'bg-slate-100 dark:bg-slate-800 ring-1 ring-inset ring-slate-900/5 dark:ring-white/5' => $filters['rating'] == $r,
+                ])
+              >
+                <input type="radio" wire:model="filters.rating" id="rating{{ $r }}" value="{{ $r }}" class="hidden">
+
+                <dt class="flex items-center">
+                  <p class="w-24 font-medium text-slate-700 dark:text-slate-300">{{ $r }} stars &amp; up</p>
+                  <div aria-hidden="true" class="flex items-center">
+                    @for ($s = 1; $s <= 5; $s++)
+                      <svg
+                        @class([
+                          'h-5 w-5 shrink-0',
+                          'text-slate-300 dark:text-slate-600' => $s > $r,
+                          'text-amber-400 dark:text-amber-500' => $s <= $r,
+                        ])
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                      </svg>
+                    @endfor
+                  </div>
+                </dt>
+              </label>
+            @endfor
+          </dl>
         </div>
       </div>
 
@@ -113,7 +167,7 @@
           Version
         </h2>
 
-        <div class="relative mt-3 pl-2">
+        <div class="relative mt-3 pl-3">
           <ul class="space-y-1">
             @foreach ($this->products as $id => $name)
               <li class="relative flex items-center">
@@ -129,7 +183,7 @@
           Type
         </h2>
 
-        <div class="relative mt-3 pl-2">
+        <div class="relative mt-3 pl-3">
           <ul class="space-y-1">
             @foreach (App\Enums\AddonType::cases() as $type)
               <li class="relative flex items-center">
@@ -137,6 +191,49 @@
               </li>
             @endforeach
           </ul>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-xs font-semibold text-slate-900 dark:text-white">
+          Rating
+        </h2>
+
+        <div class="relative mt-3">
+          <dl class="space-y-1">
+            @for ($r = 4; $r >= 1; $r--)
+              <label
+                for="rating{{ $r }}"
+                @class([
+                  'inline-flex text-sm cursor-pointer rounded-full px-3 py-0.5',
+                  'hover:bg-slate-100 dark:hover:bg-slate-800' => $filters['rating'] != $r,
+                  'bg-slate-100 dark:bg-slate-800 ring-1 ring-inset ring-slate-900/5 dark:ring-white/5' => $filters['rating'] == $r,
+                ])
+              >
+                <input type="radio" wire:model="filters.rating" id="rating{{ $r }}" value="{{ $r }}" class="hidden">
+
+                <dt class="flex items-center">
+                  <p class="w-24 font-medium text-slate-700 dark:text-slate-300">{{ $r }} stars &amp; up</p>
+                  <div aria-hidden="true" class="flex items-center">
+                    @for ($s = 1; $s <= 5; $s++)
+                      <svg
+                        @class([
+                          'h-5 w-5 shrink-0',
+                          'text-slate-300 dark:text-slate-600' => $s > $r,
+                          'text-amber-400 dark:text-amber-500' => $s <= $r,
+                        ])
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                      </svg>
+                    @endfor
+                  </div>
+                </dt>
+              </label>
+            @endfor
+          </dl>
         </div>
       </div>
     </div>
@@ -148,7 +245,7 @@
     'grid-cols-1' => $this->addons->count() === 0,
   ])>
     @forelse ($this->addons as $addon)
-      <a href="{{ route('addons.show', $addon) }}" class="flex flex-col bg-white dark:bg-slate-800 overflow-hidden shadow hover:shadow-lg dark:shadow-lg rounded-xl ring-1 ring-slate-900/5 transition">
+      <a href="{{ route('addons.show', [$addon->user, $addon]) }}" class="flex flex-col bg-white dark:bg-slate-800 overflow-hidden shadow hover:shadow-lg dark:shadow-lg rounded-xl ring-1 ring-slate-900/5 transition">
         <div class="relative">
           @if ($addon->getMedia('primary-preview')->count() === 1)
             <img src="{{ $addon->getFirstTemporaryUrl(now()->addMinutes(5), 'primary-preview') }}" alt="" class="w-full h-56 bg-cover">
@@ -163,6 +260,28 @@
           <h2 class="font-extrabold text-slate-900 dark:text-white tracking-tight text-lg">
             {{ ucfirst($addon->name) }}
           </h2>
+
+          <div class="flex items-center space-x-2 mb-2">
+            <div class="flex items-center">
+              @for ($s = 1; $s <= 5; $s++)
+                <svg
+                  @class([
+                    'h-5 w-5 shrink-0',
+                    'text-slate-300 dark:text-slate-600' => $addon->rating < $s,
+                    'text-amber-400 dark:text-amber-500' => $addon->rating >= $s,
+                  ])
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                </svg>
+              @endfor
+            </div>
+            <div class="text-sm text-slate-500">{{ $addon->rating }}</div>
+          </div>
+
           <div class="mt-4 flex items-center justify-between">
             <div class="flex items-center space-x-3">
               <div class="squircle overflow-hidden ring ring-white bg-white">

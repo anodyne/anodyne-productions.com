@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Enums\UserRole;
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
+use Closure;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -33,9 +34,19 @@ class UserResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->required()
+                            ->reactive()
+                            ->afterStateUpdated(function (?Model $record, Closure $set, $state) {
+                                if (blank($record->username)) {
+                                    $set('username', str($state)->slug());
+                                }
+                            })
                             ->columnSpan(2),
                         Forms\Components\TextInput::make('email')
                             ->required()
+                            ->columnSpan(2),
+                        Forms\Components\TextInput::make('username')
+                            ->required()
+                            ->helperText('The username is used for your profile page and associating your add-ons to your account. Please use caution when changing this value.')
                             ->columnSpan(2),
                         Forms\Components\Select::make('role')
                             ->required()
@@ -51,6 +62,21 @@ class UserResource extends Resource
                             ->label('Add-on author')
                             ->helperText('Can this user create add-ons?')
                             ->columnSpan('full'),
+                        Forms\Components\Repeater::make('links')
+                            ->schema([
+                                Forms\Components\Select::make('type')->options([
+                                    'Website' => 'Website',
+                                    'Email address' => 'Email address',
+                                    'Discord server' => 'Discord server',
+                                    'Github repo' => 'Github repo',
+                                    'Twitter' => 'Twitter',
+                                    'Mastodon' => 'Mastodon',
+                                    'Facebook' => 'Facebook',
+                                ])->required(),
+                                Forms\Components\TextInput::make('value')->required(),
+                            ])
+                            ->columnSpan(2)
+                            ->columns(1),
                     ])
                     ->columns(4)
                     ->columnSpanFull(),

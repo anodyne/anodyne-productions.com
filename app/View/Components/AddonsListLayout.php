@@ -8,7 +8,7 @@ class AddonsListLayout extends Component
 {
     public function __construct(
         public string $title,
-        public string $description,
+        public ?string $description = null,
         public ?string $eyebrow = null
     ) {
     }

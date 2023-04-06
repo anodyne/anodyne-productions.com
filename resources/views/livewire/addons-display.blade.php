@@ -47,9 +47,7 @@
     <!-- Product details -->
     <div class="mx-auto mt-14 max-w-2xl sm:mt-16 lg:col-span-3 lg:row-span-2 lg:row-end-2 lg:mt-0 lg:max-w-none">
       <div class="flex flex-col-reverse">
-        <div @class([
-          'mt-4' => false
-        ])>
+        <div class="mt-4">
           <h2 class="sr-only">Tags</h2>
           <div class="flex items-center space-x-2.5">
             <x-badge size="xs" :color="$addon->type->badgeColor()" fill="neutral">
@@ -96,50 +94,37 @@
           </div>
         </div>
 
-        <div class="hidden">
+        <div>
           <h3 class="sr-only">Reviews</h3>
           <div class="flex items-center">
-            <!--
-              Heroicon name: mini/star
-
-              Active: "text-amber-400", Default: "text-slate-300"
-            -->
-            <svg class="text-amber-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-            </svg>
-
-            <!-- Heroicon name: mini/star -->
-            <svg class="text-amber-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-            </svg>
-
-            <!-- Heroicon name: mini/star -->
-            <svg class="text-amber-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-            </svg>
-
-            <!-- Heroicon name: mini/star -->
-            <svg class="text-amber-400 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-            </svg>
-
-            <!-- Heroicon name: mini/star -->
-            <svg class="text-slate-300 h-5 w-5 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
-            </svg>
+            @for ($s = 1; $s <= 5; $s++)
+              <svg
+                @class([
+                  'h-5 w-5 shrink-0',
+                  'text-slate-300 dark:text-slate-600' => $addon->rating < $s,
+                  'text-amber-400 dark:text-amber-500' => $addon->rating >= $s,
+                ])
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+              </svg>
+            @endfor
+            <div class="ml-3 text-sm text-slate-500">{{ $addon->rating }} <span class="sr-only">out of 5 stars</span></div>
           </div>
-          <p class="sr-only">4 out of 5 stars</p>
         </div>
       </div>
 
       <p class="mt-6 text-slate-600 dark:text-slate-400">{{ $addon->description }}</p>
 
-      <div class="mt-6 flex items-center space-x-3">
+      <a href="{{ route('addons.index', $addon->user) }}" class="mt-6 flex items-center space-x-3">
         <div class="squircle overflow-hidden ring ring-white bg-white">
           <img src="{{ $addon->user->getFirstMediaUrl('avatar') }}" alt="" class="h-10 w-10">
         </div>
         <span class="text-slate-700 dark:text-slate-300 font-medium">{{ $addon->user->name }}</span>
-      </div>
+      </a>
 
       <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
         <x-button type="button" wire:click="download" variant="primary">Download</x-button>
@@ -350,7 +335,7 @@
                   </div>
                   <p class="sr-only">{{ floor($addon->rating) }} out of 5 stars</p>
                 </div>
-                <p class="ml-2 text-sm text-slate-600 dark:text-slate-500">Based on {{ $addon->reviews->count() }} {{ str('review')->plural($addon->reviews->count()) }}</p>
+                <p class="ml-3 text-sm text-slate-600 dark:text-slate-500">Based on {{ $addon->reviews->count() }} {{ str('review')->plural($addon->reviews->count()) }}</p>
               </div>
 
               <div class="mt-6 w-full xl:w-2/3">

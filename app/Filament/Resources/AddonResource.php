@@ -276,10 +276,12 @@ class AddonResource extends Resource
                     ->schema([
                         Forms\Components\Select::make('type')->options([
                             'Website' => 'Website',
+                            'Email address' => 'Email address',
                             'Discord server' => 'Discord server',
                             'Github repo' => 'Github repo',
                             'Twitter' => 'Twitter',
                             'Mastodon' => 'Mastodon',
+                            'Facebook' => 'Facebook',
                         ])->required(),
                         Forms\Components\TextInput::make('value')->required(),
                     ])
