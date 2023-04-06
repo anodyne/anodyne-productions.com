@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Filament\Pages\MyProfile;
 use App\Models;
 use App\View\Components\Button;
 use Filament\Facades\Filament;
@@ -68,7 +69,7 @@ class AppServiceProvider extends ServiceProvider
             Filament::registerTheme('/css/filament.css');
 
             Filament::registerUserMenuItems([
-                'account' => UserMenuItem::make()->icon('flex-user-square'),
+                'account' => UserMenuItem::make()->icon('flex-user-square')->url(MyProfile::getUrl()),
                 'logout' => UserMenuItem::make()->icon('flex-logout'),
             ]);
         });
