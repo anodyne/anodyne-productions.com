@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\Links;
 use App\Enums\UserRole;
 use App\Traits\InteractsWithMedia;
 use Filament\Models\Contracts\FilamentUser;
@@ -66,7 +67,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
         'role' => UserRole::class,
         'email_verified_at' => 'datetime',
         'is_addon_author' => 'boolean',
-        'links' => 'array',
+        'links' => Links::class,
     ];
 
     public function reviews(): HasMany

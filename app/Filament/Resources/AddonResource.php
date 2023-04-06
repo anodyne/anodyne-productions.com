@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Enums\AddonType;
+use App\Enums\LinkType;
 use App\Filament\Resources\AddonResource\Pages;
 use App\Filament\Resources\AddonResource\RelationManagers;
 use App\Models\Addon;
@@ -274,15 +275,9 @@ class AddonResource extends Resource
             return [
                 Forms\Components\Repeater::make('links')
                     ->schema([
-                        Forms\Components\Select::make('type')->options([
-                            'Website' => 'Website',
-                            'Email address' => 'Email address',
-                            'Discord server' => 'Discord server',
-                            'Github repo' => 'Github repo',
-                            'Twitter' => 'Twitter',
-                            'Mastodon' => 'Mastodon',
-                            'Facebook' => 'Facebook',
-                        ])->required(),
+                        Forms\Components\Select::make('type')->options(
+                            collect(LinkType::cases())->flatMap(fn ($linkType) => [$linkType->value => $linkType->displayName()])->all()
+                        )->required(),
                         Forms\Components\TextInput::make('value')->required(),
                     ])
                     ->columnSpan(2)

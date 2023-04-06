@@ -6,7 +6,10 @@
     @if ($user)
       <div class="flex items-center space-x-6 mb-8">
         @foreach ($user->links as $link)
-          <a href="{{ $link['value'] }}">{{ $link['type'] }}</a>
+          <a href="{{ $link['value'] }}" class="flex items-center space-x-2">
+            @svg($link['type']->icon(), 'h-5 w-5 shrink-0')
+            <span>{{ $link['type']->displayName() }}</span>
+          </a>
         @endforeach
       </div>
     @else

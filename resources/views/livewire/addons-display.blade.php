@@ -285,7 +285,10 @@
                 <dl class="space-y-3">
                   @foreach ($addon->links as $link)
                     <div>
-                      <dt class="font-medium">{{ $link['type'] }}</dt>
+                      <dt class="font-medium flex items-center space-x-2">
+                        @svg($link['type']->icon(), 'h-5 w-5 shrink-0')
+                        <span>{{ $link['type']->displayName() }}</span>
+                      </dt>
                       <dd><a href="{{ $link['value'] }}">{{ $link['value'] }}</a></dd>
                     </div>
                   @endforeach

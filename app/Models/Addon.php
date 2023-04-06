@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Casts\Links;
 use App\Enums\AddonType;
 use App\Traits\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -36,7 +37,7 @@ class Addon extends Model implements HasMedia
     ];
 
     protected $casts = [
-        'links' => 'array',
+        'links' => Links::class,
         'published' => 'boolean',
         'type' => AddonType::class,
     ];
