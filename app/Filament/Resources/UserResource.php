@@ -67,8 +67,8 @@ class UserResource extends Resource
                             ->schema([
                                 Forms\Components\Select::make('type')->options(
                                     collect(LinkType::cases())->flatMap(fn ($linkType) => [$linkType->value => $linkType->displayName()])->all()
-                                )->required(),
-                                Forms\Components\TextInput::make('value')->required(),
+                                ),
+                                Forms\Components\TextInput::make('value')->requiredWith('type'),
                             ])
                             ->columnSpan(2)
                             ->columns(1),
