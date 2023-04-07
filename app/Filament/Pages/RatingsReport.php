@@ -45,7 +45,9 @@ class RatingsReport extends Page implements HasTable
     protected function getTableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('name')->searchable(),
+            Tables\Columns\TextColumn::make('name')
+                ->description(fn (Model $record) => $record->user->name)
+                ->searchable(),
             Tables\Columns\BadgeColumn::make('type')
                 ->enum(
                     collect(AddonType::cases())
@@ -58,14 +60,15 @@ class RatingsReport extends Page implements HasTable
                     // 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-400' => AddonType::genre->value,
                     'ring-1 ring-amber-300 bg-amber-400/10 text-amber-500 dark:ring-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400' => AddonType::rank->value,
                 ]),
-            Tables\Columns\TextColumn::make('user.name')
-                ->label('Author')
-                ->searchable(),
             Tables\Columns\TextColumn::make('products.name')
                 ->label('Nova version(s)'),
             Tables\Columns\TextColumn::make('rating')
                 ->icon('flex-favorite-star')
                 ->iconPosition('before'),
+            Tables\Columns\TextColumn::make('reviews_count')
+                ->counts('reviews')
+                ->label('# of ratings')
+                ->alignCenter(),
             Tables\Columns\IconColumn::make('published')
                 ->alignCenter()
                 ->trueIcon('flex-check-square')
@@ -81,6 +84,9 @@ class RatingsReport extends Page implements HasTable
                 ->options(
                     collect(AddonType::cases())->flatMap(fn ($type) => [$type->value => $type->displayName()])->all()
                 ),
+            Tables\Filters\SelectFilter::make('author')
+                ->relationship('user', 'name')
+                ->multiple(),
         ];
     }
 
