@@ -72,6 +72,14 @@ class AppServiceProvider extends ServiceProvider
                 'account' => UserMenuItem::make()->icon('flex-user-square')->url(MyProfile::getUrl()),
                 'logout' => UserMenuItem::make()->icon('flex-logout'),
             ]);
+
+            Filament::registerNavigationGroups([
+                'Account',
+                'Add-ons',
+                'System',
+                'Sponsorships',
+                'Reports',
+            ]);
         });
     }
 
