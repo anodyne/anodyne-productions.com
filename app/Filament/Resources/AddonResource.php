@@ -79,9 +79,12 @@ class AddonResource extends Resource
                     ->counts('downloads')
                     ->label('# of downloads')
                     ->toggleable(),
-                // Tables\Columns\TextColumn::make('rating')
-                //     ->sortable()
-                //     ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('rating')
+                    ->sortable()
+                    ->label('Avg rating')
+                    ->icon('flex-favorite-star')
+                    ->iconPosition('before')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\ToggleColumn::make('published'),
             ])
             ->filters([
@@ -97,22 +100,11 @@ class AddonResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
-                // Tables\Actions\ViewAction::make()
-                //     ->icon('flex-eye')
-                //     ->size('md')
-                //     ->iconButton()
-                //     ->color('secondary'),
                 Tables\Actions\EditAction::make()
                     ->icon('flex-edit-circle')
                     ->size('md')
                     ->iconButton()
                     ->color('secondary'),
-                // Tables\Actions\DeleteAction::make()
-                //     ->icon('flex-delete-bin')
-                //     ->size('md')
-                //     ->iconButton()
-                //     ->successNotificationTitle('Add-on deleted'),
-
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\DeleteAction::make()
                         ->icon('flex-delete-bin')
@@ -216,6 +208,8 @@ class AddonResource extends Resource
                         Forms\Components\SpatieMediaLibraryFileUpload::make('filename')
                             ->required()
                             ->collection('downloads')
+                            ->disk(app()->environment('local') ? 'public' : 'r2-addons')
+                            ->customProperties(fn (Model $record) => ['user_id' => $record->addon->user_id])
                             ->columnSpanFull(),
                         Forms\Components\Toggle::make('published')
                             ->default(true)
@@ -276,9 +270,11 @@ class AddonResource extends Resource
                 Forms\Components\Repeater::make('links')
                     ->schema([
                         Forms\Components\Select::make('type')->options(
-                            collect(LinkType::cases())->flatMap(fn ($linkType) => [$linkType->value => $linkType->displayName()])->all()
-                        )->required(),
-                        Forms\Components\TextInput::make('value')->required(),
+                            collect(LinkType::cases())
+                                ->flatMap(fn ($linkType) => [$linkType->value => $linkType->displayName()])
+                                ->all()
+                        ),
+                        Forms\Components\TextInput::make('value')->requiredWith('type'),
                     ])
                     ->columnSpan(2)
                     ->columns(1),
