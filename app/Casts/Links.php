@@ -24,6 +24,10 @@ class Links implements CastsAttributes
 
     public function set(Model $model, string $key, mixed $value, array $attributes)
     {
+        if ($value === null) {
+            return null;
+        }
+
         $values = array_map(function ($item) {
             return [
                 'type' => $item['type'],
