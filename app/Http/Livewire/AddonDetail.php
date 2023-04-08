@@ -11,7 +11,7 @@ use App\View\Components\BaseLayout;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
-class AddonsDisplay extends Component
+class AddonDetail extends Component
 {
     public Addon $addon;
 
@@ -79,7 +79,7 @@ class AddonsDisplay extends Component
 
     public function render()
     {
-        return view('livewire.addons-display')
+        return view('livewire.addon-detail')
             ->layout(BaseLayout::class, [
                 'attributes' => [
                     'class' => 'bg-white dark:bg-slate-900',

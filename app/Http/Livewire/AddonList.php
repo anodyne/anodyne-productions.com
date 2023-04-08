@@ -13,7 +13,7 @@ use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class AddonsList extends Component
+class AddonList extends Component
 {
     use WithPagination;
 
@@ -80,7 +80,7 @@ class AddonsList extends Component
 
     public function render()
     {
-        return view('livewire.addons-list')
+        return view('livewire.addon-list')
             ->layout(BaseLayout::class, [
                 'attributes' => [
                     'class' => 'bg-white dark:bg-slate-900',

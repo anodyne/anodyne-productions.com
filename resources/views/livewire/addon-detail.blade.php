@@ -1,4 +1,4 @@
-<x-addons-display-layout :title="$addon->name" :type="$addon->type->displayName()">
+<x-addon-detail-layout :title="$addon->name" :type="$addon->type->displayName()">
   <!-- Product -->
   <div class="lg:grid lg:grid-cols-7 lg:grid-rows-1 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
     <!-- Product image -->
@@ -449,4 +449,4 @@
       </div>
     </div>
   </div>
-</x-addons-display-layout>
+</x-addon-detail-layout>

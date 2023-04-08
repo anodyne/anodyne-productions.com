@@ -1,4 +1,4 @@
-<x-addons-list-layout
+<x-addon-list-layout
   :title="$user ? $user->name.' - Author Profile' : 'Make Nova your own'"
   eyebrow="Add-ons"
 >
@@ -295,4 +295,4 @@
   <div class="mt-12">
     {{ $this->addons->links() }}
   </div>
-</x-addons-list-layout>
+</x-addon-list-layout>

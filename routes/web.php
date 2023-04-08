@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\DocsController;
-use App\Http\Livewire\AddonsDisplay;
-use App\Http\Livewire\AddonsList;
+use App\Http\Livewire\AddonDetail;
+use App\Http\Livewire\AddonList;
 use App\Models\Sponsor;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +26,7 @@ Route::get('/docs/{version?}/{page?}', DocsController::class)
     ->where('page', '(.*)')
     ->name('docs');
 
-Route::get('/addons/{user:username?}', AddonsList::class)->name('addons.index');
-Route::get('/addons/{user:username}/{addon:slug}', AddonsDisplay::class)->name('addons.show');
+Route::get('/addons/{user:username?}', AddonList::class)->name('addons.index');
+Route::get('/addons/{user:username}/{addon:slug}', AddonDetail::class)->name('addons.show');
 
 Route::redirect('/', '/nova');

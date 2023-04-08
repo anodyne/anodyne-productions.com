@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class AddonsDisplayLayout extends Component
+class AddonDetailLayout extends Component
 {
     public function __construct(
         public string $title,
@@ -14,6 +14,6 @@ class AddonsDisplayLayout extends Component
 
     public function render()
     {
-        return view('layouts.addons-display');
+        return view('layouts.addon-detail');
     }
 }
