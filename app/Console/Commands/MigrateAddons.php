@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Enums\AddonType;
+use App\Enums\LinkType;
 use App\Models\Addon;
 use App\Models\Legacy\Xtra;
 use App\Models\Legacy\XtraFile;
@@ -159,7 +160,7 @@ class MigrateAddons extends Command
 
         if ($support->contains('github')) {
             return [
-                ['type' => 'Github repo', 'value' => $support],
+                ['type' => LinkType::github, 'value' => $support],
             ];
         }
 
@@ -168,7 +169,7 @@ class MigrateAddons extends Command
         }
 
         return [
-            ['type' => 'Website', 'value' => $support],
+            ['type' => LinkType::website, 'value' => $support],
         ];
     }
 }

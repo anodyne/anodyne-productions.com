@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Enums\LinkType;
 use App\Models\Legacy\User as LegacyUser;
 use App\Models\User;
 use Illuminate\Console\Command;
@@ -75,14 +76,14 @@ class MigrateUsers extends Command
 
         if (! is_null($user->twitter)) {
             $links[] = [
-                'type' => 'Twitter',
+                'type' => LinkType::twitter,
                 'value' => 'https://twitter.com/'.str($user->twitter)->after('@'),
             ];
         }
 
         if (! is_null($user->facebook)) {
             $links[] = [
-                'type' => 'Facebook',
+                'type' => LinkType::facebook,
                 'value' => 'https://facebook.com/'.str($user->facebook)->after('facebook.com/'),
             ];
         }
