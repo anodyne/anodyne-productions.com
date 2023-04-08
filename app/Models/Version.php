@@ -24,6 +24,7 @@ class Version extends Model implements HasMedia
         'release_notes',
         'install_instructions',
         'upgrade_instructions',
+        'credits',
         'published',
     ];
 

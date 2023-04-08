@@ -36,6 +36,9 @@ class VersionsRelationManager extends RelationManager
                     ->helperText('If you provide install instructions for the version, those will be displayed when the version is selected. Otherwise, the install instructions on the add-on will be used.')
                     ->columnSpanFull(),
                 Forms\Components\MarkdownEditor::make('upgrade_instructions')->columnSpanFull(),
+                Forms\Components\MarkdownEditor::make('credits')
+                    ->helperText('Provide any credits you feel are necessary and specific to this version of your add-on')
+                    ->columnSpanFull(),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('filename')
                     ->columnSpanFull()
                     ->collection('downloads')

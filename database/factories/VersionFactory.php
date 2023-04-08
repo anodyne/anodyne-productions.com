@@ -24,6 +24,7 @@ class VersionFactory extends Factory
             'release_notes' => $this->faker->paragraph,
             'install_instructions' => mt_rand(0, 1) === 1 ? $this->faker->paragraphs(2, asText: true) : '',
             'upgrade_instructions' => $this->faker->paragraph,
+            'credits' => $this->faker->paragraph,
             'published' => $this->faker->randomElement([true, false]),
         ];
     }

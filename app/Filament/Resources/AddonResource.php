@@ -205,6 +205,9 @@ class AddonResource extends Resource
                             ->helperText('If you provide install instructions for the version, those will be displayed when the version is selected. Otherwise, the install instructions on the add-on will be used.')
                             ->columnSpanFull(),
                         Forms\Components\MarkdownEditor::make('upgrade_instructions')->columnSpanFull(),
+                        Forms\Components\MarkdownEditor::make('credits')
+                            ->helperText('Provide any credits you feel are necessary and specific to this version of your add-on')
+                            ->columnSpanFull(),
                         Forms\Components\SpatieMediaLibraryFileUpload::make('filename')
                             ->required()
                             ->collection('downloads')
@@ -305,7 +308,10 @@ class AddonResource extends Resource
                     ->columnSpan(1),
                 Forms\Components\MarkdownEditor::make('description')->columnSpanFull(),
                 Forms\Components\MarkdownEditor::make('install_instructions')
-                    ->helperText('These install instructions will be used unless you provide install instructions on a version.')
+                    ->helperText('These install instructions will be used unless you provide install instructions on a version')
+                    ->columnSpanFull(),
+                Forms\Components\MarkdownEditor::make('credits')
+                    ->helperText('Provide any credits you feel are necessary for your add-on')
                     ->columnSpanFull(),
                 Forms\Components\Toggle::make('published')
                     ->helperText('Only published add-ons will be available for download')

@@ -33,6 +33,7 @@ class Addon extends Model implements HasMedia
         'published',
         'user_id',
         'install_instructions',
+        'credits',
         'links',
     ];
 

@@ -19,6 +19,7 @@ class AddonFactory extends Factory
             'rating' => $this->faker->randomFloat(1, 1, 5),
             'published' => $this->faker->randomElement([true, false]),
             'install_instructions' => $this->faker->paragraphs(2, asText: true),
+            'credits' => $this->faker->paragraphs(2, asText: true),
         ];
     }
 }

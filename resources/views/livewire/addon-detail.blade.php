@@ -280,6 +280,16 @@
                 {!! str($version->upgrade_instructions)->markdown() !!}
               @endif
 
+              @if (filled($addon->credits))
+                <h3>Add-on credits</h3>
+                {!! str($addon->credits)->markdown() !!}
+              @endif
+
+              @if (filled($version->credits))
+                <h3>Version credits</h3>
+                {!! str($version->credits)->markdown() !!}
+              @endif
+
               @if (isset($addon->links) && count($addon->links) > 0)
                 <h3>Links</h3>
                 <dl class="space-y-3">
