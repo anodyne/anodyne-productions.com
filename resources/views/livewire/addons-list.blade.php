@@ -106,37 +106,6 @@
         </div>
       </div>
 
-      {{-- <div>
-        <h2 class="text-xs font-semibold text-slate-900 dark:text-white">
-          Compatibility
-        </h2>
-
-        <div class="relative mt-3 pl-2">
-          @php
-            $compat = App\Enums\CompatibilityStatus::class
-          @endphp
-          <ul class="space-y-1">
-            <li class="relative flex items-center">
-              <x-input.checkbox :label="$compat::compatible->displayName()" id="compat_series_{{ $compat::compatible->value }}" :value="$compat::compatible->value" wire:model="filters.compat_status" />
-            </li>
-            <li>
-              <x-input.checkbox :label="$compat::incompatible->displayName()" id="compat_series_{{ $compat::incompatible->value }}" :value="$compat::incompatible->value" wire:model="filters.compat_status" />
-            </li>
-            <li>
-              <x-input.checkbox :label="$compat::unknown->displayName()" id="compat_series_{{ $compat::unknown->value }}" :value="$compat::unknown->value" wire:model="filters.compat_status" />
-            </li>
-          </ul>
-
-          <ul class="space-y-1 mt-4">
-            @foreach (App\Models\ReleaseSeries::get()->pluck('name', 'id') as $id => $name)
-              <li class="relative flex items-center">
-                <x-input.checkbox :label="$name" id="compat_series_{{ $id }}" :value="$id" wire:model="filters.compat_series" />
-              </li>
-            @endforeach
-          </ul>
-        </div>
-      </div> --}}
-
       <div>
         <x-button class="w-full" variant="secondary" size="sm" wire:click="resetFilters">Reset filters</x-button>
       </div>
