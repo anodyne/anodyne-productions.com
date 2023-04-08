@@ -44,7 +44,12 @@ class MigrateUsers extends Command
             $user = User::where('email', $legacyUser->email)->first();
 
             if ($user) {
-                $user->forceFill(['legacy_id' => $legacyUser->id])->save();
+                $user->forceFill([
+                    'name' => $username,
+                    'username' => $username,
+                    'links' => $this->setLinksFromLegacyUser($legacyUser),
+                    'legacy_id' => $legacyUser->id,
+                ])->save();
             } else {
                 $password = Str::random(12);
 
