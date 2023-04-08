@@ -9,7 +9,6 @@ use Closure;
 use Filament\Pages\Page;
 use Filament\Tables;
 use Filament\Tables\Contracts\HasTable;
-use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,14 +31,6 @@ class RatingsReport extends Page implements HasTable
     public function mount(): void
     {
         abort_unless(auth()->user()->isStaff || auth()->user()->isAdmin, 404);
-    }
-
-    public function table(Table $table): Table
-    {
-        return $table
-            ->query(Addon::query())
-            ->columns([])
-            ->filters([]);
     }
 
     protected function getTableColumns(): array
