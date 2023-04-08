@@ -24,7 +24,7 @@ class IncompatibilityReport extends Page implements HasTable
 
     protected ?string $heading = 'Incompatibility Report';
 
-    protected ?string $subheading = 'This page provides an overview of the community reports of incompatibility for published add-on versions.';
+    protected ?string $subheading = 'This report provides an overview of the published add-on versions that the community has reported as incompatible with a Nova release series.';
 
     protected static string $view = 'filament.pages.incompatibility-report';
 
