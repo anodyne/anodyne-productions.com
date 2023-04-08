@@ -19,6 +19,7 @@ class LatestUpdates extends BaseWidget
     {
         return Addon::query()
             ->with('user', 'latestVersion')
+            ->published()
             ->latest('updated_at')
             ->limit(10);
     }
