@@ -36,7 +36,7 @@ class AddonsList extends Component
     public function getAddonsProperty()
     {
         return Addon::query()
-            ->with('user')
+            ->with('user', 'products')
             ->withCount('reviews')
             ->published()
             ->when(
@@ -62,17 +62,6 @@ class AddonsList extends Component
                 $this->filters['rating'],
                 fn (Builder $query, string $rating) => $query->where('rating', '>=', $rating)
             )
-            // ->when(
-            //     $this->filters['compat_status'],
-            //     fn (Builder $query, array $statuses) => $query->whereIn
-            // )
-            // ->when(
-            //     $this->filters['compat_series'],
-            //     fn (Builder $query, array $statuses): Builder => $query->whereHas(
-            //         'releaseSeries',
-            //         fn (Builder $q) => $q->whereIn('releaseSeries.id', $statuses)
-            //     )
-            // )
             ->paginate(15);
     }
 
