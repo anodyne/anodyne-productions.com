@@ -79,22 +79,19 @@ class MigrateAddons extends Command
             if ($xtra->metadata->image1 && file_exists($imagePath1 = public_path('xtras/'.$xtra->metadata->image1))) {
                 $addon->addMedia($imagePath1)
                     ->preservingOriginal()
-                    ->toMediaCollection('primary-preview')
-                    ->useDisk('r2-addons');
+                    ->toMediaCollection('primary-preview', 'r2-addons');
             }
 
             if ($xtra->metadata->image2 && file_exists($imagePath2 = public_path('xtras/'.$xtra->metadata->image2))) {
                 $addon->addMedia($imagePath2)
                     ->preservingOriginal()
-                    ->toMediaCollection('additional-previews')
-                    ->useDisk('r2-addons');
+                    ->toMediaCollection('additional-previews', 'r2-addons');
             }
 
             if ($xtra->metadata->image3 && file_exists($imagePath3 = public_path('xtras/'.$xtra->metadata->image3))) {
                 $addon->addMedia($imagePath3)
                     ->preservingOriginal()
-                    ->toMediaCollection('additional-previews')
-                    ->useDisk('r2-addons');
+                    ->toMediaCollection('additional-previews', 'r2-addons');
             }
 
             $xtra->files->each(function (XtraFile $file) use ($xtra) {
@@ -121,8 +118,7 @@ class MigrateAddons extends Command
                         $version->addMedia($downloadFile)
                             ->withCustomProperties(['user_id' => $addon->user_id])
                             ->preservingOriginal()
-                            ->toMediaCollection('downloads')
-                            ->useDisk('downloads');
+                            ->toMediaCollection('downloads', 'r2-addons');
                     }
 
                     $addon->versions()->save($version);
