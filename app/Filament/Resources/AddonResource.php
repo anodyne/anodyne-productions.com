@@ -27,7 +27,7 @@ class AddonResource extends Resource
 
     protected static ?string $navigationGroup = 'Add-ons';
 
-    protected static ?string $navigationLabel = 'Add-Ons';
+    protected static ?string $navigationLabel = 'Add-ons';
 
     protected static ?string $pluralModelLabel = 'add-ons';
 
