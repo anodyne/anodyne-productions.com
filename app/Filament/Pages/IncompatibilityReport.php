@@ -128,4 +128,14 @@ class IncompatibilityReport extends Page implements HasTable
     {
         return auth()->user()->isStaff || auth()->user()->isAdmin;
     }
+
+    protected function getTableEmptyStateHeading(): ?string
+    {
+        return 'No incompatibility reports found';
+    }
+
+    protected function getTableEmptyStateIcon(): ?string
+    {
+        return 'uxl-like-sparkling';
+    }
 }

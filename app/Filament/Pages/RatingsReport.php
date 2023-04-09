@@ -98,4 +98,14 @@ class RatingsReport extends Page implements HasTable
     {
         return auth()->user()->isStaff || auth()->user()->isAdmin;
     }
+
+    protected function getTableEmptyStateHeading(): ?string
+    {
+        return 'No addons with an average rating below 3.0 found';
+    }
+
+    protected function getTableEmptyStateIcon(): ?string
+    {
+        return 'uxl-rating-click';
+    }
 }
