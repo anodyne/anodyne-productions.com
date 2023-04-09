@@ -18,6 +18,8 @@ class Question extends Model
         'published' => 'boolean',
     ];
 
+    protected $touches = ['addon'];
+
     public function addon(): BelongsTo
     {
         return $this->belongsTo(Addon::class);

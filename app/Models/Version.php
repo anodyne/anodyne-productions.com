@@ -32,6 +32,8 @@ class Version extends Model implements HasMedia
         'published' => 'boolean',
     ];
 
+    protected $touches = ['addon'];
+
     public function addon(): BelongsTo
     {
         return $this->belongsTo(Addon::class);
