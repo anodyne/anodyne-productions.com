@@ -95,33 +95,35 @@ class MigrateAddons extends Command
             }
 
             $xtra->files->each(function (XtraFile $file) use ($xtra) {
-                Version::unguarded(function () use ($file, $xtra) {
-                    $addon = Addon::where('legacy_id', $file->item_id)->first();
+                Version::withoutTouching(function () use ($file, $xtra) {
+                    Version::unguarded(function () use ($file, $xtra) {
+                        $addon = Addon::where('legacy_id', $file->item_id)->first();
 
-                    $version = Version::updateOrCreate(
-                        [
-                            'addon_id' => $addon->id,
-                            'version' => $file->version,
-                            'legacy_id' => $file->id,
-                        ],
-                        [
-                            'published' => true,
-                            'release_notes' => $xtra->metadata->history,
-                            'created_at' => $file->created_at,
-                            'updated_at' => $file->updated_at,
-                        ]
-                    );
+                        $version = Version::updateOrCreate(
+                            [
+                                'addon_id' => $addon->id,
+                                'version' => $file->version,
+                                'legacy_id' => $file->id,
+                            ],
+                            [
+                                'published' => true,
+                                'release_notes' => $xtra->metadata->history,
+                                'created_at' => $file->created_at,
+                                'updated_at' => $file->updated_at,
+                            ]
+                        );
 
-                    $version->product()->sync($xtra->product_id);
+                        $version->product()->sync($xtra->product_id);
 
-                    if (file_exists($downloadFile = public_path('xtras/'.$file->filename))) {
-                        $version->addMedia($downloadFile)
-                            ->withCustomProperties(['user_id' => $addon->user_id])
-                            ->preservingOriginal()
-                            ->toMediaCollection('downloads', 'r2-addons');
-                    }
+                        if (file_exists($downloadFile = public_path('xtras/'.$file->filename))) {
+                            $version->addMedia($downloadFile)
+                                ->withCustomProperties(['user_id' => $addon->user_id])
+                                ->preservingOriginal()
+                                ->toMediaCollection('downloads', 'r2-addons');
+                        }
 
-                    $addon->versions()->save($version);
+                        $addon->versions()->save($version);
+                    });
                 });
             });
 
