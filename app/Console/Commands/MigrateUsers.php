@@ -32,6 +32,8 @@ class MigrateUsers extends Command
      */
     public function handle()
     {
+        activity()->disableLogging();
+
         $legacyUsers = LegacyUser::get();
 
         $bar = $this->output->createProgressBar(count($legacyUsers));
@@ -60,6 +62,7 @@ class MigrateUsers extends Command
                 $newUser->legacy_id = $legacyUser->id;
                 $newUser->password = Hash::make($password);
                 $newUser->links = $this->setLinksFromLegacyUser($legacyUser);
+                $newUser->is_addon_author = true;
                 $newUser->save();
             }
 
@@ -71,6 +74,8 @@ class MigrateUsers extends Command
         $this->newLine();
 
         $this->info(count($legacyUsers).' users migrated');
+
+        activity()->enableLogging();
 
         return Command::SUCCESS;
     }

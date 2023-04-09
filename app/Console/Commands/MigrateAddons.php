@@ -34,6 +34,8 @@ class MigrateAddons extends Command
      */
     public function handle()
     {
+        activity()->disableLogging();
+
         $xtras = Xtra::withTrashed()->get();
 
         $bar = $this->output->createProgressBar(count($xtras));
@@ -137,6 +139,8 @@ class MigrateAddons extends Command
         $this->newLine();
 
         $this->info(count($xtras).' add-ons migrated');
+
+        activity()->enableLogging();
 
         return Command::SUCCESS;
     }
