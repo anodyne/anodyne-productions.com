@@ -95,8 +95,8 @@ class MigrateAddons extends Command
             }
 
             $xtra->files->each(function (XtraFile $file) use ($xtra) {
-                Version::withoutTouching(function () use ($file, $xtra) {
-                    Version::unguarded(function () use ($file, $xtra) {
+                Version::unguarded(function () use ($file, $xtra) {
+                    Version::withoutTouching(function () use ($file, $xtra) {
                         $addon = Addon::where('legacy_id', $file->item_id)->first();
 
                         $version = Version::updateOrCreate(
