@@ -20,7 +20,7 @@ class LatestUpdates extends BaseWidget
         return Addon::query()
             ->with('user', 'latestVersion')
             ->published()
-            ->orderByDesc('updated_at')
+            ->latest('updated_at')
             ->limit(10);
     }
 
