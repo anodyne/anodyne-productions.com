@@ -56,7 +56,6 @@
         <div class="relative pl-9">
           <dt class="inline font-semibold text-slate-900">
             @svg($feature['icon'], 'absolute top-0.5 left-0 h-6 w-6')
-            {{-- @svg($feature['icon'], 'absolute top-1 left-1 h-5 w-5 text-purple-600') --}}
             {{ $feature['title'] }}
           </dt>
           <dd class="inline">{{ $feature['content'] }}</dd>
