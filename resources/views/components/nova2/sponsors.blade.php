@@ -28,7 +28,7 @@
     </div>
 
     @if ($sponsors->count() > 0)
-      <ul role="list" class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
+      <ul role="list" class="mx-auto mt-16 max-w-2xl lg:max-w-none grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         @foreach ($sponsors as $sponsor)
           <li class="group relative rounded-lg p-4 bg-white/10 hover:bg-white/[15%] ring-1 ring-inset ring-white/10 space-y-4 text-center transition">
             <h3 class="font-display text-xl leading-7 text-white">

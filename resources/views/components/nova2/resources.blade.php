@@ -35,7 +35,7 @@
 
     <ul
       role="list"
-      class="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3 mt-16"
+      class="grid grid-cols-1 gap-x-12 gap-y-16 md:grid-cols-2 lg:grid-cols-3 mt-16"
     >
       @foreach ($resources as $resource)
         <article class="group relative flex flex-col items-start">
