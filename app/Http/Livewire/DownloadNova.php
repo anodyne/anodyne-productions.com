@@ -10,7 +10,7 @@ class DownloadNova extends Component
 {
     public $selectedGenre;
 
-    public $selectedVersion = [];
+    public $selectedVersion;
 
     public $versions;
 
@@ -20,21 +20,37 @@ class DownloadNova extends Component
     {
         $filename = sprintf(
             'nova-%s-%s.zip',
-            $this->selectedVersion['value'],
-            $this->selectedGenre['value']
+            $this->selectedVersion,
+            $this->selectedGenre
         );
 
         return Storage::disk('r2-nova2-downloads')->temporaryUrl($filename, now()->addMinutes(5));
     }
 
-    public function selectGenre(string $genre): void
+    public function getSelectedGenre(?string $key = null): mixed
     {
-        $this->selectedGenre = $this->genres->where('value', $genre)->first();
+        if (blank($this->selectedGenre)) {
+            return null;
+        }
+
+        $selected = $this->genres->where('value', $this->selectedGenre)->first();
+
+        if ($key) {
+            return $selected[$key];
+        }
+
+        return $selected;
     }
 
-    public function selectVersion(string $version): void
+    public function getSelectedVersion(?string $key = null): mixed
     {
-        $this->selectedVersion = $this->versions->where('value', $version)->first();
+        $selected = $this->versions->where('value', $this->selectedVersion)->first();
+
+        if ($key) {
+            return $selected[$key];
+        }
+
+        return $selected;
     }
 
     public function mount(): void
@@ -69,7 +85,7 @@ class DownloadNova extends Component
             ['id' => 16, 'value' => 'tos', 'name' => 'The Original Series era', 'content' => 'Star Trek'],
         ]);
 
-        $this->selectedVersion = $this->versions[0];
+        $this->selectedVersion = $this->versions[0]['value'];
     }
 
     public function render()

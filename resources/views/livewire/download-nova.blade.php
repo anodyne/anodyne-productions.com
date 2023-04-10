@@ -13,23 +13,23 @@
       <div class="mt-12">
         <label class="text-slate-100 text-lg font-medium">Choose your version</label>
 
-        <div class="mt-4 flex flex-col md:flex-row md:items-center md:justify-center gap-y-6 md:gap-y-0 md:gap-x-6">
+        <div class="mt-4 hidden lg:flex flex-row items-center justify-center gap-x-6">
 					@foreach ($versions as $version)
 						<button
 							type="button"
-							wire:click="selectVersion('{{ $version['value'] }}')"
+							wire:click="$set('selectedVersion', '{{ $version['value'] }}')"
 							@class([
 								'flex flex-col flex-1 px-3 py-1.5 transition rounded-lg text-left ring-1 ring-inset ring-white',
-								'bg-purple-600 ring-opacity-20' => $selectedVersion['value'] === $version['value'],
-								'bg-white bg-opacity-10 text-slate-200 hover:bg-opacity-15 ring-opacity-10' => $selectedVersion['value'] !== $version['value']
+								'bg-purple-600 ring-opacity-20' => $this->getSelectedVersion('value') === $version['value'],
+								'bg-white bg-opacity-10 text-slate-200 hover:bg-opacity-15 ring-opacity-10' => $this->getSelectedVersion('value') !== $version['value']
 							])
 							wire:key="version-{{ $version['id'] }}"
 						>
 							<div
 								@class([
 									'text-base font-semibold',
-									'text-white' => $selectedVersion['value'] === $version['value'],
-									'text-slate-200' => $selectedVersion['value'] !== $version['value']
+									'text-white' => $this->getSelectedVersion('value') === $version['value'],
+									'text-slate-200' => $this->getSelectedVersion('value') !== $version['value']
 								])
 							>
 								{{ $version['name'] }}
@@ -37,8 +37,8 @@
 							<div
 								@class([
 									'text-xs font-normal',
-									'text-purple-200' => $selectedVersion['value'] === $version['value'],
-									'text-slate-400' => $selectedVersion['value'] !== $version['value']
+									'text-purple-200' => $this->getSelectedVersion('value') === $version['value'],
+									'text-slate-400' => $this->getSelectedVersion('value') !== $version['value']
 								])
 							>
 								{{ $version['content'] }}
@@ -46,16 +46,26 @@
 						</button>
 					@endforeach
         </div>
+
+				<div class="mt-4 block w-full md:w-1/2 md:mx-auto dark lg:hidden">
+					<x-input.select wire:model="selectedVersion">
+						@foreach ($versions as $version)
+							<option value="{{ $version['value'] }}" @selected($this->getSelectedVersion('value') === $version['value'])>
+								{{ $version['name'] }} ({{ $version['content'] }})
+							</option>
+						@endforeach
+					</x-input.select>
+				</div>
       </div>
 
-			@if (str($selectedVersion['value'])->contains('2.6'))
+			@if (str($selectedVersion)->contains('2.6'))
 				<div class="mt-8 flex space-x-3 text-white font-medium text-sm leading-6 text-left max-w-lg mx-auto">
 					@svg('flex-alert-diamond', 'h-8 w-8 text-danger-500 shrink-0')
 					<span>Nova 2.6.2 is a legacy version and intended only for games hosted on a server running PHP 5.3 - 5.6. This version of Nova is no longer receiving updates.</span>
 				</div>
 			@endif
 
-			@if (str($selectedVersion['value'])->contains('2.3'))
+			@if (str($selectedVersion)->contains('2.3'))
 				<div class="mt-8 flex space-x-3 text-white font-medium text-sm leading-6 text-left max-w-lg mx-auto">
 					@svg('flex-alert-diamond', 'h-8 w-8 text-danger-500 shrink-0')
 					<span>Nova 2.3.2 is a legacy version and intended only for games hosted on a server running PHP 5.2. This version of Nova is no longer receiving updates.</span>
@@ -65,23 +75,23 @@
       <div class="mt-8">
         <label class="text-slate-100 text-lg font-medium">Choose your genre</label>
 
-        <div class="mt-4 grid grid-cols-1 md:grid-cols-4 gap-y-6 md:gap-x-6 md:gap-y-3">
+        <div class="mt-4 hidden lg:grid grid-cols-4 gap-x-6 gap-y-3">
 					@foreach ($genres as $genre)
 						<button
 							type="button"
-							wire:click="selectGenre('{{ $genre['value'] }}')"
+							wire:click="$set('selectedGenre', '{{ $genre['value'] }}')"
 							@class([
 								'flex-1 px-3 py-1.5 transition rounded-lg text-left ring-1 ring-inset ring-white',
-								'bg-purple-600 ring-opacity-20' => filled($selectedGenre) && $selectedGenre['value'] === $genre['value'],
-								'bg-white bg-opacity-10 text-slate-200 hover:bg-opacity-15 ring-opacity-10' => filled($selectedGenre) && $selectedGenre['value'] !== $genre['value'] || blank($selectedGenre)
+								'bg-purple-600 ring-opacity-20' => $this->getSelectedGenre('value') === $genre['value'],
+								'bg-white bg-opacity-10 text-slate-200 hover:bg-opacity-15 ring-opacity-10' => $this->getSelectedGenre('value') !== $genre['value'] || blank($selectedGenre)
 							])
 							wire:key="genre-{{ $genre['id'] }}"
 						>
 							<div
 								@class([
 									'text-sm font-semibold',
-									'text-white' => filled($selectedGenre) && $selectedGenre['value'] === $genre['value'],
-									'text-slate-200' => filled($selectedGenre) && $selectedGenre['value'] !== $genre['value'] || blank($selectedGenre)
+									'text-white' => $this->getSelectedGenre('value') === $genre['value'],
+									'text-slate-200' => $this->getSelectedGenre('value') !== $genre['value'] || blank($selectedGenre)
 								])
 							>
 								{{ $genre['name'] }}
@@ -91,8 +101,8 @@
 								<div
 									@class([
 										'text-xs font-normal',
-										'text-purple-200' => filled($selectedGenre) && $selectedGenre['value'] === $genre['value'],
-										'text-slate-400' => filled($selectedGenre) && $selectedGenre['value'] !== $genre['value'] || blank($selectedGenre)
+										'text-purple-200' => $this->getSelectedGenre('value') === $genre['value'],
+										'text-slate-400' => $this->getSelectedGenre('value') !== $genre['value'] || blank($selectedGenre)
 									])
 								>
 									{{ $genre['content'] }}
@@ -101,16 +111,30 @@
 						</button>
 					@endforeach
         </div>
+
+				<div class="mt-4 block w-full md:w-1/2 md:mx-auto dark lg:hidden">
+					<x-input.select wire:model="selectedGenre">
+						<option @selected(blank($selectedGenre))>Choose a genre</option>
+						@foreach ($genres as $genre)
+							<option value="{{ $genre['value'] }}" @selected($this->getSelectedGenre('value') === $version['value'])>
+								{{ $genre['name'] }}
+								@isset($genre['content'])
+									({{ $genre['content'] }})
+								@endisset
+							</option>
+						@endforeach
+					</x-input.select>
+				</div>
       </div>
 
 			@if (filled($selectedVersion) && filled($selectedGenre))
 				<div>
-					<x-button href="{{ $this->downloadLink() }}" variant="brand" class="mt-12 flex items-center space-x-2.5">
+					<x-button href="{{ $this->downloadLink() }}" variant="brand" class="mt-12 w-full sm:w-auto flex items-center space-x-2.5">
 						<div>
 							Download Nova
-							{{ $selectedVersion['name'] }}
+							{{ $this->getSelectedVersion('name') }}
 							&ndash;
-							{{ $selectedGenre['name'] }}
+							{{ $this->getSelectedGenre('name') }}
 						</div>
 						@svg('flex-cloud-download', 'h-5 w-5 shrink-0')
 					</x-button>
