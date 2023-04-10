@@ -13,7 +13,9 @@ class GameVersionsChart extends DoughnutChartWidget
 
     protected function getData(): array
     {
-        $data = Game::with('release')
+        $data = Game::query()
+            ->with('release')
+            ->isIncluded()
             ->orderBy('release_id', 'asc')
             ->selectRaw('release_id, count(*) as total')
             ->groupBy('release_id')

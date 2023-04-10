@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,10 +22,25 @@ class Game extends Model
         'release_id',
         'release_series_id',
         'created_at',
+        'is_excluded',
+    ];
+
+    protected $casts = [
+        'is_excluded' => 'boolean',
     ];
 
     public function release(): BelongsTo
     {
         return $this->belongsTo(Release::class);
+    }
+
+    public function scopeIsExcluded(Builder $query): Builder
+    {
+        return $query->where('is_excluded', '=', true);
+    }
+
+    public function scopeIsIncluded(Builder $query): Builder
+    {
+        return $query->where('is_excluded', '=', false);
     }
 }

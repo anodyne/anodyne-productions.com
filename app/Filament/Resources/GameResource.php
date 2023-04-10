@@ -97,6 +97,9 @@ class GameResource extends Resource
                 Tables\Columns\TextColumn::make('db_driver')->label('Database driver')->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('db_version')->label('Database version')->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('server_software')->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\CheckboxColumn::make('is_excluded')
+                    ->hidden(fn () => ! auth()->user()->isAdmin)
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->since()
                     ->label('Installed')
@@ -111,7 +114,16 @@ class GameResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\TernaryFilter::make('excluded')
+                    ->placeholder('Without excluded games')
+                    ->trueLabel('With excluded games')
+                    ->falseLabel('Only excluded games')
+                    ->queries(
+                        true: fn (Builder $query) => $query,
+                        false: fn (Builder $query) => $query->isExcluded(),
+                        blank: fn (Builder $query) => $query->isIncluded(),
+                    )
+                    ->hidden(fn () => ! auth()->user()->isAdmin),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
@@ -151,7 +163,9 @@ class GameResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->orderBy('updated_at', 'desc');
+        return parent::getEloquentQuery()
+            ->unless(auth()->user()->isAdmin, fn (Builder $query) => $query->isIncluded())
+            ->orderBy('updated_at', 'desc');
     }
 
     public static function getGloballySearchableAttributes(): array

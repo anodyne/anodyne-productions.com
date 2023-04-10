@@ -25,19 +25,27 @@ class GamesOverview extends BaseWidget
         return [
             Card::make(
                 'Total installs (all time)',
-                number_format(Game::count())
+                number_format(Game::isIncluded()->count())
             ),
 
             Card::make(
                 'Fresh installs this month',
-                Game::whereColumn('created_at', 'updated_at')->where('created_at', '>=', now()->startOfMonth())->count()
+                Game::query()
+                    ->isIncluded()
+                    ->whereColumn('created_at', 'updated_at')
+                    ->where('created_at', '>=', now()->startOfMonth())
+                    ->count()
             )
                 ->chart($activityThisMonth->map(fn (TrendValue $value) => $value->aggregate)->all())
                 ->chartColor('primary'),
 
             Card::make(
                 'Updates this month',
-                Game::whereColumn('created_at', '!=', 'updated_at')->where('updated_at', '>=', now()->startOfMonth())->count()
+                Game::query()
+                    ->isIncluded()
+                    ->whereColumn('created_at', '!=', 'updated_at')
+                    ->where('updated_at', '>=', now()->startOfMonth())
+                    ->count()
             )
                 ->chart($activityThisMonth->map(fn (TrendValue $value) => $value->aggregate)->all())
                 ->chartColor('primary'),

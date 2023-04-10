@@ -14,7 +14,9 @@ class GameGenresChart extends DoughnutChartWidget
 
     protected function getData(): array
     {
-        $data = Game::orderBy('genre', 'asc')
+        $data = Game::query()
+            ->isIncluded()
+            ->orderBy('genre', 'asc')
             ->selectRaw('genre, count(*) as total')
             ->groupBy('genre')
             ->get();
