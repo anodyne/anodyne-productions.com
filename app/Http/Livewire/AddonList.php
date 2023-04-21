@@ -62,6 +62,7 @@ class AddonList extends Component
                 $this->filters['rating'],
                 fn (Builder $query, string $rating) => $query->where('rating', '>=', $rating)
             )
+            ->latest('updated_at')
             ->paginate(15);
     }
 
