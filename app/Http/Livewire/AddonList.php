@@ -20,7 +20,7 @@ class AddonList extends Component
     public ?User $user = null;
 
     public array $filters = [
-        'products' => ['1', '2'],
+        'products' => ['2'],
         'types' => [],
         'rating' => '',
         'search' => '',
@@ -69,6 +69,7 @@ class AddonList extends Component
     {
         return Product::query()
             ->published()
+            ->orderByDesc('id')
             ->get()
             ->pluck('name', 'id');
     }
@@ -98,11 +99,7 @@ class AddonList extends Component
             CompatibilityStatus::unknown->value => CompatibilityStatus::unknown->displayName(),
         ];
 
-        $this->filters['products'] = Product::query()
-            ->published()
-            ->get()
-            ->flatMap(fn ($product) => [(string) $product->id])
-            ->all();
+        $this->filters['products'] = ['2'];
 
         $this->filters['types'] = collect(AddonType::cases())
             ->flatMap(fn ($type) => [$type->value])
