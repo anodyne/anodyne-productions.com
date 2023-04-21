@@ -249,7 +249,7 @@
             ])>
               {{ $frontmatter['title'] }}
             </h1>
-            <p class="lead">{{ $frontmatter['description'] }}</p>
+            <p class="lead">{{ $frontmatter['description'] ?? null }}</p>
           </header>
 
           <article class="prose prose-lg dark:prose-invert">
