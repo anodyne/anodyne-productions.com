@@ -14,9 +14,8 @@ class AccountMigrated extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct(
-        protected string $password
-    ) {
+    public function __construct()
+    {
     }
 
     /**
@@ -37,7 +36,6 @@ class AccountMigrated extends Notification implements ShouldQueue
         return (new MailMessage())
             ->subject('Anodyne Account Migrated')
             ->markdown('mail.migration.account', [
-                'password' => $this->password,
                 'url' => route('filament.auth.login'),
             ]);
     }

@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Models\User;
 use App\Notifications\AccountMigrated;
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
 
 class NotifyMigratedUsers extends Command
 {
@@ -30,11 +29,7 @@ class NotifyMigratedUsers extends Command
     {
         $users = User::get();
 
-        $users->each(function (User $user) {
-            $user->forceFill(['password' => $password = Str::random(12)])->update();
-
-            $user->notify(new AccountMigrated($password));
-        });
+        $users->each->notify(new AccountMigrated());
 
         return Command::SUCCESS;
     }
