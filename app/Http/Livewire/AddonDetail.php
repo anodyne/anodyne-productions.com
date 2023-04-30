@@ -8,6 +8,7 @@ use App\Models\ReleaseSeries;
 use App\Models\Review;
 use App\Models\Version;
 use App\View\Components\BaseLayout;
+use Exception;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
@@ -28,6 +29,8 @@ class AddonDetail extends Component
 
             return $media;
         }
+
+        throw new Exception('No download media associated with the add-on');
     }
 
     public function getQuestionsProperty(): Collection
