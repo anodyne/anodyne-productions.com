@@ -29,12 +29,30 @@ class NotifyMigratedUsers extends Command
     {
         $users = User::whereNull('user_migration_notified_at')->get();
 
-        $users->each(function (User $user) {
-            $user->notify(new AccountMigrated());
+        $bar = $this->output->createProgressBar(count($users));
 
-            $user->forceFill(['user_migration_notified_at' => now()]);
-            $user->save();
+        $notifiedUsers = 0;
+
+        $users->each(function (User $user) use ($bar, &$notifiedUsers) {
+            try {
+                $user->notify(new AccountMigrated());
+
+                $bar->advance();
+
+                $user->forceFill(['user_migration_notified_at' => now()]);
+                $user->save();
+
+                $notifiedUsers++;
+            } catch (\Throwable $th) {
+                $this->error('Unable to notify '.$user->email);
+            }
         });
+
+        $bar->finish();
+
+        $this->newLine();
+
+        $this->info($notifiedUsers.' users notified');
 
         return Command::SUCCESS;
     }
