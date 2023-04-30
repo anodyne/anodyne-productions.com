@@ -27,9 +27,14 @@ class NotifyMigratedAddons extends Command
      */
     public function handle()
     {
-        $users = User::whereHas('addons')->get();
+        $users = User::whereHas('addons')->whereNull('addon_migration_notified_at')->get();
 
-        $users->each->notify(new AddonsMigrated());
+        $users->each(function (User $user) {
+            $user->notify(new AddonsMigrated());
+
+            $user->forceFill(['addon_migration_notified_at' => now()]);
+            $user->save();
+        });
 
         return Command::SUCCESS;
     }

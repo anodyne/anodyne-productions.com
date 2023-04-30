@@ -19,13 +19,15 @@ class AddonDetail extends Component
 
     public function download()
     {
-        Download::create([
-            'addon_id' => $this->addon->id,
-            'version_id' => $this->version->id,
-            'user_id' => auth()->id(),
-        ]);
+        if ($media = $this->version->getFirstMedia('downloads')) {
+            Download::create([
+                'addon_id' => $this->addon->id,
+                'version_id' => $this->version->id,
+                'user_id' => auth()->id(),
+            ]);
 
-        return $this->version->getFirstMedia('downloads');
+            return $media;
+        }
     }
 
     public function getQuestionsProperty(): Collection

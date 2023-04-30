@@ -27,9 +27,14 @@ class NotifyMigratedUsers extends Command
      */
     public function handle()
     {
-        $users = User::get();
+        $users = User::whereNull('user_migration_notified_at')->get();
 
-        $users->each->notify(new AccountMigrated());
+        $users->each(function (User $user) {
+            $user->notify(new AccountMigrated());
+
+            $user->forceFill(['user_migration_notified_at' => now()]);
+            $user->save();
+        });
 
         return Command::SUCCESS;
     }
