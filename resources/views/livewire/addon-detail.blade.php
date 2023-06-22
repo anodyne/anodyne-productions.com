@@ -117,7 +117,7 @@
         </div>
       </div>
 
-      <p class="mt-6 prose dark:prose-invert">{!! str($addon->description)->markdown() !!}</p>
+      <div class="mt-6 prose dark:prose-invert">{!! str($addon->description)->markdown() !!}</div>
 
       <a href="{{ route('addons.index', $addon->user) }}" class="mt-6 flex items-center space-x-3">
         <div class="squircle overflow-hidden ring ring-white bg-white">
