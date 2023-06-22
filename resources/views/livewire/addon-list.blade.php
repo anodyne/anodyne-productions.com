@@ -20,7 +20,7 @@
   <x-slot:sidebar>
     <div class="space-y-8">
       <div>
-        <x-input.text placeholder="Search for add-ons..." wire:model.debounce.500ms="search">
+        <x-input.text placeholder="Search for add-ons..." wire:model.debounce.500ms="filters.search">
           @if (filled($filters['search']))
             <x-slot:trailingAddOn>
               <button wire:click="$set('filters.search', '')">
