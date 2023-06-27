@@ -1,0 +1,7 @@
+@php
+    $addon = $getRecord();
+@endphp
+
+<div class="flex items-center px-4 py-3">
+    <x-badge :color="$addon->type->badgeColor()" size="sm">{{ $addon->type->displayName() }}</x-badge>
+</div>

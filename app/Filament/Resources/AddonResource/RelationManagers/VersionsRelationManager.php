@@ -31,6 +31,13 @@ class VersionsRelationManager extends RelationManager
                     ->relationship('product', 'name', fn (Builder $query) => $query->published())
                     ->preload()
                     ->maxItems(1),
+                Forms\Components\Select::make('releaseSeries')
+                    ->label('Supported Nova release series')
+                    ->required()
+                    ->multiple()
+                    ->placeholder('Select Nova release series')
+                    ->relationship('releaseSeries', 'name')
+                    ->preload(),
                 Forms\Components\MarkdownEditor::make('release_notes')->columnSpanFull(),
                 Forms\Components\MarkdownEditor::make('install_instructions')
                     ->helperText('If you provide install instructions for the version, those will be displayed when the version is selected. Otherwise, the install instructions on the add-on will be used.')
@@ -61,6 +68,7 @@ class VersionsRelationManager extends RelationManager
                     ->counts('downloads')
                     ->label('Downloads'),
                 Tables\Columns\TextColumn::make('product.name')->label('Nova version'),
+                Tables\Columns\TextColumn::make('releaseSeries.name')->label('Nova releases'),
                 Tables\Columns\ToggleColumn::make('published'),
             ])
             ->filters([

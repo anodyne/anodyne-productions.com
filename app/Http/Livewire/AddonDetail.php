@@ -40,6 +40,10 @@ class AddonDetail extends Component
 
     public function getReleaseSeriesProperty(): Collection
     {
+        if ($this->version->releaseSeries()->count() > 0) {
+            return $this->version->releaseSeries()->ordered()->get();
+        }
+
         return ReleaseSeries::ordered()->get();
     }
 

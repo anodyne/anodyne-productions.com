@@ -117,6 +117,18 @@
         </div>
       </div>
 
+      @if ($version->releaseSeries)
+        <div class="mt-6">
+          @if ($version->releaseSeries()->count() === 1)
+            <x-badge color="sky" size="xs">Requires {{ $version->releaseSeries()->first()->name }}</x-badge>
+          @endif
+
+          @if ($version->releaseSeries()->count() > 1)
+            <x-badge color="sky" size="xs">Requires {{ $version->releaseSeries()->orderBy('name', 'asc')->first()->name }}+</x-badge>
+          @endif
+        </div>
+      @endif
+
       <div class="mt-6 prose dark:prose-invert">{!! str($addon->description)->markdown() !!}</div>
 
       <a href="{{ route('addons.index', $addon->user) }}" class="mt-6 flex items-center space-x-3">

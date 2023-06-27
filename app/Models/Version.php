@@ -8,6 +8,7 @@ use App\Traits\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Spatie\MediaLibrary\HasMedia;
@@ -47,6 +48,11 @@ class Version extends Model implements HasMedia
     public function product(): MorphToMany
     {
         return $this->morphToMany(Product::class, 'productable');
+    }
+
+    public function releaseSeries(): BelongsToMany
+    {
+        return $this->belongsToMany(ReleaseSeries::class, 'release_version');
     }
 
     public function scopePublished(Builder $query): Builder
