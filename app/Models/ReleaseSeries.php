@@ -14,9 +14,13 @@ class ReleaseSeries extends Model implements Sortable
     use HasFactory;
     use SortableTrait;
 
-    protected $fillable = ['name', 'order_column'];
+    protected $fillable = ['name', 'order_column', 'include_in_compatibility'];
 
     protected $hidden = ['created_at', 'updated_at', 'id'];
+
+    protected $casts = [
+        'include_in_compatibility' => 'boolean',
+    ];
 
     public function releases(): HasMany
     {

@@ -28,6 +28,7 @@ class ReleaseSeriesResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')->required()->columnSpanFull(),
+                Forms\Components\Toggle::make('include_in_compatibility'),
             ]);
     }
 
@@ -38,11 +39,13 @@ class ReleaseSeriesResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->size('lg')
                     ->weight('bold')
-                    ->alignLeft(),
+                    ->alignLeft()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('releases_count')
                     ->counts('releases')
                     ->alignLeft()
                     ->label('# of releases'),
+                Tables\Columns\ToggleColumn::make('include_in_compatibility'),
             ])
             ->filters([
                 //
@@ -66,6 +69,11 @@ class ReleaseSeriesResource extends Resource
                     ->successNotificationTitle('Release series deleted'),
             ])
             ->bulkActions([]);
+    }
+
+    protected function getTableReorderColumn(): ?string
+    {
+        return 'order_column';
     }
 
     public static function getRelations(): array

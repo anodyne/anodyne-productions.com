@@ -40,11 +40,13 @@ class AddonDetail extends Component
 
     public function getReleaseSeriesProperty(): Collection
     {
-        if ($this->version->releaseSeries()->count() > 0) {
-            return $this->version->releaseSeries()->ordered()->get();
-        }
+        $query = ($this->version->releaseSeries()->count() > 0)
+            ? $this->version->releaseSeries()
+            : ReleaseSeries::query();
 
-        return ReleaseSeries::ordered()->get();
+        return $query->where('include_in_compatibility', true)
+            ->ordered()
+            ->get();
     }
 
     public function getReviewStatsProperty()
