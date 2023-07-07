@@ -10,6 +10,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Illuminate\Database\Eloquent\Builder;
 
 class ReleaseSeriesResource extends Resource
 {
@@ -71,9 +72,9 @@ class ReleaseSeriesResource extends Resource
             ->bulkActions([]);
     }
 
-    protected function getTableReorderColumn(): ?string
+    public static function getEloquentQuery(): Builder
     {
-        return 'order_column';
+        return parent::getEloquentQuery()->ordered();
     }
 
     public static function getRelations(): array

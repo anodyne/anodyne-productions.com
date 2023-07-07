@@ -31,4 +31,9 @@ class ListReleaseSeries extends ListRecords
     {
         return 'uxl-app-module';
     }
+
+    protected function getTableReorderColumn(): ?string
+    {
+        return 'order_column';
+    }
 }
