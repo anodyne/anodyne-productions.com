@@ -27,6 +27,8 @@ class AddonDetail extends Component
                 'user_id' => auth()->id(),
             ]);
 
+            return response()->download($media->getPath(), $media->file_name);
+
             return $media;
         }
 
