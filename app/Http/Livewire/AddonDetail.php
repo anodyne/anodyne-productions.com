@@ -27,8 +27,6 @@ class AddonDetail extends Component
                 'user_id' => auth()->id(),
             ]);
 
-            return response()->download($media->getTemporaryUrl(now()->addMinutes(5)), $media->file_name);
-
             return $media;
         }
 
