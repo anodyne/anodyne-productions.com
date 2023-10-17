@@ -27,7 +27,12 @@ class AddonDetail extends Component
                 'user_id' => auth()->id(),
             ]);
 
-            return $media;
+            return response()->download(
+                $media->getTemporaryUrl(now()->addMinutes(5)),
+                $media->name.'.zip'
+            );
+
+            // return $media;
         }
 
         throw new Exception('No download media associated with the add-on');
