@@ -27,10 +27,9 @@ class AddonDetail extends Component
                 'user_id' => auth()->id(),
             ]);
 
-            return response()->download(
-                $media->getTemporaryUrl(now()->addMinutes(5)),
-                $media->name.'.zip'
-            );
+            return response()->streamDownload(function () use ($media) {
+                echo file_get_contents($media->getTemporaryUrl(now()->addMinutes(5)));
+            }, $media->name.'.zip');
 
             // return $media;
         }

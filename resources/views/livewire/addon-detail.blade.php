@@ -71,7 +71,7 @@
               Version
 
               @if ($this->versions->count() === 1)
-                {{ $version->version}}
+                {{ $version->version }}
               @endif
             </div>
 
@@ -83,7 +83,7 @@
                 </x-slot:trigger>
 
                 <x-dropdown.group>
-                  @foreach ($addon->versions as $addonVersion)
+                  @foreach ($this->versions as $addonVersion)
                     <x-dropdown.item type="button" wire:click="setVersion({{ $addonVersion->id }})">
                       {{ $addonVersion->version }}
                     </x-dropdown.item>
