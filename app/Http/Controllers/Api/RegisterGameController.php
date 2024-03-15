@@ -35,6 +35,12 @@ class RegisterGameController extends Controller
             'db_driver' => $request->db_driver,
             'db_version' => $request->db_version,
             'server_software' => $request->server_software,
+            'active_users' => $request->active_users,
+            'active_characters' => $request->active_characters,
+            'total_stories' => $request->total_stories,
+            'total_story_groups' => $request->total_story_groups,
+            'total_posts' => $request->total_posts,
+            'total_post_words' => $request->total_post_words,
         ];
 
         if (! empty($request->get('install_date'))) {

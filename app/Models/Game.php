@@ -23,6 +23,12 @@ class Game extends Model
         'release_series_id',
         'created_at',
         'is_excluded',
+        'active_users',
+        'active_characters',
+        'total_stories',
+        'total_story_groups',
+        'total_posts',
+        'total_post_words',
     ];
 
     protected $casts = [

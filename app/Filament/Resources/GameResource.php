@@ -97,6 +97,12 @@ class GameResource extends Resource
                 Tables\Columns\TextColumn::make('db_driver')->label('Database driver')->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('db_version')->label('Database version')->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('server_software')->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('active_users')->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('active_characters')->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('total_stories')->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('total_story_groups')->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('total_posts')->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('total_post_words')->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\CheckboxColumn::make('is_excluded')
                     ->hidden(fn () => ! auth()->user()->isAdmin)
                     ->toggleable(isToggledHiddenByDefault: true),
