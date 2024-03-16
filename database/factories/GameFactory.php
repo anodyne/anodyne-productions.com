@@ -26,6 +26,12 @@ class GameFactory extends Factory
             'db_driver' => 'mysqli',
             'db_version' => $this->faker->randomElement(['5.7', '8.0']),
             'server_software' => $this->faker->randomElement(['nginx/1.23.1', 'apache/1.17.2']),
+            'active_users' => $this->faker->numberBetween(1, 30),
+            'active_characters' => $this->faker->numberBetween(10, 100),
+            'total_stories' => $this->faker->numberBetween(1, 50),
+            'total_story_groups' => $this->faker->numberBetween(0, 10),
+            'total_posts' => $this->faker->numberBetween(0, 10000),
+            'total_post_words' => $this->faker->numberBetween(0, 5000000),
         ];
     }
 }

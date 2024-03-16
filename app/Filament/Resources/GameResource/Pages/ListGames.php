@@ -5,6 +5,7 @@ namespace App\Filament\Resources\GameResource\Pages;
 use App\Filament\Resources\GameResource;
 use App\Filament\Resources\GameResource\Widgets\GameGenresChart;
 use App\Filament\Resources\GameResource\Widgets\GamesOverview;
+use App\Filament\Resources\GameResource\Widgets\GameStatsOverview;
 use App\Filament\Resources\GameResource\Widgets\GameVersionsChart;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
@@ -24,6 +25,7 @@ class ListGames extends ListRecords
     {
         return [
             GamesOverview::class,
+            GameStatsOverview::class,
         ];
     }
 

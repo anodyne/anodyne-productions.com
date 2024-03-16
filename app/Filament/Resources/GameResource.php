@@ -4,9 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Enums\GameGenre;
 use App\Filament\Resources\GameResource\Pages;
-use App\Filament\Resources\GameResource\Widgets\GameGenresChart;
-use App\Filament\Resources\GameResource\Widgets\GamesOverview;
-use App\Filament\Resources\GameResource\Widgets\GameVersionsChart;
 use App\Models\Game;
 use Filament\Forms;
 use Filament\Resources\Form;
@@ -15,6 +12,7 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Number;
 
 class GameResource extends Resource
 {
@@ -97,12 +95,24 @@ class GameResource extends Resource
                 Tables\Columns\TextColumn::make('db_driver')->label('Database driver')->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('db_version')->label('Database version')->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('server_software')->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('active_users')->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('active_characters')->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('total_stories')->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('total_story_groups')->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('total_posts')->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('total_post_words')->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('active_users')
+                    ->formatStateUsing(fn (string $state): ?string => Number::format($state))
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('active_characters')
+                    ->formatStateUsing(fn (string $state): ?string => Number::format($state))
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('total_stories')
+                    ->formatStateUsing(fn (string $state): ?string => Number::format($state))
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('total_story_groups')
+                    ->formatStateUsing(fn (string $state): ?string => Number::format($state))
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('total_posts')
+                    ->formatStateUsing(fn (string $state): ?string => Number::format($state))
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('total_post_words')
+                    ->formatStateUsing(fn (string $state): ?string => Number::format($state))
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\CheckboxColumn::make('is_excluded')
                     ->hidden(fn () => ! auth()->user()->isAdmin)
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -160,11 +170,7 @@ class GameResource extends Resource
 
     public static function getWidgets(): array
     {
-        return [
-            GamesOverview::class,
-            GameGenresChart::class,
-            GameVersionsChart::class,
-        ];
+        return [];
     }
 
     public static function getEloquentQuery(): Builder
