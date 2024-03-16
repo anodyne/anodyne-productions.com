@@ -6,12 +6,11 @@ use App\Enums\LinkType;
 use App\Enums\UserRole;
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
-use Closure;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,7 +35,7 @@ class UserResource extends Resource
                         Forms\Components\TextInput::make('name')
                             ->required()
                             ->reactive()
-                            ->afterStateUpdated(function (?Model $record, Closure $set, $state) {
+                            ->afterStateUpdated(function (?Model $record, \Filament\Forms\Set $set, $state) {
                                 if (blank($record->username)) {
                                     $set('username', str($state)->slug());
                                 }
@@ -54,7 +53,7 @@ class UserResource extends Resource
                             ->placeholder('Select a role')
                             ->options(
                                 collect(UserRole::cases())
-                                    ->flatMap(fn ($case) => [$case->value => $case->displayName()])
+                                    ->flatMap(fn ($case) => [$case->value => $case->getLabel()])
                                     ->all()
                             )
                             ->visible(fn () => auth()->user()->isAdmin)
@@ -66,7 +65,7 @@ class UserResource extends Resource
                         Forms\Components\Repeater::make('links')
                             ->schema([
                                 Forms\Components\Select::make('type')->options(
-                                    collect(LinkType::cases())->flatMap(fn ($linkType) => [$linkType->value => $linkType->displayName()])->all()
+                                    collect(LinkType::cases())->flatMap(fn ($linkType) => [$linkType->value => $linkType->getLabel()])->all()
                                 ),
                                 Forms\Components\TextInput::make('value')->requiredWith('type'),
                             ])
@@ -93,7 +92,7 @@ class UserResource extends Resource
                     }),
                 Tables\Columns\BadgeColumn::make('role')
                     ->enum(
-                        collect(UserRole::cases())->flatMap(fn ($role) => [$role->value => $role->displayName()])->all()
+                        collect(UserRole::cases())->flatMap(fn ($role) => [$role->value => $role->getLabel()])->all()
                     )
                     ->colors([
                         'ring-1 ring-purple-300 dark:ring-purple-400/30 bg-purple-400/10 text-purple-500 dark:text-purple-400' => UserRole::admin->value,
@@ -124,7 +123,7 @@ class UserResource extends Resource
                     ->icon('flex-edit-circle')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary'),
+                    ->color('gray'),
                 Tables\Actions\DeleteAction::make()
                     ->icon('flex-delete-bin')
                     ->size('md')

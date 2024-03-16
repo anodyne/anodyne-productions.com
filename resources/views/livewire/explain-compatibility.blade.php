@@ -22,7 +22,7 @@
   </div>
 
   <div class="bg-slate-50 dark:bg-slate-900/50 border-t border-slate-900/5 px-4 py-3 sm:px-6 gap-x-2 space-y-2 sm:space-y-0 sm:flex sm:flex-row-reverse mt-auto">
-    <x-button type="button" variant="primary" wire:click="$emit('modal.close')">
+    <x-button type="button" variant="primary" wire:click="$dispatch('modal.close')">
       Close
     </x-button>
   </div>

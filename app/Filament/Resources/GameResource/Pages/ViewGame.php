@@ -10,7 +10,7 @@ class ViewGame extends ViewRecord
 {
     protected static string $resource = GameResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\EditAction::make(),

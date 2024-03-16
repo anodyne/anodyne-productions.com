@@ -8,10 +8,10 @@ use App\Filament\Resources\AddonResource\Pages;
 use App\Filament\Resources\AddonResource\RelationManagers;
 use App\Models\Addon;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -42,8 +42,8 @@ class AddonResource extends Resource
                     Forms\Components\Tabs\Tab::make('Links')->schema(self::getFormSchema('links')),
                     Forms\Components\Tabs\Tab::make('Preview images')->schema(self::getFormSchema('previews')),
                 ])
-                ->columns(1)
-                ->columnSpanFull(),
+                    ->columns(1)
+                    ->columnSpanFull(),
             ]
         );
     }
@@ -59,7 +59,7 @@ class AddonResource extends Resource
                 // Tables\Columns\BadgeColumn::make('type')
                 //     ->enum(
                 //         collect(AddonType::cases())
-                //             ->flatMap(fn ($type) => [$type->value => $type->displayName()])
+                //             ->flatMap(fn ($type) => [$type->value => $type->getLabel()])
                 //             ->all()
                 //     )
                 //     ->colors([
@@ -92,7 +92,7 @@ class AddonResource extends Resource
                 Tables\Filters\SelectFilter::make('type')
                     ->multiple()
                     ->options(
-                        collect(AddonType::cases())->flatMap(fn ($type) => [$type->value => $type->displayName()])->all()
+                        collect(AddonType::cases())->flatMap(fn ($type) => [$type->value => $type->getLabel()])->all()
                     ),
                 Tables\Filters\SelectFilter::make('author')
                     ->relationship('user', 'name')
@@ -105,7 +105,7 @@ class AddonResource extends Resource
                     ->icon('flex-edit-circle')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary'),
+                    ->color('gray'),
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\DeleteAction::make()
                         ->icon('flex-delete-bin')
@@ -119,7 +119,7 @@ class AddonResource extends Resource
                         ->icon('flex-delete-bin-restore')
                         ->size('md')
                         ->successNotificationTitle('Add-on restored'),
-                ])->color('secondary'),
+                ])->color('gray'),
 
             ])
             ->bulkActions([]);
@@ -157,7 +157,7 @@ class AddonResource extends Resource
 
     public static function getGlobalSearchResultDetails(Model $record): array
     {
-        $details['Type'] = $record->type->displayName();
+        $details['Type'] = $record->type->getLabel();
 
         if (! auth()->user()->isUser) {
             $details['Author'] = $record->user->name;
@@ -241,8 +241,8 @@ class AddonResource extends Resource
                         ->visibility('private')
                         ->columnSpan('full'),
                 ])
-                ->columns(3)
-                ->columnSpan('full'),
+                    ->columns(3)
+                    ->columnSpan('full'),
             ];
         }
 
@@ -264,8 +264,8 @@ class AddonResource extends Resource
                         ->visibility('private')
                         ->columnSpan('full'),
                 ])
-                ->columns(3)
-                ->columnSpan('full'),
+                    ->columns(3)
+                    ->columnSpan('full'),
             ];
         }
 
@@ -275,7 +275,7 @@ class AddonResource extends Resource
                     ->schema([
                         Forms\Components\Select::make('type')->options(
                             collect(LinkType::cases())
-                                ->flatMap(fn ($linkType) => [$linkType->value => $linkType->displayName()])
+                                ->flatMap(fn ($linkType) => [$linkType->value => $linkType->getLabel()])
                                 ->all()
                         ),
                         Forms\Components\TextInput::make('value')->requiredWith('type'),
@@ -295,7 +295,7 @@ class AddonResource extends Resource
                     ->required()
                     ->options(
                         collect(AddonType::cases())
-                            ->flatMap(fn ($type) => [$type->value => $type->displayName()])
+                            ->flatMap(fn ($type) => [$type->value => $type->getLabel()])
                             ->all()
                     )
                     ->columnSpan(1),
@@ -319,8 +319,8 @@ class AddonResource extends Resource
                     ->default(false)
                     ->columnSpanFull(),
             ])
-            ->columns(3)
-            ->columnSpanFull(),
+                ->columns(3)
+                ->columnSpanFull(),
         ];
     }
 }

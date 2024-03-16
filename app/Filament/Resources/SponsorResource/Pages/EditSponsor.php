@@ -10,7 +10,7 @@ class EditSponsor extends EditRecord
 {
     protected static string $resource = SponsorResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\DeleteAction::make(),

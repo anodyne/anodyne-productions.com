@@ -1,4 +1,4 @@
-<x-addon-detail-layout :title="$addon->name" :type="$addon->type->displayName()">
+<x-addon-detail-layout :title="$addon->name" :type="$addon->type->getLabel()">
   <!-- Product -->
   <div class="lg:grid lg:grid-cols-7 lg:grid-rows-1 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
     <!-- Product image -->
@@ -54,7 +54,7 @@
               <x-slot:leading>
                 @svg($addon->type->icon(), 'h-4 w-4')
               </x-slot:leading>
-              {{ $addon->type->displayName() }}
+              {{ $addon->type->getLabel() }}
             </x-badge>
 
             @foreach ($addon->products as $product)
@@ -146,7 +146,7 @@
         <div class="mt-10 border-t border-slate-200 dark:border-slate-200/10 pt-10">
           <div class="flex items-center space-x-1">
             <h3 class="text-sm font-medium text-slate-900 dark:text-white">Compatibility</h3>
-            <button type="button" wire:click="$emit('modal.open', 'explain-compatibility')">
+            <button type="button" wire:click="$dispatch('modal.open', { component: 'explain-compatibility' })">
               {{-- @svg('flex-info-circle', 'h-4 w-4 text-slate-500') --}}
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-slate-400 dark:text-slate-600"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" /></svg>
             </button>
@@ -194,7 +194,7 @@
                       <dd class="pl-8">
                         <button
                           type="button"
-                          wire:click="$emit('modal.open', 'compatibility-report', {'addon': '{{ $addon->slug }}', 'version': {{ $version->id }}, 'series': {{ $series->id }}})"
+                          wire:click="$dispatch('modal.open', { component: 'compatibility-report', arguments: {'addon': '{{ $addon->slug }}', 'version': {{ $version->id }}, 'series': {{ $series->id }}} })"
                           class="underline text-purple-500 dark:text-purple-400 text-sm"
                         >
                           Using this add-on in this version of Nova? Let us know your experience!
@@ -310,7 +310,7 @@
                       <div>
                         <dt class="font-medium flex items-center space-x-2">
                           @svg($link['type']->icon(), 'h-5 w-5 shrink-0')
-                          <span>{{ $link['type']->displayName() }}</span>
+                          <span>{{ $link['type']->getLabel() }}</span>
                         </dt>
                         <dd><a href="{{ $link['value'] }}">{{ $link['value'] }}</a></dd>
                       </div>
@@ -404,7 +404,7 @@
                 @if (auth()->id() !== $addon->user_id)
                   <x-button
                     type="button"
-                    wire:click="$emit('modal.open', 'addon-review', {'addonId': {{ $addon->id }}})"
+                    wire:click="$dispatch('modal.open', { component: 'addon-review', arguments: {'addonId': {{ $addon->id }}} })"
                     class="mt-6"
                   >
                     Write a review
@@ -460,7 +460,7 @@
                   @if (auth()->id() !== $addon->user_id)
                     <p class="mt-1 text-sm text-slate-500">Be the first to review this add-on</p>
                     <div class="mt-6">
-                      <x-button type="button" wire:click="$emit('modal.open', 'addon-review', {'addonId': {{ $addon->id }}})">
+                      <x-button type="button" wire:click="$dispatch('modal.open', { component: 'addon-review', arguments: {'addonId': {{ $addon->id }}} })">
                         Write a review
                       </x-button>
                     </div>

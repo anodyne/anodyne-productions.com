@@ -7,7 +7,7 @@ We've completed migrating the following {{ str('add-on')->plural(count($addons))
 
 <x-mail::panel>
 @foreach ($addons as $addon)
-- {{ $addon->name }} ({{ $addon->type->displayName() }})
+- {{ $addon->name }} ({{ $addon->type->getLabel() }})
 @endforeach
 </x-mail::panel>
 

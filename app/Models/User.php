@@ -80,7 +80,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
         return $this->hasOne(Sponsor::class);
     }
 
-    public function canAccessFilament(): bool
+    public function canAccessPanel(\Filament\Panel $panel): bool
     {
         return true;
     }

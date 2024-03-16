@@ -60,13 +60,13 @@
         <span class="block text-sm text-slate-500" role="none">Signed in as</span>
         <span class="mt-0.5 font-semibold" role="none">{{ auth()->user()->email }}</span>
       </p>
-      <x-nav.link-mobile :href="route('filament.pages.dashboard')">
+      <x-nav.link-mobile :href="route('filament.admin.pages.dashboard')">
         Dashboard
       </x-nav.link-mobile>
-      <x-nav.link-mobile :href="route('filament.pages.my-profile')">
+      <x-nav.link-mobile :href="route('filament.admin.pages.my-profile')">
         My profile
       </x-nav.link-mobile>
-      <form action="{{ route('filament.auth.logout') }}" method="post">
+      <form action="{{ route('filament.admin.auth.logout') }}" method="post">
         @csrf
         <x-nav.button-mobile type="submit">
           Sign out
@@ -75,7 +75,7 @@
     @endauth
 
     @guest
-      <x-nav.link-mobile :href="route('filament.auth.login')">
+      <x-nav.link-mobile :href="route('filament.admin.auth.login')">
         Sign in
       </x-nav.link-mobile>
     @endguest

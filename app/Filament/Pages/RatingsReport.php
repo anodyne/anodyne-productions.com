@@ -42,7 +42,7 @@ class RatingsReport extends Page implements HasTable
             Tables\Columns\BadgeColumn::make('type')
                 ->enum(
                     collect(AddonType::cases())
-                        ->flatMap(fn ($type) => [$type->value => $type->displayName()])
+                        ->flatMap(fn ($type) => [$type->value => $type->getLabel()])
                         ->all()
                 )
                 ->colors([
@@ -73,7 +73,7 @@ class RatingsReport extends Page implements HasTable
             Tables\Filters\SelectFilter::make('type')
                 ->multiple()
                 ->options(
-                    collect(AddonType::cases())->flatMap(fn ($type) => [$type->value => $type->displayName()])->all()
+                    collect(AddonType::cases())->flatMap(fn ($type) => [$type->value => $type->getLabel()])->all()
                 ),
             Tables\Filters\SelectFilter::make('author')
                 ->relationship('user', 'name')
@@ -94,7 +94,7 @@ class RatingsReport extends Page implements HasTable
             ->orderBy('rating');
     }
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
         return auth()->user()->isStaff || auth()->user()->isAdmin;
     }

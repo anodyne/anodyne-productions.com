@@ -47,7 +47,7 @@ class IncompatibilityReport extends Page implements HasTable
                 ->label('Type')
                 ->enum(
                     collect(AddonType::cases())
-                        ->flatMap(fn ($type) => [$type->value => $type->displayName()])
+                        ->flatMap(fn ($type) => [$type->value => $type->getLabel()])
                         ->all()
                 )
                 ->colors([
@@ -71,7 +71,7 @@ class IncompatibilityReport extends Page implements HasTable
                 ->relationship('addon', 'type')
                 ->options(
                     collect(AddonType::cases())
-                        ->flatMap(fn ($type) => [$type->value => $type->displayName()])
+                        ->flatMap(fn ($type) => [$type->value => $type->getLabel()])
                         ->all()
                 )
                 ->label('Type'),
@@ -124,7 +124,7 @@ class IncompatibilityReport extends Page implements HasTable
         ];
     }
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
         return auth()->user()->isStaff || auth()->user()->isAdmin;
     }

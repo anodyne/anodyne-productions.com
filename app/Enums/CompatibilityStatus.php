@@ -2,7 +2,9 @@
 
 namespace App\Enums;
 
-enum CompatibilityStatus: string
+use Filament\Support\Contracts\HasLabel;
+
+enum CompatibilityStatus: string implements HasLabel
 {
     case compatible = 'compatible';
 
@@ -33,7 +35,7 @@ enum CompatibilityStatus: string
         };
     }
 
-    public function displayName(): string
+    public function getLabel(): ?string
     {
         return match ($this) {
             self::compatible => 'Compatible',

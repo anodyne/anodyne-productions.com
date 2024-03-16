@@ -16,7 +16,7 @@
     <meta name="theme-color" content="#ffffff">
 
     @vite('resources/css/app.css')
-    @livewireStyles
+    @filamentStyles
 
     <script defer src="https://unpkg.com/@alpinejs/ui@3.12.0-beta.0/dist/cdn.min.js"></script>
     @vite('resources/js/app.js')
@@ -36,7 +36,7 @@
 
     @livewire('modal-pro')
     @livewire('notifications')
-    @livewireScripts
+    @filamentScripts
 
     <script>
       window.addEventListener('refresh-page', event => {

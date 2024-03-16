@@ -14,7 +14,7 @@ class ListGames extends ListRecords
 {
     protected static string $resource = GameResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make(),

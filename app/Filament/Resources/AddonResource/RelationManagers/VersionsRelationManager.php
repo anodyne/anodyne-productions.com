@@ -4,9 +4,9 @@ namespace App\Filament\Resources\AddonResource\RelationManagers;
 
 use App\Models\Version;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -18,7 +18,7 @@ class VersionsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'version';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -55,7 +55,7 @@ class VersionsRelationManager extends RelationManager
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns([
@@ -83,7 +83,7 @@ class VersionsRelationManager extends RelationManager
                     ->icon('flex-edit-circle')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary')
+                    ->color('gray')
                     ->successNotificationTitle('Add-on version updated'),
                 Tables\Actions\DeleteAction::make()
                     ->icon('flex-delete-bin')

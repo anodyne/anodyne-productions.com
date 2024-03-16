@@ -13,7 +13,7 @@ class ListAddons extends ListRecords
 
     protected static ?string $title = 'Add-Ons';
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make(),

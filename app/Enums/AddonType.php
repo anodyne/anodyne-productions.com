@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-enum AddonType: string
+use Filament\Support\Contracts\HasLabel;
+
+enum AddonType: string implements HasLabel
 {
     case extension = 'extension';
 
@@ -14,6 +16,11 @@ enum AddonType: string
 
     case theme = 'theme';
 
+    public function getLabel(): ?string
+    {
+        return ucfirst($this->value);
+    }
+
     public function displayName(): string
     {
         return ucfirst($this->value);
@@ -22,9 +29,9 @@ enum AddonType: string
     public function badgeColor(): string
     {
         return match ($this) {
-            self::extension => 'emerald',
-            self::rank => 'amber',
-            self::theme => 'purple',
+            self::extension => 'success',
+            self::rank => 'warning',
+            self::theme => 'info',
         };
     }
 

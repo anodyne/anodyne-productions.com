@@ -41,7 +41,7 @@ class MissingVersionProductsReport extends Page implements HasTable
             Tables\Columns\BadgeColumn::make('addon.type')
                 ->enum(
                     collect(AddonType::cases())
-                        ->flatMap(fn ($type) => [$type->value => $type->displayName()])
+                        ->flatMap(fn ($type) => [$type->value => $type->getLabel()])
                         ->all()
                 )
                 ->colors([
@@ -72,7 +72,7 @@ class MissingVersionProductsReport extends Page implements HasTable
         return Version::with('addon')->whereDoesntHave('product');
     }
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
         return auth()->user()->isStaff || auth()->user()->isAdmin;
     }

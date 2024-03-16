@@ -1,4 +1,4 @@
-<form class="flex flex-col h-full" wire:submit.prevent="save">
+<form class="flex flex-col h-full" wire:submit="save">
   <div class="p-4 sm:px-6 sm:py-5">
     <div class="flex items-center space-x-2">
       @svg('flex-flash', 'h-5 w-5 text-slate-700 dark:text-slate-300')
@@ -63,7 +63,7 @@
         <div class="mt-1 text-xs font-normal leading-5 text-slate-600 dark:text-slate-400">Describing what issues you encountered, any error messages you saw, and everything you did to get it working can help the add-on author fix any compatibility issues.</div>
       </div>
       <div class="mt-3">
-        <x-input.textarea wire:model="notes"></x-input.textarea>
+        <x-input.textarea wire:model.live="notes"></x-input.textarea>
       </div>
     @endif
   </div>
@@ -72,7 +72,7 @@
     <x-button type="submit" variant="primary">
       Submit
     </x-button>
-    <x-button type="button" variant="secondary" wire:click="$emit('modal.close')">
+    <x-button type="button" variant="secondary" wire:click="$dispatch('modal.close')">
       Cancel
     </x-button>
   </div>

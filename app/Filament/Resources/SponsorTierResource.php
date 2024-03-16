@@ -4,9 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SponsorTierResource\Pages;
 use App\Models\SponsorTier;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 
 class SponsorTierResource extends Resource
@@ -15,7 +15,7 @@ class SponsorTierResource extends Resource
 
     protected static ?string $modelLabel = 'Tiers';
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $navigationGroup = 'Sponsorships';
 
@@ -49,12 +49,12 @@ class SponsorTierResource extends Resource
                     ->icon('flex-eye')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary'),
+                    ->color('gray'),
                 Tables\Actions\EditAction::make()
                     ->icon('flex-edit-circle')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary'),
+                    ->color('gray'),
                 Tables\Actions\DeleteAction::make()
                     ->icon('flex-delete-bin')
                     ->size('md')

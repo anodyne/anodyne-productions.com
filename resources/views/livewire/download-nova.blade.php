@@ -48,7 +48,7 @@
         </div>
 
 				<div class="mt-4 block w-full md:w-1/2 md:mx-auto dark lg:hidden">
-					<x-input.select wire:model="selectedVersion">
+					<x-input.select wire:model.live="selectedVersion">
 						@foreach ($versions as $version)
 							<option value="{{ $version['value'] }}" @selected($this->getSelectedVersion('value') === $version['value'])>
 								{{ $version['name'] }} ({{ $version['content'] }})
@@ -113,7 +113,7 @@
         </div>
 
 				<div class="mt-4 block w-full md:w-1/2 md:mx-auto dark lg:hidden">
-					<x-input.select wire:model="selectedGenre">
+					<x-input.select wire:model.live="selectedGenre">
 						<option @selected(blank($selectedGenre))>Choose a genre</option>
 						@foreach ($genres as $genre)
 							<option value="{{ $genre['value'] }}" @selected($this->getSelectedGenre('value') === $version['value'])>

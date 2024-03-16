@@ -6,10 +6,10 @@ use App\Enums\GameGenre;
 use App\Filament\Resources\GameResource\Pages;
 use App\Models\Game;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Number;
@@ -36,7 +36,7 @@ class GameResource extends Resource
                         Forms\Components\Select::make('genre')
                             ->options(
                                 collect(GameGenre::cases())
-                                    ->flatMap(fn ($genre) => [$genre->value => $genre->displayName()])
+                                    ->flatMap(fn ($genre) => [$genre->value => $genre->getLabel()])
                                     ->all()
                             ),
                         Forms\Components\TextInput::make('url')
@@ -86,7 +86,7 @@ class GameResource extends Resource
                 Tables\Columns\BadgeColumn::make('genre')
                     ->enum(
                         collect(GameGenre::cases())
-                            ->flatMap(fn ($genre) => [$genre->value => $genre->displayName()])
+                            ->flatMap(fn ($genre) => [$genre->value => $genre->getLabel()])
                             ->all()
                     )
                     ->colors(['ring-1 ring-slate-300 bg-slate-400/10 text-slate-500 dark:ring-slate-400/30 dark:bg-slate-400/10 dark:text-slate-400']),
@@ -146,7 +146,7 @@ class GameResource extends Resource
                     ->icon('flex-eye')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary'),
+                    ->color('gray'),
             ])
             ->bulkActions([]);
     }

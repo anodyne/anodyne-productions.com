@@ -5,9 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Models\Product;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 
 class ProductResource extends Resource
@@ -59,12 +59,12 @@ class ProductResource extends Resource
                     ->icon('flex-eye')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary'),
+                    ->color('gray'),
                 Tables\Actions\EditAction::make()
                     ->icon('flex-edit-circle')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary'),
+                    ->color('gray'),
                 Tables\Actions\DeleteAction::make()
                     ->icon('flex-delete-bin')
                     ->size('md')

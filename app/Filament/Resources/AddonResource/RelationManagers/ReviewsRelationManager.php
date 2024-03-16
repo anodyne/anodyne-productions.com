@@ -3,9 +3,9 @@
 namespace App\Filament\Resources\AddonResource\RelationManagers;
 
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,7 +15,7 @@ class ReviewsRelationManager extends RelationManager
 
     protected static ?string $modelLabel = 'review';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -29,7 +29,7 @@ class ReviewsRelationManager extends RelationManager
             ->columns(2);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns([
@@ -47,7 +47,7 @@ class ReviewsRelationManager extends RelationManager
                     ->icon('flex-eye')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary'),
+                    ->color('gray'),
                 Tables\Actions\DeleteAction::make()
                     ->icon('flex-delete-bin')
                     ->size('md')

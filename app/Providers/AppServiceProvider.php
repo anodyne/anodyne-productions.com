@@ -2,11 +2,8 @@
 
 namespace App\Providers;
 
-use App\Filament\Pages\MyProfile;
 use App\Models;
 use App\View\Components\Button;
-use Filament\Facades\Filament;
-use Filament\Navigation\UserMenuItem;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -32,7 +29,6 @@ class AppServiceProvider extends ServiceProvider
 
         $this->setupFactories();
         $this->setupMacros();
-        $this->setupFilament();
     }
 
     /**
@@ -60,26 +56,6 @@ class AppServiceProvider extends ServiceProvider
             $modelName = Str::afterLast($modelName, '\\');
 
             return $namespace.$modelName.'Factory';
-        });
-    }
-
-    protected function setupFilament(): void
-    {
-        Filament::serving(function () {
-            Filament::registerTheme('/css/filament.css');
-
-            Filament::registerUserMenuItems([
-                'account' => UserMenuItem::make()->icon('flex-user-square')->url(MyProfile::getUrl()),
-                'logout' => UserMenuItem::make()->icon('flex-logout'),
-            ]);
-
-            Filament::registerNavigationGroups([
-                'Account',
-                'Add-ons',
-                'System',
-                'Sponsorships',
-                'Reports',
-            ]);
         });
     }
 

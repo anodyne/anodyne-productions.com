@@ -17,7 +17,7 @@ class Register extends FilamentBreezyRegister
             Forms\Components\TextInput::make('name')
                 ->label(__('filament-breezy::default.fields.name'))
                 ->reactive()
-                ->afterStateUpdated(fn (Closure $set, $state) => $set('username', str($state)->slug()))
+                ->afterStateUpdated(fn (\Filament\Forms\Set $set, $state) => $set('username', str($state)->slug()))
                 ->required(),
             Forms\Components\TextInput::make('username')
                 ->label('Username')

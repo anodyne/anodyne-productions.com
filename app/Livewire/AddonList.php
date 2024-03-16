@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Enums\AddonType;
 use App\Enums\CompatibilityStatus;
@@ -95,9 +95,9 @@ class AddonList extends Component
     protected function setFilterDefaults(): void
     {
         $this->filters['compat_status'] = [
-            CompatibilityStatus::compatible->value => CompatibilityStatus::compatible->displayName(),
-            CompatibilityStatus::incompatible->value => CompatibilityStatus::incompatible->displayName(),
-            CompatibilityStatus::unknown->value => CompatibilityStatus::unknown->displayName(),
+            CompatibilityStatus::compatible->value => CompatibilityStatus::compatible->getLabel(),
+            CompatibilityStatus::incompatible->value => CompatibilityStatus::incompatible->getLabel(),
+            CompatibilityStatus::unknown->value => CompatibilityStatus::unknown->getLabel(),
         ];
 
         $this->filters['products'] = ['2'];

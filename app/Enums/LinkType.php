@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-enum LinkType: string
+use Filament\Support\Contracts\HasLabel;
+
+enum LinkType: string implements HasLabel
 {
     case discord = 'discord';
     case email = 'email';
@@ -13,7 +15,7 @@ enum LinkType: string
     case twitter = 'twitter';
     case website = 'website';
 
-    public function displayName(): string
+    public function getLabel(): ?string
     {
         return match ($this) {
             self::discord => 'Discord server',

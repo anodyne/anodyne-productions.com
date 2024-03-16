@@ -36,7 +36,7 @@ class AccountMigrated extends Notification implements ShouldQueue
         return (new MailMessage())
             ->subject('Anodyne Account Migrated')
             ->markdown('mail.migration.account', [
-                'url' => route('filament.auth.login'),
+                'url' => route('filament.admin.auth.login'),
             ]);
     }
 

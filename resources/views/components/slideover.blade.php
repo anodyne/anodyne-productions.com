@@ -1,6 +1,6 @@
 <div
     class="fixed inset-0 overflow-hidden"
-    x-data="{ show: @entangle($attributes->wire('model')) }"
+    x-data="{ show: @entangle($attributes->wire('model')).live }"
     x-init="
         $watch('show', (value) => {
             if (value) {

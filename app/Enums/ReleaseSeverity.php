@@ -4,19 +4,33 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-enum ReleaseSeverity: string
+use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasLabel;
+
+enum ReleaseSeverity: string implements HasColor, HasLabel
 {
-    case major = 'major';
+    case Major = 'major';
 
-    case minor = 'minor';
+    case Minor = 'minor';
 
-    case patch = 'patch';
+    case Patch = 'patch';
 
-    case critical = 'critical';
+    case Critical = 'critical';
 
-    case security = 'security';
+    case Security = 'security';
 
-    public function displayName(): string
+    public function getColor(): string|array|null
+    {
+        return match ($this) {
+            self::Critical => 'danger',
+            self::Security => 'warning',
+            self::Minor => 'primary',
+            self::Major => 'info',
+            default => 'gray',
+        };
+    }
+
+    public function getLabel(): ?string
     {
         return ucfirst($this->value);
     }

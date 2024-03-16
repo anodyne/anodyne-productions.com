@@ -41,7 +41,7 @@ class GameGenresChart extends DoughnutChartWidget
                     'spacing' => 15,
                 ],
             ],
-            'labels' => $data->map(fn (Game $game) => GameGenre::from($game->genre)->displayName()),
+            'labels' => $data->map(fn (Game $game) => GameGenre::from($game->genre)->getLabel()),
         ];
     }
 }

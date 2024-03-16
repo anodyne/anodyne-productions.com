@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use App\Models\Addon;
 use App\Models\Download;
@@ -74,7 +74,7 @@ class AddonDetail extends Component
     {
         $this->version = Version::find($versionId);
 
-        $this->dispatchBrowserEvent('toggle-dropdown');
+        $this->dispatch('toggle-dropdown');
     }
 
     public function getListeners()

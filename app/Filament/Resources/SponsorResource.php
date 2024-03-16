@@ -6,9 +6,9 @@ use App\Filament\Resources\SponsorResource\Pages;
 use App\Models\Sponsor;
 use Closure;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -43,7 +43,7 @@ class SponsorResource extends Resource
                         Forms\Components\TextInput::make('link'),
                         Forms\Components\SpatieMediaLibraryFileUpload::make('logo')->collection('logo'),
                     ])
-                    ->hidden(fn (Closure $get) => ! in_array($get('sponsor_tier_id'), ['6330679', '6330702'])),
+                    ->hidden(fn (\Filament\Forms\Get $get) => ! in_array($get('sponsor_tier_id'), ['6330679', '6330702'])),
             ]);
     }
 
@@ -85,12 +85,12 @@ class SponsorResource extends Resource
                     ->icon('flex-eye')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary'),
+                    ->color('gray'),
                 Tables\Actions\EditAction::make()
                     ->icon('flex-edit-circle')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary'),
+                    ->color('gray'),
             ])
             ->bulkActions([]);
     }
@@ -112,7 +112,7 @@ class SponsorResource extends Resource
         ];
     }
 
-    protected static function getNavigationBadge(): ?string
+    public static function getNavigationBadge(): ?string
     {
         $count = static::getModel()::premiumTier()->whereNull('link')->count();
 
@@ -123,7 +123,7 @@ class SponsorResource extends Resource
         return $count;
     }
 
-    protected static function getNavigationBadgeColor(): ?string
+    public static function getNavigationBadgeColor(): ?string
     {
         return 'danger';
     }

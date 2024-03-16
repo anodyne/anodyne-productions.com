@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-enum GameGenre: string
+use Filament\Support\Contracts\HasLabel;
+
+enum GameGenre: string implements HasLabel
 {
     case baj = 'baj';
     case bl5 = 'bl5';
@@ -23,7 +25,7 @@ enum GameGenre: string
     case sto = 'sto';
     case tos = 'tos';
 
-    public function displayName(): string
+    public function getLabel(): ?string
     {
         return match ($this) {
             self::baj => 'Star Trek: Bajoran',

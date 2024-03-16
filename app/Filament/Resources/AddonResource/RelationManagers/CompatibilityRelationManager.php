@@ -6,10 +6,10 @@ use App\Enums\CompatibilityStatus;
 use App\Models\Compatibility;
 use App\Models\ReleaseSeries;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class CompatibilityRelationManager extends RelationManager
@@ -18,7 +18,7 @@ class CompatibilityRelationManager extends RelationManager
 
     protected static ?string $modelLabel = 'compatibility report';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
@@ -46,7 +46,7 @@ class CompatibilityRelationManager extends RelationManager
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns([
@@ -57,7 +57,7 @@ class CompatibilityRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('version.version')->label('Add-on version'),
                 Tables\Columns\TextColumn::make('releaseSeries.name'),
                 Tables\Columns\BadgeColumn::make('status')
-                    ->formatStateUsing(fn (Compatibility $record) => $record->status->displayName())
+                    ->formatStateUsing(fn (Compatibility $record) => $record->status->getLabel())
                     ->colors([
                         'ring-1 ring-emerald-300 bg-emerald-400/10 text-emerald-500 dark:ring-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400' => 'compatible',
                         'ring-1 ring-rose-300 bg-rose-400/10 text-rose-500 dark:ring-rose-400/30 dark:bg-rose-400/10 dark:text-rose-400' => 'incompatible',
@@ -95,7 +95,7 @@ class CompatibilityRelationManager extends RelationManager
                     ->icon('flex-eye')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary'),
+                    ->color('gray'),
                 Tables\Actions\DeleteAction::make()
                     ->icon('flex-delete-bin')
                     ->size('md')

@@ -8,7 +8,7 @@
         @foreach ($user->links as $link)
           <a href="{{ $link['value'] }}" class="flex items-center space-x-2">
             @svg($link['type']->icon(), 'h-5 w-5 shrink-0')
-            <span>{{ $link['type']->displayName() }}</span>
+            <span>{{ $link['type']->getLabel() }}</span>
           </a>
         @endforeach
       </div>
@@ -20,7 +20,7 @@
   <x-slot:sidebar>
     <div class="space-y-8">
       <div>
-        <x-input.text placeholder="Search for add-ons..." wire:model.debounce.500ms="filters.search">
+        <x-input.text placeholder="Search for add-ons..." wire:model.live.debounce.500ms="filters.search">
           @if (filled($filters['search']))
             <x-slot:trailingAddOn>
               <button wire:click="$set('filters.search', '')">
@@ -40,7 +40,7 @@
           <ul class="space-y-1">
             @foreach ($this->products as $id => $name)
               <li class="relative flex items-center">
-                <x-input.checkbox :label="$name" id="product_{{ $id }}" wire:model="filters.products" :value="$id" />
+                <x-input.checkbox :label="$name" id="product_{{ $id }}" wire:model.live="filters.products" :value="$id" />
               </li>
             @endforeach
           </ul>
@@ -56,7 +56,7 @@
           <ul class="space-y-1">
             @foreach (App\Enums\AddonType::cases() as $type)
               <li class="relative flex items-center">
-                <x-input.checkbox :label="$type->displayName()" id="type_{{ $type->value }}" wire:model="filters.types" :value="$type->value" />
+                <x-input.checkbox :label="$type->getLabel()" id="type_{{ $type->value }}" wire:model.live="filters.types" :value="$type->value" />
               </li>
             @endforeach
           </ul>
@@ -79,7 +79,7 @@
                   'bg-slate-100 dark:bg-slate-800 ring-1 ring-inset ring-slate-900/5 dark:ring-white/5' => $filters['rating'] == $r,
                 ])
               >
-                <input type="radio" wire:model="filters.rating" id="rating{{ $r }}" value="{{ $r }}" class="hidden">
+                <input type="radio" wire:model.live="filters.rating" id="rating{{ $r }}" value="{{ $r }}" class="hidden">
 
                 <dt class="flex items-center">
                   <p class="w-24 font-medium text-slate-700 dark:text-slate-300">{{ $r }} stars &amp; up</p>
@@ -123,7 +123,7 @@
 
     <div class="mt-6 grid grid-cols-1 gap-6" x-show="open" x-cloak x-collapse>
       <div>
-        <x-input.text placeholder="Search for add-ons..." wire:model.debounce.500ms="search">
+        <x-input.text placeholder="Search for add-ons..." wire:model.live.debounce.500ms="search">
           @if (filled($filters['search']))
             <x-slot:trailingAddOn>
               <button wire:click="$set('filters.search', '')">
@@ -143,7 +143,7 @@
           <ul class="space-y-1">
             @foreach ($this->products as $id => $name)
               <li class="relative flex items-center">
-                <x-input.checkbox :label="$name" id="product_{{ $id }}" wire:model="filters.products" :value="$id" />
+                <x-input.checkbox :label="$name" id="product_{{ $id }}" wire:model.live="filters.products" :value="$id" />
               </li>
             @endforeach
           </ul>
@@ -159,7 +159,7 @@
           <ul class="space-y-1">
             @foreach (App\Enums\AddonType::cases() as $type)
               <li class="relative flex items-center">
-                <x-input.checkbox :label="$type->displayName()" id="type_{{ $type->value }}" wire:model="filters.types" :value="$type->value" />
+                <x-input.checkbox :label="$type->getLabel()" id="type_{{ $type->value }}" wire:model.live="filters.types" :value="$type->value" />
               </li>
             @endforeach
           </ul>
@@ -182,7 +182,7 @@
                   'bg-slate-100 dark:bg-slate-800 ring-1 ring-inset ring-slate-900/5 dark:ring-white/5' => $filters['rating'] == $r,
                 ])
               >
-                <input type="radio" wire:model="filters.rating" id="rating{{ $r }}" value="{{ $r }}" class="hidden">
+                <input type="radio" wire:model.live="filters.rating" id="rating{{ $r }}" value="{{ $r }}" class="hidden">
 
                 <dt class="flex items-center">
                   <p class="w-24 font-medium text-slate-700 dark:text-slate-300">{{ $r }} stars &amp; up</p>
@@ -271,7 +271,7 @@
             <x-slot:leading>
               @svg($addon->type->icon(), 'h-4 w-4')
             </x-slot:leading>
-            {{ $addon->type->displayName() }}
+            {{ $addon->type->getLabel() }}
           </x-badge>
 
           @foreach ($addon->products as $product)
