@@ -15,11 +15,11 @@
     <meta name="msapplication-TileColor" content="#130f32">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @vite('resources/css/app.css')
     @livewireStyles
 
     <script defer src="https://unpkg.com/@alpinejs/ui@3.12.0-beta.0/dist/cdn.min.js"></script>
-    <script defer src="{{ asset('js/app.js') }}"></script>
+    @vite('resources/js/app.js')
 
     @if ($hasAppearanceModes)
       <script>
