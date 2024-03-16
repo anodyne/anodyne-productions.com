@@ -62,7 +62,7 @@ class DownloadNova extends Component
 
         $this->versions = collect([
             ['id' => 1, 'name' => $release->version, 'value' => $release->version, 'content' => 'Latest version'],
-            ['id' => 2, 'name' => '2.6.2', 'value' => '2.6.2', 'content' => 'Legacy version for PHP 5.6'],
+            ['id' => 2, 'name' => '2.6.3', 'value' => '2.6.3', 'content' => 'Legacy version for PHP 5.6'],
             ['id' => 3, 'name' => '2.3.2', 'value' => '2.3.2', 'content' => 'Legacy version for PHP 5.2'],
         ]);
 
