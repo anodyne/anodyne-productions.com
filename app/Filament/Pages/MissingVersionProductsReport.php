@@ -2,7 +2,6 @@
 
 namespace App\Filament\Pages;
 
-use App\Enums\AddonType;
 use App\Filament\Resources\AddonResource;
 use App\Models\Version;
 use Closure;
@@ -38,18 +37,9 @@ class MissingVersionProductsReport extends Page implements HasTable
         return [
             Tables\Columns\TextColumn::make('addon.name')->searchable(),
             Tables\Columns\TextColumn::make('version'),
-            Tables\Columns\BadgeColumn::make('addon.type')
-                ->enum(
-                    collect(AddonType::cases())
-                        ->flatMap(fn ($type) => [$type->value => $type->getLabel()])
-                        ->all()
-                )
-                ->colors([
-                    'ring-1 ring-emerald-300 bg-emerald-400/10 text-emerald-500 dark:ring-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400' => AddonType::extension->value,
-                    'ring-1 ring-purple-300 dark:ring-purple-400/30 bg-purple-400/10 text-purple-500 dark:text-purple-400' => AddonType::theme->value,
-                    // 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-400' => AddonType::genre->value,
-                    'ring-1 ring-amber-300 bg-amber-400/10 text-amber-500 dark:ring-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400' => AddonType::rank->value,
-                ]),
+            Tables\Columns\TextColumn::make('addon.type')
+                ->badge()
+                ->label('Type'),
             Tables\Columns\IconColumn::make('published')
                 ->alignCenter()
                 ->trueIcon('flex-check-square')

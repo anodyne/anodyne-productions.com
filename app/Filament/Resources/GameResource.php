@@ -83,13 +83,7 @@ class GameResource extends Resource
                                 ->orWhere('url', 'like', "%{$search}%")
                         );
                     }),
-                Tables\Columns\BadgeColumn::make('genre')
-                    ->enum(
-                        collect(GameGenre::cases())
-                            ->flatMap(fn ($genre) => [$genre->value => $genre->getLabel()])
-                            ->all()
-                    )
-                    ->colors(['ring-1 ring-slate-300 bg-slate-400/10 text-slate-500 dark:ring-slate-400/30 dark:bg-slate-400/10 dark:text-slate-400']),
+                Tables\Columns\TextColumn::make('genre')->badge(),
                 Tables\Columns\TextColumn::make('release.version')->label('Nova version'),
                 Tables\Columns\TextColumn::make('php_version')->label('PHP version')->toggleable(),
                 Tables\Columns\TextColumn::make('db_driver')->label('Database driver')->toggleable(isToggledHiddenByDefault: true),
@@ -147,8 +141,7 @@ class GameResource extends Resource
                     ->size('md')
                     ->iconButton()
                     ->color('gray'),
-            ])
-            ->bulkActions([]);
+            ]);
     }
 
     public static function getRelations(): array

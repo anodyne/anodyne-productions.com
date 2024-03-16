@@ -90,15 +90,7 @@ class UserResource extends Resource
                                 ->orWhere('email', 'like', "%{$search}%")
                         );
                     }),
-                Tables\Columns\BadgeColumn::make('role')
-                    ->enum(
-                        collect(UserRole::cases())->flatMap(fn ($role) => [$role->value => $role->getLabel()])->all()
-                    )
-                    ->colors([
-                        'ring-1 ring-purple-300 dark:ring-purple-400/30 bg-purple-400/10 text-purple-500 dark:text-purple-400' => UserRole::admin->value,
-                        'ring-1 ring-emerald-300 bg-emerald-400/10 text-emerald-500 dark:ring-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400' => UserRole::staff->value,
-                        'ring-1 ring-slate-300 bg-slate-400/10 text-slate-500 dark:ring-slate-400/30 dark:bg-slate-400/10 dark:text-slate-400' => UserRole::user->value,
-                    ]),
+                Tables\Columns\TextColumn::make('role')->badge(),
                 Tables\Columns\IconColumn::make('is_addon_author')
                     ->boolean()
                     ->label('Add-on author')

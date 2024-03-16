@@ -55,7 +55,7 @@ class AddonResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\ViewColumn::make('type')->view('filament.tables.columns.badge'),
+                Tables\Columns\TextColumn::make('type')->badge(),
                 // Tables\Columns\BadgeColumn::make('type')
                 //     ->enum(
                 //         collect(AddonType::cases())

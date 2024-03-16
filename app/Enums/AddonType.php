@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
+use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
 
-enum AddonType: string implements HasLabel
+enum AddonType: string implements HasColor, HasLabel
 {
     case extension = 'extension';
 
@@ -15,6 +16,16 @@ enum AddonType: string implements HasLabel
     case rank = 'rank';
 
     case theme = 'theme';
+
+    public function getColor(): string|array|null
+    {
+        return match ($this) {
+            self::extension => 'success',
+            self::rank => 'warning',
+            self::theme => 'info',
+            default => 'gray',
+        };
+    }
 
     public function getLabel(): ?string
     {

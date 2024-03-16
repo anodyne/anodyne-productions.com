@@ -15,7 +15,7 @@ class AddonPolicy
 
     public function before(User $user, $ability)
     {
-        if (in_array($user->role, [UserRole::admin, UserRole::staff])) {
+        if (in_array($user->role, [UserRole::Admin, UserRole::Staff])) {
             return true;
         }
     }

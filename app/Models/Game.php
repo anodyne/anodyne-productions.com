@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\GameGenre;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -33,6 +34,7 @@ class Game extends Model
 
     protected $casts = [
         'is_excluded' => 'boolean',
+        'genre' => GameGenre::class,
     ];
 
     public function release(): BelongsTo
