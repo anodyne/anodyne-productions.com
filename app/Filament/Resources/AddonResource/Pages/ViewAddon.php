@@ -3,13 +3,15 @@
 namespace App\Filament\Resources\AddonResource\Pages;
 
 use App\Filament\Resources\AddonResource;
+use App\Filament\Resources\AddonResource\Widgets\AddonDownloads;
+use App\Filament\Resources\AddonResource\Widgets\AddonRating;
 use Filament\Resources\Pages\ViewRecord;
 
 class ViewAddon extends ViewRecord
 {
     protected static string $resource = AddonResource::class;
 
-    public function hasCombinedRelationManagerTabsWithForm(): bool
+    public function hasCombinedRelationManagerTabsWithContent(): bool
     {
         return true;
     }
@@ -17,8 +19,8 @@ class ViewAddon extends ViewRecord
     protected function getHeaderWidgets(): array
     {
         return [
-            AddonResource\Widgets\AddonDownloads::class,
-            AddonResource\Widgets\AddonRating::class,
+            AddonDownloads::class,
+            AddonRating::class,
         ];
     }
 }

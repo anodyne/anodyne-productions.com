@@ -9,7 +9,7 @@
 ])
 
 <span @class([
-    'inline-flex items-center rounded-full font-medium ring-[1.5px] ring-inset leading-loose',
+    'inline-flex items-center rounded-full font-medium ring-1 ring-inset leading-loose',
     'space-x-1.5' => !$group,
     'space-x-3' => $group,
     'px-2.5 text-xs' => $size === 'xs' && !$group,
@@ -17,12 +17,14 @@
     'px-3 py-0.5 text-sm' => $size === 'md' && !$group,
     'px-3.5 py-1 text-sm' => $size === 'lg' && !$group,
     'px-4 py-1 text-sm' => $group,
-
-    'bg-slate-50 dark:bg-slate-400/10 text-slate-600 dark:text-slate-400 ring-slate-500/10 dark:ring-slate-400/20' => $color === 'gray',
-    'bg-purple-50 dark:bg-purple-400/10 text-purple-600 dark:text-purple-400 ring-purple-500/10 dark:ring-purple-400/20' => $color === 'purple',
-    'bg-emerald-50 dark:bg-emerald-400/10 text-emerald-600 dark:text-emerald-400 ring-emerald-500/10 dark:ring-emerald-400/20' => $color === 'emerald',
-    'bg-amber-50 dark:bg-amber-400/10 text-amber-600 dark:text-amber-400 ring-amber-500/10 dark:ring-amber-400/20' => $color === 'amber',
-    'bg-sky-50 dark:bg-sky-400/10 text-sky-600 dark:text-sky-400 ring-sky-500/10 dark:ring-sky-400/20' => $color === 'sky',
+    match ($color) {
+        'danger' => 'bg-danger-50 text-danger-700 ring-danger-200 dark:bg-danger-950 dark:text-danger-300 dark:ring-danger-800',
+        'info' => 'bg-info-50 text-info-700 ring-info-200 dark:bg-info-950 dark:text-info-300 dark:ring-info-800',
+        'primary' => 'bg-primary-50 text-primary-700 ring-primary-200 dark:bg-primary-950 dark:text-primary-300 dark:ring-primary-800',
+        'success' => 'bg-success-50 text-success-700 ring-success-200 dark:bg-success-950 dark:text-success-300 dark:ring-success-800',
+        'warning' => 'bg-warning-50 text-warning-700 ring-warning-200 dark:bg-warning-950 dark:text-warning-300 dark:ring-warning-800',
+        default => 'bg-slate-50 text-slate-700 ring-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:ring-slate-700',
+    }
 ])>
     @if ($leading)
         <div class="shrink-0">

@@ -10,8 +10,7 @@ class AddonListLayout extends Component
         public string $title,
         public ?string $description = null,
         public ?string $eyebrow = null
-    ) {
-    }
+    ) {}
 
     public function render()
     {

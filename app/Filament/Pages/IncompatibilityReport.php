@@ -11,6 +11,7 @@ use Filament\Tables;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Number;
 
 class IncompatibilityReport extends Page implements HasTable
 {
@@ -21,6 +22,8 @@ class IncompatibilityReport extends Page implements HasTable
     protected static ?string $navigationLabel = 'Incompatibility Report';
 
     protected static ?string $navigationIcon = 'flex-delete-square';
+
+    protected static ?int $navigationSort = 2;
 
     protected ?string $heading = 'Incompatibility Report';
 
@@ -73,7 +76,7 @@ class IncompatibilityReport extends Page implements HasTable
         return Compatibility::query()
             ->with('addon', 'releaseSeries')
             ->withWhereHas('version', fn ($query) => $query->published())
-            ->where('status', CompatibilityStatus::incompatible)
+            ->where('status', CompatibilityStatus::Incompatible)
             ->latest();
     }
 
@@ -117,6 +120,22 @@ class IncompatibilityReport extends Page implements HasTable
     public static function shouldRegisterNavigation(): bool
     {
         return auth()->user()->isStaff || auth()->user()->isAdmin;
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        $count = Compatibility::query()
+            ->with('addon', 'releaseSeries')
+            ->withWhereHas('version', fn ($query) => $query->published())
+            ->where('status', CompatibilityStatus::Incompatible)
+            ->count();
+
+        return $count > 0 ? Number::format($count) : null;
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return 'danger';
     }
 
     protected function getTableEmptyStateHeading(): ?string

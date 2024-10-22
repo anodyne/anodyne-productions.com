@@ -1,3 +1,11 @@
 @import '/vendor/filament/filament/resources/css/theme.css';
 
 @config 'tailwind.config.js';
+
+.fi-ta-empty-state-icon-ctn {
+    @apply bg-transparent dark:!bg-transparent p-0 rounded-none;
+}
+
+.fi-ta-empty-state-icon {
+    @apply size-48 text-primary-500 dark:!text-primary-400;
+}

@@ -7,8 +7,8 @@ use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 
 class ProductResource extends Resource
 {
@@ -31,8 +31,8 @@ class ProductResource extends Resource
                     Forms\Components\RichEditor::make('description')->columnSpan('full'),
                     Forms\Components\Toggle::make('published'),
                 ])
-                ->columns(2)
-                ->columnSpanFull(),
+                    ->columns(2)
+                    ->columnSpanFull(),
             ]);
     }
 

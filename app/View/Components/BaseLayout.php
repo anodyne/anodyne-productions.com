@@ -9,8 +9,7 @@ class BaseLayout extends Component
     public function __construct(
         public string $title = '',
         public bool $hasAppearanceModes = true
-    ) {
-    }
+    ) {}
 
     public function render()
     {

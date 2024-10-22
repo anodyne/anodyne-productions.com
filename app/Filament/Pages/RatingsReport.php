@@ -11,6 +11,7 @@ use Filament\Tables;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Number;
 
 class RatingsReport extends Page implements HasTable
 {
@@ -21,6 +22,8 @@ class RatingsReport extends Page implements HasTable
     protected static ?string $navigationLabel = 'Poor Ratings Report';
 
     protected static ?string $navigationIcon = 'flex-thumbs-down';
+
+    protected static ?int $navigationSort = 4;
 
     protected ?string $heading = 'Poor Ratings Report';
 
@@ -61,9 +64,7 @@ class RatingsReport extends Page implements HasTable
         return [
             Tables\Filters\SelectFilter::make('type')
                 ->multiple()
-                ->options(
-                    collect(AddonType::cases())->flatMap(fn ($type) => [$type->value => $type->getLabel()])->all()
-                ),
+                ->options(AddonType::class),
             Tables\Filters\SelectFilter::make('author')
                 ->relationship('user', 'name')
                 ->multiple(),
@@ -86,6 +87,22 @@ class RatingsReport extends Page implements HasTable
     public static function shouldRegisterNavigation(): bool
     {
         return auth()->user()->isStaff || auth()->user()->isAdmin;
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        $count = Addon::query()
+            ->where('rating', '>', 0)
+            ->where('rating', '<', 3)
+            ->orderBy('rating')
+            ->count();
+
+        return $count > 0 ? Number::format($count) : null;
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return 'warning';
     }
 
     protected function getTableEmptyStateHeading(): ?string

@@ -5,6 +5,7 @@ export default defineConfig({
     plugins: [
         laravel([
             'resources/css/app.css',
+            'resources/css/inter.css',
             'resources/css/filament/admin/theme.css',
             'resources/js/app.js',
         ]),

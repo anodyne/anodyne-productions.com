@@ -59,7 +59,7 @@ class MigrateAddons extends Command
                     'deleted_at' => $xtra->deleted_at,
                 ])->save();
             } else {
-                $addon = new Addon();
+                $addon = new Addon;
 
                 $addon->name = $xtra->name;
                 $addon->description = $xtra->desc;
@@ -148,9 +148,9 @@ class MigrateAddons extends Command
     protected function getType(int $typeId)
     {
         return [
-            1 => AddonType::theme,
-            2 => AddonType::rank,
-            3 => AddonType::extension,
+            1 => AddonType::Theme,
+            2 => AddonType::Rank,
+            3 => AddonType::Extension,
         ][$typeId];
     }
 
@@ -164,7 +164,7 @@ class MigrateAddons extends Command
 
         if ($support->contains('github')) {
             return [
-                ['type' => LinkType::github, 'value' => $support],
+                ['type' => LinkType::Github, 'value' => $support],
             ];
         }
 
@@ -173,7 +173,7 @@ class MigrateAddons extends Command
         }
 
         return [
-            ['type' => LinkType::website, 'value' => $support],
+            ['type' => LinkType::Website, 'value' => $support],
         ];
     }
 }

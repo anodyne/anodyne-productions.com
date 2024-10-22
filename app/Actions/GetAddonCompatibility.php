@@ -14,8 +14,7 @@ class GetAddonCompatibility
 
     public function __construct(
         public readonly int $threshold = 3
-    ) {
-    }
+    ) {}
 
     public function handle(Version $version, ReleaseSeries $series): array
     {
@@ -48,31 +47,31 @@ class GetAddonCompatibility
     protected function getStatus($versionStats, $addonStats): CompatibilityStatus
     {
         if ($versionStats->compatible_override > 0 || $addonStats->compatible_override) {
-            return CompatibilityStatus::compatibleOverride;
+            return CompatibilityStatus::CompatibleOverride;
         }
 
         if ($versionStats->incompatible_override > 0 || $addonStats->incompatible_override) {
-            return CompatibilityStatus::incompatibleOverride;
+            return CompatibilityStatus::IncompatibleOverride;
         }
 
         if ($versionStats->compatible >= $this->threshold && $versionStats->compatible > $versionStats->incompatible) {
-            return CompatibilityStatus::compatible;
+            return CompatibilityStatus::Compatible;
         }
 
         if ($versionStats->incompatible >= $this->threshold && $versionStats->incompatible > $versionStats->compatible) {
-            return CompatibilityStatus::incompatible;
+            return CompatibilityStatus::Incompatible;
         }
 
         if ($versionStats->compatible === 0 && $versionStats->incompatible === 0) {
             if ($addonStats->compatible >= $this->threshold && $addonStats->compatible > $addonStats->incompatible) {
-                return CompatibilityStatus::compatiblePreviously;
+                return CompatibilityStatus::CompatiblePreviously;
             }
 
             if ($addonStats->incompatible >= $this->threshold && $addonStats->incompatible > $addonStats->compatible) {
-                return CompatibilityStatus::incompatiblePreviously;
+                return CompatibilityStatus::IncompatiblePreviously;
             }
         }
 
-        return CompatibilityStatus::unknown;
+        return CompatibilityStatus::Unknown;
     }
 }

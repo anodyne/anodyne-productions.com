@@ -3,8 +3,8 @@
 namespace App\Filament\Resources\AddonResource\Pages;
 
 use App\Filament\Resources\AddonResource;
-use Filament\Forms;
-use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Wizard\Step;
 use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Pages\CreateRecord\Concerns\HasWizard;
@@ -20,24 +20,24 @@ class CreateAddon extends CreateRecord
     protected function getSteps(): array
     {
         return [
-            Step::make('Add-on details')
+            Step::make('Details')
                 ->description('Provide some basic details about your add-on')
                 ->schema([
-                    Card::make(AddonResource::getFormSchema())
+                    Section::make(AddonResource::getFormSchema())
                         ->columns(1)
                         ->columnSpanFull(),
-                    Card::make(AddonResource::getFormSchema('links'))
+                    Section::make(AddonResource::getFormSchema('links'))
                         ->columns(3)
                         ->columnSpanFull(),
-                    Card::make(AddonResource::getFormSchema('previews'))
+                    Section::make(AddonResource::getFormSchema('previews'))
                         ->columns(1)
                         ->columnSpanFull(),
                 ]),
 
-            Step::make('Add-on files')
+            Step::make('Files')
                 ->description("Upload your add-on's files")
                 ->schema([
-                    Forms\Components\Group::make(AddonResource::getFormSchema('versions'))
+                    Group::make(AddonResource::getFormSchema('versions'))
                         ->columns(1)
                         ->columnSpanFull(),
                 ]),

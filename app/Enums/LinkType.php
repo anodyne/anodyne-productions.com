@@ -8,34 +8,34 @@ use Filament\Support\Contracts\HasLabel;
 
 enum LinkType: string implements HasLabel
 {
-    case discord = 'discord';
-    case email = 'email';
-    case facebook = 'facebook';
-    case github = 'github';
-    case twitter = 'twitter';
-    case website = 'website';
+    case Discord = 'discord';
+    case Email = 'email';
+    case Facebook = 'facebook';
+    case Github = 'github';
+    case Twitter = 'twitter';
+    case Website = 'website';
 
     public function getLabel(): ?string
     {
         return match ($this) {
-            self::discord => 'Discord server',
-            self::email => 'Email address',
-            self::facebook => 'Facebook',
-            self::github => 'Github repo',
-            self::twitter => 'Twitter',
-            self::website => 'Website URL',
+            self::Discord => 'Discord server',
+            self::Email => 'Email address',
+            self::Facebook => 'Facebook',
+            self::Github => 'Github repo',
+            self::Twitter => 'Twitter',
+            self::Website => 'Website URL',
         };
     }
 
     public function icon(): string
     {
         return match ($this) {
-            self::discord => 'flex-discord',
-            self::email => 'flex-at-symbol',
-            self::facebook => 'flex-facebook',
-            self::github => 'flex-git',
-            self::twitter => 'flex-twitter',
-            self::website => 'flex-www',
+            self::Discord => 'flex-discord',
+            self::Email => 'flex-at-symbol',
+            self::Facebook => 'flex-facebook',
+            self::Github => 'flex-git',
+            self::Twitter => 'flex-twitter',
+            self::Website => 'flex-www',
         };
     }
 }

@@ -3,11 +3,19 @@
 namespace App\Filament\Resources\AddonResource\RelationManagers;
 
 use App\Models\Question;
-use Filament\Forms;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
-use Filament\Tables;
+use Illuminate\Database\Eloquent\Model;
 
 class QuestionsRelationManager extends RelationManager
 {
@@ -19,14 +27,14 @@ class QuestionsRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\Textarea::make('question')
+                Textarea::make('question')
                     ->required()
                     ->rows(2)
-                    ->columnSpan('full'),
-                Forms\Components\MarkdownEditor::make('answer')
+                    ->columnSpanFull(),
+                MarkdownEditor::make('answer')
                     ->required()
-                    ->columnSpan('full'),
-                Forms\Components\Toggle::make('published')
+                    ->columnSpanFull(),
+                Toggle::make('published')
                     ->helperText('Only published questions will be shown to users'),
             ]);
     }
@@ -35,47 +43,40 @@ class QuestionsRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('question')
-                    ->description(fn (Question $record): string => $record->answer)
+                TextColumn::make('question')
+                    ->description(fn (Question $record): ?string => $record->answer)
                     ->searchable()
                     ->wrap(),
-                Tables\Columns\ToggleColumn::make('published'),
+                ToggleColumn::make('published'),
             ])
             ->filters([
-                Tables\Filters\TernaryFilter::make('published'),
+                TernaryFilter::make('published'),
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make()
-                    ->successNotificationMessage('New add-on question created'),
+                CreateAction::make()
+                    ->button()
+                    ->successNotificationTitle('New add-on question created'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make()
-                    ->icon('flex-edit-circle')
-                    ->size('md')
-                    ->iconButton()
-                    ->color('gray')
-                    ->successNotificationMessage('Add-on question updated'),
-                Tables\Actions\DeleteAction::make()
-                    ->icon('flex-delete-bin')
-                    ->size('md')
-                    ->iconButton()
-                    ->successNotificationMessage('Add-on question deleted'),
+                EditAction::make()
+                    ->successNotificationTitle('Add-on question updated'),
+                DeleteAction::make()
+                    ->successNotificationTitle('Add-on question deleted'),
             ])
-            ->bulkActions([]);
+            ->emptyStateHeading('No questions found')
+            ->emptyStateDescription('Add any frequently asked questions that you think would help users.')
+            ->emptyStateIcon('uxl-customer-doubt')
+            ->emptyStateActions([
+                CreateAction::make()
+                    ->button()
+                    ->successNotificationTitle('New add-on question created'),
+            ]);
     }
 
-    protected function getTableEmptyStateHeading(): ?string
+    public static function getBadge(Model $ownerRecord, string $pageClass): ?string
     {
-        return 'No questions found';
-    }
+        $count = $ownerRecord->questions()->count();
 
-    protected function getTableEmptyStateDescription(): ?string
-    {
-        return 'Add any frequently asked questions that you think would help users.';
-    }
-
-    protected function getTableEmptyStateIcon(): ?string
-    {
-        return 'uxl-customer-doubt';
+        return $count > 0 ? $count : null;
     }
 }

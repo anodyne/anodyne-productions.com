@@ -2,10 +2,14 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "anodyne/blade-tabler-icons": "^3.1",
         "blade-ui-kit/blade-icons": "^1.5",
         "blade-ui-kit/blade-ui-kit": "^0.4",
         "doctrine/dbal": "^3.0",
@@ -25,6 +29,7 @@
         "league/flysystem-aws-s3-v3": "^3.12.1",
         "livewire/livewire": "^3.4",
         "lorisleiva/laravel-actions": "^2.5",
+        "mokhosh/filament-rating": "^1.1",
         "silber/page-cache": "^1.0.8",
         "spatie/eloquent-sortable": "^4.0",
         "spatie/laravel-activitylog": "^4.7.2",
@@ -86,6 +91,16 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
+        "clean": [
+            "rm -rf ./vendor"
+        ],
+        "lint": "pint",
+        "test:lint": "pint --test",
+        "test:feature": "pest",
+        "test": [
+            "@test:lint",
+            "@test:feature"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",

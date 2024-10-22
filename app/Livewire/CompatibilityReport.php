@@ -43,7 +43,7 @@ class CompatibilityReport extends Modal
 
         $this->close(
             andEmit: [
-                AddonsDisplay::class => 'compatibilityReportSubmitted',
+                AddonDetail::class => 'compatibilityReportSubmitted',
             ]
         );
     }
@@ -57,8 +57,11 @@ class CompatibilityReport extends Modal
         }
     }
 
-    public function mount(Addon $addon, Version $version, ReleaseSeries $series): void
-    {
+    public function mount(
+        Addon $addon,
+        Version $version,
+        ReleaseSeries $series
+    ): void {
         $this->addon = $addon;
         $this->series = $series;
         $this->version = $version;

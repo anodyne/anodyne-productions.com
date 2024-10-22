@@ -3,13 +3,18 @@
 namespace App\Filament\Resources\GameResource\Widgets;
 
 use App\Models\Game;
-use Filament\Widgets\DoughnutChartWidget;
+use Filament\Widgets\ChartWidget;
 
-class GameVersionsChart extends DoughnutChartWidget
+class AllGamesVersionsChart extends ChartWidget
 {
     protected static ?string $heading = 'Installed versions';
 
     protected static ?string $pollingInterval = null;
+
+    protected function getType(): string
+    {
+        return 'bar';
+    }
 
     protected function getData(): array
     {

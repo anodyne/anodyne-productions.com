@@ -4,14 +4,14 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SponsorResource\Pages;
 use App\Models\Sponsor;
-use Closure;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Number;
 
 class SponsorResource extends Resource
 {
@@ -50,6 +50,10 @@ class SponsorResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->groups([
+                'tier.name',
+            ])
+            ->defaultGroup('tier.name')
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->getStateUsing(fn (Model $record) => $record->formattedName)
@@ -116,15 +120,11 @@ class SponsorResource extends Resource
     {
         $count = static::getModel()::premiumTier()->whereNull('link')->count();
 
-        if ($count === 0) {
-            return null;
-        }
-
-        return $count;
+        return $count > 0 ? Number::format($count) : null;
     }
 
     public static function getNavigationBadgeColor(): ?string
     {
-        return 'danger';
+        return 'warning';
     }
 }

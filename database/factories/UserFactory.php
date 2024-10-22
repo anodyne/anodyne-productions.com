@@ -34,11 +34,11 @@ class UserFactory extends Factory
 
     public function admin()
     {
-        return $this->state(fn (array $attributes) => ['role' => UserRole::admin]);
+        return $this->state(fn (array $attributes) => ['role' => UserRole::Admin]);
     }
 
     public function staff()
     {
-        return $this->state(fn (array $attributes) => ['role' => UserRole::staff]);
+        return $this->state(fn (array $attributes) => ['role' => UserRole::Staff]);
     }
 }

@@ -9,7 +9,9 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Grouping\Group;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class ReleaseResource extends Resource
@@ -32,9 +34,7 @@ class ReleaseResource extends Resource
                     ->required()
                     ->columnSpan(1),
                 Forms\Components\Select::make('severity')
-                    ->options(
-                        collect(ReleaseSeverity::cases())->flatMap(fn ($severity) => [$severity->value => $severity->getLabel()])
-                    )
+                    ->options(ReleaseSeverity::class)
                     ->required()
                     ->columnSpan(1),
                 Forms\Components\DatePicker::make('date')
@@ -51,13 +51,26 @@ class ReleaseResource extends Resource
                     ->required()
                     ->columnSpan(1),
                 Forms\Components\TextInput::make('upgrade_guide_link')->columnSpan(1),
-                Forms\Components\Toggle::make('published')->default(false),
+                Forms\Components\Toggle::make('published')->default(false)->columnSpan(1),
+                Forms\Components\Toggle::make('has_heartbeat_endpoint')->default(true)->columnSpan(1),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->groups([
+                Group::make('releaseSeries.name')
+                    ->collapsible()
+                    ->orderQueryUsing(function (Builder $query, string $direction): Builder {
+                        return $query
+                            ->join('release_series', 'releases.release_series_id', '=', 'release_series.id')
+                            ->orderBy('release_series.order_column', 'asc');
+                    }),
+            ])
+            ->defaultGroup('releaseSeries.name')
+            ->defaultSort('date', 'desc')
+            ->defaultPaginationPageOption(25)
             ->columns([
                 Tables\Columns\TextColumn::make('version')
                     ->searchable()
@@ -75,7 +88,9 @@ class ReleaseResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('severity')->badge(),
                 Tables\Columns\TextColumn::make('games_count')
-                    ->counts('games')
+                    ->counts([
+                        'games' => fn (Builder $query): Builder => $query->isIncluded(),
+                    ])
                     ->alignLeft()
                     ->label('# of games'),
                 Tables\Columns\TextColumn::make('releaseSeries.name')->label('Release series'),
@@ -105,9 +120,7 @@ class ReleaseResource extends Resource
                     ->size('md')
                     ->iconButton()
                     ->successNotificationTitle('Release deleted'),
-            ])
-            ->bulkActions([])
-            ->defaultSort('date', 'desc');
+            ]);
     }
 
     public static function getPages(): array

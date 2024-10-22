@@ -2,7 +2,6 @@
 
 namespace App\Filament\Pages;
 
-use Closure;
 use Filament\Forms;
 use JeffGreco13\FilamentBreezy\FilamentBreezy;
 use JeffGreco13\FilamentBreezy\Http\Livewire\Auth\Register as FilamentBreezyRegister;

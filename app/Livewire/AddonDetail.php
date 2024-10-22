@@ -10,6 +10,7 @@ use App\Models\Version;
 use App\View\Components\BaseLayout;
 use Exception;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class AddonDetail extends Component
@@ -30,19 +31,19 @@ class AddonDetail extends Component
             return response()->streamDownload(function () use ($media) {
                 echo file_get_contents($media->getTemporaryUrl(now()->addMinutes(5)));
             }, $media->name.'.zip');
-
-            // return $media;
         }
 
         throw new Exception('No download media associated with the add-on');
     }
 
-    public function getQuestionsProperty(): Collection
+    #[Computed]
+    public function questions(): Collection
     {
         return $this->addon->questions()->published()->get();
     }
 
-    public function getReleaseSeriesProperty(): Collection
+    #[Computed]
+    public function releaseSeries(): Collection
     {
         $query = ($this->version->releaseSeries()->count() > 0)
             ? $this->version->releaseSeries()
@@ -53,7 +54,8 @@ class AddonDetail extends Component
             ->get();
     }
 
-    public function getReviewStatsProperty()
+    #[Computed]
+    public function reviewStats()
     {
         return Review::toBase()
             ->selectRaw('count(case when rating = 1 then 1 end) as rating1')
@@ -65,7 +67,8 @@ class AddonDetail extends Component
             ->first();
     }
 
-    public function getVersionsProperty(): Collection
+    #[Computed]
+    public function versions(): Collection
     {
         return $this->addon->versions()->published()->get();
     }
@@ -94,7 +97,12 @@ class AddonDetail extends Component
 
     public function render()
     {
-        return view('livewire.addon-detail')
+        return view('livewire.addon-detail', [
+            'questions' => $this->questions,
+            'releaseSeries' => $this->releaseSeries,
+            'reviewStats' => $this->reviewStats,
+            'versions' => $this->versions,
+        ])
             ->layout(BaseLayout::class, [
                 'attributes' => [
                     'class' => 'bg-white dark:bg-slate-900',

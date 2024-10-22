@@ -9,7 +9,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class() extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -22,7 +22,7 @@ return new class() extends Migration
             $table->foreignIdFor(Addon::class);
             $table->foreignIdFor(Version::class)->nullable();
             $table->foreignIdFor(ReleaseSeries::class);
-            $table->string('status')->default(CompatibilityStatus::unknown->value);
+            $table->string('status')->default(CompatibilityStatus::Unknown);
             $table->text('notes')->nullable();
             $table->timestamps();
         });

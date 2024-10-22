@@ -4,27 +4,32 @@
 @import "tailwindcss/utilities";
 
 @font-face {
-    font-family: 'Inter var';
+    font-family: "Inter var";
     font-display: swap;
     font-style: normal;
     font-weight: 100 900;
-    src: url("/fonts/Inter.var.woff2?v=3.19") format("woff2-variations"),
-         url("/fonts/Inter.var.woff2?v=3.19") format("woff2");
-    src: url("/fonts/Inter.var.woff2?v=3.19") format("woff2") tech("variations");
+    src:
+        url("/fonts/InterVariable.woff2?v=4.0") format("woff2-variations"),
+        url("/fonts/InterVariable.woff2?v=4.0") format("woff2");
+    src: url("/fonts/InterVariable.woff2?v=4.0") format("woff2")
+        tech("variations");
 }
 
 @font-face {
-    font-family: 'Inter var';
+    font-family: "Inter var";
     font-display: swap;
     font-style: italic;
     font-weight: 100 900;
-    src: url("/fonts/Inter-Italic.var.woff2?v=3.19") format("woff2-variations"),
-         url("/fonts/Inter-Italic.var.woff2?v=3.19") format("woff2");
-    src: url("/fonts/Inter-Italic.var.woff2?v=3.19") format("woff2") tech("variations");
+    src:
+        url("/fonts/InterVariable-Italic.woff2?v=4.0")
+            format("woff2-variations"),
+        url("/fonts/InterVariable-Italic.woff2?v=4.0") format("woff2");
+    src: url("/fonts/InterVariable-Italic.woff2?v=4.0") format("woff2")
+        tech("variations");
 }
 
 button {
-    font-feature-settings: 'ss01', 'ss03', 'cv11', 'zero';
+    font-feature-settings: "ss01", "ss03", "cv11", "zero";
 }
 
 .wep-modal {
@@ -40,7 +45,7 @@ button {
  * https://www.iosicongallery.com/
  */
 .squircle {
-	mask-image: url(/images/squircle-mask.svg);
+    mask-image: url(/images/squircle-mask.svg);
     mask-size: cover;
 }
 
@@ -91,13 +96,16 @@ button {
             @apply h-6 w-6 shrink-0 text-purple-400;
         }
 
-        .note.is-tip .accent, .note.is-success .accent {
+        .note.is-tip .accent,
+        .note.is-success .accent {
             @apply bg-gradient-to-r from-green-500 to-green-400;
         }
-        .note.is-tip .identifier, .note.is-success .identifier {
+        .note.is-tip .identifier,
+        .note.is-success .identifier {
             @apply text-green-500;
         }
-        .note.is-tip .identifier > svg, .note.is-success .identifier > svg {
+        .note.is-tip .identifier > svg,
+        .note.is-success .identifier > svg {
             @apply text-green-400;
         }
 
@@ -137,9 +145,11 @@ button {
         but are within a code block that contains any focus lines.
         */
         .torchlight.has-focus-lines .line:not(.line-focus) {
-            transition: filter 0.35s, opacity 0.35s;
-            filter: blur(.095rem);
-            opacity: .65;
+            transition:
+                filter 0.35s,
+                opacity 0.35s;
+            filter: blur(0.095rem);
+            opacity: 0.65;
         }
 
         /*

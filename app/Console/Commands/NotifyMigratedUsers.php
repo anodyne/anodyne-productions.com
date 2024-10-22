@@ -35,7 +35,7 @@ class NotifyMigratedUsers extends Command
 
         $users->each(function (User $user) use ($bar, &$notifiedUsers) {
             try {
-                $user->notify(new AccountMigrated());
+                $user->notify(new AccountMigrated);
 
                 $bar->advance();
 

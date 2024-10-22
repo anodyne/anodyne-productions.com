@@ -4,9 +4,10 @@ use App\Enums\ReleaseSeverity;
 use App\Filament\Resources\ReleaseResource;
 use App\Filament\Resources\ReleaseResource\Pages\ManageReleases;
 use App\Models\Release;
-use Filament\Pages\Actions\CreateAction;
+use Filament\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
+
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 use function Pest\Laravel\get;
@@ -39,12 +40,9 @@ it('does not render the releases resource for guests', function () {
 it('lists releases', function () {
     signInAsAdmin();
 
-    $releases = Release::factory()
-        ->count(5)
-        ->create();
+    $releases = Release::factory()->count(5)->create();
 
     livewire(ManageReleases::class)
-        ->assertTableColumnExists('version')
         ->assertCanSeeTableRecords($releases);
 });
 
@@ -54,14 +52,14 @@ test('admins can create a release', function () {
     $releaseData = Release::factory()->make();
 
     livewire(ManageReleases::class)
-        ->callPageAction(CreateAction::class, data: [
+        ->callAction(CreateAction::class, data: [
             'version' => $releaseData->version,
             'severity' => $releaseData->severity,
             'link' => $releaseData->link,
             'published' => $releaseData->published,
             'release_series_id' => $releaseData->release_series_id,
         ])
-        ->assertHasNoPageActionErrors()
+        ->assertHasNoActionErrors()
         ->assertNotified();
 
     assertDatabaseHas(Release::class, [
@@ -144,20 +142,20 @@ test('`version` field is required', function () {
     signInAsAdmin();
 
     livewire(ManageReleases::class)
-        ->callPageAction(CreateAction::class, data: [
+        ->callAction(CreateAction::class, data: [
             'version' => null,
-            'severity' => ReleaseSeverity::patch,
+            'severity' => ReleaseSeverity::Patch,
             'link' => 'https://anodyne-productions.com/nova',
             'published' => true,
         ])
-        ->assertHasPageActionErrors(['version' => 'required']);
+        ->assertHasActionErrors(['version' => 'required']);
 
     $releaseToEdit = Release::factory()->create();
 
     livewire(ManageReleases::class)
         ->callTableAction(EditAction::class, $releaseToEdit, data: [
             'version' => null,
-            'severity' => ReleaseSeverity::patch,
+            'severity' => ReleaseSeverity::Patch,
             'link' => 'https://anodyne-productions.com/nova',
             'published' => true,
         ])
@@ -168,13 +166,13 @@ test('`severity` field is required', function () {
     signInAsAdmin();
 
     livewire(ManageReleases::class)
-        ->callPageAction(CreateAction::class, data: [
+        ->callAction(CreateAction::class, data: [
             'version' => '1.0.0',
             'severity' => null,
             'link' => 'https://anodyne-productions.com/nova',
             'published' => true,
         ])
-        ->assertHasPageActionErrors(['severity' => 'required']);
+        ->assertHasActionErrors(['severity' => 'required']);
 
     $releaseToEdit = Release::factory()->create();
 
@@ -192,20 +190,20 @@ test('`link` field is required', function () {
     signInAsAdmin();
 
     livewire(ManageReleases::class)
-        ->callPageAction(CreateAction::class, data: [
+        ->callAction(CreateAction::class, data: [
             'version' => '1.0.0',
-            'severity' => ReleaseSeverity::patch,
+            'severity' => ReleaseSeverity::Patch,
             'link' => null,
             'published' => true,
         ])
-        ->assertHasPageActionErrors(['link' => 'required']);
+        ->assertHasActionErrors(['link' => 'required']);
 
     $releaseToEdit = Release::factory()->create();
 
     livewire(ManageReleases::class)
         ->callTableAction(EditAction::class, $releaseToEdit, data: [
             'version' => '1.0.0',
-            'severity' => ReleaseSeverity::patch,
+            'severity' => ReleaseSeverity::Patch,
             'link' => null,
             'published' => true,
         ])

@@ -2,12 +2,20 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\SponsorshipTierResource\RelationManagers\SponsorsRelationManager;
 use App\Filament\Resources\SponsorTierResource\Pages;
 use App\Models\SponsorTier;
-use Filament\Forms\Form;
+use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Filament\Tables;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 
 class SponsorTierResource extends Resource
 {
@@ -15,59 +23,59 @@ class SponsorTierResource extends Resource
 
     protected static ?string $modelLabel = 'Tiers';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'flex-bill-dollar';
 
     protected static ?string $navigationGroup = 'Sponsorships';
 
     protected static ?int $navigationSort = 10;
 
-    public static function form(Form $form): Form
+    public static function infolist(Infolist $infolist): Infolist
     {
-        return $form
-            ->schema([
-                //
-            ]);
+        return $infolist->schema([
+            Section::make()->schema([
+                TextEntry::make('name'),
+                TextEntry::make('external_id')->label('Patreon ID'),
+                TextEntry::make('description')->html(),
+            ]),
+        ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                TextColumn::make('name')
                     ->size('lg')
                     ->weight('bold')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('sponsors_count')
+                TextColumn::make('sponsors_count')
                     ->counts('sponsors')
                     ->label('# of sponsors'),
             ])
-            ->filters([
-                //
-            ])
             ->actions([
-                Tables\Actions\ViewAction::make()
+                ViewAction::make()
                     ->icon('flex-eye')
                     ->size('md')
                     ->iconButton()
                     ->color('gray'),
-                Tables\Actions\EditAction::make()
-                    ->icon('flex-edit-circle')
-                    ->size('md')
-                    ->iconButton()
-                    ->color('gray'),
-                Tables\Actions\DeleteAction::make()
-                    ->icon('flex-delete-bin')
-                    ->size('md')
-                    ->iconButton()
-                    ->successNotificationTitle('Sponsor deleted'),
             ])
-            ->bulkActions([]);
+            ->headerActions([
+                Action::make('refreshTiers')
+                    ->label('Refresh sponsorship tiers')
+                    ->color('gray')
+                    ->action(function () {
+                        Artisan::call('anodyne:fetch-sponsorship-tiers');
+
+                        Notification::make()->success()->title('Sponsorship tiers refreshed');
+                    })
+                    ->visible(Auth::user()->is_admin),
+            ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            //
+            SponsorsRelationManager::class,
         ];
     }
 

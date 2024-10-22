@@ -9,20 +9,20 @@ use Filament\Support\Contracts\HasLabel;
 
 enum AddonType: string implements HasColor, HasLabel
 {
-    case extension = 'extension';
+    case Extension = 'extension';
 
     // case genre = 'genre';
 
-    case rank = 'rank';
+    case Rank = 'rank';
 
-    case theme = 'theme';
+    case Theme = 'theme';
 
     public function getColor(): string|array|null
     {
         return match ($this) {
-            self::extension => 'success',
-            self::rank => 'warning',
-            self::theme => 'info',
+            self::Extension => 'success',
+            self::Rank => 'warning',
+            self::Theme => 'info',
             default => 'gray',
         };
     }
@@ -40,18 +40,18 @@ enum AddonType: string implements HasColor, HasLabel
     public function badgeColor(): string
     {
         return match ($this) {
-            self::extension => 'success',
-            self::rank => 'warning',
-            self::theme => 'info',
+            self::Extension => 'success',
+            self::Rank => 'warning',
+            self::Theme => 'info',
         };
     }
 
     public function icon(): string
     {
         return match ($this) {
-            self::extension => 'flex-puzzle',
-            self::rank => 'flex-chevron-double-up',
-            self::theme => 'flex-paint-brush',
+            self::Extension => 'flex-puzzle',
+            self::Rank => 'flex-chevron-double-up',
+            self::Theme => 'flex-paint-brush',
         };
     }
 }

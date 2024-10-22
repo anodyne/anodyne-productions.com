@@ -10,6 +10,7 @@ use Filament\Tables;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Number;
 
 class MissingVersionProductsReport extends Page implements HasTable
 {
@@ -20,6 +21,8 @@ class MissingVersionProductsReport extends Page implements HasTable
     protected static ?string $navigationLabel = 'Missing Version Product(s) Report';
 
     protected static ?string $navigationIcon = 'flex-alert-diamond';
+
+    protected static ?int $navigationSort = 3;
 
     protected ?string $heading = 'Missing Version Product(s) Report';
 
@@ -65,6 +68,18 @@ class MissingVersionProductsReport extends Page implements HasTable
     public static function shouldRegisterNavigation(): bool
     {
         return auth()->user()->isStaff || auth()->user()->isAdmin;
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        $count = Version::with('addon')->whereDoesntHave('product')->count();
+
+        return $count > 0 ? Number::format($count) : null;
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return 'danger';
     }
 
     protected function getTableEmptyStateHeading(): ?string

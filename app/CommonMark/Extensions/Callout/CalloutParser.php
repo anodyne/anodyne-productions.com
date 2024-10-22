@@ -22,7 +22,7 @@ final class CalloutParser extends AbstractBlockContinueParser
     public function __construct(int $fenceLength, string $fenceChar, int $fenceOffset)
     {
         $this->block = new Callout($fenceLength, $fenceChar, $fenceOffset);
-        $this->strings = new ArrayCollection();
+        $this->strings = new ArrayCollection;
     }
 
     public function getBlock(): Callout

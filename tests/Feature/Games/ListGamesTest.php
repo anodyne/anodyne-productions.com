@@ -1,6 +1,7 @@
 <?php
 
 use App\Filament\Resources\GameResource;
+
 use function Pest\Laravel\get;
 
 uses()->group('games');

@@ -23,7 +23,7 @@ enum ReleaseSeverity: string implements HasColor, HasLabel
     {
         return match ($this) {
             self::Critical => 'danger',
-            self::Security => 'warning',
+            self::Security => 'danger',
             self::Minor => 'primary',
             self::Major => 'info',
             default => 'gray',

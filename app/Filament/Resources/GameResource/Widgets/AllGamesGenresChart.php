@@ -2,15 +2,19 @@
 
 namespace App\Filament\Resources\GameResource\Widgets;
 
-use App\Enums\GameGenre;
 use App\Models\Game;
-use Filament\Widgets\DoughnutChartWidget;
+use Filament\Widgets\ChartWidget;
 
-class GameGenresChart extends DoughnutChartWidget
+class AllGamesGenresChart extends ChartWidget
 {
     protected static ?string $heading = 'Installed genres';
 
     protected static ?string $pollingInterval = null;
+
+    protected function getType(): string
+    {
+        return 'bar';
+    }
 
     protected function getData(): array
     {
@@ -41,7 +45,7 @@ class GameGenresChart extends DoughnutChartWidget
                     'spacing' => 15,
                 ],
             ],
-            'labels' => $data->map(fn (Game $game) => GameGenre::from($game->genre)->getLabel()),
+            'labels' => $data->map(fn (Game $game) => $game->genre->getLabel()),
         ];
     }
 }
