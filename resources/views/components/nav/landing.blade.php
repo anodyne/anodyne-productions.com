@@ -54,7 +54,7 @@
           <div class="p-2">
             <a
               x-menu:item
-              href="{{ route('filament.pages.dashboard') }}"
+              href="{{ route('filament.admin.pages.dashboard') }}"
               :class="{
                 'bg-slate-100 text-gray-900': $menuItem.isActive,
                 'text-gray-700': ! $menuItem.isActive,
@@ -65,7 +65,7 @@
             </a>
             <a
               x-menu:item
-              href="{{ route('filament.pages.my-profile') }}"
+              href="{{ route('filament.admin.pages.my-profile') }}"
               :class="{
                 'bg-slate-100 text-gray-900': $menuItem.isActive,
                 'text-gray-700': ! $menuItem.isActive,
@@ -76,7 +76,7 @@
             </a>
           </div>
           <div class="p-2">
-            <form action="{{ route('filament.auth.logout') }}" method="post">
+            <form action="{{ route('filament.admin.auth.logout') }}" method="post">
               @csrf
               <button
                 type="submit"
@@ -97,7 +97,7 @@
 
     @guest
       <x-button
-        :href="route('filament.auth.login')"
+        :href="route('filament.admin.auth.login')"
         :variant="$dark ? 'primary' : 'secondary'"
         size="xs"
       >

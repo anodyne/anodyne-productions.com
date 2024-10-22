@@ -2,12 +2,19 @@
 
 namespace App\Filament\Resources\AddonResource\RelationManagers;
 
-use Filament\Forms;
-use Filament\Resources\Form;
+use App\Models\Review;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\TextEntry\TextEntrySize;
+use Filament\Infolists\Infolist;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
-use Filament\Tables;
+use Filament\Support\Enums\FontWeight;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
+use Mokhosh\FilamentRating\Columns\RatingColumn;
+use Mokhosh\FilamentRating\Entries\RatingEntry;
 
 class ReviewsRelationManager extends RelationManager
 {
@@ -15,54 +22,42 @@ class ReviewsRelationManager extends RelationManager
 
     protected static ?string $modelLabel = 'review';
 
-    public static function form(Form $form): Form
+    public function infolist(Infolist $infolist): Infolist
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('user_id')
-                    ->label('User')
-                    ->formatStateUsing(fn (Model $record) => $record->user->name)
-                    ->columnSpan(1),
-                Forms\Components\TextInput::make('rating')->columnSpan(1),
-                Forms\Components\Textarea::make('content')->columnSpanFull(),
-            ])
-            ->columns(2);
+        return $infolist->schema([
+            TextEntry::make('user_id')
+                ->label('')
+                ->size(TextEntrySize::Large)
+                ->weight(FontWeight::SemiBold)
+                ->formatStateUsing(fn (Review $record): ?string => $record->user->name),
+            RatingEntry::make('rating')
+                ->label('Rating'),
+            TextEntry::make('content')
+                ->label('')
+                ->size(TextEntrySize::Large),
+        ])->columns(1);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name'),
-                Tables\Columns\TextColumn::make('rating')
-                    ->icon('heroicon-s-star')
-                    ->iconPosition('after'),
+                TextColumn::make('user.name'),
+                RatingColumn::make('rating')->color('primary'),
             ])
-            ->filters([
-                //
-            ])
-            ->headerActions([])
             ->actions([
-                Tables\Actions\ViewAction::make()
-                    ->icon('flex-eye')
-                    ->size('md')
-                    ->iconButton()
-                    ->color('secondary'),
-                Tables\Actions\DeleteAction::make()
-                    ->icon('flex-delete-bin')
-                    ->size('md')
-                    ->iconButton(),
+                ViewAction::make()->iconButton(),
+                DeleteAction::make()->iconButton(),
             ])
-            ->bulkActions([]);
+            ->emptyStateHeading('No reviews found')
+            ->emptyStateDescription(null)
+            ->emptyStateIcon('uxl-rating-click');
     }
 
-    protected function getTableEmptyStateHeading(): ?string
+    public static function getBadge(Model $ownerRecord, string $pageClass): ?string
     {
-        return 'No reviews found';
-    }
+        $count = $ownerRecord->reviews()->count();
 
-    protected function getTableEmptyStateIcon(): ?string
-    {
-        return 'uxl-rating-click';
+        return $count > 0 ? $count : null;
     }
 }

@@ -27,7 +27,7 @@ class Documentation
     {
         $markdown = $this->filesystem->get($this->path($version, "{$page}.md"));
 
-        $frontMatterParser = new FrontMatterParser(new SymfonyYamlFrontMatterParser());
+        $frontMatterParser = new FrontMatterParser(new SymfonyYamlFrontMatterParser);
         $result = $frontMatterParser->parse($markdown);
 
         return [

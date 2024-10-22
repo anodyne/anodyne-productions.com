@@ -21,7 +21,7 @@ class TagBlockParser extends AbstractBlockContinueParser
     public function __construct(string $tag, array $attributes = [])
     {
         $this->block = new Tag($tag, $attributes);
-        $this->strings = new ArrayCollection();
+        $this->strings = new ArrayCollection;
     }
 
     public function getBlock(): Tag
@@ -77,7 +77,7 @@ class TagBlockParser extends AbstractBlockContinueParser
 
     public static function blockStartParser(): BlockStartParserInterface
     {
-        return new class() implements BlockStartParserInterface
+        return new class implements BlockStartParserInterface
         {
             public function tryStart(Cursor $cursor, MarkdownParserStateInterface $parserState): ?BlockStart
             {

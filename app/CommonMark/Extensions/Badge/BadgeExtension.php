@@ -11,8 +11,8 @@ class BadgeExtension implements ExtensionInterface
 {
     public function register(EnvironmentBuilderInterface $environment): void
     {
-        $environment->addDelimiterProcessor(new BadgeDelimiterProcess());
+        $environment->addDelimiterProcessor(new BadgeDelimiterProcess);
 
-        $environment->addRenderer(Badge::class, new BadgeRenderer(), 21);
+        $environment->addRenderer(Badge::class, new BadgeRenderer, 21);
     }
 }

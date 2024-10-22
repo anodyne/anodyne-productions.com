@@ -21,6 +21,6 @@ class TagRenderer implements NodeRendererInterface
 
         $renderer = data_get($tagConfig, 'renderer', $tagConfig);
 
-        return (new $renderer())->render($node, $childRenderer);
+        return (new $renderer)->render($node, $childRenderer);
     }
 }

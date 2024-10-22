@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
             'username' => 'anodyne',
             'email' => 'admin@admin.com',
             'password' => Hash::make('secret'),
-            'role' => UserRole::admin,
+            'role' => UserRole::Admin,
         ]);
 
         User::factory()->create([
@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'username' => 'staff-1',
             'email' => 'staff1@staff.com',
             'password' => Hash::make('secret'),
-            'role' => UserRole::staff,
+            'role' => UserRole::Staff,
         ]);
 
         User::factory()->create([
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
             'username' => 'staffTwo',
             'email' => 'staff2@staff.com',
             'password' => Hash::make('secret'),
-            'role' => UserRole::staff,
+            'role' => UserRole::Staff,
         ]);
 
         User::factory()->create([

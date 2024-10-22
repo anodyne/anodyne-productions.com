@@ -95,15 +95,15 @@
                     </div>
                   </x-dropdown.group>
                   <x-dropdown.group>
-                    <x-dropdown.item :href="route('filament.pages.dashboard')">Dashboard</x-dropdown.item>
-                    <x-dropdown.item :href="route('filament.pages.my-profile')">My profile</x-dropdown.item>
+                    <x-dropdown.item :href="route('filament.admin.pages.dashboard')">Dashboard</x-dropdown.item>
+                    <x-dropdown.item :href="route('filament.admin.pages.my-profile')">My profile</x-dropdown.item>
                   </x-dropdown.group>
                   <x-dropdown.group>
                     <x-dropdown.item type="submit" form="logout-form">
                       <span>Sign out</span>
 
                       <x-slot:buttonForm>
-                        <x-form :action="route('filament.auth.logout')" class="invisible" id="logout-form" />
+                        <x-form :action="route('filament.admin.auth.logout')" class="invisible" id="logout-form" />
                       </x-slot:buttonForm>
                     </x-dropdown.item>
                   </x-dropdown.group>
@@ -112,7 +112,7 @@
             @endauth
 
             @guest
-              <a href="{{ route('filament.auth.login') }}" class="ml-6 block text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
+              <a href="{{ route('filament.admin.auth.login') }}" class="ml-6 block text-slate-400 dark:text-slate-500 hover:text-slate-500 dark:hover:text-slate-400">
                 <span class="sr-only">Sign in to Anodyne</span>
                 @svg('flex-login', 'w-5 h-5')
               </a>
@@ -165,13 +165,13 @@
                   <span class="block text-sm text-slate-500 dark:text-slate-400" role="none">Signed in as</span>
                   <span class="mt-0.5 font-semibold text-slate-900 dark:text-white" role="none">{{ auth()->user()->email }}</span>
                 </p>
-                <x-nav.link-mobile :href="route('filament.pages.dashboard')">
+                <x-nav.link-mobile :href="route('filament.admin.pages.dashboard')">
                   Dashboard
                 </x-nav.link-mobile>
-                <x-nav.link-mobile :href="route('filament.pages.my-profile')">
+                <x-nav.link-mobile :href="route('filament.admin.pages.my-profile')">
                   My profile
                 </x-nav.link-mobile>
-                <form action="{{ route('filament.auth.logout') }}" method="post">
+                <form action="{{ route('filament.admin.auth.logout') }}" method="post">
                   @csrf
                   <x-nav.button-mobile type="submit">
                     Sign out
@@ -180,7 +180,7 @@
               @endauth
 
               @guest
-                <x-nav.link-mobile :href="route('filament.auth.login')">
+                <x-nav.link-mobile :href="route('filament.admin.auth.login')">
                   Sign in
                 </x-nav.link-mobile>
               @endguest

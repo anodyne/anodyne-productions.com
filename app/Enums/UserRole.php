@@ -4,15 +4,27 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-enum UserRole: string
+use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasLabel;
+
+enum UserRole: string implements HasColor, HasLabel
 {
-    case admin = 'admin';
+    case Admin = 'admin';
 
-    case staff = 'staff';
+    case Staff = 'staff';
 
-    case user = 'user';
+    case User = 'user';
 
-    public function displayName(): string
+    public function getColor(): string|array|null
+    {
+        return match ($this) {
+            self::Admin => 'info',
+            self::Staff => 'success',
+            default => 'gray',
+        };
+    }
+
+    public function getLabel(): ?string
     {
         return ucfirst($this->value);
     }

@@ -55,7 +55,7 @@ class MigrateUsers extends Command
             } else {
                 $password = Str::random(12);
 
-                $newUser = new User();
+                $newUser = new User;
                 $newUser->name = $username;
                 $newUser->username = $username;
                 $newUser->email = $legacyUser->email;
@@ -86,14 +86,14 @@ class MigrateUsers extends Command
 
         if (! is_null($user->twitter)) {
             $links[] = [
-                'type' => LinkType::twitter,
+                'type' => LinkType::Twitter,
                 'value' => 'https://twitter.com/'.str($user->twitter)->after('@'),
             ];
         }
 
         if (! is_null($user->facebook)) {
             $links[] = [
-                'type' => LinkType::facebook,
+                'type' => LinkType::Facebook,
                 'value' => 'https://facebook.com/'.str($user->facebook)->after('facebook.com/'),
             ];
         }

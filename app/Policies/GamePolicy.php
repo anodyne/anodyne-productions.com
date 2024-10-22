@@ -34,7 +34,9 @@ class GamePolicy
 
     public function update(User $user, Game $game): Response
     {
-        return $this->deny();
+        return $user->isAdmin || $user->isStaff
+            ? $this->allow()
+            : $this->deny();
     }
 
     public function delete(User $user, Game $game): Response

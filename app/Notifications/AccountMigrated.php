@@ -14,9 +14,7 @@ class AccountMigrated extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     /**
      * Get the notification's delivery channels.
@@ -33,10 +31,10 @@ class AccountMigrated extends Notification implements ShouldQueue
      */
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage())
+        return (new MailMessage)
             ->subject('Anodyne Account Migrated')
             ->markdown('mail.migration.account', [
-                'url' => route('filament.auth.login'),
+                'url' => route('filament.admin.auth.login'),
             ]);
     }
 

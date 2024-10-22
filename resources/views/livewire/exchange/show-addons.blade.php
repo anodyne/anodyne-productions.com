@@ -7,7 +7,7 @@
                         @svg('fluent-search', 'h-5 w-5 text-gray-400')
                     </x-slot>
 
-                    <input type="text" wire:model="filters.search" class="appearance-none bg-transparent border-none p-0 focus:outline-none focus:ring-0 block w-ful text-sm" placeholder="Find an add-on...">
+                    <input type="text" wire:model.live="filters.search" class="appearance-none bg-transparent border-none p-0 focus:outline-none focus:ring-0 block w-ful text-sm" placeholder="Find an add-on...">
 
                     @if ($filters['search'])
                         <x-slot name="trailingAddOn">
@@ -27,16 +27,16 @@
 
             <ul class="space-y-1">
                 <li class="px-3 relative flex items-center">
-                    <x-input.checkbox label="Themes" for="type_theme" wire:model="filters.type" value="theme" />
+                    <x-input.checkbox label="Themes" for="type_theme" wire:model.live="filters.type" value="theme" />
                 </li>
                 <li class="px-3 relative flex items-center">
-                    <x-input.checkbox label="Extensions" for="type_extension" wire:model="filters.type" value="extension" />
+                    <x-input.checkbox label="Extensions" for="type_extension" wire:model.live="filters.type" value="extension" />
                 </li>
                 <li class="px-3 relative flex items-center">
-                    <x-input.checkbox label="Rank Images" for="type_rank" wire:model="filters.type" value="rank" />
+                    <x-input.checkbox label="Rank Images" for="type_rank" wire:model.live="filters.type" value="rank" />
                 </li>
                 <li class="px-3 relative flex items-center">
-                    <x-input.checkbox label="Genres" for="type_genre" wire:model="filters.type" value="genre" />
+                    <x-input.checkbox label="Genres" for="type_genre" wire:model.live="filters.type" value="genre" />
                 </li>
             </ul>
         </div>
@@ -49,7 +49,7 @@
             <div class="px-3 space-y-4">
                 <div class="flex flex-col space-y-0.5">
                     <label class="font-medium">Minimum</label>
-                    <x-input.select wire:model="filters.min-version" class="text-sm">
+                    <x-input.select wire:model.live="filters.min-version" class="text-sm">
                         <option value="">All versions</option>
                         <option value="2.6.1">v2.6.1</option>
                         <option value="3.0.0">v3.0</option>
@@ -61,7 +61,7 @@
 
                 <div class="flex flex-col space-y-0.5">
                     <label class="font-medium">Maximum</label>
-                    <x-input.select wire:model="filters.max-version" class="text-sm">
+                    <x-input.select wire:model.live="filters.max-version" class="text-sm">
                         <option value="">All versions</option>
                         <option value="2.6.1">v2.6.1</option>
                         <option value="3.0.0">v3.0</option>

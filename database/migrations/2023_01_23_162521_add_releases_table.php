@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class() extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +18,7 @@ return new class() extends Migration
             $table->id();
             $table->string('version');
             $table->string('date')->nullable();
-            $table->string('severity')->default(ReleaseSeverity::patch->value);
+            $table->string('severity')->default(ReleaseSeverity::Patch);
             $table->text('notes')->nullable();
             $table->string('link')->default('https://anodyne-productions.com/nova');
             $table->string('upgrade_guide_link')->nullable();

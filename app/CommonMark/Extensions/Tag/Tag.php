@@ -11,8 +11,7 @@ class Tag extends AbstractBlock implements StringContainerInterface
         protected string $tag,
         protected array $attributes,
         protected string $literal = ''
-    ) {
-    }
+    ) {}
 
     public function getAttribute(string $key): ?string
     {

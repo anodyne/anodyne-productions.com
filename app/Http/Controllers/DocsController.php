@@ -15,7 +15,7 @@ class DocsController
 
     private const EXCLUDED = ['readme', 'license'];
 
-    public function __invoke(Documentation $docs, string $version = null, string $page = null)
+    public function __invoke(Documentation $docs, ?string $version = null, ?string $page = null)
     {
         if ($page === null) {
             if ($version !== null) {

@@ -11,6 +11,7 @@ use Filament\Tables;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Number;
 
 class IncompatibilityReport extends Page implements HasTable
 {
@@ -21,6 +22,8 @@ class IncompatibilityReport extends Page implements HasTable
     protected static ?string $navigationLabel = 'Incompatibility Report';
 
     protected static ?string $navigationIcon = 'flex-delete-square';
+
+    protected static ?int $navigationSort = 2;
 
     protected ?string $heading = 'Incompatibility Report';
 
@@ -43,19 +46,9 @@ class IncompatibilityReport extends Page implements HasTable
                 ->searchable(),
             Tables\Columns\TextColumn::make('version.version')->label('Version'),
             Tables\Columns\TextColumn::make('releaseSeries.name')->label('Nova version'),
-            Tables\Columns\BadgeColumn::make('addon.type')
-                ->label('Type')
-                ->enum(
-                    collect(AddonType::cases())
-                        ->flatMap(fn ($type) => [$type->value => $type->displayName()])
-                        ->all()
-                )
-                ->colors([
-                    'ring-1 ring-emerald-300 bg-emerald-400/10 text-emerald-500 dark:ring-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400' => AddonType::extension->value,
-                    'ring-1 ring-purple-300 dark:ring-purple-400/30 bg-purple-400/10 text-purple-500 dark:text-purple-400' => AddonType::theme->value,
-                    // 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-400' => AddonType::genre->value,
-                    'ring-1 ring-amber-300 bg-amber-400/10 text-amber-500 dark:ring-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400' => AddonType::rank->value,
-                ]),
+            Tables\Columns\TextColumn::make('addon.type')
+                ->badge()
+                ->label('Type'),
             Tables\Columns\TextColumn::make('user.name')->label('Reported by'),
             Tables\Columns\TextColumn::make('updated_at')->date()->label('Date'),
         ];
@@ -71,7 +64,7 @@ class IncompatibilityReport extends Page implements HasTable
                 ->relationship('addon', 'type')
                 ->options(
                     collect(AddonType::cases())
-                        ->flatMap(fn ($type) => [$type->value => $type->displayName()])
+                        ->flatMap(fn ($type) => [$type->value => $type->getLabel()])
                         ->all()
                 )
                 ->label('Type'),
@@ -83,7 +76,7 @@ class IncompatibilityReport extends Page implements HasTable
         return Compatibility::query()
             ->with('addon', 'releaseSeries')
             ->withWhereHas('version', fn ($query) => $query->published())
-            ->where('status', CompatibilityStatus::incompatible)
+            ->where('status', CompatibilityStatus::Incompatible)
             ->latest();
     }
 
@@ -124,9 +117,25 @@ class IncompatibilityReport extends Page implements HasTable
         ];
     }
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
         return auth()->user()->isStaff || auth()->user()->isAdmin;
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        $count = Compatibility::query()
+            ->with('addon', 'releaseSeries')
+            ->withWhereHas('version', fn ($query) => $query->published())
+            ->where('status', CompatibilityStatus::Incompatible)
+            ->count();
+
+        return $count > 0 ? Number::format($count) : null;
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return 'danger';
     }
 
     protected function getTableEmptyStateHeading(): ?string

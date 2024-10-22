@@ -32,7 +32,7 @@ class BadgeDelimiterProcess implements DelimiterProcessorInterface
 
     public function process(AbstractStringContainer $opener, AbstractStringContainer $closer, int $delimiterUse): void
     {
-        $badge = new Badge();
+        $badge = new Badge;
 
         $next = $opener->next();
         while ($next !== null && $next !== $closer) {

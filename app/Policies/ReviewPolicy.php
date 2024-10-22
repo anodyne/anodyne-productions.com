@@ -39,9 +39,7 @@ class ReviewPolicy
      */
     public function update(User $user, Review $review)
     {
-        return $user->isStaff || $user->isAdmin
-            ? $this->allow()
-            : $this->deny();
+        return $this->deny();
     }
 
     /**
@@ -49,7 +47,7 @@ class ReviewPolicy
      */
     public function delete(User $user, Review $review)
     {
-        return $user->isStaff || $user->isAdmin
+        return $user->is_admin
             ? $this->allow()
             : $this->deny();
     }

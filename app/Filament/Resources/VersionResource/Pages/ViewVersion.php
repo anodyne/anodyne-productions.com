@@ -10,7 +10,7 @@ class ViewVersion extends ViewRecord
 {
     protected static string $resource = VersionResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\EditAction::make(),

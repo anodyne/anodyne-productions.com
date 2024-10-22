@@ -11,6 +11,7 @@ use Filament\Tables;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Number;
 
 class RatingsReport extends Page implements HasTable
 {
@@ -21,6 +22,8 @@ class RatingsReport extends Page implements HasTable
     protected static ?string $navigationLabel = 'Poor Ratings Report';
 
     protected static ?string $navigationIcon = 'flex-thumbs-down';
+
+    protected static ?int $navigationSort = 4;
 
     protected ?string $heading = 'Poor Ratings Report';
 
@@ -39,18 +42,7 @@ class RatingsReport extends Page implements HasTable
             Tables\Columns\TextColumn::make('name')
                 ->description(fn (Model $record) => $record->user->name)
                 ->searchable(),
-            Tables\Columns\BadgeColumn::make('type')
-                ->enum(
-                    collect(AddonType::cases())
-                        ->flatMap(fn ($type) => [$type->value => $type->displayName()])
-                        ->all()
-                )
-                ->colors([
-                    'ring-1 ring-emerald-300 bg-emerald-400/10 text-emerald-500 dark:ring-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400' => AddonType::extension->value,
-                    'ring-1 ring-purple-300 dark:ring-purple-400/30 bg-purple-400/10 text-purple-500 dark:text-purple-400' => AddonType::theme->value,
-                    // 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-400' => AddonType::genre->value,
-                    'ring-1 ring-amber-300 bg-amber-400/10 text-amber-500 dark:ring-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400' => AddonType::rank->value,
-                ]),
+            Tables\Columns\TextColumn::make('type')->badge(),
             Tables\Columns\TextColumn::make('products.name')
                 ->label('Nova version(s)'),
             Tables\Columns\TextColumn::make('rating')
@@ -72,9 +64,7 @@ class RatingsReport extends Page implements HasTable
         return [
             Tables\Filters\SelectFilter::make('type')
                 ->multiple()
-                ->options(
-                    collect(AddonType::cases())->flatMap(fn ($type) => [$type->value => $type->displayName()])->all()
-                ),
+                ->options(AddonType::class),
             Tables\Filters\SelectFilter::make('author')
                 ->relationship('user', 'name')
                 ->multiple(),
@@ -94,9 +84,25 @@ class RatingsReport extends Page implements HasTable
             ->orderBy('rating');
     }
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
         return auth()->user()->isStaff || auth()->user()->isAdmin;
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        $count = Addon::query()
+            ->where('rating', '>', 0)
+            ->where('rating', '<', 3)
+            ->orderBy('rating')
+            ->count();
+
+        return $count > 0 ? Number::format($count) : null;
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return 'warning';
     }
 
     protected function getTableEmptyStateHeading(): ?string

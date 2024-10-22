@@ -10,7 +10,7 @@ class ViewReleaseSeries extends ViewRecord
 {
     protected static string $resource = ReleaseSeriesResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\EditAction::make(),

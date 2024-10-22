@@ -2,7 +2,6 @@
 
 namespace App\Filament\Pages;
 
-use App\Enums\AddonType;
 use App\Filament\Resources\AddonResource;
 use App\Models\Version;
 use Closure;
@@ -11,6 +10,7 @@ use Filament\Tables;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Number;
 
 class MissingVersionProductsReport extends Page implements HasTable
 {
@@ -21,6 +21,8 @@ class MissingVersionProductsReport extends Page implements HasTable
     protected static ?string $navigationLabel = 'Missing Version Product(s) Report';
 
     protected static ?string $navigationIcon = 'flex-alert-diamond';
+
+    protected static ?int $navigationSort = 3;
 
     protected ?string $heading = 'Missing Version Product(s) Report';
 
@@ -38,18 +40,9 @@ class MissingVersionProductsReport extends Page implements HasTable
         return [
             Tables\Columns\TextColumn::make('addon.name')->searchable(),
             Tables\Columns\TextColumn::make('version'),
-            Tables\Columns\BadgeColumn::make('addon.type')
-                ->enum(
-                    collect(AddonType::cases())
-                        ->flatMap(fn ($type) => [$type->value => $type->displayName()])
-                        ->all()
-                )
-                ->colors([
-                    'ring-1 ring-emerald-300 bg-emerald-400/10 text-emerald-500 dark:ring-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400' => AddonType::extension->value,
-                    'ring-1 ring-purple-300 dark:ring-purple-400/30 bg-purple-400/10 text-purple-500 dark:text-purple-400' => AddonType::theme->value,
-                    // 'bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-400' => AddonType::genre->value,
-                    'ring-1 ring-amber-300 bg-amber-400/10 text-amber-500 dark:ring-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400' => AddonType::rank->value,
-                ]),
+            Tables\Columns\TextColumn::make('addon.type')
+                ->badge()
+                ->label('Type'),
             Tables\Columns\IconColumn::make('published')
                 ->alignCenter()
                 ->trueIcon('flex-check-square')
@@ -72,9 +65,21 @@ class MissingVersionProductsReport extends Page implements HasTable
         return Version::with('addon')->whereDoesntHave('product');
     }
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
         return auth()->user()->isStaff || auth()->user()->isAdmin;
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        $count = Version::with('addon')->whereDoesntHave('product')->count();
+
+        return $count > 0 ? Number::format($count) : null;
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return 'danger';
     }
 
     protected function getTableEmptyStateHeading(): ?string

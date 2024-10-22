@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\DocsController;
-use App\Http\Livewire\AddonDetail;
-use App\Http\Livewire\AddonList;
+use App\Livewire\AddonDetail;
+use App\Livewire\AddonList;
 use App\Models\Sponsor;
 use Illuminate\Support\Facades\Route;
 

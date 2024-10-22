@@ -10,7 +10,7 @@ class ViewSponsorTier extends ViewRecord
 {
     protected static string $resource = SponsorTierResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\EditAction::make(),

@@ -22,6 +22,7 @@ class Release extends Model
         'upgrade_guide_link',
         'published',
         'release_series_id',
+        'has_heartbeat_endpoint',
     ];
 
     protected $hidden = ['created_at', 'updated_at', 'id'];
@@ -30,6 +31,7 @@ class Release extends Model
         'date' => 'datetime',
         'severity' => ReleaseSeverity::class,
         'published' => 'boolean',
+        'has_heartbeat_endpoint' => 'boolean',
     ];
 
     public function games(): HasMany

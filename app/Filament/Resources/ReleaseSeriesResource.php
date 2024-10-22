@@ -5,11 +5,16 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ReleaseSeriesResource\Pages;
 use App\Filament\Resources\ReleaseSeriesResource\RelationManagers\ReleasesRelationManager;
 use App\Models\ReleaseSeries;
-use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
-use Filament\Tables;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
 class ReleaseSeriesResource extends Resource
@@ -28,53 +33,46 @@ class ReleaseSeriesResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')->required()->columnSpanFull(),
-                Forms\Components\Toggle::make('include_in_compatibility'),
+                TextInput::make('name')->required()->columnSpanFull(),
+                Toggle::make('include_in_compatibility'),
             ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn (Builder $query): Builder => $query->ordered())
+            ->reorderable('order_column')
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                TextColumn::make('name')
                     ->size('lg')
                     ->weight('bold')
                     ->alignLeft()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('releases_count')
+                TextColumn::make('releases_count')
                     ->counts('releases')
                     ->alignLeft()
                     ->label('# of releases'),
-                Tables\Columns\ToggleColumn::make('include_in_compatibility'),
-            ])
-            ->filters([
-                //
+                ToggleColumn::make('include_in_compatibility'),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()
+                ViewAction::make()
                     ->icon('flex-eye')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary'),
-                Tables\Actions\EditAction::make()
+                    ->color('gray'),
+                EditAction::make()
                     ->icon('flex-edit-circle')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary')
+                    ->color('gray')
                     ->successNotificationTitle('Release series updated'),
-                Tables\Actions\DeleteAction::make()
+                DeleteAction::make()
                     ->icon('flex-delete-bin')
                     ->size('md')
                     ->iconButton()
                     ->successNotificationTitle('Release series deleted'),
-            ])
-            ->bulkActions([]);
-    }
-
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()->ordered();
+            ]);
     }
 
     public static function getRelations(): array

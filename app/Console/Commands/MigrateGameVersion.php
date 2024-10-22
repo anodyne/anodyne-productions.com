@@ -34,7 +34,7 @@ class MigrateGameVersion extends Command
         $release = Release::firstOrCreate(
             ['version' => '2.7.3'],
             [
-                'severity' => ReleaseSeverity::patch,
+                'severity' => ReleaseSeverity::Patch,
                 'date' => Carbon::create(2023, 1, 7),
                 'notes' => "Nova 2.7.3 addresses an issue that games with the BLANK genre have had doing the update to 2.7. We have made some small updates to the UI for update notifications that you'll see in future updates. We've also added some analytics gathering to the install and update processes to help with future support and product decisions. When updating this version of Nova, we recommend updating the index.php file as well.",
                 'link' => 'https://anodyne-productions.com/nova',

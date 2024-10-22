@@ -20,6 +20,6 @@ class Markdown extends BUKMarkdown
             return new GithubFlavoredMarkdownConverter($options);
         }
 
-        return new CommonMarkConverter();
+        return new CommonMarkConverter;
     }
 }

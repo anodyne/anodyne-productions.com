@@ -4,15 +4,33 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
-enum AddonType: string
+use Filament\Support\Contracts\HasColor;
+use Filament\Support\Contracts\HasLabel;
+
+enum AddonType: string implements HasColor, HasLabel
 {
-    case extension = 'extension';
+    case Extension = 'extension';
 
     // case genre = 'genre';
 
-    case rank = 'rank';
+    case Rank = 'rank';
 
-    case theme = 'theme';
+    case Theme = 'theme';
+
+    public function getColor(): string|array|null
+    {
+        return match ($this) {
+            self::Extension => 'success',
+            self::Rank => 'warning',
+            self::Theme => 'info',
+            default => 'gray',
+        };
+    }
+
+    public function getLabel(): ?string
+    {
+        return ucfirst($this->value);
+    }
 
     public function displayName(): string
     {
@@ -22,18 +40,18 @@ enum AddonType: string
     public function badgeColor(): string
     {
         return match ($this) {
-            self::extension => 'emerald',
-            self::rank => 'amber',
-            self::theme => 'purple',
+            self::Extension => 'success',
+            self::Rank => 'warning',
+            self::Theme => 'info',
         };
     }
 
     public function icon(): string
     {
         return match ($this) {
-            self::extension => 'flex-puzzle',
-            self::rank => 'flex-chevron-double-up',
-            self::theme => 'flex-paint-brush',
+            self::Extension => 'flex-puzzle',
+            self::Rank => 'flex-chevron-double-up',
+            self::Theme => 'flex-paint-brush',
         };
     }
 }

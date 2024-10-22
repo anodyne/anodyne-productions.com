@@ -33,11 +33,11 @@ class AddonsMigrated extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage())
+        return (new MailMessage)
             ->subject('Your AnodyneXtras have been migrated')
             ->markdown('mail.migration.addons', [
                 'addons' => $notifiable->addons,
-                'url' => route('filament.auth.login'),
+                'url' => route('filament.admin.auth.login'),
                 'name' => $notifiable->name,
             ]);
     }

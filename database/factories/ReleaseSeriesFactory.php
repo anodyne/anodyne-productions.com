@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\ReleaseSeries;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,15 +10,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ReleaseSeriesFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+    protected $model = ReleaseSeries::class;
+
     public function definition(): array
     {
         return [
-            'name' => 'Nova '.$this->faker->semver(),
+            'name' => 'Nova '.fake()->semver(),
+            'include_in_compatibility' => fake()->boolean(),
         ];
     }
 }

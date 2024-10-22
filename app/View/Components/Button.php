@@ -10,8 +10,7 @@ class Button extends Component
         public ?string $href = null,
         public string $variant = 'primary',
         public string $size = 'md'
-    ) {
-    }
+    ) {}
 
     public function baseStyles()
     {

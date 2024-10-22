@@ -10,7 +10,7 @@ class ListReleaseSeries extends ListRecords
 {
     protected static string $resource = ReleaseSeriesResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
             Actions\CreateAction::make(),

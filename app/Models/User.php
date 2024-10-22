@@ -20,12 +20,12 @@ use Spatie\MediaLibrary\HasMedia;
 
 class User extends Authenticatable implements FilamentUser, HasMedia
 {
+    use CausesActivity;
     use HasApiTokens;
     use HasFactory;
-    use Notifiable;
-    use LogsActivity;
-    use CausesActivity;
     use InteractsWithMedia;
+    use LogsActivity;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -70,6 +70,11 @@ class User extends Authenticatable implements FilamentUser, HasMedia
         'links' => Links::class,
     ];
 
+    public function canAccessFilament(): bool
+    {
+        return true;
+    }
+
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
@@ -80,7 +85,7 @@ class User extends Authenticatable implements FilamentUser, HasMedia
         return $this->hasOne(Sponsor::class);
     }
 
-    public function canAccessFilament(): bool
+    public function canAccessPanel(\Filament\Panel $panel): bool
     {
         return true;
     }
@@ -88,21 +93,21 @@ class User extends Authenticatable implements FilamentUser, HasMedia
     public function isAdmin(): Attribute
     {
         return Attribute::make(
-            get: fn ($value): bool => $this->role === UserRole::admin
+            get: fn ($value): bool => $this->role === UserRole::Admin
         );
     }
 
     public function isStaff(): Attribute
     {
         return Attribute::make(
-            get: fn ($value): bool => $this->role === UserRole::staff
+            get: fn ($value): bool => $this->role === UserRole::Staff
         );
     }
 
     public function isUser(): Attribute
     {
         return Attribute::make(
-            get: fn ($value): bool => $this->role === UserRole::user
+            get: fn ($value): bool => $this->role === UserRole::User
         );
     }
 

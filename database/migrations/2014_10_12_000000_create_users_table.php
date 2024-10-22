@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
-            $table->string('role', 5)->default(UserRole::user->value);
+            $table->string('role', 5)->default(UserRole::User);
             $table->boolean('is_exchange_author')->default(true);
             $table->boolean('is_galaxy_author')->default(true);
             $table->timestamps();

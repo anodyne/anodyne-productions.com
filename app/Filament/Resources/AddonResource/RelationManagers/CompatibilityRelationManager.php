@@ -5,12 +5,19 @@ namespace App\Filament\Resources\AddonResource\RelationManagers;
 use App\Enums\CompatibilityStatus;
 use App\Models\Compatibility;
 use App\Models\ReleaseSeries;
-use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
-use Filament\Tables;
+use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Table;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class CompatibilityRelationManager extends RelationManager
 {
@@ -18,99 +25,92 @@ class CompatibilityRelationManager extends RelationManager
 
     protected static ?string $modelLabel = 'compatibility report';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('user_id')
+                Select::make('user_id')
                     ->relationship('user', 'name')
-                    ->searchable()
                     ->preload()
-                    ->visible(fn () => ! auth()->user()->isUser),
-                Forms\Components\Select::make('status')
+                    ->searchable()
+                    ->visible(fn (): bool => ! auth()->user()->is_user),
+                Select::make('status')
                     ->options([
-                        CompatibilityStatus::compatible->value => 'Compatible',
-                        CompatibilityStatus::compatibleOverride->value => 'Compatible (Override)',
-                        CompatibilityStatus::incompatible->value => 'Incompatible',
-                        CompatibilityStatus::incompatibleOverride->value => 'Incompatible (Override)',
+                        CompatibilityStatus::Compatible->value => 'Compatible',
+                        CompatibilityStatus::CompatibleOverride->value => 'Compatible (Override)',
+                        CompatibilityStatus::Incompatible->value => 'Incompatible',
+                        CompatibilityStatus::IncompatibleOverride->value => 'Incompatible (Override)',
                     ]),
-                Forms\Components\Select::make('version_id')
+                Select::make('version_id')
+                    ->label('Add-on version')
                     ->options(function (RelationManager $livewire): array {
                         return $livewire->ownerRecord->versions()->pluck('version', 'id')->toArray();
-                    })
-                    ->label('Add-on version'),
-                Forms\Components\Select::make('release_series_id')
-                    ->options(ReleaseSeries::ordered()->get()->pluck('name', 'id'))
-                    ->label('Release series'),
-                Forms\Components\MarkdownEditor::make('notes')->columnSpanFull(),
+                    }),
+                Select::make('release_series_id')
+                    ->label('Release series')
+                    ->options(ReleaseSeries::ordered()->get()->pluck('name', 'id')),
+                MarkdownEditor::make('notes')->columnSpanFull(),
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
-                    ->icon(fn (Compatibility $record) => filled($record->notes) ? 'flex-notepad-text' : '')
+                TextColumn::make('user.name')
+                    ->icon(fn (Compatibility $record): ?string => filled($record->notes) ? 'flex-notepad-text' : null)
                     ->iconPosition('after')
-                    ->visible(fn () => ! auth()->user()->isUser),
-                Tables\Columns\TextColumn::make('version.version')->label('Add-on version'),
-                Tables\Columns\TextColumn::make('releaseSeries.name'),
-                Tables\Columns\BadgeColumn::make('status')
-                    ->formatStateUsing(fn (Compatibility $record) => $record->status->displayName())
+                    ->visible(fn (): bool => ! auth()->user()->is_user),
+                TextColumn::make('version.version')->label('Add-on version'),
+                TextColumn::make('releaseSeries.name'),
+                TextColumn::make('status')
+                    ->badge()
                     ->colors([
-                        'ring-1 ring-emerald-300 bg-emerald-400/10 text-emerald-500 dark:ring-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400' => 'compatible',
-                        'ring-1 ring-rose-300 bg-rose-400/10 text-rose-500 dark:ring-rose-400/30 dark:bg-rose-400/10 dark:text-rose-400' => 'incompatible',
-                    ]),
+                        'success' => 'compatible',
+                        'danger' => 'incompatible',
+                    ])
+                    ->formatStateUsing(fn (Compatibility $record): ?string => $record->status->getLabel()),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('releaseSeries.name')
+                SelectFilter::make('releaseSeries.name')
                     ->label('Release series')
                     ->options(fn () => ReleaseSeries::ordered()->get()->pluck('name', 'id')),
-                Tables\Filters\SelectFilter::make('status')
+                SelectFilter::make('status')
                     ->multiple()
                     ->options([
-                        CompatibilityStatus::compatible->value => 'Compatible',
-                        CompatibilityStatus::compatibleOverride->value => 'Compatible (Override)',
-                        CompatibilityStatus::incompatible->value => 'Incompatible',
-                        CompatibilityStatus::incompatibleOverride->value => 'Incompatible (Override)',
+                        CompatibilityStatus::Compatible->value => 'Compatible',
+                        CompatibilityStatus::CompatibleOverride->value => 'Compatible (Override)',
+                        CompatibilityStatus::Incompatible->value => 'Incompatible',
+                        CompatibilityStatus::IncompatibleOverride->value => 'Incompatible (Override)',
                     ]),
-                Tables\Filters\Filter::make('has_notes')
-                    ->query(fn (Builder $query) => $query->whereNotNull('notes'))
-                    ->toggle(),
-                Tables\Filters\Filter::make('is_override')
+                Filter::make('has_notes')
+                    ->toggle()
+                    ->query(fn (Builder $query): Builder => $query->whereNotNull('notes')),
+                Filter::make('is_override')
                     ->label('Override status')
-                    ->query(fn (Builder $query) => $query->where('status', 'like', '%-override'))
-                    ->toggle(),
-                Tables\Filters\Filter::make('addon_scope')
+                    ->toggle()
+                    ->query(fn (Builder $query): Builder => $query->where('status', 'like', '%-override')),
+                Filter::make('addon_scope')
                     ->label('Add-on level report')
-                    ->query(fn (Builder $query) => $query->whereNull('version_id'))
-                    ->toggle(),
+                    ->toggle()
+                    ->query(fn (Builder $query): Builder => $query->whereNull('version_id')),
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make()->label('New compatibility report'),
+                CreateAction::make()->label('New compatibility report'),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()
-                    ->icon('flex-eye')
-                    ->size('md')
-                    ->iconButton()
-                    ->color('secondary'),
-                Tables\Actions\DeleteAction::make()
-                    ->icon('flex-delete-bin')
-                    ->size('md')
-                    ->iconButton(),
+                ViewAction::make(),
+                DeleteAction::make(),
             ])
-            ->bulkActions([]);
+            ->emptyStateHeading('No compatibility reports found')
+            ->emptyStateDescription(null)
+            ->emptyStateIcon('uxl-like-sparkling');
     }
 
-    protected function getTableEmptyStateHeading(): ?string
+    public static function getBadge(Model $ownerRecord, string $pageClass): ?string
     {
-        return 'No compatibility reports found';
-    }
+        $count = $ownerRecord->compatibility()->count();
 
-    protected function getTableEmptyStateIcon(): ?string
-    {
-        return 'uxl-like-sparkling';
+        return $count > 0 ? $count : null;
     }
 }

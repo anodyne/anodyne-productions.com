@@ -6,12 +6,21 @@ use App\Enums\LinkType;
 use App\Enums\UserRole;
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
-use Closure;
-use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
-use Filament\Tables;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Filters\TernaryFilter;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,44 +40,38 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Card::make()
+                Section::make()
                     ->schema([
-                        Forms\Components\TextInput::make('name')
+                        TextInput::make('name')
                             ->required()
                             ->reactive()
-                            ->afterStateUpdated(function (?Model $record, Closure $set, $state) {
+                            ->afterStateUpdated(function (?User $record, Set $set, $state) {
                                 if (blank($record->username)) {
                                     $set('username', str($state)->slug());
                                 }
                             })
                             ->columnSpan(2),
-                        Forms\Components\TextInput::make('email')
+                        TextInput::make('email')
                             ->required()
                             ->columnSpan(2),
-                        Forms\Components\TextInput::make('username')
+                        TextInput::make('username')
                             ->required()
                             ->helperText('This will be used in the URL of your profile page as well as the URL(s) of any add-on(s) you create. Please use caution when changing this value.')
                             ->columnSpan(2),
-                        Forms\Components\Select::make('role')
+                        Select::make('role')
                             ->required()
                             ->placeholder('Select a role')
-                            ->options(
-                                collect(UserRole::cases())
-                                    ->flatMap(fn ($case) => [$case->value => $case->displayName()])
-                                    ->all()
-                            )
+                            ->options(UserRole::class)
                             ->visible(fn () => auth()->user()->isAdmin)
                             ->columnSpan(2),
-                        Forms\Components\Toggle::make('is_addon_author')
+                        Toggle::make('is_addon_author')
                             ->label('Add-on author')
                             ->helperText('Can this user create add-ons?')
                             ->columnSpan('full'),
-                        Forms\Components\Repeater::make('links')
+                        Repeater::make('links')
                             ->schema([
-                                Forms\Components\Select::make('type')->options(
-                                    collect(LinkType::cases())->flatMap(fn ($linkType) => [$linkType->value => $linkType->displayName()])->all()
-                                ),
-                                Forms\Components\TextInput::make('value')->requiredWith('type'),
+                                Select::make('type')->options(LinkType::class),
+                                TextInput::make('value')->requiredWith('type'),
                             ])
                             ->columnSpan(2)
                             ->columns(1),
@@ -82,7 +85,7 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                TextColumn::make('name')
                     ->description(fn (User $record) => $record->email)
                     ->searchable(query: function (Builder $query, string $search): Builder {
                         return $query->where(
@@ -91,28 +94,20 @@ class UserResource extends Resource
                                 ->orWhere('email', 'like', "%{$search}%")
                         );
                     }),
-                Tables\Columns\BadgeColumn::make('role')
-                    ->enum(
-                        collect(UserRole::cases())->flatMap(fn ($role) => [$role->value => $role->displayName()])->all()
-                    )
-                    ->colors([
-                        'ring-1 ring-purple-300 dark:ring-purple-400/30 bg-purple-400/10 text-purple-500 dark:text-purple-400' => UserRole::admin->value,
-                        'ring-1 ring-emerald-300 bg-emerald-400/10 text-emerald-500 dark:ring-emerald-400/30 dark:bg-emerald-400/10 dark:text-emerald-400' => UserRole::staff->value,
-                        'ring-1 ring-slate-300 bg-slate-400/10 text-slate-500 dark:ring-slate-400/30 dark:bg-slate-400/10 dark:text-slate-400' => UserRole::user->value,
-                    ]),
-                Tables\Columns\IconColumn::make('is_addon_author')
+                TextColumn::make('role')->badge(),
+                IconColumn::make('is_addon_author')
                     ->boolean()
                     ->label('Add-on author')
                     ->trueIcon('flex-check-square')
                     ->falseIcon('flex-delete-square'),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('role')
+                SelectFilter::make('role')
                     ->options(array_map(
                         fn ($role) => $role->value,
                         UserRole::cases()
                     )),
-                Tables\Filters\TernaryFilter::make('is_addon_author')->label('Is add-on author'),
+                TernaryFilter::make('is_addon_author')->label('Is add-on author'),
             ])
             ->actions([
                 // Tables\Actions\ViewAction::make()
@@ -120,17 +115,16 @@ class UserResource extends Resource
                 //     ->size('md')
                 //     ->iconButton()
                 //     ->color('secondary'),
-                Tables\Actions\EditAction::make()
+                EditAction::make()
                     ->icon('flex-edit-circle')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary'),
-                Tables\Actions\DeleteAction::make()
+                    ->color('gray'),
+                DeleteAction::make()
                     ->icon('flex-delete-bin')
                     ->size('md')
                     ->iconButton(),
-            ])
-            ->bulkActions([]);
+            ]);
     }
 
     public static function getRelations(): array

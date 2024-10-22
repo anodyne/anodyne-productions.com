@@ -3,7 +3,7 @@
     'disabled' => false,
 ])
 
-<label x-data="{ on: @entangle($attributes->wire('model')) }" class="flex items-center">
+<label x-data="{ on: @entangle($attributes->wire('model')).live }" class="flex items-center">
     <button
         type="button"
         x-on:click.prevent="on = !on"

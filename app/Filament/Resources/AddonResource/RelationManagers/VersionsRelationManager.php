@@ -3,14 +3,21 @@
 namespace App\Filament\Resources\AddonResource\RelationManagers;
 
 use App\Models\Version;
-use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
-use Filament\Resources\Table;
-use Filament\Tables;
+use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
+use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Relation;
 
 class VersionsRelationManager extends RelationManager
 {
@@ -18,12 +25,12 @@ class VersionsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'version';
 
-    public static function form(Form $form): Form
+    public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('version')->required(),
-                Forms\Components\Select::make('product')
+                TextInput::make('version')->required(),
+                Select::make('product')
                     ->label('Supported Nova version')
                     ->required()
                     ->multiple()
@@ -31,87 +38,70 @@ class VersionsRelationManager extends RelationManager
                     ->relationship('product', 'name', fn (Builder $query) => $query->published())
                     ->preload()
                     ->maxItems(1),
-                Forms\Components\Select::make('releaseSeries')
+                Select::make('releaseSeries')
                     ->label('Supported Nova release series')
                     ->required()
                     ->multiple()
                     ->placeholder('Select Nova release series')
                     ->relationship('releaseSeries', 'name')
                     ->preload(),
-                Forms\Components\MarkdownEditor::make('release_notes')->columnSpanFull(),
-                Forms\Components\MarkdownEditor::make('install_instructions')
+                MarkdownEditor::make('release_notes')->columnSpanFull(),
+                MarkdownEditor::make('install_instructions')
                     ->helperText('If you provide install instructions for the version, those will be displayed when the version is selected. Otherwise, the install instructions on the add-on will be used.')
                     ->columnSpanFull(),
-                Forms\Components\MarkdownEditor::make('upgrade_instructions')->columnSpanFull(),
-                Forms\Components\MarkdownEditor::make('credits')
+                MarkdownEditor::make('upgrade_instructions')->columnSpanFull(),
+                MarkdownEditor::make('credits')
                     ->helperText('Provide any credits you feel are necessary and specific to this version of your add-on')
                     ->columnSpanFull(),
-                Forms\Components\SpatieMediaLibraryFileUpload::make('filename')
+                SpatieMediaLibraryFileUpload::make('filename')
                     ->columnSpanFull()
                     ->collection('downloads')
                     ->disk(app()->environment('local') ? 'public' : 'r2-addons')
                     ->customProperties(fn (Model $record) => ['user_id' => $record->addon->user_id]),
-                Forms\Components\Toggle::make('published')->default(true),
+                Toggle::make('published')->default(true),
             ]);
     }
 
-    public static function table(Table $table): Table
+    public function table(Table $table): Table
     {
         return $table
+            ->defaultSort('version', 'desc')
             ->columns([
-                Tables\Columns\TextColumn::make('version')
+                TextColumn::make('version')
                     ->sortable()
-                    ->description(
-                        fn (Version $record): string => $record->getFirstMedia('downloads')?->name ?? ''
-                    ),
-                Tables\Columns\TextColumn::make('downloads_count')
+                    ->description(fn (Version $record): ?string => $record->getFirstMedia('downloads')?->name ?? null),
+                TextColumn::make('downloads_count')
                     ->counts('downloads')
                     ->label('Downloads'),
-                Tables\Columns\TextColumn::make('product.name')->label('Nova version'),
-                Tables\Columns\TextColumn::make('releaseSeries.name')->label('Nova releases'),
-                Tables\Columns\ToggleColumn::make('published'),
-            ])
-            ->filters([
-                //
+                TextColumn::make('product.name')->label('Nova version'),
+                TextColumn::make('releaseSeries.name')->label('Nova releases'),
+                ToggleColumn::make('published'),
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make()
+                CreateAction::make()
+                    ->button()
                     ->successNotificationTitle('New add-on version created'),
             ])
             ->actions([
-                Tables\Actions\EditAction::make()
-                    ->icon('flex-edit-circle')
-                    ->size('md')
-                    ->iconButton()
-                    ->color('secondary')
+                EditAction::make()
                     ->successNotificationTitle('Add-on version updated'),
-                Tables\Actions\DeleteAction::make()
-                    ->icon('flex-delete-bin')
-                    ->size('md')
-                    ->iconButton()
+                DeleteAction::make()
                     ->successNotificationTitle('Add-on version deleted'),
             ])
-            ->bulkActions([])
-            ->defaultSort('version', 'desc');
+            ->emptyStateHeading('No versions found')
+            ->emptyStateDescription('Create a new version and upload a zip file.')
+            ->emptyStateIcon('uxl-download')
+            ->emptyStateActions([
+                CreateAction::make()
+                    ->button()
+                    ->successNotificationTitle('New add-on version created'),
+            ]);
     }
 
-    protected function getTableEmptyStateHeading(): ?string
+    public static function getBadge(Model $ownerRecord, string $pageClass): ?string
     {
-        return 'No versions found';
-    }
+        $count = $ownerRecord->versions()->count();
 
-    protected function getTableEmptyStateDescription(): ?string
-    {
-        return 'Create a new version and upload a zip file.';
-    }
-
-    protected function getTableEmptyStateIcon(): ?string
-    {
-        return 'uxl-download';
-    }
-
-    protected function getTableQuery(): Builder|Relation
-    {
-        return parent::getTableQuery()->with('product');
+        return $count > 0 ? $count : null;
     }
 }

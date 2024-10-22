@@ -5,10 +5,10 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Models\Product;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Table;
 
 class ProductResource extends Resource
 {
@@ -31,8 +31,8 @@ class ProductResource extends Resource
                     Forms\Components\RichEditor::make('description')->columnSpan('full'),
                     Forms\Components\Toggle::make('published'),
                 ])
-                ->columns(2)
-                ->columnSpanFull(),
+                    ->columns(2)
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -59,12 +59,12 @@ class ProductResource extends Resource
                     ->icon('flex-eye')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary'),
+                    ->color('gray'),
                 Tables\Actions\EditAction::make()
                     ->icon('flex-edit-circle')
                     ->size('md')
                     ->iconButton()
-                    ->color('secondary'),
+                    ->color('gray'),
                 Tables\Actions\DeleteAction::make()
                     ->icon('flex-delete-bin')
                     ->size('md')

@@ -1,1 +1,0 @@
-<x-logos.anodyne class="h-8 w-auto" gradient></x-logos.anodyne>

@@ -11,6 +11,6 @@ class TagExtension implements ExtensionInterface
     {
         $environment
             ->addBlockStartParser(TagBlockParser::blockStartParser())
-            ->addRenderer(Tag::class, new TagRenderer());
+            ->addRenderer(Tag::class, new TagRenderer);
     }
 }

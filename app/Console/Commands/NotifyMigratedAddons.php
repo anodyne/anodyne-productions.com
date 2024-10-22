@@ -30,7 +30,7 @@ class NotifyMigratedAddons extends Command
         $users = User::whereHas('addons')->whereNull('addon_migration_notified_at')->get();
 
         $users->each(function (User $user) {
-            $user->notify(new AddonsMigrated());
+            $user->notify(new AddonsMigrated);
 
             $user->forceFill(['addon_migration_notified_at' => now()]);
             $user->save();
