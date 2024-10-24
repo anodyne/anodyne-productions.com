@@ -27,7 +27,7 @@ class DeactivateInactiveGames extends Command
             Game::query()
                 ->isIncluded()
                 ->isNotInactive()
-                ->whereRelation('latestHeartbeat', 'last_published_post', '<', now()->subDays(30))
+                ->whereRelation('latestHeartbeat', 'last_published_post', '<', now()->subDays(90))
                 ->update(['status' => GameStatus::Abandoned]);
         });
     }
