@@ -200,6 +200,9 @@ class GameResource extends Resource
                                         'filament.infolists.entries.stat',
                                         ['short' => true]
                                     ),
+
+                                    TextEntry::make('latestHeartbeat.created_at')
+                                        ->getStateUsing(fn (Game $record): ?string => $record->latestHeartbeat?->created_at->format('M d, Y')),
                                 ]),
                             ])
                             ->visible(
@@ -309,10 +312,10 @@ class GameResource extends Resource
                                     ViewEntry::make('latestHeartbeat.last_published_post')
                                         ->label('Time since last published post')
                                         ->getStateUsing(function (Game $record): ?string {
-                                            return $record->latestHeartbeat->last_published_post->diffForHumans([
+                                            return $record->latestHeartbeat->last_published_post?->diffForHumans([
                                                 'options' => Carbon::JUST_NOW | Carbon::ONE_DAY_WORDS,
                                                 'syntax' => Carbon::DIFF_RELATIVE_TO_NOW,
-                                            ]);
+                                            ]) ?? 'No published posts';
                                         })
                                         ->view(
                                             'filament.infolists.entries.stat-small'
@@ -330,12 +333,10 @@ class GameResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(function (Builder $query): Builder {
-                return $query->unless(
-                    Auth::user()->is_admin,
-                    fn (Builder $q): Builder => $q->isIncluded()
-                );
-            })
+            ->query(
+                Game::query()
+                    ->unless(Auth::user()->is_admin, fn (Builder $query): Builder => $query->isIncluded())
+            )
             ->defaultSort('updated_at', 'desc')
             ->defaultPaginationPageOption(25)
             ->columns([
@@ -424,16 +425,14 @@ class GameResource extends Resource
                     ->toggleable()
                     ->toggledHiddenByDefault(),
                 TextColumn::make('total_posts')
-                    ->formatStateUsing(
-                        fn (mixed $state) => Number::format($state)
-                    )
+                    ->formatStateUsing(fn (?int $state): string => Number::format($state ?? 0))
+                    ->default(0)
                     ->sortable()
                     ->toggleable()
                     ->toggledHiddenByDefault(),
                 TextColumn::make('total_post_words')
-                    ->formatStateUsing(
-                        fn (mixed $state) => Number::format($state)
-                    )
+                    ->formatStateUsing(fn (?int $state): string => Number::format($state ?? 0))
+                    ->default(0)
                     ->sortable()
                     ->toggleable()
                     ->toggledHiddenByDefault(),
