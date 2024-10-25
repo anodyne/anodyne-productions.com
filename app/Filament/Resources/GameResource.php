@@ -12,6 +12,7 @@ use Filament\Forms\Components\Grid as FormGrid;
 use Filament\Forms\Components\Section as FormSection;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\Actions\Action as InfolistAction;
 use Filament\Infolists\Components\Grid;
@@ -53,11 +54,17 @@ class GameResource extends Resource
             FormSection::make()
                 ->schema([
                     TextInput::make('name'),
-                    Select::make('genre')->options(GameGenre::class),
+                    Select::make('genre')
+                        ->options(GameGenre::class),
                     TextInput::make('url')
                         ->url()
                         ->label('URL')
                         ->columnSpanFull(),
+                    Select::make('status')
+                        ->options(GameStatus::class)
+                        ->visible(Auth::user()->is_admin),
+                    Toggle::make('is_excluded')
+                        ->visible(Auth::user()->is_admin),
                 ])
                 ->columns(2)
                 ->columnSpanFull(),
