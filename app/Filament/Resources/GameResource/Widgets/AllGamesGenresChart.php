@@ -20,6 +20,7 @@ class AllGamesGenresChart extends ChartWidget
     {
         $data = Game::query()
             ->isIncluded()
+            ->isNotInactive()
             ->orderBy('genre', 'asc')
             ->selectRaw('genre, count(*) as total')
             ->groupBy('genre')

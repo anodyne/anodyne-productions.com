@@ -21,6 +21,7 @@ class AllGamesVersionsChart extends ChartWidget
         $data = Game::query()
             ->with('release')
             ->isIncluded()
+            ->isNotInactive()
             ->orderBy('release_id', 'asc')
             ->selectRaw('release_id, count(*) as total')
             ->groupBy('release_id')
