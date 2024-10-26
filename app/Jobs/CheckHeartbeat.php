@@ -34,7 +34,7 @@ class CheckHeartbeat implements ShouldQueue
 
             if ($response->status() >= 400) {
                 $status = match ($response->status()) {
-                    500, 502, 503, 504, 508 => GameStatus::Errored,
+                    403, 404, 500, 502, 503, 504, 508 => GameStatus::Errored,
                     default => GameStatus::Unknown,
                 };
 
