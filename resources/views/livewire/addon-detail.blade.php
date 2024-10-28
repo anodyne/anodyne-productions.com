@@ -187,7 +187,7 @@
                                         <span class="{{ $compatibility['status']->textColor() }}">{{ $series->name }}</span>
                                     </dt>
 
-                                    @if ($totalReports > 0 && ($compatibility['status'] === $compatibility['status']::compatible || $compatibility['status'] === $compatibility['status']::incompatible || $compatibility['status'] === $compatibility['status']::unknown))
+                                    @if ($totalReports > 0 && ($compatibility['status'] === $compatibility['status']::Compatible || $compatibility['status'] === $compatibility['status']::Incompatible || $compatibility['status'] === $compatibility['status']::Unknown))
                                         <dd class="pl-8 my-2">
                                             <div class="flex rounded-full h-3 w-full overflow-hidden">
                                                 <div class="bg-emerald-500" style="width:{{ ($compatibility['versionStats']->compatible / $totalReports) * 100 }}%"></div>
@@ -211,7 +211,7 @@
                                     </dd>
 
                                     @auth
-                                        @if ($compatibility['status'] !== $compatibility['status']::compatibleOverride && $compatibility['status'] !== $compatibility['status']::incompatibleOverride && auth()->id() !== $addon->user_id)
+                                        @if ($compatibility['status'] !== $compatibility['status']::CompatibleOverride && $compatibility['status'] !== $compatibility['status']::IncompatibleOverride && auth()->id() !== $addon->user_id)
                                             <dd class="pl-8">
                                                 <button
                                                     type="button"
