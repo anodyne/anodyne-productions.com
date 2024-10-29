@@ -32,12 +32,16 @@ class Kernel extends ConsoleKernel
             ->dailyAt('02:00')
             ->environments(['production']);
 
+        $schedule->command(DeactivateInactiveGames::class)
+            ->dailyAt('03:00')
+            ->environments(['production']);
+
         $schedule->command(CheckInactiveHeartbeats::class)
             ->monthlyOn(1, '02:30')
             ->environments(['production']);
 
-        $schedule->command(DeactivateInactiveGames::class)
-            ->dailyAt('03:00')
+        $schedule->command('queue:prune-batches')
+            ->monthlyOn(1, '05:00')
             ->environments(['production']);
     }
 
