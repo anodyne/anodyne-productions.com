@@ -4,7 +4,12 @@ namespace App\Console\Commands;
 
 use App\Jobs\CheckHeartbeat;
 use App\Models\Game;
+use App\Models\Heartbeat;
+use Illuminate\Bus\Batch;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Bus;
+use Spatie\DiscordAlerts\Facades\DiscordAlert;
+use Throwable;
 
 class CheckHeartbeats extends Command
 {
@@ -14,12 +19,43 @@ class CheckHeartbeats extends Command
 
     public function handle()
     {
+        // TODO: when Nova 3 is released, we will need to split this into 2 batches for different major release series
+
         $games = Game::query()
             ->isIncluded()
-            ->isNotInactive()
+            ->isActive()
             ->whereRelation('release', 'has_heartbeat_endpoint', '=', true)
             ->get();
 
-        $games->each(fn (Game $game) => dispatch(new CheckHeartbeat($game)));
+        $jobs = $games->mapInto(CheckHeartbeat::class);
+
+        Bus::batch($jobs->all())
+            ->allowFailures()
+            ->before(function (Batch $batch) {
+                // The batch has been created but no jobs have been added...
+            })->progress(function (Batch $batch) {
+                // A single job has completed successfully...
+            })->then(function (Batch $batch) {
+                // All jobs completed successfully...
+            })->catch(function (Batch $batch, Throwable $e) {
+                // First batch job failure detected...
+            })->finally(function (Batch $batch) {
+                $expectedCount = $batch->totalJobs;
+                $actualCount = Heartbeat::today()->count();
+                $unreachableCount = $expectedCount - $actualCount;
+
+                DiscordAlert::to('alerts')
+                    ->message('Heartbeat checks completed', [
+                        [
+                            'title' => 'Nova heartbeat checks completed for '.now()->format('l F jS, Y'),
+                            'color' => '#10b981',
+                            'fields' => [
+                                ['name' => 'Expected', 'value' => $expectedCount, 'inline' => true],
+                                ['name' => 'Actual', 'value' => $actualCount, 'inline' => true],
+                                ['name' => 'Unreachable', 'value' => $unreachableCount, 'inline' => true],
+                            ],
+                        ],
+                    ]);
+            })->name('Check heartbeats '.now()->format('m/d/Y'))->dispatch();
     }
 }
