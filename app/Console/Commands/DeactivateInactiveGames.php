@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Enums\GameStatus;
 use App\Models\Game;
 use Illuminate\Console\Command;
+use Spatie\DiscordAlerts\Facades\DiscordAlert;
 
 class DeactivateInactiveGames extends Command
 {
@@ -18,17 +19,32 @@ class DeactivateInactiveGames extends Command
     public function handle()
     {
         Game::withoutTimestamps(function () {
-            Game::query()
+            $abandonedCount = Game::query()
                 ->isIncluded()
-                ->isNotInactive()
+                ->isActive()
+                ->whereRelation('latestHeartbeat', 'last_published_post', '<', now()->subDays(90))
+                ->update([
+                    'status' => GameStatus::Abandoned,
+                    'status_inactive_days' => 0,
+                ]);
+
+            $inactiveCount = Game::query()
+                ->isIncluded()
+                ->isActive()
                 ->where('status_inactive_days', '>=', 7)
                 ->update(['status' => GameStatus::Inactive]);
 
-            Game::query()
-                ->isIncluded()
-                ->isNotInactive()
-                ->whereRelation('latestHeartbeat', 'last_published_post', '<', now()->subDays(90))
-                ->update(['status' => GameStatus::Abandoned]);
+            DiscordAlert::to('alerts')
+                ->message('Deactivating games completed', [
+                    [
+                        'title' => 'Marking abandoned and inactive games - '.now()->format('l F jS, Y'),
+                        'color' => '#f43f5e',
+                        'fields' => [
+                            ['name' => 'Abandoned games', 'value' => $abandonedCount, 'inline' => true],
+                            ['name' => 'Inactive games', 'value' => $inactiveCount, 'inline' => true],
+                        ],
+                    ],
+                ]);
         });
     }
 }
