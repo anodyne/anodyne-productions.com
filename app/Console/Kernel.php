@@ -41,7 +41,7 @@ class Kernel extends ConsoleKernel
             ->environments(['production']);
 
         $schedule->command('queue:prune-batches')
-            ->monthlyOn(1, '05:00')
+            ->monthlyOn(1, '04:00')
             ->environments(['production']);
     }
 
