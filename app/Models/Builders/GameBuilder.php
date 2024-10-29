@@ -17,11 +17,24 @@ class GameBuilder extends Builder
         return $this->where('is_excluded', '=', false);
     }
 
+    public function isActive(): self
+    {
+        return $this->whereNotIn('status', [
+            GameStatus::Abandoned,
+            GameStatus::Errored,
+            GameStatus::Inactive,
+            GameStatus::Unknown,
+            GameStatus::Unreachable,
+        ]);
+    }
+
     public function isInactive(): self
     {
         return $this->whereIn('status', [
             GameStatus::Abandoned,
+            GameStatus::Errored,
             GameStatus::Inactive,
+            GameStatus::Unknown,
             GameStatus::Unreachable,
         ]);
     }
@@ -30,7 +43,9 @@ class GameBuilder extends Builder
     {
         return $this->whereNotIn('status', [
             GameStatus::Abandoned,
+            GameStatus::Errored,
             GameStatus::Inactive,
+            GameStatus::Unknown,
             GameStatus::Unreachable,
         ]);
     }
