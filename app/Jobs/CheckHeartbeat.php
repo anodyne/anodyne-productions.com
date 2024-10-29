@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Enums\GameStatus;
 use App\Models\Game;
+use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -13,7 +14,11 @@ use Illuminate\Support\Facades\Http;
 
 class CheckHeartbeat implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Batchable;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public function __construct(
         protected Game $game
@@ -21,6 +26,10 @@ class CheckHeartbeat implements ShouldQueue
 
     public function handle(): void
     {
+        if ($this->batch()->cancelled()) {
+            return;
+        }
+
         if ($this->game->release->releaseSeries->is_nova2) {
             $heartbeatUri = 'index.php/main/snapshot';
         } else {
@@ -50,6 +59,9 @@ class CheckHeartbeat implements ShouldQueue
                 $latest = $this->game->latestHeartbeat;
 
                 $this->game->heartbeats()->create([
+                    'nova_release_series' => $this->game->release->releaseSeries->name,
+                    'nova_release' => $this->game->release->version,
+
                     'status_response_code' => $response->status(),
 
                     'active_users' => data_get($jsonData, 'active_users'),
