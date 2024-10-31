@@ -14,14 +14,16 @@ class BackfillGamePrefixedIds extends Command
 
     public function handle()
     {
-        $games = Game::whereNull('prefixed_id')->get();
+        Game::withoutTimestamps(function () {
+            $games = Game::whereNull('prefixed_id')->get();
 
-        $reflectedMethod = new ReflectionMethod(Game::class, 'generatePrefixedId');
+            $reflectedMethod = new ReflectionMethod(Game::class, 'generatePrefixedId');
 
-        foreach ($games as $game) {
-            $game->forceFill(['prefixed_id' => $reflectedMethod->invoke($game)]);
-            $game->save();
-        }
+            foreach ($games as $game) {
+                $game->forceFill(['prefixed_id' => $reflectedMethod->invoke($game)]);
+                $game->save();
+            }
+        });
 
         $this->info('Games have been back-filled with prefixed IDs');
 
