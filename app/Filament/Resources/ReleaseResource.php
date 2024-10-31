@@ -42,7 +42,11 @@ class ReleaseResource extends Resource
                     ->weekStartsOnSunday()
                     ->columnSpan(1),
                 Forms\Components\Select::make('release_series_id')
-                    ->relationship('releaseSeries', 'name')
+                    ->relationship(
+                        name: 'releaseSeries',
+                        titleAttribute: 'name',
+                        modifyQueryUsing: fn (Builder $query): Builder => $query->orderBy('name', 'desc')
+                    )
                     ->required()
                     ->columnSpan(1),
                 Forms\Components\MarkdownEditor::make('notes')->columnSpanFull(),
