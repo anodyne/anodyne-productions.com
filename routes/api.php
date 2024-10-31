@@ -10,7 +10,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/games', RegisterGameController::class);
+Route::post('/games', RegisterGameController::class)->name('api.register-game');
 
 Route::get('/nova/latest-version', LatestVersionController::class);
 

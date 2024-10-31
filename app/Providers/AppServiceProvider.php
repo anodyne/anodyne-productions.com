@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models;
+use App\Models\Game;
 use App\View\Components\Button;
 use Filament\Support\Facades\FilamentIcon;
 use Filament\Tables\Actions\Action;
@@ -18,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Spatie\PrefixedIds\PrefixedIds;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -38,6 +40,10 @@ class AppServiceProvider extends ServiceProvider
         $this->setupFactories();
         $this->setupMacros();
         $this->setupFilament();
+
+        PrefixedIds::registerModels([
+            'game_' => Game::class,
+        ]);
     }
 
     /**

@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Game;
 use App\Models\Release;
+use App\Support\Url;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -27,9 +28,16 @@ class RegisterGameController extends Controller
 
     public function __invoke(Request $request)
     {
+        $url = Url::parse($request->url);
+
+        $game = ($request->has('game_id'))
+            ? Game::wherePrefixedId($request->game_id)->first()
+            : Game::where('url', 'like', '%'.$url->urlWithPath())->firstOrNew();
+
         $data = [
             'name' => $request->name ?? $request->url,
             'genre' => $request->genre,
+            'url' => $request->url,
             'release_id' => Release::version($request->version)->first()->id,
             'php_version' => $request->php_version,
             'db_driver' => $request->db_driver,
@@ -47,8 +55,14 @@ class RegisterGameController extends Controller
             $data['created_at'] = Carbon::createFromFormat('U', $request->get('install_date'));
         }
 
-        Game::updateOrCreate(['url' => $request->url], $data);
+        if ($game->exists) {
+            $game->update($data);
+        } else {
+            $game = Game::create($data);
+        }
 
-        return response()->json();
+        return response()->json([
+            'game_id' => $game->prefixed_id,
+        ]);
     }
 }
