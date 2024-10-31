@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use App\Enums\ReleaseSeverity;
+use App\Observers\ReleaseObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+#[ObservedBy(ReleaseObserver::class)]
 class Release extends Model
 {
     use HasFactory;
@@ -49,6 +52,11 @@ class Release extends Model
         return Attribute::make(
             get: fn ($value) => $this->published === false
         );
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('published', true);
     }
 
     public function scopeHasPendingRelease($query)
