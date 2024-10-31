@@ -5,6 +5,8 @@ namespace App\Console;
 use App\Console\Commands\CheckHeartbeats;
 use App\Console\Commands\CheckInactiveHeartbeats;
 use App\Console\Commands\DeactivateInactiveGames;
+use App\Console\Commands\FetchSponsors;
+use App\Console\Commands\FetchSponsorshipTiers;
 use DateTimeZone;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -18,13 +20,11 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('activitylog:clean')->weekly();
 
-        // $schedule->command('anodyne:cleanup-users')->daily();
-
-        $schedule->command('anodyne:fetch-sponsorship-tiers')
+        $schedule->command(FetchSponsorshipTiers::class)
             ->dailyAt('01:00')
             ->environments(['production']);
 
-        $schedule->command('anodyne:fetch-sponsors')
+        $schedule->command(FetchSponsors::class)
             ->dailyAt('01:30')
             ->environments(['production']);
 

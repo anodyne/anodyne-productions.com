@@ -7,7 +7,7 @@ use Illuminate\Console\Command;
 
 class CleanupDeletedUsers extends Command
 {
-    public $signature = 'anodyne:cleanup-users
+    public $signature = 'anodyne:cleanup-soft-deleted-users
                          {--days=7 : Soft-deleted users older than the provided days will be force deleted.}';
 
     public $description = 'Clean up soft-deleted users';
@@ -19,5 +19,7 @@ class CleanupDeletedUsers extends Command
         $users->each->forceDelete();
 
         $this->info("{$users->count()} users were force deleted.");
+
+        return Command::SUCCESS;
     }
 }

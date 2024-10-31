@@ -13,27 +13,16 @@ use Illuminate\Console\Command;
 
 class MigrateAddons extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'one-off:migrate-addons';
+    protected $signature = 'one-time:migrate-addons';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Migrate add-ons from the old database';
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle()
     {
+        $this->error('Migrating add-ons is a one-time command that cannot be run again.');
+
+        return Command::INVALID;
+
         activity()->disableLogging();
 
         $xtras = Xtra::withTrashed()->get();

@@ -10,27 +10,16 @@ use Illuminate\Support\Carbon;
 
 class MigrateGameVersion extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'anodyne:migrate-game-versions';
+    protected $signature = 'one-time:migrate-game-versions';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Migrate the versions to the releases table.';
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle()
     {
+        $this->error('Migrating game versions is a one-time command that cannot be run again.');
+
+        return Command::INVALID;
+
         $release = Release::firstOrCreate(
             ['version' => '2.7.3'],
             [

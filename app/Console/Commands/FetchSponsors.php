@@ -9,25 +9,10 @@ use Illuminate\Support\Facades\Http;
 
 class FetchSponsors extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'anodyne:fetch-sponsors';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Fetch the sponsors from Patreon.';
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle()
     {
         $campaignId = config('services.patreon.campaignId');

@@ -13,7 +13,7 @@ use Throwable;
 
 class CheckHeartbeats extends Command
 {
-    protected $signature = 'app:check-heartbeats';
+    protected $signature = 'anodyne:check-heartbeats';
 
     protected $description = 'Run the heartbeat check on any included, non-inactive Nova game';
 
@@ -57,5 +57,9 @@ class CheckHeartbeats extends Command
                         ],
                     ]);
             })->name('Check heartbeats '.now()->format('m/d/Y'))->dispatch();
+
+        $this->info('Heartbeat checks have been dispatched');
+
+        return Command::SUCCESS;
     }
 }

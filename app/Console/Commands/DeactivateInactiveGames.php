@@ -9,13 +9,10 @@ use Spatie\DiscordAlerts\Facades\DiscordAlert;
 
 class DeactivateInactiveGames extends Command
 {
-    protected $signature = 'app:deactivate-inactive-games';
+    protected $signature = 'anodyne:deactivate-inactive-games';
 
     protected $description = 'Deactivate any games that have had an inactive status for 7 days';
 
-    /**
-     * Execute the console command.
-     */
     public function handle()
     {
         Game::withoutTimestamps(function () {
@@ -46,5 +43,9 @@ class DeactivateInactiveGames extends Command
                     ],
                 ]);
         });
+
+        $this->info('Deactivated inactive games');
+
+        return Command::SUCCESS;
     }
 }

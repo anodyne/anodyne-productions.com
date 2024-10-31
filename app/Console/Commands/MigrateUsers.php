@@ -11,27 +11,16 @@ use Illuminate\Support\Str;
 
 class MigrateUsers extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'one-off:migrate-users';
+    protected $signature = 'one-time:migrate-users';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Migrate users from the old database';
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle()
     {
+        $this->error('Migrating users is a one-time command that cannot be run again.');
+
+        return Command::INVALID;
+
         activity()->disableLogging();
 
         $legacyUsers = LegacyUser::get();
