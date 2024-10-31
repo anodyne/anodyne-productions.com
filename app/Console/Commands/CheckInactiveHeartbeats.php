@@ -8,7 +8,6 @@ use Illuminate\Bus\Batch;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Bus;
 use Spatie\DiscordAlerts\Facades\DiscordAlert;
-use Throwable;
 
 class CheckInactiveHeartbeats extends Command
 {
@@ -28,15 +27,7 @@ class CheckInactiveHeartbeats extends Command
 
         Bus::batch($jobs->all())
             ->allowFailures()
-            ->before(function (Batch $batch) {
-                // The batch has been created but no jobs have been added...
-            })->progress(function (Batch $batch) {
-                // A single job has completed successfully...
-            })->then(function (Batch $batch) {
-                // All jobs completed successfully...
-            })->catch(function (Batch $batch, Throwable $e) {
-                // First batch job failure detected...
-            })->finally(function (Batch $batch) {
+            ->finally(function (Batch $batch) {
                 DiscordAlert::to('alerts')
                     ->message('Heartbeat checks on inactive games completed', [
                         [
@@ -47,7 +38,7 @@ class CheckInactiveHeartbeats extends Command
                             ],
                         ],
                     ]);
-            })->name('Check heartbeats for inactive games '.now()->format('m/d/Y'))->dispatch();
+            })->name('Check heartbeats for inactive games - '.now()->format('m/d/Y'))->dispatch();
 
         $this->info('Heartbeat checks for inactive games have been dispatched');
 
