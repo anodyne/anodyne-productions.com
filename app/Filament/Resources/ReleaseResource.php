@@ -22,7 +22,7 @@ class ReleaseResource extends Resource
 
     protected static bool $isGloballySearchable = false;
 
-    protected static ?string $navigationGroup = 'System';
+    protected static ?string $navigationGroup = 'Nova';
 
     protected static ?int $navigationSort = 50;
 

@@ -21,13 +21,13 @@ class SponsorTierResource extends Resource
 {
     protected static ?string $model = SponsorTier::class;
 
-    protected static ?string $modelLabel = 'Tiers';
+    protected static ?string $modelLabel = 'Sponsorship Tiers';
 
     protected static ?string $navigationIcon = 'flex-bill-dollar';
 
-    protected static ?string $navigationGroup = 'Sponsorships';
+    protected static ?string $navigationGroup = 'System';
 
-    protected static ?int $navigationSort = 10;
+    protected static ?int $navigationSort = 100;
 
     public static function infolist(Infolist $infolist): Infolist
     {

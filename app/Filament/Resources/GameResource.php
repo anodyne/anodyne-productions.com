@@ -42,7 +42,7 @@ class GameResource extends Resource
 
     protected static ?string $navigationIcon = 'flex-game-controller';
 
-    protected static ?string $navigationGroup = 'System';
+    protected static ?string $navigationGroup = 'Nova';
 
     protected static ?int $navigationSort = 30;
 

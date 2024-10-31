@@ -19,9 +19,9 @@ class SponsorResource extends Resource
 
     protected static ?string $navigationIcon = 'flex-cash-bag-share';
 
-    protected static ?string $navigationGroup = 'Sponsorships';
+    protected static ?string $navigationGroup = 'System';
 
-    protected static ?int $navigationSort = 0;
+    protected static ?int $navigationSort = 110;
 
     public static function form(Form $form): Form
     {

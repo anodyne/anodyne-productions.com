@@ -48,8 +48,8 @@ class AdminPanelProvider extends PanelProvider
             )
             ->navigationGroups([
                 'Add-ons',
+                'Nova',
                 'System',
-                'Sponsorships',
                 'Reports',
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
