@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models;
+use App\Models\Addon;
 use App\Models\Game;
 use App\View\Components\Button;
 use Filament\Support\Facades\FilamentIcon;
@@ -42,6 +43,7 @@ class AppServiceProvider extends ServiceProvider
         $this->setupFilament();
 
         PrefixedIds::registerModels([
+            'add_' => Addon::class,
             'game_' => Game::class,
         ]);
     }
