@@ -473,7 +473,6 @@ class GameResource extends Resource
                     ->options(GameStatus::class)
                     ->default([
                         GameStatus::Active->value,
-                        GameStatus::Redirecting->value,
                     ]),
                 TernaryFilter::make('excluded')
                     ->placeholder('Without excluded games')
