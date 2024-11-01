@@ -14,13 +14,13 @@ class AddonLatestVersionController extends Controller
     {
         $addon = Addon::with('latestVersion')
             ->published()
-            ->where('slug', $slug)
+            ->wherePrefixedId($request->addon_id)
             ->sole();
 
         return response()->json([
             'name' => $addon->name,
-            'slug' => $addon->slug,
             'version' => $addon->latestVersion->version,
+            'addon_id' => $addon->prefixed_id,
         ]);
     }
 }
