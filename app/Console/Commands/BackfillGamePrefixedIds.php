@@ -14,6 +14,10 @@ class BackfillGamePrefixedIds extends Command
 
     public function handle()
     {
+        $this->error('Notifying users of account migration is a one-time command that cannot be run again.');
+
+        return Command::INVALID;
+
         Game::withoutTimestamps(function () {
             $games = Game::whereNull('prefixed_id')->get();
 
