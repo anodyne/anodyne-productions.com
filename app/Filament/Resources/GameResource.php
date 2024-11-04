@@ -9,6 +9,7 @@ use App\Models\Game;
 use Carbon\Carbon;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid as FormGrid;
+use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Section as FormSection;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -17,6 +18,7 @@ use Filament\Forms\Form;
 use Filament\Infolists\Components\Actions\Action as InfolistAction;
 use Filament\Infolists\Components\Grid;
 use Filament\Infolists\Components\IconEntry;
+use Filament\Infolists\Components\KeyValueEntry;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\ViewEntry;
@@ -91,6 +93,12 @@ class GameResource extends Resource
                 ])
                 ->columns(2)
                 ->columnSpanFull(),
+
+            FormSection::make()
+                ->schema([
+                    KeyValue::make('custom_properties'),
+                ])
+                ->columnSpanFull(),
         ]);
     }
 
@@ -121,6 +129,7 @@ class GameResource extends Resource
                                         ->label('Last software update')
                                         ->date(),
                                 ]),
+                                KeyValueEntry::make('custom_properties'),
                             ]),
                         Section::make('Ready for Nova 3')
                             ->icon('flex-number-3-square')

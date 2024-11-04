@@ -42,6 +42,7 @@ class Game extends Model
         'status',
         'status_response_code',
         'status_inactive_days',
+        'custom_properties',
     ];
 
     protected $casts = [
@@ -50,6 +51,7 @@ class Game extends Model
         'status' => GameStatus::class,
         'status_response_code' => 'integer',
         'status_inactive_days' => 'integer',
+        'custom_properties' => 'array',
     ];
 
     public function heartbeats(): HasMany
