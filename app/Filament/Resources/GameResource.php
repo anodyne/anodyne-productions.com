@@ -203,13 +203,20 @@ class GameResource extends Resource
                                     ViewEntry::make('total_posts')->view(
                                         'filament.infolists.entries.stat'
                                     ),
-                                    ViewEntry::make('total_post_words')->view(
-                                        'filament.infolists.entries.stat',
-                                        ['short' => true]
-                                    ),
+                                    ViewEntry::make('total_post_words')
+                                        ->view(
+                                            'filament.infolists.entries.stat',
+                                            ['short' => true]
+                                        )
+                                        ->tooltip(fn (Game $record): ?string => Number::format($record->latestHeartbeat?->total_post_words).' words'),
 
                                     TextEntry::make('latestHeartbeat.created_at')
-                                        ->getStateUsing(fn (Game $record): ?string => $record->latestHeartbeat?->created_at->format('M d, Y')),
+                                        ->getStateUsing(function (Game $record): ?string {
+                                            return $record->latestHeartbeat->created_at?->diffForHumans([
+                                                'options' => Carbon::JUST_NOW | Carbon::ONE_DAY_WORDS,
+                                                'syntax' => Carbon::DIFF_RELATIVE_TO_NOW,
+                                            ]) ?? 'No heartbeat recorded';
+                                        }),
                                 ]),
                             ])
                             ->visible(
