@@ -293,7 +293,8 @@ class GameResource extends Resource
                                     ->label('Database engine')
                                     ->view('filament.infolists.entries.stat-small'),
                                 ViewEntry::make('database_version')
-                                    ->view('filament.infolists.entries.stat-small'),
+                                    ->view('filament.infolists.entries.stat-small')
+                                    ->tooltip(fn (Game $record): string => $record->db_version),
                             ]),
                         Section::make()
                             ->heading('Status')
