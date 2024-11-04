@@ -1,6 +1,19 @@
 @use('Illuminate\Support\Number')
 
-<div class="mx-auto flex flex-col gap-y-4">
+@php
+    $tooltip = $getTooltip();
+@endphp
+
+<div
+    class="mx-auto flex flex-col gap-y-4"
+    @if (filled($tooltip))
+        x-data="{}"
+        x-tooltip="{
+            content: @js($tooltip),
+            theme: $store.theme,
+        }"
+    @endif
+>
     <div class="text-base/7 text-gray-600 dark:text-gray-400">
         {{ $getLabel() }}
     </div>
