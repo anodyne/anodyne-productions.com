@@ -22,7 +22,7 @@ class MissingVersionProductsReport extends Page implements HasTable
 
     protected static ?string $navigationIcon = 'flex-alert-diamond';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     protected ?string $heading = 'Missing Version Product(s) Report';
 

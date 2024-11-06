@@ -23,7 +23,7 @@ class RatingsReport extends Page implements HasTable
 
     protected static ?string $navigationIcon = 'flex-thumbs-down';
 
-    protected static ?int $navigationSort = 4;
+    protected static ?int $navigationSort = 5;
 
     protected ?string $heading = 'Poor Ratings Report';
 

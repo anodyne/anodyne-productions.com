@@ -23,7 +23,7 @@ class IncompatibilityReport extends Page implements HasTable
 
     protected static ?string $navigationIcon = 'flex-delete-square';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     protected ?string $heading = 'Incompatibility Report';
 
