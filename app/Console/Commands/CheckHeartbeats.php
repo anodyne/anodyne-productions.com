@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Jobs\CheckHeartbeat;
 use App\Models\Game;
 use App\Models\Heartbeat;
+use App\Models\HeartbeatReport;
 use Illuminate\Bus\Batch;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Bus;
@@ -31,9 +32,10 @@ class CheckHeartbeats extends Command
         Bus::batch($jobs->all())
             ->allowFailures()
             ->finally(function (Batch $batch) {
-                $expectedCount = $batch->totalJobs;
-                $actualCount = Heartbeat::today()->count();
-                $unreachableCount = $expectedCount - $actualCount;
+                $report = HeartbeatReport::createDailyReport(
+                    attempted: $batch->totalJobs,
+                    successful: Heartbeat::today()->count(),
+                );
 
                 DiscordAlert::to('alerts')
                     ->message('Heartbeat checks completed', [
@@ -41,9 +43,9 @@ class CheckHeartbeats extends Command
                             'title' => 'Nova heartbeat checks completed for '.now()->format('l F jS, Y'),
                             'color' => '#10b981',
                             'fields' => [
-                                ['name' => 'Expected', 'value' => $expectedCount, 'inline' => true],
-                                ['name' => 'Actual', 'value' => $actualCount, 'inline' => true],
-                                ['name' => 'Unreachable', 'value' => $unreachableCount, 'inline' => true],
+                                ['name' => 'Expected', 'value' => $report->attempted, 'inline' => true],
+                                ['name' => 'Actual', 'value' => $report->successful, 'inline' => true],
+                                ['name' => 'Unreachable', 'value' => $report->unreachable, 'inline' => true],
                             ],
                         ],
                     ]);

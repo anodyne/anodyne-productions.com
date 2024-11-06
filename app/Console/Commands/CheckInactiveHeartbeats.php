@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Jobs\CheckHeartbeat;
 use App\Models\Game;
+use App\Models\HeartbeatReport;
 use Illuminate\Bus\Batch;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Bus;
@@ -28,13 +29,15 @@ class CheckInactiveHeartbeats extends Command
         Bus::batch($jobs->all())
             ->allowFailures()
             ->finally(function (Batch $batch) {
+                $report = HeartbeatReport::createInactiveReport($batch->totalJobs);
+
                 DiscordAlert::to('alerts')
                     ->message('Heartbeat checks on inactive games completed', [
                         [
                             'title' => 'Nova heartbeat checks for inactive games completed on '.now()->format('l F jS, Y'),
                             'color' => '#fbbf24',
                             'fields' => [
-                                ['name' => 'Inactive games', 'value' => $batch->totalJobs, 'inline' => true],
+                                ['name' => 'Inactive games', 'value' => $report->attempted, 'inline' => true],
                             ],
                         ],
                     ]);

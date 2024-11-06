@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Enums\GameStatus;
 use App\Models\Game;
+use App\Models\HeartbeatReport;
 use Illuminate\Console\Command;
 use Spatie\DiscordAlerts\Facades\DiscordAlert;
 
@@ -30,6 +31,11 @@ class DeactivateInactiveGames extends Command
                 ->isActive()
                 ->where('status_inactive_days', '>=', 7)
                 ->update(['status' => GameStatus::Inactive]);
+
+            HeartbeatReport::createAbandonedReport(
+                abandoned: $abandonedCount,
+                inactive: $inactiveCount
+            );
 
             DiscordAlert::to('alerts')
                 ->message('Deactivating games completed', [
