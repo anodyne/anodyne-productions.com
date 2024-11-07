@@ -18,8 +18,8 @@ class GameSeeder extends Seeder
         for ($i = 1; $i <= 150; $i++) {
             $game = Game::factory()
                 ->create([
-                    'created_at' => $date = fake()->dateTimeBetween('-6 months'),
-                    'updated_at' => fake()->boolean ? $date : now(),
+                    'nova_installed_at' => $date = fake()->dateTimeBetween('-6 months'),
+                    'nova_updated_at' => fake()->boolean ? $date : now(),
                 ]);
 
             Heartbeat::factory()->create([
