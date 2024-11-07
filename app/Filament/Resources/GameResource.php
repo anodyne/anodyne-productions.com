@@ -88,8 +88,8 @@ class GameResource extends Resource
 
             FormSection::make()
                 ->schema([
-                    DatePicker::make('created_at')->label('Initial install'),
-                    DatePicker::make('updated_at')->label('Last update'),
+                    DatePicker::make('nova_installed_at')->label('Initial install'),
+                    DatePicker::make('nova_updated_at')->label('Last update'),
                 ])
                 ->columns(2)
                 ->columnSpanFull(),
@@ -122,10 +122,10 @@ class GameResource extends Resource
                                     ->copyable()
                                     ->copyMessage('Copied!'),
                                 Grid::make(2)->schema([
-                                    TextEntry::make('created_at')
+                                    TextEntry::make('nova_installed_at')
                                         ->label('Initial install date')
                                         ->date(),
-                                    TextEntry::make('updated_at')
+                                    TextEntry::make('nova_updated_at')
                                         ->label('Last software update')
                                         ->date(),
                                 ]),
@@ -361,7 +361,7 @@ class GameResource extends Resource
                 Game::query()
                     ->unless(Auth::user()->is_admin, fn (Builder $query): Builder => $query->isIncluded())
             )
-            ->defaultSort('updated_at', 'desc')
+            ->defaultSort('nova_updated_at', 'desc')
             ->defaultPaginationPageOption(25)
             ->columns([
                 TextColumn::make('name')
@@ -464,14 +464,14 @@ class GameResource extends Resource
                     ->hidden(fn (): bool => ! auth()->user()->isAdmin)
                     ->toggleable()
                     ->toggledHiddenByDefault(),
-                TextColumn::make('created_at')
+                TextColumn::make('nova_installed_at')
                     ->since()
                     ->label('Installed')
                     ->size('sm')
                     ->toggleable()
                     ->toggledHiddenByDefault()
                     ->sortable(),
-                TextColumn::make('updated_at')
+                TextColumn::make('nova_updated_at')
                     ->since()
                     ->label('Last updated')
                     ->size('sm')
@@ -561,7 +561,7 @@ class GameResource extends Resource
     {
         return parent::getEloquentQuery()
             ->unless(auth()->user()->isAdmin, fn (Builder $query) => $query->isIncluded())
-            ->orderBy('updated_at', 'desc');
+            ->orderBy('nova_updated_at', 'desc');
     }
 
     public static function getGloballySearchableAttributes(): array

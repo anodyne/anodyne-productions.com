@@ -35,8 +35,8 @@ class AllGamesOverview extends BaseWidget
                 Number::format(
                     Game::query()
                         ->isIncluded()
-                        ->whereColumn('created_at', 'updated_at')
-                        ->where('created_at', '>=', now()->startOfMonth())
+                        ->whereColumn('nova_installed_at', 'nova_updated_at')
+                        ->where('nova_installed_at', '>=', now()->startOfMonth())
                         ->count()
                 )
             )
@@ -48,8 +48,8 @@ class AllGamesOverview extends BaseWidget
                 Number::format(
                     Game::query()
                         ->isIncluded()
-                        ->whereColumn('created_at', '!=', 'updated_at')
-                        ->where('updated_at', '>=', now()->startOfMonth())
+                        ->whereColumn('nova_installed_at', '!=', 'nova_updated_at')
+                        ->where('nova_updated_at', '>=', now()->startOfMonth())
                         ->count()
                 )
             )

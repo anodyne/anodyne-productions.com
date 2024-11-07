@@ -49,11 +49,11 @@ class RegisterGameController extends Controller
             'total_story_groups' => $request->total_story_groups,
             'total_posts' => $request->total_posts,
             'total_post_words' => $request->total_post_words,
+            'nova_installed_at' => ! is_null($request->get('install_date'))
+                ? Carbon::createFromFormat('U', $request->get('install_date'))
+                : now(),
+            'nova_updated_at' => now(),
         ];
-
-        if (! empty($request->get('install_date'))) {
-            $data['created_at'] = Carbon::createFromFormat('U', $request->get('install_date'));
-        }
 
         if ($game->exists) {
             $game->update($data);

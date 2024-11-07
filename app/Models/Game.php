@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Enums\GameGenre;
 use App\Enums\GameStatus;
 use App\Models\Builders\GameBuilder;
+use App\Observers\GameObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\PrefixedIds\Models\Concerns\HasPrefixedId;
 
+#[ObservedBy(GameObserver::class)]
 class Game extends Model
 {
     use HasFactory;
@@ -28,7 +31,6 @@ class Game extends Model
         'server_software',
         'release_id',
         'release_series_id',
-        'created_at',
         'is_excluded',
         'active_users',
         'active_characters',
@@ -43,6 +45,9 @@ class Game extends Model
         'status_response_code',
         'status_inactive_days',
         'custom_properties',
+        'status_updated_at',
+        'nova_installed_at',
+        'nova_updated_at',
     ];
 
     protected $casts = [
@@ -52,6 +57,9 @@ class Game extends Model
         'status_response_code' => 'integer',
         'status_inactive_days' => 'integer',
         'custom_properties' => 'array',
+        'status_updated_at' => 'datetime',
+        'nova_installed_at' => 'datetime',
+        'nova_updated_at' => 'datetime',
     ];
 
     public function heartbeats(): HasMany
