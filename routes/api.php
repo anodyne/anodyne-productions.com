@@ -18,4 +18,4 @@ Route::get('/nova/latest-version', LatestVersionController::class);
 Route::get('/nova/external-changelog', GetExternalChangelogController::class);
 Route::get('/nova/external-content', GetExternalContentController::class);
 
-Route::get('/addon/latest-version', AddonLatestVersionController::class);
+Route::get('/addon/{addonId}/latest-version', AddonLatestVersionController::class);

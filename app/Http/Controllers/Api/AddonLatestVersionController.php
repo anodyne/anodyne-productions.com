@@ -10,17 +10,18 @@ use Illuminate\Http\Request;
 
 class AddonLatestVersionController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, string $addonId)
     {
         $addon = Addon::with('latestVersion')
             ->published()
-            ->wherePrefixedId($request->addon_id)
+            ->wherePrefixedId($addonId)
             ->sole();
 
         return response()->json([
             'name' => $addon->name,
             'version' => $addon->latestVersion->version,
-            'addon_id' => $addon->prefixed_id,
+            'id' => $addon->prefixed_id,
+            'url' => route('addons.show', [$addon->user, $addon]),
         ]);
     }
 }
