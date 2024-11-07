@@ -3,10 +3,9 @@
 namespace App\Filament\Resources\GameResource\Widgets;
 
 use App\Models\Game;
+use Filament\Support\Enums\IconPosition;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
-use Flowframe\Trend\Trend;
-use Flowframe\Trend\TrendValue;
 use Illuminate\Support\Number;
 
 class AllGamesOverview extends BaseWidget
@@ -15,14 +14,37 @@ class AllGamesOverview extends BaseWidget
 
     protected function getCards(): array
     {
-        $activityThisMonth = Trend::model(Game::class)
-            ->between(
-                start: now()->startOfMonth(),
-                end: now()->endOfMonth()
-            )
-            ->perDay()
-            ->count()
-            ->filter(fn (TrendValue $value) => $value->aggregate > 0);
+        $installsThisMonth = Game::query()
+            ->isIncluded()
+            ->isActive()
+            ->where('nova_installed_at', '>=', now()->startOfMonth())
+            ->count();
+
+        $installsLastMonth = Game::query()
+            ->isIncluded()
+            ->isActive()
+            ->where('nova_installed_at', '>=', now()->subMonth()->startOfMonth())
+            ->where('nova_installed_at', '<', now()->startOfMonth())
+            ->count();
+
+        $installsDiff = $installsThisMonth - $installsLastMonth;
+
+        $updatesThisMonth = Game::query()
+            ->isIncluded()
+            ->isActive()
+            ->whereColumn('nova_installed_at', '!=', 'nova_updated_at')
+            ->where('nova_updated_at', '>=', now()->startOfMonth())
+            ->count();
+
+        $updatesLastMonth = Game::query()
+            ->isIncluded()
+            ->isActive()
+            ->whereColumn('nova_installed_at', '!=', 'nova_updated_at')
+            ->where('nova_updated_at', '>=', now()->subMonth()->startOfMonth())
+            ->where('nova_updated_at', '<', now()->startOfMonth())
+            ->count();
+
+        $updatesDiff = $updatesThisMonth - $updatesLastMonth;
 
         return [
             Stat::make(
@@ -30,31 +52,45 @@ class AllGamesOverview extends BaseWidget
                 Number::format(Game::isIncluded()->count())
             ),
 
-            Stat::make(
-                'Fresh installs this month',
-                Number::format(
-                    Game::query()
-                        ->isIncluded()
-                        ->whereColumn('nova_installed_at', 'nova_updated_at')
-                        ->where('nova_installed_at', '>=', now()->startOfMonth())
-                        ->count()
-                )
-            )
-                ->chart($activityThisMonth->map(fn (TrendValue $value) => $value->aggregate)->all())
-                ->chartColor('primary'),
+            Stat::make('Fresh installs this month', Number::format($installsThisMonth))
+                ->description(match (true) {
+                    $installsDiff > 0 => Number::format($installsDiff).' more than last month',
+                    $installsDiff < 0 => Number::format(abs($installsDiff)).' fewer than last month',
+                    default => null
+                })
+                ->descriptionColor(match (true) {
+                    $installsDiff > 0 => 'success',
+                    $installsDiff < 0 => 'danger',
+                    default => null
+                })
+                ->descriptionIcon(
+                    icon: match (true) {
+                        $installsDiff > 0 => 'heroicon-o-arrow-trending-up',
+                        $installsDiff < 0 => 'heroicon-o-arrow-trending-down',
+                        default => null
+                    },
+                    position: IconPosition::Before
+                ),
 
-            Stat::make(
-                'Updates this month',
-                Number::format(
-                    Game::query()
-                        ->isIncluded()
-                        ->whereColumn('nova_installed_at', '!=', 'nova_updated_at')
-                        ->where('nova_updated_at', '>=', now()->startOfMonth())
-                        ->count()
-                )
-            )
-                ->chart($activityThisMonth->map(fn (TrendValue $value) => $value->aggregate)->all())
-                ->chartColor('primary'),
+            Stat::make('Updates this month', Number::format($updatesThisMonth))
+                ->description(match (true) {
+                    $updatesDiff > 0 => Number::format($updatesDiff).' more than last month',
+                    $updatesDiff < 0 => Number::format(abs($updatesDiff)).' fewer than last month',
+                    default => null
+                })
+                ->descriptionColor(match (true) {
+                    $updatesDiff > 0 => 'success',
+                    $updatesDiff < 0 => 'danger',
+                    default => null
+                })
+                ->descriptionIcon(
+                    icon: match (true) {
+                        $updatesDiff > 0 => 'heroicon-o-arrow-trending-up',
+                        $updatesDiff < 0 => 'heroicon-o-arrow-trending-down',
+                        default => null
+                    },
+                    position: IconPosition::Before
+                ),
         ];
     }
 }
