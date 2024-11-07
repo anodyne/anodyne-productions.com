@@ -6,6 +6,7 @@ use App\Models\Release;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\post;
 use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertNotEquals;
 use function PHPUnit\Framework\assertNotNull;
 
 beforeEach(function () {
@@ -135,6 +136,71 @@ it('can update an existing game registration with unique game ID', function () {
     ]);
 
     assertEquals($response->json('game_id'), $game->prefixed_id);
+});
+
+it('sets the install date to now for a fresh install', function () {
+    $data = [
+        'name' => 'USS Nova',
+        'version' => $this->release->version,
+        'active_users' => 1,
+        'active_primary_characters' => 1,
+        'active_secondary_characters' => 0,
+        'active_support_characters' => 0,
+        'total_stories' => 0,
+        'total_posts' => 0,
+        'total_post_words' => 0,
+        'url' => 'https://ussnova.com',
+        'genre' => 'ds9',
+        'php_version' => '8.3.0',
+        'db_driver' => 'mysqli',
+        'db_version' => '8.0.36',
+        'server_software' => 'Nginx',
+        'install_date' => null,
+    ];
+
+    $response = post(route('api.register-game'), $data);
+    $response->assertOk();
+    $date = now();
+
+    $game = Game::latest()->first();
+
+    assertNotNull($game->nova_installed_at);
+    assertEquals($game->nova_installed_at->toIso8601String(), $game->nova_updated_at->toIso8601String());
+    assertEquals($game->nova_installed_at->toIso8601String(), $date->toIso8601String());
+});
+
+it('sets the install date to the game install date for an update', function () {
+    $installed = now()->subDay();
+
+    $data = [
+        'name' => 'USS Nova',
+        'version' => $this->release->version,
+        'active_users' => 1,
+        'active_primary_characters' => 1,
+        'active_secondary_characters' => 0,
+        'active_support_characters' => 0,
+        'total_stories' => 0,
+        'total_posts' => 0,
+        'total_post_words' => 0,
+        'url' => 'https://ussnova.com',
+        'genre' => 'ds9',
+        'php_version' => '8.3.0',
+        'db_driver' => 'mysqli',
+        'db_version' => '8.0.36',
+        'server_software' => 'Nginx',
+        'install_date' => $installed->unix(),
+    ];
+
+    $response = post(route('api.register-game'), $data);
+    $response->assertOk();
+    $date = now();
+
+    $game = Game::latest()->first();
+
+    assertNotNull($game->nova_installed_at);
+    assertNotEquals($game->nova_installed_at->toIso8601String(), $game->nova_updated_at->toIso8601String());
+    assertEquals($game->nova_installed_at->toIso8601String(), now()->subDay()->toIso8601String());
+    assertNotEquals($game->nova_installed_at->toIso8601String(), $date->toIso8601String());
 });
 
 describe('update registration with different urls', function () {
