@@ -2,7 +2,7 @@
   :sections="$sections"
   :current="$page"
   :version="$version"
-  :frontmatter="$frontmatter"
+  :frontmatter="$frontmatter ?? []"
 >
   <x-buk-markdown anchors>
     {!! $markdown !!}
