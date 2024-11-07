@@ -6,7 +6,6 @@ use App\Filament\Resources\GameResource;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\ViewAction;
 use Filament\Resources\Pages\EditRecord;
-use Illuminate\Database\Eloquent\Model;
 
 class EditGame extends EditRecord
 {
@@ -18,14 +17,5 @@ class EditGame extends EditRecord
             ViewAction::make(),
             DeleteAction::make(),
         ];
-    }
-
-    protected function handleRecordUpdate(Model $record, array $data): Model
-    {
-        return Model::withoutTimestamps(function () use ($record, $data) {
-            $record->update($data);
-
-            return $record;
-        });
     }
 }

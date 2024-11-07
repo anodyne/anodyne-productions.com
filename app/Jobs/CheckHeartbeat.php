@@ -47,12 +47,10 @@ class CheckHeartbeat implements ShouldQueue
                     default => GameStatus::Unknown,
                 };
 
-                Game::withoutTimestamps(function () use ($status, $response) {
-                    $this->game->increment('status_inactive_days', 1, [
-                        'status' => $status,
-                        'status_response_code' => $response->status(),
-                    ]);
-                });
+                $this->game->increment('status_inactive_days', 1, [
+                    'status' => $status,
+                    'status_response_code' => $response->status(),
+                ]);
             } else {
                 $jsonData = $response->json();
 
@@ -79,29 +77,25 @@ class CheckHeartbeat implements ShouldQueue
                     'last_published_post' => data_get($jsonData, 'last_published_post'),
                 ]);
 
-                Game::withoutTimestamps(function () use ($jsonData, $response) {
-                    $this->game->update([
-                        'active_users' => data_get($jsonData, 'active_users'),
-                        'active_primary_characters' => data_get($jsonData, 'active_primary_characters'),
-                        'active_secondary_characters' => data_get($jsonData, 'active_secondary_characters'),
-                        'active_support_characters' => data_get($jsonData, 'active_support_characters'),
-                        'total_stories' => data_get($jsonData, 'total_stories'),
-                        'total_posts' => data_get($jsonData, 'total_posts'),
-                        'total_post_words' => data_get($jsonData, 'total_post_words'),
-                        'last_published_post' => data_get($jsonData, 'last_published_post'),
-                        'status' => $response->status() >= 300 ? GameStatus::Redirecting : GameStatus::Active,
-                        'status_response_code' => $response->status(),
-                        'status_inactive_days' => 0,
-                    ]);
-                });
+                $this->game->update([
+                    'active_users' => data_get($jsonData, 'active_users'),
+                    'active_primary_characters' => data_get($jsonData, 'active_primary_characters'),
+                    'active_secondary_characters' => data_get($jsonData, 'active_secondary_characters'),
+                    'active_support_characters' => data_get($jsonData, 'active_support_characters'),
+                    'total_stories' => data_get($jsonData, 'total_stories'),
+                    'total_posts' => data_get($jsonData, 'total_posts'),
+                    'total_post_words' => data_get($jsonData, 'total_post_words'),
+                    'last_published_post' => data_get($jsonData, 'last_published_post'),
+                    'status' => $response->status() >= 300 ? GameStatus::Redirecting : GameStatus::Active,
+                    'status_response_code' => $response->status(),
+                    'status_inactive_days' => 0,
+                ]);
             }
         } catch (\Throwable $th) {
-            Game::withoutTimestamps(function () {
-                $this->game->increment('status_inactive_days', 1, [
-                    'status' => GameStatus::Unreachable,
-                    'status_response_code' => null,
-                ]);
-            });
+            $this->game->increment('status_inactive_days', 1, [
+                'status' => GameStatus::Unreachable,
+                'status_response_code' => null,
+            ]);
         }
     }
 }
