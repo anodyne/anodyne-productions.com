@@ -14,6 +14,10 @@ class BackfillAddonPrefixedIds extends Command
 
     public function handle()
     {
+        $this->error('Backfilling add-ons with a prefixed ID cannot be run again.');
+
+        return Command::INVALID;
+
         Addon::withoutTimestamps(function () {
             $addons = Addon::withTrashed()->whereNull('prefixed_id')->get();
 

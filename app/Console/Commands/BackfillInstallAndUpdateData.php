@@ -13,6 +13,10 @@ class BackfillInstallAndUpdateData extends Command
 
     public function handle()
     {
+        $this->error('Backfilling games with install and update data cannot be run again.');
+
+        return Command::INVALID;
+
         $games = Game::get();
 
         foreach ($games as $game) {
