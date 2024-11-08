@@ -557,13 +557,6 @@ class GameResource extends Resource
         return [];
     }
 
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()
-            ->unless(auth()->user()->isAdmin, fn (Builder $query) => $query->isIncluded())
-            ->orderBy('nova_updated_at', 'desc');
-    }
-
     public static function getGloballySearchableAttributes(): array
     {
         return ['name', 'url'];
