@@ -5,6 +5,7 @@ use App\CommonMark\Extensions\Tag\Renderers;
 
 return [
 
+    'badge' => Renderers\BadgeRenderer::class,
     'note' => Renderers\NoteRenderer::class,
     'quick-link' => [
         'parser' => Parsers\SelfClosingBlockParser::class,
