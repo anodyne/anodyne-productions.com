@@ -4,16 +4,16 @@ namespace App\Filament\Resources\ReleaseResource\Pages;
 
 use App\Filament\Resources\ReleaseResource;
 use Filament\Pages\Actions;
-use Filament\Resources\Pages\ManageRecords;
+use Filament\Resources\Pages\ListRecords;
 
-class ManageReleases extends ManageRecords
+class ListReleases extends ListRecords
 {
     protected static string $resource = ReleaseResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make()->successNotificationTitle('Release created'),
+            Actions\CreateAction::make(),
         ];
     }
 }
