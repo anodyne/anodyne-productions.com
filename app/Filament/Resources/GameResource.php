@@ -119,8 +119,8 @@ class GameResource extends Resource
                                 ]),
                                 TextEntry::make('url')
                                     ->label('URL')
-                                    ->copyable()
-                                    ->copyMessage('Copied!'),
+                                    ->url(fn (Game $record): string => $record->url)
+                                    ->openUrlInNewTab(),
                                 Grid::make(2)->schema([
                                     TextEntry::make('nova_installed_at')
                                         ->label('Initial install date')
