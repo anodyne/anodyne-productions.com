@@ -6,6 +6,7 @@ use App\Enums\GameGenre;
 use App\Enums\GameStatus;
 use App\Filament\Resources\GameResource\Pages;
 use App\Models\Game;
+use App\Models\GameUpdate;
 use Carbon\Carbon;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Grid as FormGrid;
@@ -19,11 +20,15 @@ use Filament\Infolists\Components\Actions\Action as InfolistAction;
 use Filament\Infolists\Components\Grid;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\KeyValueEntry;
+use Filament\Infolists\Components\RepeatableEntry;
 use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\Split;
 use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Components\TextEntry\TextEntrySize;
 use Filament\Infolists\Components\ViewEntry;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\FontWeight;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\ViewAction;
@@ -33,9 +38,11 @@ use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
+use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Number;
 
 class GameResource extends Resource
@@ -296,6 +303,46 @@ class GameResource extends Resource
                                     ->view('filament.infolists.entries.stat-small')
                                     ->tooltip(fn (Game $record): string => $record->db_version),
                             ]),
+                        Section::make('Update history')
+                            ->icon('flex-clock-rewind')
+                            ->iconColor('info')
+                            ->schema([
+                                RepeatableEntry::make('updateHistory')
+                                    ->hiddenLabel()
+                                    ->schema([
+                                        Split::make([
+                                            TextEntry::make('previousRelease.version')
+                                                ->hiddenLabel()
+                                                ->size(TextEntrySize::Medium)
+                                                ->weight(FontWeight::SemiBold)
+                                                ->state(fn (GameUpdate $record): Htmlable => new HtmlString('<span class="tabular-nums">'.$record->previousRelease?->version.'</span>'))
+                                                ->grow(false)
+                                                ->hidden(fn (GameUpdate $record): bool => blank($record->previousRelease)),
+                                            TextEntry::make('arrow')
+                                                ->hiddenLabel()
+                                                ->size(TextEntrySize::Large)
+                                                ->state(fn (): Htmlable => new HtmlString('&rarr;'))
+                                                ->hidden(fn (GameUpdate $record): bool => blank($record->previousRelease))
+                                                ->grow(false),
+                                            TextEntry::make('release.version')
+                                                ->hiddenLabel()
+                                                ->size(TextEntrySize::Medium)
+                                                ->weight(FontWeight::SemiBold)
+                                                ->state(fn (GameUpdate $record): Htmlable => new HtmlString('<span class="tabular-nums">'.$record->release->version.'</span>'))
+                                                ->grow(true),
+                                            TextEntry::make('created_at')
+                                                ->date()
+                                                ->hiddenLabel()
+                                                ->color('gray')
+                                                ->grow(false),
+                                        ])
+                                            ->extraAttributes(['class' => 'items-center'], merge: true)
+                                            ->columnSpanFull(),
+                                    ])
+                                    ->columns(3)
+                                    ->contained(false),
+                            ])
+                            ->visible(fn (Game $record): bool => filled($record->updateHistory)),
                         Section::make()
                             ->heading('Status')
                             ->icon('flex-browser-alert')

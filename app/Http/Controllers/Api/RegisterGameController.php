@@ -34,11 +34,15 @@ class RegisterGameController extends Controller
             ? Game::wherePrefixedId($request->game_id)->first()
             : Game::where('url', 'like', '%'.$url->urlWithPath())->firstOrNew();
 
+        $release = Release::version($request->version)->first();
+
+        $previousRelease = $game->release;
+
         $data = [
             'name' => $request->name ?? $request->url,
             'genre' => $request->genre,
             'url' => $request->url,
-            'release_id' => Release::version($request->version)->first()->id,
+            'release_id' => $release->id,
             'php_version' => $request->php_version,
             'db_driver' => $request->db_driver,
             'db_version' => $request->db_version,
@@ -60,6 +64,11 @@ class RegisterGameController extends Controller
         } else {
             $game = Game::create($data);
         }
+
+        $game->updateHistory()->create([
+            'release_id' => $release->id,
+            'previous_release_id' => $previousRelease?->id,
+        ]);
 
         return response()->json([
             'game_id' => $game->prefixed_id,

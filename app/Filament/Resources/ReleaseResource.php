@@ -102,7 +102,9 @@ class ReleaseResource extends Resource
                                     ->view('filament.infolists.entries.stat'),
                                 TextEntry::make('notes')
                                     ->hiddenLabel()
-                                    ->size(TextEntrySize::Large),
+                                    ->size(TextEntrySize::Large)
+                                    ->markdown()
+                                    ->prose(),
                                 TextEntry::make('upgrade_guide_link')
                                     ->url(fn (Release $record): ?string => $record->upgrade_guide_link)
                                     ->openUrlInNewTab()

@@ -77,6 +77,11 @@ class Game extends Model
         return $this->belongsTo(Release::class);
     }
 
+    public function updateHistory(): HasMany
+    {
+        return $this->hasMany(GameUpdate::class)->orderByDesc('created_at');
+    }
+
     public function isMysql(): Attribute
     {
         return Attribute::make(

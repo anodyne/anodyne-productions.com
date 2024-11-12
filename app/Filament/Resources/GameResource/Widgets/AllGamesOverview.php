@@ -69,7 +69,7 @@ class AllGamesOverview extends BaseWidget
                         $installsDiff < 0 => 'heroicon-o-arrow-trending-down',
                         default => null
                     },
-                    position: IconPosition::Before
+                    position: IconPosition::After
                 ),
 
             Stat::make('Updates this month', Number::format($updatesThisMonth))
@@ -89,7 +89,7 @@ class AllGamesOverview extends BaseWidget
                         $updatesDiff < 0 => 'heroicon-o-arrow-trending-down',
                         default => null
                     },
-                    position: IconPosition::Before
+                    position: IconPosition::After
                 ),
         ];
     }

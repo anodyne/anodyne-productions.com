@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Game;
+use App\Models\GameUpdate;
 use App\Models\Release;
 
 use function Pest\Laravel\assertDatabaseHas;
@@ -46,6 +47,12 @@ it('can register a game', function () {
         'server_software' => 'Nginx',
     ]);
 
+    assertDatabaseHas(GameUpdate::class, [
+        'game_id' => Game::latest()->first()->id,
+        'release_id' => $this->release->id,
+        'previous_release_id' => null,
+    ]);
+
     assertNotNull($response->json('game_id'));
 });
 
@@ -73,6 +80,7 @@ it('can update an existing game registration with url only', function () {
         'db_driver' => $game->db_driver,
         'db_version' => $game->db_version,
         'server_software' => $game->server_software,
+        'previous_release' => '2.7.11',
     ];
 
     $response = post(route('api.register-game'), $data);
@@ -88,6 +96,12 @@ it('can update an existing game registration with url only', function () {
         'db_driver' => $game->db_driver,
         'db_version' => $game->db_version,
         'server_software' => $game->server_software,
+    ]);
+
+    assertDatabaseHas(GameUpdate::class, [
+        'game_id' => $game->id,
+        'release_id' => $this->release->id,
+        'previous_release_id' => $oldRelease->id,
     ]);
 
     assertEquals($response->json('game_id'), $game->prefixed_id);
@@ -117,6 +131,7 @@ it('can update an existing game registration with unique game ID', function () {
         'db_driver' => $game->db_driver,
         'db_version' => $game->db_version,
         'server_software' => $game->server_software,
+        'previous_release' => '2.7.11',
         'game_id' => $game->prefixed_id,
     ];
 
@@ -133,6 +148,12 @@ it('can update an existing game registration with unique game ID', function () {
         'db_driver' => $game->db_driver,
         'db_version' => $game->db_version,
         'server_software' => $game->server_software,
+    ]);
+
+    assertDatabaseHas(GameUpdate::class, [
+        'game_id' => $game->id,
+        'release_id' => $this->release->id,
+        'previous_release_id' => $oldRelease->id,
     ]);
 
     assertEquals($response->json('game_id'), $game->prefixed_id);
