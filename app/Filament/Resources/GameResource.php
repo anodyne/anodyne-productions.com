@@ -531,7 +531,9 @@ class GameResource extends Resource
                     'release',
                     'version'
                 ),
-                SelectFilter::make('genre')->options(GameGenre::class),
+                SelectFilter::make('genre')
+                    ->options(GameGenre::class)
+                    ->multiple(),
                 SelectFilter::make('status')
                     ->multiple()
                     ->options(GameStatus::class)
