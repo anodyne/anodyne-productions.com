@@ -14,7 +14,7 @@ class GamePostsChart extends BaseWidget
 
     protected static ?string $pollingInterval = null;
 
-    protected static ?string $heading = 'Posts per day';
+    protected ?string $heading = 'Posts per day';
 
     protected function getCards(): array
     {
