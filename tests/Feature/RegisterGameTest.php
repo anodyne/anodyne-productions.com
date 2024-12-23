@@ -31,6 +31,7 @@ it('can register a game', function () {
         'db_driver' => 'mysqli',
         'db_version' => '8.0.36',
         'server_software' => 'Nginx',
+        'previous_release' => null,
     ];
 
     $response = post(route('api.register-game'), $data);
@@ -148,6 +149,56 @@ it('can update an existing game registration with unique game ID', function () {
         'db_driver' => $game->db_driver,
         'db_version' => $game->db_version,
         'server_software' => $game->server_software,
+    ]);
+
+    assertDatabaseHas(GameUpdate::class, [
+        'game_id' => $game->id,
+        'release_id' => $this->release->id,
+        'previous_release_id' => $oldRelease->id,
+    ]);
+
+    assertEquals($response->json('game_id'), $game->prefixed_id);
+});
+
+it('can create a new game registration for a game pre-Telemetry', function () {
+    $oldRelease = Release::factory()->create(['version' => '2.6.3']);
+
+    $installed = now()->subDay();
+
+    $data = [
+        'name' => 'USS Nova',
+        'version' => $this->release->version,
+        'active_users' => 1,
+        'active_primary_characters' => 1,
+        'active_secondary_characters' => 0,
+        'active_support_characters' => 0,
+        'total_stories' => 0,
+        'total_posts' => 0,
+        'total_post_words' => 0,
+        'url' => 'https://ussnova.com',
+        'genre' => 'ds9',
+        'php_version' => '8.3.0',
+        'db_driver' => 'mysqli',
+        'db_version' => '8.0.36',
+        'server_software' => 'Nginx',
+        'install_date' => $installed->unix(),
+        'previous_version' => '2.6.3',
+    ];
+
+    $response = post(route('api.register-game'), $data);
+    $response->assertOk();
+
+    $game = Game::latest()->first();
+
+    assertDatabaseHas(Game::class, [
+        'name' => 'USS Nova',
+        'url' => 'https://ussnova.com',
+        'genre' => 'ds9',
+        'release_id' => $this->release->id,
+        'php_version' => '8.3.0',
+        'db_driver' => 'mysqli',
+        'db_version' => '8.0.36',
+        'server_software' => 'Nginx',
     ]);
 
     assertDatabaseHas(GameUpdate::class, [
