@@ -70,6 +70,7 @@ class ReleaseResource extends Resource
                             ->required()
                             ->columnSpan(1),
                         MarkdownEditor::make('notes')->columnSpanFull(),
+                        MarkdownEditor::make('details')->columnSpanFull(),
                         TextInput::make('link')
                             ->default('https://anodyne-productions.com/nova')
                             ->required()
@@ -110,6 +111,17 @@ class ReleaseResource extends Resource
                                     ->openUrlInNewTab()
                                     ->visible(fn (Release $record): bool => filled($record->upgrade_guide_link)),
                             ]),
+                        InfolistSection::make()
+                            ->heading('Release details')
+                            ->icon('flex-list-check')
+                            ->iconColor('primary')
+                            ->schema([
+                                TextEntry::make('details')
+                                    ->hiddenLabel()
+                                    ->markdown()
+                                    ->prose(),
+                            ])
+                            ->hidden(fn (Release $record): bool => blank($record->details)),
                     ])
                     ->columnSpan(2),
                 Grid::make(1)

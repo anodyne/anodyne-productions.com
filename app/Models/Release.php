@@ -19,6 +19,7 @@ class Release extends Model
     protected $fillable = [
         'version',
         'date',
+        'details',
         'notes',
         'severity',
         'link',
