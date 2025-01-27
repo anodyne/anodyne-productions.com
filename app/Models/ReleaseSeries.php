@@ -28,6 +28,11 @@ class ReleaseSeries extends Model implements Sortable
         return $this->hasMany(Release::class);
     }
 
+    public function scopeNova3($query)
+    {
+        return $query->where('name', 'like', 'Nova 3%');
+    }
+
     public function checkVersionCompatibility(Version $version)
     {
         return GetAddonCompatibility::run($version, $this);

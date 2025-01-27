@@ -24,10 +24,5 @@ class ReleaseObserver
     public function saved(Release $release): void
     {
         Cache::forget('external_changelog');
-
-        Cache::rememberForever(
-            'external_changelog',
-            fn () => Release::published()->get()->toArray()
-        );
     }
 }

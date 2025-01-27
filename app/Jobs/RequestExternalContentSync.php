@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
+use Throwable;
 
 class RequestExternalContentSync implements ShouldQueue
 {
@@ -32,9 +33,11 @@ class RequestExternalContentSync implements ShouldQueue
         try {
             $url = sprintf('%s%s', str($this->game->url)->finish('/'), 'api/sync-external-content');
 
-            Http::get($url);
-        } catch (\Throwable $th) {
-            // No need to do anything here
+            $response = Http::get($url);
+
+            // TODO: Mark that the game has had a sync
+        } catch (Throwable $th) {
+            // TODO: Mark that there was an exception trying to sync
         }
     }
 }
