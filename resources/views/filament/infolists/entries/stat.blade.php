@@ -18,10 +18,16 @@
         {{ $getLabel() }}
     </div>
     <div
-        class="order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-white sm:text-5xl"
+        class="order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-white sm:text-5xl tabular-nums"
     >
-        @if (is_string($getState())) {{ $getState() }} @else @if (isset($short)
-        && $short === true) {{ Number::abbreviate($getState(), 0) }} @else {{
-        Number::format($getState() ?? 0) }} @endif @endif
+        @if (is_string($getState()))
+            {{ $getState() }}
+        @else
+            @if (isset($short) && $short === true)
+                {{ Number::abbreviate($getState(), 0) }}
+            @else
+                {{ Number::format($getState() ?? 0) }}
+            @endif
+        @endif
     </div>
 </div>
