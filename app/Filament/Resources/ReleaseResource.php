@@ -6,9 +6,11 @@ use App\Enums\ReleaseSeverity;
 use App\Filament\Resources\ReleaseResource\Pages;
 use App\Models\Release;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Grid as FormGrid;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -71,6 +73,18 @@ class ReleaseResource extends Resource
                             ->columnSpan(1),
                         MarkdownEditor::make('notes')->columnSpanFull(),
                         MarkdownEditor::make('details')->columnSpanFull(),
+                        FormGrid::make()->schema([
+                            TagsInput::make('tags')
+                                ->suggestions([
+                                    'Security',
+                                    'Critical',
+                                    'Bug fixes',
+                                    'New feature',
+                                    'Quality of life',
+                                    'Improvements',
+                                ])
+                                ->columnSpan(1),
+                        ])->columnSpanFull(),
                         TextInput::make('link')
                             ->default('https://anodyne-productions.com/nova')
                             ->required()

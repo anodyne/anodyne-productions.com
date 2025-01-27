@@ -27,6 +27,7 @@ class Release extends Model
         'published',
         'release_series_id',
         'has_heartbeat_endpoint',
+        'tags',
     ];
 
     protected $hidden = ['created_at', 'updated_at', 'id'];
@@ -36,6 +37,7 @@ class Release extends Model
         'severity' => ReleaseSeverity::class,
         'published' => 'boolean',
         'has_heartbeat_endpoint' => 'boolean',
+        'tags' => 'array',
     ];
 
     public function games(): HasMany
