@@ -120,6 +120,11 @@ class ReleaseResource extends Resource
                                     ->size(TextEntrySize::Large)
                                     ->markdown()
                                     ->prose(),
+                                TextEntry::make('tags')
+                                    ->hiddenLabel()
+                                    ->badge()
+                                    ->color('gray')
+                                    ->visible(fn (Release $record): bool => filled($record->tags)),
                                 TextEntry::make('upgrade_guide_link')
                                     ->url(fn (Release $record): ?string => $record->upgrade_guide_link)
                                     ->openUrlInNewTab()
