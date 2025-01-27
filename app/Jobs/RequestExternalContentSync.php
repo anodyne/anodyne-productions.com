@@ -35,7 +35,9 @@ class RequestExternalContentSync implements ShouldQueue
 
             $response = Http::get($url);
 
-            // TODO: Mark that the game has had a sync
+            if ($response->ok()) {
+                $this->game->update(['content_updated_at' => now()]);
+            }
         } catch (Throwable $th) {
             // TODO: Mark that there was an exception trying to sync
         }

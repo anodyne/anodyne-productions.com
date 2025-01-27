@@ -7,6 +7,7 @@ use App\Console\Commands\CheckInactiveHeartbeats;
 use App\Console\Commands\DeactivateInactiveGames;
 use App\Console\Commands\FetchSponsors;
 use App\Console\Commands\FetchSponsorshipTiers;
+use App\Console\Commands\RequestGameExternalContentSync;
 use DateTimeZone;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -39,6 +40,10 @@ class Kernel extends ConsoleKernel
         $schedule->command(CheckInactiveHeartbeats::class)
             ->monthlyOn(1, '02:30')
             ->environments(['production']);
+
+        // $schedule->command(RequestGameExternalContentSync::class)
+        //     ->weeklyOn(1, '03:30')
+        //     ->environments(['production']);
 
         $schedule->command('queue:prune-batches')
             ->monthlyOn(1, '04:00')

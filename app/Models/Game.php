@@ -48,6 +48,7 @@ class Game extends Model
         'status_updated_at',
         'nova_installed_at',
         'nova_updated_at',
+        'content_updated_at',
     ];
 
     protected $casts = [
@@ -60,6 +61,7 @@ class Game extends Model
         'status_updated_at' => 'datetime',
         'nova_installed_at' => 'datetime',
         'nova_updated_at' => 'datetime',
+        'content_updated_at' => 'datetime',
     ];
 
     public function heartbeats(): HasMany
