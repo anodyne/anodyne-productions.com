@@ -14,6 +14,6 @@ class NextVersionController extends Controller
         return Release::query()
             ->where('published', false)
             ->first()
-            ->toJson();
+            ?->toJson();
     }
 }
