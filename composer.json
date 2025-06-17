@@ -22,6 +22,7 @@
         "kirschbaum-development/laravel-route-file-macro": "^1.1",
         "laravel/framework": "^10.44",
         "laravel/horizon": "^5.15",
+        "laravel/nightwatch": "^1.7",
         "laravel/pennant": "^1.2",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.7.3",
