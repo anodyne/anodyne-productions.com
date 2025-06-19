@@ -45,7 +45,7 @@ class AddonDetail extends Component
     #[Computed]
     public function releaseSeries(): Collection
     {
-        $query = ($this->version->releaseSeries()->count() > 0)
+        $query = ($this->version?->releaseSeries()?->count() > 0)
             ? $this->version->releaseSeries()
             : ReleaseSeries::query();
 
