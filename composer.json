@@ -28,7 +28,7 @@
         "laravel/tinker": "^2.7.3",
         "league/commonmark": "^2.3.8",
         "league/flysystem-aws-s3-v3": "^3.12.1",
-        "livewire/livewire": "^3.4",
+        "livewire/livewire": "^3.6.4",
         "lorisleiva/laravel-actions": "^2.5",
         "mokhosh/filament-rating": "^1.1",
         "silber/page-cache": "^1.0.8",
