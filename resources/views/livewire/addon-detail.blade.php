@@ -134,7 +134,7 @@
                 </div>
             </div>
 
-            @if ($version->releaseSeries)
+            @if ($version?->releaseSeries)
                 <div class="mt-6">
                     @if ($version->releaseSeries()->count() === 1)
                         <x-badge color="sky" size="xs">
@@ -159,11 +159,13 @@
                 <span class="text-slate-700 dark:text-slate-300 font-medium">{{ $addon->user->name }}</span>
             </a>
 
-            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
-                <x-button type="button" wire:click="download" variant="primary">Download</x-button>
-            </div>
+            @if ($version)
+                <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
+                    <x-button type="button" wire:click="download" variant="primary">Download</x-button>
+                </div>
+            @endif
 
-            @if ($version->product->first()?->name !== 'Nova 1')
+            @if ($version && $version?->product->first()?->name !== 'Nova 1')
                 <div class="mt-10 border-t border-slate-200 dark:border-slate-200/10 pt-10">
                     <div class="flex items-center space-x-1">
                         <h3 class="text-sm font-medium text-slate-900 dark:text-white">Compatibility</h3>
@@ -235,20 +237,22 @@
             <div x-data x-tabs>
                 <div class="border-b border-slate-200 dark:border-slate-200/10">
                     <div x-tabs:list class="-mb-px flex space-x-8" aria-orientation="horizontal" role="tablist">
-                        <button
-                            x-tabs:tab
-                            type="button"
-                            id="tab-info"
-                            class="flex items-center space-x-2 whitespace-nowrap border-b-2 py-6 text-sm font-medium"
-                            x-bind:class="$tab.isSelected ? 'border-purple-600 dark:border-purple-500 text-purple-600 dark:text-purple-400' : 'border-transparent text-slate-700 dark:text-slate-300 hover:text-slate-800 hover:border-slate-300'"
-                            aria-controls="tab-panel-info"
-                            role="tab"
-                        >
-                            <div x-bind:class="$tab.isSelected ? 'text-purple-500 dark:text-purple-500' : 'text-slate-500 dark:text-slate-500'">
-                                @svg('flex-info-circle', 'h-4 w-4')
-                            </div>
-                            <span>Info</span>
-                        </button>
+                        @if ($version)
+                            <button
+                                x-tabs:tab
+                                type="button"
+                                id="tab-info"
+                                class="flex items-center space-x-2 whitespace-nowrap border-b-2 py-6 text-sm font-medium"
+                                x-bind:class="$tab.isSelected ? 'border-purple-600 dark:border-purple-500 text-purple-600 dark:text-purple-400' : 'border-transparent text-slate-700 dark:text-slate-300 hover:text-slate-800 hover:border-slate-300'"
+                                aria-controls="tab-panel-info"
+                                role="tab"
+                            >
+                                <div x-bind:class="$tab.isSelected ? 'text-purple-500 dark:text-purple-500' : 'text-slate-500 dark:text-slate-500'">
+                                    @svg('flex-info-circle', 'h-4 w-4')
+                                </div>
+                                <span>Info</span>
+                            </button>
+                        @endif
 
                         @if ($questions->count() > 0)
                             <button
@@ -285,62 +289,64 @@
                 </div>
 
                 <div x-tabs:panels>
-                    <!-- 'Info' panel, show/hide based on tab state -->
-                    <div x-tabs:panel id="tab-panel-info" class="mt-10 text-sm text-slate-500" aria-labelledby="tab-info" role="tabpanel" tabindex="0">
-                        <h3 class="sr-only">Version Info</h3>
+                    @if ($version)
+                        <!-- 'Info' panel, show/hide based on tab state -->
+                        <div x-tabs:panel id="tab-panel-info" class="mt-10 text-sm text-slate-500" aria-labelledby="tab-info" role="tabpanel" tabindex="0">
+                            <h3 class="sr-only">Version Info</h3>
 
-                        <div class="prose dark:prose-invert">
-                            <h2>{{ $version->version }}</h2>
-                            <p class="text-xs">Last updated <time datetime="{{ $version->updated_at }}">{{ $version->updated_at->format('F d, Y') }}</time></p>
+                            <div class="prose dark:prose-invert">
+                                <h2>{{ $version->version }}</h2>
+                                <p class="text-xs">Last updated <time datetime="{{ $version->updated_at }}">{{ $version->updated_at->format('F d, Y') }}</time></p>
 
-                            @if (filled($version->install_instructions) || filled($addon->install_instructions))
-                                <h3>Install instructions</h3>
+                                @if (filled($version->install_instructions) || filled($addon->install_instructions))
+                                    <h3>Install instructions</h3>
 
-                                @if (filled($version->install_instructions))
-                                    {!! str($version->install_instructions)->markdown() !!}
-                                @else
-                                    {!! str($addon->install_instructions)->markdown() !!}
+                                    @if (filled($version->install_instructions))
+                                        {!! str($version->install_instructions)->markdown() !!}
+                                    @else
+                                        {!! str($addon->install_instructions)->markdown() !!}
+                                    @endif
                                 @endif
-                            @endif
 
-                            @if (filled($version->release_notes))
-                                <h3>Release notes</h3>
-                                {!! str($version->release_notes)->markdown() !!}
-                            @endif
+                                @if (filled($version->release_notes))
+                                    <h3>Release notes</h3>
+                                    {!! str($version->release_notes)->markdown() !!}
+                                @endif
 
-                            @if (filled($version->upgrade_instructions))
-                                <h3>Upgrade instructions</h3>
-                                {!! str($version->upgrade_instructions)->markdown() !!}
-                            @endif
+                                @if (filled($version->upgrade_instructions))
+                                    <h3>Upgrade instructions</h3>
+                                    {!! str($version->upgrade_instructions)->markdown() !!}
+                                @endif
 
-                            @if (filled($addon->credits))
-                                <h3>Add-on credits</h3>
-                                {!! str($addon->credits)->markdown() !!}
-                            @endif
+                                @if (filled($addon->credits))
+                                    <h3>Add-on credits</h3>
+                                    {!! str($addon->credits)->markdown() !!}
+                                @endif
 
-                            @if (filled($version->credits))
-                                <h3>Version credits</h3>
-                                {!! str($version->credits)->markdown() !!}
-                            @endif
+                                @if (filled($version->credits))
+                                    <h3>Version credits</h3>
+                                    {!! str($version->credits)->markdown() !!}
+                                @endif
 
-                            @if (isset($addon->links) && count($addon->links) > 0)
-                                <h3>Links</h3>
-                                <dl class="space-y-3">
-                                    @foreach ($addon->links as $link)
-                                        @if ($link['value'] !== null)
-                                            <div>
-                                                <dt class="font-medium flex items-center space-x-2">
-                                                    @svg($link['type']->icon(), 'h-5 w-5 shrink-0')
-                                                    <span>{{ $link['type']->getLabel() }}</span>
-                                                </dt>
-                                                <dd><a href="{{ $link['value'] }}">{{ $link['value'] }}</a></dd>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </dl>
-                            @endif
+                                @if (isset($addon->links) && count($addon->links) > 0)
+                                    <h3>Links</h3>
+                                    <dl class="space-y-3">
+                                        @foreach ($addon->links as $link)
+                                            @if ($link['value'] !== null)
+                                                <div>
+                                                    <dt class="font-medium flex items-center space-x-2">
+                                                        @svg($link['type']->icon(), 'h-5 w-5 shrink-0')
+                                                        <span>{{ $link['type']->getLabel() }}</span>
+                                                    </dt>
+                                                    <dd><a href="{{ $link['value'] }}">{{ $link['value'] }}</a></dd>
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    </dl>
+                                @endif
+                            </div>
                         </div>
-                    </div>
+                    @endif
 
                     <!-- 'FAQ' panel, show/hide based on tab state -->
                     @if ($questions->count() > 0)

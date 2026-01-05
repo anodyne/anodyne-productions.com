@@ -45,6 +45,10 @@ class AddonDetail extends Component
     #[Computed]
     public function releaseSeries(): Collection
     {
+        if (blank($this->version)) {
+            return Collection::make();
+        }
+
         $query = ($this->version->releaseSeries()?->count() > 0)
             ? $this->version->releaseSeries()
             : ReleaseSeries::query();
@@ -90,6 +94,8 @@ class AddonDetail extends Component
 
     public function mount(): void
     {
+        abort_if(! $this->addon->published, 404);
+
         $this->addon->loadMissing('reviews');
 
         $this->version = $this->addon->latestVersion;
