@@ -71,7 +71,7 @@
         'text-slate-500 hover:text-slate-400' => $dark,
       ])>
         <span class="sr-only">Patreon</span>
-        <svg viewBox="0 0 569 546" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 md:h-4 w-auto" aria-hidden="true"><g><circle cx="362.589996" cy="204.589996" r="204.589996"></circle><rect height="545.799988" width="100" x="0" y="0"></rect></g></svg>
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" fill="currentColor" class="h-6 md:h-4 w-auto"><path d="M1033.05,324.45c-0.19-137.9-107.59-250.92-233.6-291.7c-156.48-50.64-362.86-43.3-512.28,27.2 C106.07,145.41,49.18,332.61,47.06,519.31c-1.74,153.5,13.58,557.79,241.62,560.67c169.44,2.15,194.67-216.18,273.07-321.33 c55.78-74.81,127.6-95.94,216.01-117.82C929.71,603.22,1033.27,483.3,1033.05,324.45z"/></svg>
       </a>
     </div>
 
