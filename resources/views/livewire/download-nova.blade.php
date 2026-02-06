@@ -128,20 +128,20 @@
 				</div>
 			</div>
 
-			@if (filled($version) && filled($genre))
-				<div>
-					<x-button :href="$downloadLink" variant="brand" class="mt-12 w-full sm:w-auto flex items-center space-x-2.5">
-						<div>
-							Download Nova
-							{{ data_get($selectedVersion, 'name') }}
-							&ndash;
-							{{ data_get($selectedGenre, 'name') }}
-						</div>
+				@if (filled($selectedVersion) && filled($selectedGenre) && filled($downloadLink))
+					<div>
+						<x-button :href="$downloadLink" variant="brand" class="mt-12 w-full sm:w-auto flex items-center space-x-2.5">
+							<div>
+								Download Nova
+								{{ data_get($selectedVersion, 'name') }}
+								&ndash;
+								{{ data_get($selectedGenre, 'name') }}
+							</div>
 
-						@svg('flex-cloud-download', 'h-5 w-5 shrink-0')
-					</x-button>
-				</div>
-			@endif
+							@svg('flex-cloud-download', 'h-5 w-5 shrink-0')
+						</x-button>
+					</div>
+				@endif
 		</div>
 	</div>
 

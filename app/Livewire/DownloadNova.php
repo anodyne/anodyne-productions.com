@@ -11,17 +11,26 @@ use Livewire\Component;
 
 class DownloadNova extends Component
 {
-    public ?string $genre = null;
+    /** @var string|null */
+    public $genre = null;
 
-    public ?string $version = null;
+    /** @var string|null */
+    public $version = null;
 
     #[Computed]
-    public function downloadLink(): string
+    public function downloadLink(): ?string
     {
+        $version = data_get($this->selectedVersion, 'value');
+        $genre = data_get($this->selectedGenre, 'value');
+
+        if (! is_string($version) || ! is_string($genre)) {
+            return null;
+        }
+
         $filename = sprintf(
             'nova-%s-%s.zip',
-            $this->version,
-            $this->genre
+            $version,
+            $genre
         );
 
         /** @var $disk Filesystem */
@@ -95,16 +104,63 @@ class DownloadNova extends Component
     public function mount(): void
     {
         $this->version = $this->allVersions[0]['value'];
+        $this->sanitizeSelections();
+    }
+
+    public function hydrate(): void
+    {
+        $this->sanitizeSelections();
+    }
+
+    public function updatedGenre(mixed $genre): void
+    {
+        $this->genre = $this->sanitizeGenre($genre);
+    }
+
+    public function updatedVersion(mixed $version): void
+    {
+        $this->version = $this->sanitizeVersion($version);
+    }
+
+    private function sanitizeSelections(): void
+    {
+        $this->genre = $this->sanitizeGenre($this->genre);
+        $this->version = $this->sanitizeVersion($this->version);
+    }
+
+    private function sanitizeGenre(mixed $genre): ?string
+    {
+        if (! is_string($genre) || blank($genre)) {
+            return null;
+        }
+
+        return $this->allGenres->contains(
+            fn (array $candidate): bool => data_get($candidate, 'value') === $genre
+        ) ? $genre : null;
+    }
+
+    private function sanitizeVersion(mixed $version): ?string
+    {
+        if (! is_string($version) || blank($version)) {
+            return null;
+        }
+
+        return $this->allVersions->contains(
+            fn (array $candidate): bool => data_get($candidate, 'value') === $version
+        ) ? $version : null;
     }
 
     public function render()
     {
+        $selectedGenre = $this->selectedGenre;
+        $selectedVersion = $this->selectedVersion;
+
         return view('livewire.download-nova', [
             'allGenres' => $this->allGenres,
-            'selectedGenre' => $this->selectedGenre,
+            'selectedGenre' => $selectedGenre,
             'allVersions' => $this->allVersions,
-            'selectedVersion' => $this->selectedVersion,
-            'downloadLink' => $this->downloadLink,
+            'selectedVersion' => $selectedVersion,
+            'downloadLink' => filled($selectedGenre) && filled($selectedVersion) ? $this->downloadLink : null,
         ]);
     }
 }
