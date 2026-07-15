@@ -267,6 +267,4 @@
             </main>
         </div>
     </div>
-
-    <x-footer class="max-w-3xl xl:max-w-5xl" />
 </x-base-layout>
