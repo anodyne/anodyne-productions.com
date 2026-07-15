@@ -15,7 +15,7 @@
         </div>
         <div class="grid grid-cols-3 text-xs leading-5 overflow-hidden">
             <div class="bg-slate-100 text-slate-400 rounded-tr border border-slate-900/5 px-4 py-1.5 -mb-px -ml-px flex items-center justify-center space-x-2">
-                <x-logos.anodyne-mark color="slate-300" class="flex-none h-3 w-auto" />
+                <x-logos.anodyne.mark color="slate-300" class="flex-none h-3 w-auto" />
                 <div class="truncate">Anodyne Productions</div>
             </div>
             <div class="text-slate-900 font-medium px-4 py-1.5 flex items-center justify-center space-x-2">
