@@ -44,24 +44,6 @@
                         </li>
                     @endif
 
-                    @if (config('services.anodyne.galaxy'))
-                        <li>
-                            <a
-                                href="{{ route('galaxy.index') }}"
-                                class="group px-3 py-2 transition-colors duration-200 relative flex items-center hover:text-amber-500 text-{{ $textColor }}"
-                                aria-current="page"
-                            >
-                                <div class="group relative flex items-center space-x-3">
-                                    @svg('fluent-rocket', 'shrink-0 h-6 w-6 text-slate-400 group-hover:text-amber-500 transition ease-in-out duration-150')
-
-                                    <span class="truncate">
-                                        Galaxy
-                                    </span>
-                                </div>
-                            </a>
-                        </li>
-                    @endif
-
                     <li>
                         <a
                             href="https://discord.gg/7WmKUks"
